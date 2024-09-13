@@ -17,6 +17,10 @@
     color: white;
   }
 
+  .light {
+    background-color:#AEB6BF;font-size:15px;font-family:Consolas;color:#FFFFF;font-weight:normal;margin-left:5.72%;margin-right:5.72%;
+  }
+
   code{background-color: rgb(128 128 128 / .65)}
 
   div.all{line-height: 1.29}
@@ -28,6 +32,8 @@
 <body>
 
 <button onclick="myFunction()">Toggle dark mode</button>
+<button onclick="lighttheme()">Light Theme</button>
+<button onclick="darktheme()">Dark Theme</button>
 
 <script>
 function myFunction() {
@@ -35,6 +41,13 @@ function myFunction() {
    element.classList.toggle("dark-mode");
 }
 </script>
+
+<script>
+  function lighttheme() {
+     var element = document.body;
+     element.classList.toggle("light");
+  }
+  </script>
 
 <p>Reminder that <a href="https://nyaa.si">https://nyaa.si</a> is the only correct site address, all the others are fakes/clones<br>
 If you don't like this page's layout &#128546, here's the link to the gist version of this guide: <a href="https://gist.github.com/ItachiUchiha-IU/401a1117e6e6d336d21a326e15a912f9">gist.github.com/ItachiUchiha-IU</a><br>
