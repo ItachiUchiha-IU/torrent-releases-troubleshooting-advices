@@ -1,7 +1,9 @@
-function lighttheme () {
-  $(light).toggleClass('light');
-};
+function lighttheme() {
+  var element = document.body;
+  element.classList.toggle("light");
+}
 
-function darktheme () {
-  $(dark).toggleClass('dark');
-};
+function darktheme() {
+  var element = document.body;
+  element.classList.toggle("dark");
+}
