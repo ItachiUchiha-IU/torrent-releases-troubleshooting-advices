@@ -1,23 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
-  <link rel="stylesheet" href="styles.css">
-</head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <style>
-code{background-color: rgb(128 128 128 / .65)}
-div.all{line-height: 1.29}
-p.small {
-  line-height: 0.7;
-}
-p.big {
-  line-height: 1.3;
-}
+
+  body {
+    padding: 25px;
+    background-color: white;
+    color: black;
+    font-size: 25px;
+  }
+
+  .dark-mode {
+    background-color: black;
+    color: white;
+  }
+
+  code{background-color: rgb(128 128 128 / .65)}
+
+  div.all{line-height: 1.29}
+
 </style>
+
+</head>
+
 <body>
 
-<button onclick="lighttheme()">Light Theme</button>
-<button onclick="darktheme()">Dark Theme</button>
+<button onclick="myFunction()">Toggle dark mode</button>
+
+<script>
+function myFunction() {
+   var element = document.body;
+   element.classList.toggle("dark-mode");
+}
+</script>
 
 <p>Reminder that <a href="https://nyaa.si">https://nyaa.si</a> is the only correct site address, all the others are fakes/clones<br>
 If you don't like this page's layout &#128546, here's the link to the gist version of this guide: <a href="https://gist.github.com/ItachiUchiha-IU/401a1117e6e6d336d21a326e15a912f9">gist.github.com/ItachiUchiha-IU</a><br>
