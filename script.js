@@ -1,5 +1,7 @@
-$(function() {
-  $("#toggle_checkbox").on("click", () => {
-    $('body').toggleClass("dark",this.checked)
-  });
-});
+document.getElementById('switch').onclick = function() {
+  if (document.getElementById('theme').href == "dark.css") {
+    document.getElementById('theme').href = "light.css";
+  } else {
+    document.getElementById('theme').href = "dark.css";
+  }
+};
