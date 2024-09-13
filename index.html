@@ -1,17 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
 <style>
 
   body {
     background-color:#AEB6BF;font-size:15px;font-family:Consolas;color:#FFFFF;font-weight:normal;margin-left:5.72%;margin-right:5.72%;
-  }
-
-  .dark-mode {
-    background-color: black;
-    color: white;
   }
 
   .light {
@@ -22,26 +15,33 @@
     background-color:#212F3D;font-size:15px;font-family:Consolas;color:#FFFFFF;font-weight:normal;margin-left:5.72%;margin-right:5.72%;
   }
 
+  .black {
+    background-color:#000000;font-size:15px;font-family:Consolas;color:#ffffff;font-weight:normal;margin-left:5.72%;margin-right:5.72%;
+  }
+
+  .fontsize18 {
+    font-size:18px;
+  }
+
+  .fontweightbold {
+    font-weight:bold;
+  }
+
   code{background-color: rgb(128 128 128 / .65)}
 
   div.all{line-height: 1.29}
 
 </style>
-
 </head>
+
 
 <body>
 
-<button onclick="lighttheme()">Light Theme</button>
+<!--button onclick="lighttheme()">Light Theme</button-->
 <button onclick="darktheme()">Dark Theme</button>
-<button onclick="myFunction()">Toggle dark mode</button>
-
-<script>
-function myFunction() {
-   var element = document.body;
-   element.classList.toggle("dark-mode");
-}
-</script>
+<button onclick="blacktheme()">Black Theme</button>
+<button onclick="func_fontsize18()">Font-size:18</button>
+<button onclick="func_fontweightbold()">Font-weight:bold</button>
 
 <script>
   function lighttheme() {
@@ -54,6 +54,27 @@ function myFunction() {
   function darktheme() {
      var element = document.body;
      element.classList.toggle("dark");
+  }
+  </script>
+
+<script>
+  function blacktheme() {
+     var element = document.body;
+     element.classList.toggle("black");
+  }
+  </script>
+
+<script>
+  function func_fontsize18() {
+     var element = document.body;
+     element.classList.toggle("fontsize18");
+  }
+  </script>
+
+<script>
+  function func_fontweightbold() {
+     var element = document.body;
+     element.classList.toggle("fontweightbold");
   }
   </script>
 
