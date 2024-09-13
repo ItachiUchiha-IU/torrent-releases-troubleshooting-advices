@@ -10,8 +10,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: url('https://images.pexels.com/photos/4827/nature-forest-trees-fog.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') no-repeat center;
-  background-size: cover;
 }
 .slider {
   background: #fff;
@@ -19,7 +17,7 @@
   border-radius: 5px;
   width: 450px;
   display: flex;
-  align-items: center;
+  align-items: right;
   justify-content: center;
   justify-content: space-around;
 }
