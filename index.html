@@ -14,17 +14,6 @@ p.big {
 }
 </style>
 
-<script>
-$(function() {
-  const $spans = $("#star span")
-    .on("click", function() {
-    const cls = this.id;
-    $spans.each(function() { $("body").removeClass(this.id)})
-    $("body").addClass(cls)
-  });
-});
-</script>
-  
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <body class="star0">
   <div id="star">
