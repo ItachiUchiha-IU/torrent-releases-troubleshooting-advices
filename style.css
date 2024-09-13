@@ -1,23 +1,2 @@
-.light {
-  background-color: white;
-}
-
-#star { padding: 0 }
-
-#star span { margin: 0; font-size:36px; }
-.star0 {
-  background-color: white;
-  color:black;
-}
-.star1 {
-  background-color: grey;
-  color:white;  
-}
-.star2 {
-  background-color: darkgrey;
-  color:white;  
-}
-.star3 {
-  background-color: black;
-  color:white;
-}
+.light { background-color: white;}
+.dark { background-color: black;}
