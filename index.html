@@ -14,6 +14,30 @@ p.big {
 }
 </style>
   <body style="background-color:#AEB6BF;font-size:15px;font-family:Consolas;color:#FFFFF;font-weight:normal;margin-left:5.72%;margin-right:5.72%">
+
+  <!-- optional - Brightness slider https://www.youtube.com/watch?v=bSQ-QD1Iqi0 https://github.com/CoderZ90/brightness/tree/main -->
+    <div class="container">
+      <div class="slider">
+        <span class="fas fa-sun"></span>
+        <input type="range" id="range" min="10" max="100">
+        <span class="fas fa-moon"></span>
+      </div>
+    </div>
+
+  <!-- Javascript - Brightness slider -->
+  <script>
+    //getting container
+    const container = document.querySelector('.container');
+    //getting slider
+    const range = document.querySelector('#range');
+    // calling call back function
+    range.addEventListener('change', () => {
+      // first what we need to do is just increase and decrease the value of brightness in css we have a styling thing to change the brightness
+      // we are saying that get the container style of filter and then in filter decrease / increase the value of brightness;
+      container.style.filter = "brightness(" + range.value + "%)";
+    })
+  </script>
+
 <p>Reminder that <a href="https://nyaa.si">https://nyaa.si</a> is the only correct site address, all the others are fakes/clones<br>
 If you don't like this page's layout &#128546, here's the link to the gist version of this guide: <a href="https://gist.github.com/ItachiUchiha-IU/401a1117e6e6d336d21a326e15a912f9">gist.github.com/ItachiUchiha-IU</a><br>
 Link to all my releases on nyaa.si: <a href="https://nyaa.si/?f=0&amp;c=0_0&amp;q=itachiuchiha">ItachiUchiha</a>
