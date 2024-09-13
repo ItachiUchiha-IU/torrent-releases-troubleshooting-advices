@@ -6,10 +6,7 @@
 <style>
 
   body {
-    padding: 25px;
-    background-color: white;
-    color: black;
-    font-size: 25px;
+    background-color:#AEB6BF;font-size:15px;font-family:Consolas;color:#FFFFF;font-weight:normal;margin-left:5.72%;margin-right:5.72%;
   }
 
   .dark-mode {
@@ -19,6 +16,10 @@
 
   .light {
     background-color:#AEB6BF;font-size:15px;font-family:Consolas;color:#FFFFF;font-weight:normal;margin-left:5.72%;margin-right:5.72%;
+  }
+
+  .dark {
+    background-color:#212F3D;font-size:15px;font-family:Consolas;color:#FFFFFF;font-weight:normal;margin-left:5.72%;margin-right:5.72%;
   }
 
   code{background-color: rgb(128 128 128 / .65)}
@@ -31,9 +32,9 @@
 
 <body>
 
-<button onclick="myFunction()">Toggle dark mode</button>
 <button onclick="lighttheme()">Light Theme</button>
 <button onclick="darktheme()">Dark Theme</button>
+<button onclick="myFunction()">Toggle dark mode</button>
 
 <script>
 function myFunction() {
@@ -46,6 +47,13 @@ function myFunction() {
   function lighttheme() {
      var element = document.body;
      element.classList.toggle("light");
+  }
+  </script>
+
+<script>
+  function darktheme() {
+     var element = document.body;
+     element.classList.toggle("dark");
   }
   </script>
 
