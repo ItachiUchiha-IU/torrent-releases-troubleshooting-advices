@@ -1,7 +1,7 @@
-document.getElementById('switch').onclick = function() {
-  if (document.getElementById('theme').href == "dark.css") {
-    document.getElementById('theme').href = "light.css";
-  } else {
-    document.getElementById('theme').href = "dark.css";
-  }
+function lighttheme () {
+  $(light).toggleClass('light');
+};
+
+function darktheme () {
+  $(dark).toggleClass('dark');
 };
