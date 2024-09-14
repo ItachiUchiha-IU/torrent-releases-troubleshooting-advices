@@ -94,10 +94,10 @@
 
 <div class="top">
   <!--button onclick="lighttheme()">Light Theme</button-->
-  <button onclick="bluetheme()"><div style="color:#212F3D;">Blue Theme</div></button>
+  <button onclick="bluetheme()"><div style="background-color:#212F3D;color:#e9e9e9;">Blue Theme</div></button>
   <button onclick="blacktheme()">Black Theme</button>
-  <button onclick="func_fontsize()">Font-size:18</button>
-  <button onclick="func_fontsize()">Font-size:15</button>
+  <button onclick="func_fontsize18()">Font-size:18</button>
+  <button onclick="func_fontsize15()">Font-size:15</button>
   <button onclick="func_fontweightbold()">Font-weight:<strong>Bold</strong></button>
 
   <script>
@@ -122,14 +122,14 @@
     </script>
 
   <script>
-    function func_fontsize() {
+    function func_fontsize15() {
       var element = document.body;
       element.classList.toggle("fontsize15");
     }
     </script>
 
   <script>
-    function func_fontsize() {
+    function func_fontsize18() {
       var element = document.body;
       element.classList.toggle("fontsize18");
     }
