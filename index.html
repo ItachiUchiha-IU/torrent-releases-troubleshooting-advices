@@ -19,8 +19,12 @@
     background-color:#000000;font-size:15px;font-family:Consolas;color:#E6E6E6;font-weight:normal;margin-left:5.72%;margin-right:5.72%;
   }
 
-  a:visited{
+  a:link{
     color:rgb(0, 102, 255);
+  }
+
+  a:visited{
+    color:rgb(0, 123, 255);
   }
 
   .fontsize18 {
@@ -29,10 +33,6 @@
 
   .fontweightbold {
     font-weight:bold;
-  }
-
-  .main {
-  margin-top: 30px;
   }
 
   .topnav {
@@ -61,7 +61,7 @@
   }
   
   code{background-color: rgb(128 128 128 / .65)}
-
+  div.top{margin-top: 50px;}
   div.all{line-height: 1.29; margin-top: 30px;}
 
 </style>
@@ -76,56 +76,58 @@
     <a href="#more-troubleshooting-and-advices">More_Troubleshooting</a>
   </div>
 
-<!--button onclick="lighttheme()">Light Theme</button-->
-<button onclick="darktheme()">Dark Theme</button>
-<button onclick="blacktheme()">Black Theme</button>
-<button onclick="func_fontsize18()">Font-size:18</button>
-<button onclick="func_fontweightbold()">Font-weight:bold</button>
+<div class="top">
+  <!--button onclick="lighttheme()">Light Theme</button-->
+  <button onclick="darktheme()">Dark Theme</button>
+  <button onclick="blacktheme()">Black Theme</button>
+  <button onclick="func_fontsize18()">Font-size:18</button>
+  <button onclick="func_fontweightbold()">Font-weight:bold</button>
 
-<script>
-  function lighttheme() {
-     var element = document.body;
-     element.classList.toggle("light");
-  }
-  </script>
+  <script>
+    function lighttheme() {
+      var element = document.body;
+      element.classList.toggle("light");
+    }
+    </script>
 
-<script>
-  function darktheme() {
-     var element = document.body;
-     element.classList.toggle("dark");
-  }
-  </script>
+  <script>
+    function darktheme() {
+      var element = document.body;
+      element.classList.toggle("dark");
+    }
+    </script>
 
-<script>
-  function blacktheme() {
-     var element = document.body;
-     element.classList.toggle("black");
-  }
-  </script>
+  <script>
+    function blacktheme() {
+      var element = document.body;
+      element.classList.toggle("black");
+    }
+    </script>
 
-<script>
-  function func_fontsize18() {
-     var element = document.body;
-     element.classList.toggle("fontsize18");
-  }
-  </script>
+  <script>
+    function func_fontsize18() {
+      var element = document.body;
+      element.classList.toggle("fontsize18");
+    }
+    </script>
 
-<script>
-  function func_fontweightbold() {
-     var element = document.body;
-     element.classList.toggle("fontweightbold");
-  }
-  </script>
+  <script>
+    function func_fontweightbold() {
+      var element = document.body;
+      element.classList.toggle("fontweightbold");
+    }
+    </script>
 
-<p>Reminder that <a href="https://nyaa.si">https://nyaa.si</a> is the only correct site address, all the others are fakes/clones<br>
-If you don't like this page's layout &#128546, here's the link to the gist version of this guide: <a href="https://gist.github.com/ItachiUchiha-IU/401a1117e6e6d336d21a326e15a912f9">gist.github.com/ItachiUchiha-IU</a><br>
-Link to all my releases on nyaa.si: <a href="https://nyaa.si/?f=0&amp;c=0_0&amp;q=itachiuchiha">ItachiUchiha</a>
-</p>
-<hr>
-<h1 id="troubleshooting-advices">Torrent Releases - Troubleshooting &amp; Advices:</h1>
-<ul>
-<li>if a file doesn&#39;t open on Windows, it&#39;s because you put the files under an <a href="https://www.google.com/search?q=windows+path+limit">excessively long path</a>: update or install one of the media players I recommend, or use <code>Ctrl+Q</code> to open the files, or move or rename the files</li>
-</ul>
+  <p>Reminder that <a href="https://nyaa.si">https://nyaa.si</a> is the only correct site address, all the others are fakes/clones<br>
+  If you don't like this page's layout &#128546, here's the link to the gist version of this guide: <a href="https://gist.github.com/ItachiUchiha-IU/401a1117e6e6d336d21a326e15a912f9">gist.github.com/ItachiUchiha-IU</a><br>
+  Link to all my releases on nyaa.si: <a href="https://nyaa.si/?f=0&amp;c=0_0&amp;q=itachiuchiha">ItachiUchiha</a>
+  </p>
+  <hr>
+  <h1 id="troubleshooting-advices">Torrent Releases - Troubleshooting &amp; Advices:</h1>
+  <ul>
+  <li>if a file doesn&#39;t open on Windows, it&#39;s because you put the files under an <a href="https://www.google.com/search?q=windows+path+limit">excessively long path</a>: update or install one of the media players I recommend, or use <code>Ctrl+Q</code> to open the files, or move or rename the files</li>
+  </ul>
+</div>
 
 <div class="all">
 <script>function copyText1(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#use-one-of-the-following-media-players-highly-recommended");}</script>
