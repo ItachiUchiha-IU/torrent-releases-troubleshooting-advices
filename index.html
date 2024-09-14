@@ -3,8 +3,28 @@
 <head>
 <style>
 
+  a:link{
+    color:rgb(0, 121, 255);
+  }
+
+  a:visited{
+    color:rgb(0, 143, 255);
+  }
+
   body {
-    background-color:#AEB6BF;font-size:16px;font-family:Consolas;color:#000000;font-weight:normal;margin-top:0%;margin-left:5.72%;margin-right:5.72%;
+    background-color:#212F3D;font-size:16px;font-family:Consolas;color:#e9e9e9;font-weight:normal;margin-left:5.72%;margin-right:5.72%;margin-top:0%;
+  }
+
+  @media (prefers-color-scheme: light) {
+    body {
+      background-color:#AEB6BF;font-size:16px;font-family:Consolas;color:#000000;font-weight:normal;margin-left:5.72%;margin-right:5.72%
+    }
+    a:link{
+      color:rgb(0, 0, 255);
+    }
+    a:visited{
+      color:rgb(0, 121, 255);
+    }
   }
 
   .light {
@@ -19,20 +39,16 @@
     background-color:#000000;font-size:16px;font-family:Consolas;color:#E6E6E6;font-weight:normal;margin-left:5.72%;margin-right:5.72%;
   }
 
-  a:link{
-    color:rgb(0, 121, 255);
-  }
-
-  a:visited{
-    color:rgb(0, 143, 255);
-  }
-
   .fontsize15 {
     font-size:15px;
   }
 
   .fontsize18 {
     font-size:18px;
+  }
+
+  .fontCHANGE {
+    font-family:Arial;
   }
 
   .fontweightbold {
@@ -71,7 +87,7 @@
   }
   
   code{background-color: rgb(128 128 128 / .65)}
-  div.top{margin-top: 50px;}
+  div.top{margin-top: 50px}
   div.all{line-height: 1.29; margin-top: 30px}
 
 </style>
@@ -93,11 +109,12 @@
   </div>
 
 <div class="top">
-  <!--button onclick="lighttheme()">Light Theme</button-->
+  <button onclick="lighttheme()">Light Theme</button>
   <button onclick="bluetheme()">Blue Theme</button>
   <button onclick="blacktheme()">Black Theme</button>
   <button onclick="func_fontsize18()">Font-size:18</button>
   <button onclick="func_fontsize15()">Font-size:15</button>
+  <button onclick="func_fontCHANGE()">Font:Arial</button>
   <button onclick="func_fontweightbold()">Font-weight:<strong>Bold</strong></button>
 
   <script>
@@ -132,6 +149,13 @@
     function func_fontsize18() {
       var element = document.body;
       element.classList.toggle("fontsize18");
+    }
+    </script>
+
+  <script>
+    function func_fontCHANGE() {
+      var element = document.body;
+      element.classList.toggle("fontCHANGE");
     }
     </script>
 
