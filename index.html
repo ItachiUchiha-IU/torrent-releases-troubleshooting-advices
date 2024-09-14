@@ -27,12 +27,12 @@
     color:rgb(0, 143, 255);
   }
 
-  .fontsize18 {
-    font-size:18px;
-  }
-
   .fontsize15 {
     font-size:15px;
+  }
+
+  .fontsize18 {
+    font-size:18px;
   }
 
   .fontweightbold {
@@ -96,8 +96,8 @@
   <!--button onclick="lighttheme()">Light Theme</button-->
   <button onclick="bluetheme()">Blue Theme</button>
   <button onclick="blacktheme()">Black Theme</button>
-  <button onclick="func_fontsize15()">Font-size:15</button>
   <button onclick="func_fontsize18()">Font-size:18</button>
+  <button onclick="func_fontsize15()">Font-size:15</button>
   <button onclick="func_fontweightbold()">Font-weight:<strong>Bold</strong></button>
 
   <script>
@@ -122,16 +122,16 @@
     </script>
 
   <script>
-    function func_fontsize18() {
+    function func_fontsize15() {
       var element = document.body;
-      element.classList.toggle("fontsize18");
+      element.classList.toggle("fontsize15");
     }
     </script>
 
   <script>
-    function func_fontsize15() {
+    function func_fontsize18() {
       var element = document.body;
-      element.classList.toggle("fontsize15");
+      element.classList.toggle("fontsize18");
     }
     </script>
 
