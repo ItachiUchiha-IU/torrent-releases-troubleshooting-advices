@@ -4,7 +4,7 @@
 <style>
 
   body {
-    background-color:#212F3D;font-size:16px;font-family:Consolas;color:#e9e9e9;font-weight:normal;margin-left:5.72%;margin-right:5.72%;margin-top:0%;font-stretch: 50%;
+    background-color:#212F3D;font-size:16px;font-family:Consolas;color:#e9e9e9;font-weight:normal;margin-left:5.72%;margin-right:5.72%;margin-top:0%;font-stretch:semi-condensed;
   }
 
   .light {
@@ -36,7 +36,7 @@
   }
 
   .fontCHANGE {
-    font-family:Arial;
+    font-family:Arial;font-stretch:semi-expanded;
   }
 
   .fontweightbold {
@@ -78,50 +78,6 @@
   div.top{margin-top: 50px;}
   div.all{line-height: 1.29; margin-top: 30px}
 
-
-@font-face {
-  font-family: "Inconsolata";
-  font-style: normal;
-  font-weight: 200 900;
-  font-stretch: 50% 200%;
-  src: url(https://fonts.gstatic.com/s/inconsolata/v31/QldKNThLqRwH-OJ1UHjlKGlZ5qg.woff2) format("woff2");
-}
-
-
-h2 {
-  font-size: 0.5em;
-  color: red;
-}
-
-p {
-  font-family: Inconsolata;
-  transition: 0.8s;
-}
-
-.customMap {
-  font-family: sans-serif;
-}
-
-@font-face {
-  font-family: "Inconsolata2";
-  src: url(https://fonts.gstatic.com/s/robotocondensed/v25/ieVl2ZhZI2eCN5jzbjEETS9weq8-19K7DQ.woff2) format("woff2");
-  font-stretch: 50%;
-}
-
-@font-face {
-  font-family: "Inconsolata2";
-  src: url(https://fonts.gstatic.com/s/roboto/v30/KFOjCnqEu92Fr1Mu51TLBCc6CsQ.woff2) format('woff2');
-  font-stretch: 200%;
-  font-style: normal;
-  font-weight: normal;
-}
-
-.customMap {
-  font-family: "Inconsolata2";
-  font-style: normal;
-}
-
-
 </style>
 </head>
 
@@ -146,7 +102,7 @@ p {
   <button onclick="blacktheme()">Black Theme</button>
   <button onclick="func_fontsize18()">Font-size:18</button>
   <button onclick="func_fontsize15()">Font-size:15</button>
-  <button onclick="func_fontCHANGE()">Font:Open Sans</button>
+  <button onclick="func_fontCHANGE()">Font:Arial</button>
   <button onclick="func_fontweightbold()">Font-weight:<strong>Bold</strong></button>
 
   <script>
@@ -198,21 +154,6 @@ p {
     }
     </script>
 
-
-<p style="font-family:sans-serif; font-size:12px">Font-stretch: <input type="range" id="fontStretch" value="50" min="50" max="200" step="5"></p>
-<p style="display:inline; font-family:sans-serif; font-size:12px">Font-weight: <input type="range" id="fontWeight" value="200" min="200" max="900" step="10"></p>
-
-
-<script>
-  fontStretch.addEventListener('change', (e) => {
-    variableTest.style.fontStretch = e.currentTarget.value + '%';
-  });
-
-  fontWeight.addEventListener('change', (e) => {
-    variableTest.style.fontWeight = e.currentTarget.value;
-  })
-</script>
-
   <p>Reminder that <a href="https://nyaa.si">https://nyaa.si</a> is the only correct site address, all the others are fakes/clones<br>
   If you don't like this page's layout &#128546, here's the link to the gist version of this guide: <a href="https://gist.github.com/ItachiUchiha-IU/401a1117e6e6d336d21a326e15a912f9">gist.github.com/ItachiUchiha-IU</a><br>
   Link to all my releases on nyaa.si: <a href="https://nyaa.si/?f=0&amp;c=0_0&amp;q=itachiuchiha">ItachiUchiha</a>
@@ -224,7 +165,7 @@ p {
   </ul>
 </div>
 
-<div class="all"><div class="variableTest">
+<div class="all">
   <script>function copyText1(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#use-one-of-the-following-media-players-highly-recommended");}</script>
   <h3 id="use-one-of-the-following-media-players-highly-recommended"><button onclick="copyText1()">&#128279</button> Use one of the following media players (<strong>highly recommended</strong>):</h3>
   <ul>
@@ -329,7 +270,7 @@ p {
   
   <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
   <div style="text-align: right;">&#129300</div><br>
-</div>
+
 </div>
   </body>
 </html>
