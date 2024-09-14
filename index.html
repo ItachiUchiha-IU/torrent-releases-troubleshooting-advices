@@ -97,10 +97,10 @@
 <body>
 
   <div class="topnav">
-    <a class="active" href="#">Home</a>
-    <a href="#use-one-of-the-following-media-players-highly-recommended">Media_Players</a>
-    <a href="#set-your-preferred-languages-for-audio-and-subtitles-highly-recommended">LAV Splitter</a>
-    <a href="#more-troubleshooting-and-advices">More_T&A</a>
+    <a class="active" href="#" target="_self">Home</a>
+    <a href="#use-one-of-the-following-media-players-highly-recommended" target="_self">Media_Players</a>
+    <a href="#set-your-preferred-languages-for-audio-and-subtitles-highly-recommended" target="_self">LAV Splitter</a>
+    <a href="#more-troubleshooting-and-advices" target="_self">More_T&A</a>
     <p style="display:inline;">&nbsp;</p>
     <div style="position: relative;top: 7px;" 
       <span class="likebtn-wrapper" data-theme="custom" data-icon_l="hrt2" data-icon_l_c_v="#ff0000" data-identifier="ghwuirghnpwiugbnerwugrbjn" data-dislike_enabled="false"></span>
@@ -236,7 +236,7 @@
   <li>[LAV SPLITTER CONFIGURATION]<ul>
   <li>in <code>Subtitle Selection Mode</code> choose <code>Advanced</code> and check <code>Reselect Subtitles on every Audio Switch</code> (with this setting u can simply press <code>A</code> during the play to change the audio track and the subtitles will change automatically accordingly to your preferences)</li>
   <li>in <code>Audio</code> write your preferred languages for audio (examples: <code>jpn,ita,eng</code>, <code>eng,jpn</code>, <code>ita,eng,jpn</code> etc.)</li>
-  <li>in <code>Subtitles</code> write your preferred languages for subtitles manually or simply copy-paste (and/or edit) a pre-made string (strings made by me are under <a href="https://torrent-releases-troubleshooting-advices.pages.dev/#my-strings-for-lav-splitter">My strings for LAV Splitter</a>)</li>
+  <li>in <code>Subtitles</code> write your preferred languages for subtitles manually or simply copy-paste (and/or edit) a pre-made string (strings made by me are under <a href="#my-strings-for-lav-splitter" target="_self">My strings for LAV Splitter</a>)</li>
   <li>save the configuration
   <br>
   [LAV SPLITTER CONFIGURATION - END]</li>
@@ -256,10 +256,12 @@
   <h3 id="my-strings-for-lav-splitter"><button onclick="copyText3()">&#128279</button> My strings for LAV Splitter</h3>
   <p><code>ITA</code> as preferred language (or edit to your preferred language and keywords; remember that, as things stand now, u cant exceed 255 characters):</p>
   <script>function copyITAstring(){navigator.clipboard.writeText("ita:ita@Cartell,ita:ita@Sign,ita:ita@Forced,ita:ita@Forzat,ita:ita|f,ita:off,eng:eng@Sign,eng:eng@Forced,eng:eng|f,eng:off,*:ita@Dialog,*:ita@Complet,*:ita@Full,*:ita@Udenti,*:ita|!f,*:enm,*:eng@honorific,*:eng@Dialog,*:eng@Full,*:eng@SDH,*:eng|!f,*:*|f");}</script>
-  <textarea rows="3" cols="115" name="usrtxt" wrap="hard">ita:ita@Cartell,ita:ita@Sign,ita:ita@Forced,ita:ita@Forzat,ita:ita|f,ita:off,eng:eng@Sign,eng:eng@Forced,eng:eng|f,eng:off,*:ita@Dialog,*:ita@Complet,*:ita@Full,*:ita@Udenti,*:ita|!f,*:enm,*:eng@honorific,*:eng@Dialog,*:eng@Full,*:eng@SDH,*:eng|!f,*:*|f</textarea> <button onclick="copyITAstring()">Copy</button>
+  <textarea rows="3" cols="115" name="usrtxt" wrap="hard">ita:ita@Cartell,ita:ita@Sign,ita:ita@Forced,ita:ita@Forzat,ita:ita|f,ita:off,eng:eng@Sign,eng:eng@Forced,eng:eng|f,eng:off,*:ita@Dialog,*:ita@Complet,*:ita@Full,*:ita@Udenti,*:ita|!f,*:enm,*:eng@honorific,*:eng@Dialog,*:eng@Full,*:eng@SDH,*:eng|!f,*:*|f</textarea>
+  <button onclick="copyITAstring()">&nbsp;&nbsp;Copy&nbsp;&nbsp;</button>
   <p><code>ENG</code> as preferred language:</p>
   <script>function copyENGstring(){navigator.clipboard.writeText("eng:eng@Sign,eng:eng@Forced,eng:eng|f,eng:off,*:enm,*:eng@honorific,*:eng@Dialog,*:eng@Full,*:eng@SDH,*:eng|!f,*:*|f");}</script>
-  <textarea rows="1" cols="115" name="usrtxt" wrap="hard">eng:eng@Sign,eng:eng@Forced,eng:eng|f,eng:off,*:enm,*:eng@honorific,*:eng@Dialog,*:eng@Full,*:eng@SDH,*:eng|!f,*:*|f</textarea> <button onclick="copyENGstring()">Copy</button>
+  <textarea rows="1" cols="115" name="usrtxt" wrap="hard">eng:eng@Sign,eng:eng@Forced,eng:eng|f,eng:off,*:enm,*:eng@honorific,*:eng@Dialog,*:eng@Full,*:eng@SDH,*:eng|!f,*:*|f</textarea>
+  <button onclick="copyENGstring()">&nbsp;&nbsp;Copy&nbsp;&nbsp;</button>
   <p>Notes: the language <code>enm</code> (<code>Middle English</code>) is used for english tracks with honorifics</p>
       <br>
       
@@ -272,7 +274,7 @@
   <li>as of today, MPC-BE has still a bug regarding the issue about opening the files that are over the windows path limit; as a temporary solution, to open such files, do <code>File -&gt; Quick Open File</code> (u can do it faster by using the <code>Ctrl+Q</code> shortcut)</li>
   </ul>
   <br>
-  If you have any issue or advice, feel free to comment on <a href="https://gist.github.com/ItachiUchiha-IU/401a1117e6e6d336d21a326e15a912f9">gist.github.com/ItachiUchiha-IU</a> or to contact me through the <a href="https://discord.com/invite/83dRFDFDp7">AV1 discord server</a><br>
+  If you have any issue or advice, feel free to comment on <a href="https://gist.github.com/ItachiUchiha-IU/401a1117e6e6d336d21a326e15a912f9">gist.github.com/ItachiUchiha-IU</a> or to contact me through the <a href="https://discord.com/invite/83dRFDFDp7">AV1 anime discord server</a><br>
   <br><br>
   <div>
     <!-- LikeBtn.com BEGIN -->
@@ -281,9 +283,21 @@
     <!-- LikeBtn.com END -->
   </div>
   
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-  <div style="text-align: right;">&#129300</div><br>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
+  <div align="right">
+    <style>.block_container{text-align:center;} #block1, #block2 {display:inline;}</style>
+    <div id="block_container">
+      <div id="block1">
+        <a href="https://www.cutercounter.com/" target="_blank"><img src="https://www.cutercounter.com/hits.php?id=hxqdkdx&nd=7&style=72" border="0" alt="visitor counter"></a>
+      </div>
+      <div id="block2">
+        &nbsp;&nbsp;&nbsp;<a href="https://www.cutercounter.com/" target="_blank"><img src="https://www.cutercounter.com/hits.php?id=hxqdkxk&nd=7&style=72" border="0" alt="website counter"></a>
+      </div>
+    </div>
+
+    <!--div style="text-align: right;">&#129300</div-->
+  </div>
 </div>
   </body>
 </html>
