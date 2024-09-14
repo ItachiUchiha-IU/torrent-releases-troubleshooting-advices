@@ -1,131 +1,264 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title></title>
-</head>
 <style>
-code{background-color: rgb(128 128 128 / .65)}
-div.all{line-height: 1.29}
-p.small {
-  line-height: 0.7;
-}
-p.big {
-  line-height: 1.3;
-}
-</style>
-  <body style="background-color:#AEB6BF;font-size:15px;font-family:Consolas;color:#FFFFF;font-weight:normal;margin-left:5.72%;margin-right:5.72%">
 
-<p>Reminder that <a href="https://nyaa.si">https://nyaa.si</a> is the only correct site address, all the others are fakes/clones<br>
-If you don't like this page's layout &#128546, here's the link to the gist version of this guide: <a href="https://gist.github.com/ItachiUchiha-IU/401a1117e6e6d336d21a326e15a912f9">gist.github.com/ItachiUchiha-IU</a><br>
-Link to all my releases on nyaa.si: <a href="https://nyaa.si/?f=0&amp;c=0_0&amp;q=itachiuchiha">ItachiUchiha</a>
-</p>
-<hr>
-<h1 id="troubleshooting-advices">Torrent Releases - Troubleshooting &amp; Advices:</h1>
-<ul>
-<li>if a file doesn&#39;t open on Windows, it&#39;s because you put the files under an <a href="https://www.google.com/search?q=windows+path+limit">excessively long path</a>: update or install one of the media players I recommend, or use <code>Ctrl+Q</code> to open the files, or move or rename the files</li>
-</ul>
+  body {
+    background-color:#AEB6BF;font-size:16px;font-family:Consolas;color:#000000;font-weight:normal;margin-top:0%;margin-left:5.72%;margin-right:5.72%;
+  }
+
+  .light {
+    background-color:#AEB6BF;font-size:16px;font-family:Consolas;color:#000000;font-weight:normal;margin-left:5.72%;margin-right:5.72%;
+  }
+
+  .blue {
+    background-color:#212F3D;font-size:16px;font-family:Consolas;color:#e9e9e9;font-weight:normal;margin-left:5.72%;margin-right:5.72%;
+  }
+
+  .black {
+    background-color:#000000;font-size:16px;font-family:Consolas;color:#E6E6E6;font-weight:normal;margin-left:5.72%;margin-right:5.72%;
+  }
+
+  a:link{
+    color:rgb(0, 121, 255);
+  }
+
+  a:visited{
+    color:rgb(0, 143, 255);
+  }
+
+  .fontsize15 {
+    font-size:15px;
+  }
+
+  .fontsize18 {
+    font-size:18px;
+  }
+
+  .fontweightbold {
+    font-weight:bold;
+  }
+
+  .topnav {
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    width: 88.56%;
+  }
+  
+  html{
+   scroll-padding-top: 50px;
+  }
+
+  .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 10px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .topnav a.active {
+    background-color: #555555;
+    color: white;
+  }
+  
+  code{background-color: rgb(128 128 128 / .65)}
+  div.top{margin-top: 50px;}
+  div.all{line-height: 1.29; margin-top: 30px}
+
+</style>
+</head>
+
+<body>
+
+  <div class="topnav">
+    <a class="active" href="#">Home</a>
+    <a href="#use-one-of-the-following-media-players-highly-recommended">Media_Players</a>
+    <a href="#set-your-preferred-languages-for-audio-and-subtitles-highly-recommended">LAV Splitter</a>
+    <a href="#more-troubleshooting-and-advices">More_T&A</a>
+    <p style="display:inline;">&nbsp;</p>
+    <div style="position: relative;top: 7px;" 
+      <span class="likebtn-wrapper" data-theme="custom" data-icon_l="hrt2" data-icon_l_c_v="#ff0000" data-identifier="ghwuirghnpwiugbnerwugrbjn" data-dislike_enabled="false"></span>
+      <script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");</script>
+    </div>
+      <p style="display:inline;color:rgb(255, 255, 255);position: relative;top: 9px;">&nbsp;</p>
+  </div>
+
+<div class="top">
+  <!--button onclick="lighttheme()">Light Theme</button-->
+  <button onclick="bluetheme()">Blue Theme</button>
+  <button onclick="blacktheme()">Black Theme</button>
+  <button onclick="func_fontsize18()">Font-size:18</button>
+  <button onclick="func_fontsize15()">Font-size:15</button>
+  <button onclick="func_fontweightbold()">Font-weight:<strong>Bold</strong></button>
+
+  <script>
+    function lighttheme() {
+      var element = document.body;
+      element.classList.toggle("light");
+    }
+    </script>
+
+  <script>
+    function bluetheme() {
+      var element = document.body;
+      element.classList.toggle("blue");
+    }
+    </script>
+
+  <script>
+    function blacktheme() {
+      var element = document.body;
+      element.classList.toggle("black");
+    }
+    </script>
+
+  <script>
+    function func_fontsize15() {
+      var element = document.body;
+      element.classList.toggle("fontsize15");
+    }
+    </script>
+
+  <script>
+    function func_fontsize18() {
+      var element = document.body;
+      element.classList.toggle("fontsize18");
+    }
+    </script>
+
+  <script>
+    function func_fontweightbold() {
+      var element = document.body;
+      element.classList.toggle("fontweightbold");
+    }
+    </script>
+
+  <p>Reminder that <a href="https://nyaa.si">https://nyaa.si</a> is the only correct site address, all the others are fakes/clones<br>
+  If you don't like this page's layout &#128546, here's the link to the gist version of this guide: <a href="https://gist.github.com/ItachiUchiha-IU/401a1117e6e6d336d21a326e15a912f9">gist.github.com/ItachiUchiha-IU</a><br>
+  Link to all my releases on nyaa.si: <a href="https://nyaa.si/?f=0&amp;c=0_0&amp;q=itachiuchiha">ItachiUchiha</a>
+  </p>
+  <hr>
+  <h1 id="troubleshooting-advices">Torrent Releases - Troubleshooting &amp; Advices:</h1>
+  <ul>
+  <li>if a file doesn&#39;t open on Windows, it&#39;s because you put the files under an <a href="https://www.google.com/search?q=windows+path+limit">excessively long path</a>: update or install one of the media players I recommend, or use <code>Ctrl+Q</code> to open the files, or move or rename the files</li>
+  </ul>
+</div>
 
 <div class="all">
-<script>function copyText1(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#use-one-of-the-following-media-players-highly-recommended");}</script>
-<h3 id="use-one-of-the-following-media-players-highly-recommended"><button onclick="copyText1()">&#128279</button> Use one of the following media players (<strong>highly recommended</strong>):</h3>
-<ul>
-<li><a href="https://sourceforge.net/projects/mpcbe">MPC-BE</a> (remember to select <code>MPC Video Renderer</code> during the installation otherwise u have to <a href="https://www.videohelp.com/software/MPC-Video-Renderer">manually install it</a>)<ul>
-<li>optional: install <a href="https://www.videohelp.com/software/madVR">madVR</a> to have more video renderers to be choosen from</li>
-<li>select your renderers from the matching tabs in <code>Options</code> (press <code>O</code> to open):<ul>
-<li>in <code>Video</code> select <code>MPC Video Renderer</code> (or <code>madVR</code>)</li>
-<li>in <code>Audio</code> select <code>MPC Audio Renderer</code></li>
-<li>in <code>Subtitles</code>, select <code>VSFilter</code> as subtitle renderer (optional)</li>
-</ul>
-</li>
-<li>to fix karaoke subtitles flickering: in <code>Options -&gt; Subtitles -&gt; Rendering</code> set <code>Sub pictures to buffer</code> to <code>0</code></li>
-<li>to show the chapter markers in the seekbar: <code>Options -&gt; Player -&gt; Interface</code> -&gt; <code>Use chapters marker</code></li>
-<li>to use the preview in the seekbar: <code>Options -&gt; Player -&gt; Interface</code> -&gt; <code>Use the preview in the search</code></li>
-<li>in <code>Options -&gt; Player</code> uncheck <code>Show OSD</code> (optional)</li>
-<li>change the settings in <code>Player</code> and in <code>Windows size</code> to your liking</li>
-<li><a href="https://imgur.com/a/mzqS1gH">Screenshots of my settings on MPC-BE</a></li>
-</ul>
-</li>
-<li><a href="https://www.codecguide.com">MPC-HC</a><ul>
-<li>it may be tricky to install at first for the average user (especially if u already have MPC-BE) but it doesnt require ulterior installations for the best features if u choose the proper package (the <code>Full</code> package is recommended)<ul>
-<li>to install both BE and HC easily:<ul>
-<li>download and install <code>MPC-BE</code> following the instructions above</li>
-<li>download the <a href="https://www.codecguide.com/download_k-lite_codec_pack_full.htm">Full</a> package of <code>MPC-HC</code> and run the installation selecting <code>Install MPC-HC as a secondary player</code> (u can leave everything else on default)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>choose the renderers from: <code>Options -&gt; Playback -&gt; Output</code> :<ul>
-<li>for <code>Video</code>, select <code>MPC Video Renderer</code> or <code>madVR</code></li>
-<li>for <code>Subtitles</code>, select <code>VSFilter</code> (optional, but it can be useful in some cases: when some fonts are not muxed into the files and if the karaoke subs aren&#39;t perfectly aligned)</li>
-</ul>
-</li>
-<li>change the settings in <code>Player</code> and in <code>User interface</code> to your liking</li>
-</ul>
-</li>
-<li><a href="https://mpv.io/">MPV</a><ul>
-<li>not the easiest media player to set up &amp; use for the average consumer</li>
-<li><a href="https://iamscum.wordpress.com/guides/videoplayback-guide/">an external guide to installing and configuring mpv</a>
-</ul>
-</li>
-</ul>
-</li>
-    <br>
-    
-<script>function copyText2(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#set-your-preferred-languages-for-audio-and-subtitles-highly-recommended");}</script>
-<h3 id="set-your-preferred-languages-for-audio-and-subtitles-highly-recommended"><button onclick="copyText2()">&#128279</button> Set your preferred languages for audio and subtitles (<strong>highly recommended</strong>):</h3>
-<em>the player will open the files in the languages u prefer (both audio and subs) and will select the full subs or signs based on the audio language selected!</em>
-<ul>
-<li>on <code>MPC-BE</code>, go to <code>Options -&gt; External Filters</code> and click on <code>Add Filter</code>, then add the <code>Lav Splitter</code> filter and open it<ul>
-<li>if u dont have the <code>Lav Splitter</code> filter, u need to install the <a href="https://www.videohelp.com/software/LAV-Filters">LAV Filters</a> (during the installation u can choose to install the <code>LAV Splitter</code> only) or, if u are still in doubt about installing both <code>MPC-BE</code> and <code>HC</code>, u can install <code>MPC-HC</code> as secondary player as it contains the <code>LAV Filters</code></li>
-</ul>
-</li>
-<li>on <code>MPC-HC</code>, go to <code>Options -&gt; Internal Filters</code> and click on <code>Splitter</code> to edit the <code>LAV Filters</code></li>
-<li>[LAV SPLITTER CONFIGURATION]<ul>
-<li>in <code>Subtitle Selection Mode</code> choose <code>Advanced</code> and check <code>Reselect Subtitles on every Audio Switch</code> (with this setting u can simply press <code>A</code> during the play to change the audio track and the subtitles will change automatically accordingly to your preferences)</li>
-<li>in <code>Audio</code> write your preferred languages for audio (examples: <code>jpn,ita,eng</code>, <code>eng,jpn</code>, <code>ita,eng,jpn</code> etc.)</li>
-<li>in <code>Subtitles</code> write your preferred languages for subtitles manually or simply copy-paste (and/or edit) a pre-made string (strings made by me are under <a href="https://torrent-releases-troubleshooting-advices.pages.dev/#my-strings-for-lav-splitter">My strings for LAV Splitter</a>)</li>
-<li>save the configuration
-<br>
-[LAV SPLITTER CONFIGURATION - END]</li>
-</ul>
-</li>
-<li>on <code>MPC-HC</code> u can now close the player and eveything should be set correctly</li>
-<li>on <code>MPC-BE</code> u need to go to <code>Priority</code> (under <code>External Filters</code>) and change everything u can from <code>default</code> to <code>LAV Splitter</code>, then save and close the player</li>
-<li>if everything is set properly, the filters will work; if they dont, then there are only two options:<ul>
-<li>if they dont work on specific sources, it means that those sources have the subs set/named improperly: u can try remuxing them correctly or editing the string in <code>LAV Splitter</code></li>
-<li>if they dont work at all, it means u did something wrong while following this guide... congrats, u played yourself, now u need to repeat every passage in this guide and be careful to apply every change <code>XD Rip</code></li>
-</ul>
-</li>
-</ul>
-    <br>
-    
-<script>function copyText3(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#my-strings-for-lav-splitter");}</script>
-<h3 id="my-strings-for-lav-splitter"><button onclick="copyText3()">&#128279</button> My strings for LAV Splitter</h3>
-<p><code>ITA</code> as preferred language (or edit to your preferred language and keywords; remember that, as things stand now, u cant exceed 255 characters):</p>
-<script>function copyITAstring(){navigator.clipboard.writeText("ita:ita@Cartell,ita:ita@Sign,ita:ita@Forced,ita:ita@Forzat,ita:ita|f,ita:off,eng:eng@Sign,eng:eng@Forced,eng:eng|f,eng:off,*:ita@Dialog,*:ita@Complet,*:ita@Full,*:ita@Udenti,*:ita|!f,*:enm,*:eng@honorific,*:eng@Dialog,*:eng@Full,*:eng@SDH,*:eng|!f,*:*|f");}</script>
-<textarea rows="3" cols="115" name="usrtxt" wrap="hard">ita:ita@Cartell,ita:ita@Sign,ita:ita@Forced,ita:ita@Forzat,ita:ita|f,ita:off,eng:eng@Sign,eng:eng@Forced,eng:eng|f,eng:off,*:ita@Dialog,*:ita@Complet,*:ita@Full,*:ita@Udenti,*:ita|!f,*:enm,*:eng@honorific,*:eng@Dialog,*:eng@Full,*:eng@SDH,*:eng|!f,*:*|f</textarea> <button onclick="copyITAstring()">Copy</button>
-<p><code>ENG</code> as preferred language:</p>
-<script>function copyENGstring(){navigator.clipboard.writeText("eng:eng@Sign,eng:eng@Forced,eng:eng|f,eng:off,*:enm,*:eng@honorific,*:eng@Dialog,*:eng@Full,*:eng@SDH,*:eng|!f,*:*|f");}</script>
-<textarea rows="1" cols="115" name="usrtxt" wrap="hard">eng:eng@Sign,eng:eng@Forced,eng:eng|f,eng:off,*:enm,*:eng@honorific,*:eng@Dialog,*:eng@Full,*:eng@SDH,*:eng|!f,*:*|f</textarea> <button onclick="copyENGstring()">Copy</button>
-<p>Notes: the language <code>enm</code> (<code>Middle English</code>) is used for english tracks with honorifics</p>
-    <br>
-    
-<script>function copyText4(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#more-troubleshooting-and-advices");}</script>
-<h3 id="more-troubleshooting-and-advices"><button onclick="copyText4()">&#128279</button> More Troubleshooting and Advices:</h3>
-<ul>
-<li>use <code>A</code> to change the audio track, <code>S</code> for subtitles (if u set up the preferred languages as explained above, they will automatically change accordingly to your preferences when changing the audio track)</li>
-<li>use <code>Page Down</code> (and <code>Page Up</code>) to move between the chapters of the video (it goes to the following episode if there are no more chapters)</li>
-<li>use <code>Ctrl + Page Down</code> (and <code>Ctrl + Page Up</code>) to change episode</li>
-<li>as of today, MPC-BE has still a bug regarding the issue about opening the files that are over the windows path limit; as a temporary solution, to open such files, do <code>File -&gt; Quick Open File</code> (u can do it faster by using the <code>Ctrl+Q</code> shortcut)</li>
-</ul>
+  <script>function copyText1(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#use-one-of-the-following-media-players-highly-recommended");}</script>
+  <h3 id="use-one-of-the-following-media-players-highly-recommended"><button onclick="copyText1()">&#128279</button> Use one of the following media players (<strong>highly recommended</strong>):</h3>
+  <ul>
+  <li><a href="https://sourceforge.net/projects/mpcbe">MPC-BE</a> (remember to select <code>MPC Video Renderer</code> during the installation otherwise u have to <a href="https://www.videohelp.com/software/MPC-Video-Renderer">manually install it</a>)<ul>
+  <li>optional: install <a href="https://www.videohelp.com/software/madVR">madVR</a> to have more video renderers to be choosen from</li>
+  <li>select your renderers from the matching tabs in <code>Options</code> (press <code>O</code> to open):<ul>
+  <li>in <code>Video</code> select <code>MPC Video Renderer</code> (or <code>madVR</code>)</li>
+  <li>in <code>Audio</code> select <code>MPC Audio Renderer</code></li>
+  <li>in <code>Subtitles</code>, select <code>VSFilter</code> as subtitle renderer (optional)</li>
+  </ul>
+  </li>
+  <li>to fix karaoke subtitles flickering: in <code>Options -&gt; Subtitles -&gt; Rendering</code> set <code>Sub pictures to buffer</code> to <code>0</code></li>
+  <li>to show the chapter markers in the seekbar: <code>Options -&gt; Player -&gt; Interface</code> -&gt; <code>Use chapters marker</code></li>
+  <li>to use the preview in the seekbar: <code>Options -&gt; Player -&gt; Interface</code> -&gt; <code>Use the preview in the search</code></li>
+  <li>in <code>Options -&gt; Player</code> uncheck <code>Show OSD</code> (optional)</li>
+  <li>change the settings in <code>Player</code> and in <code>Windows size</code> to your liking</li>
+  <li><a href="https://imgur.com/a/mzqS1gH">Screenshots of my settings on MPC-BE</a></li>
+  </ul>
+  </li>
+  <li><a href="https://www.codecguide.com">MPC-HC</a><ul>
+  <li>it may be tricky to install at first for the average user (especially if u already have MPC-BE) but it doesnt require ulterior installations for the best features if u choose the proper package (the <code>Full</code> package is recommended)<ul>
+  <li>to install both BE and HC easily:<ul>
+  <li>download and install <code>MPC-BE</code> following the instructions above</li>
+  <li>download the <a href="https://www.codecguide.com/download_k-lite_codec_pack_full.htm">Full</a> package of <code>MPC-HC</code> and run the installation selecting <code>Install MPC-HC as a secondary player</code> (u can leave everything else on default)</li>
+  </ul>
+  </li>
+  </ul>
+  </li>
+  <li>choose the renderers from: <code>Options -&gt; Playback -&gt; Output</code> :<ul>
+  <li>for <code>Video</code>, select <code>MPC Video Renderer</code> or <code>madVR</code></li>
+  <li>for <code>Subtitles</code>, select <code>VSFilter</code> (optional, but it can be useful in some cases: when some fonts are not muxed into the files and if the karaoke subs aren&#39;t perfectly aligned)</li>
+  </ul>
+  </li>
+  <li>change the settings in <code>Player</code> and in <code>User interface</code> to your liking</li>
+  </ul>
+  </li>
+  <li><a href="https://mpv.io/">MPV</a><ul>
+  <li>not the easiest media player to set up &amp; use for the average consumer</li>
+  <li><a href="https://iamscum.wordpress.com/guides/videoplayback-guide/">an external guide to installing and configuring mpv</a>
+  </ul>
+  </li>
+  </ul>
+  </li>
+      <br>
+      
+  <script>function copyText2(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#set-your-preferred-languages-for-audio-and-subtitles-highly-recommended");}</script>
+  <h3 id="set-your-preferred-languages-for-audio-and-subtitles-highly-recommended"><button onclick="copyText2()">&#128279</button> Set your preferred languages for audio and subtitles (<strong>highly recommended</strong>):</h3>
+  <em>the player will open the files in the languages u prefer (both audio and subs) and will select the full subs or signs based on the audio language selected!</em>
+  <ul>
+  <li>on <code>MPC-BE</code>, go to <code>Options -&gt; External Filters</code> and click on <code>Add Filter</code>, then add the <code>Lav Splitter</code> filter and open it<ul>
+  <li>if u dont have the <code>Lav Splitter</code> filter, u need to install the <a href="https://www.videohelp.com/software/LAV-Filters">LAV Filters</a> (during the installation u can choose to install the <code>LAV Splitter</code> only) or, if u are still in doubt about installing both <code>MPC-BE</code> and <code>HC</code>, u can install <code>MPC-HC</code> as secondary player as it contains the <code>LAV Filters</code></li>
+  </ul>
+  </li>
+  <li>on <code>MPC-HC</code>, go to <code>Options -&gt; Internal Filters</code> and click on <code>Splitter</code> to edit the <code>LAV Filters</code></li>
+  <li>[LAV SPLITTER CONFIGURATION]<ul>
+  <li>in <code>Subtitle Selection Mode</code> choose <code>Advanced</code> and check <code>Reselect Subtitles on every Audio Switch</code> (with this setting u can simply press <code>A</code> during the play to change the audio track and the subtitles will change automatically accordingly to your preferences)</li>
+  <li>in <code>Audio</code> write your preferred languages for audio (examples: <code>jpn,ita,eng</code>, <code>eng,jpn</code>, <code>ita,eng,jpn</code> etc.)</li>
+  <li>in <code>Subtitles</code> write your preferred languages for subtitles manually or simply copy-paste (and/or edit) a pre-made string (strings made by me are under <a href="https://torrent-releases-troubleshooting-advices.pages.dev/#my-strings-for-lav-splitter">My strings for LAV Splitter</a>)</li>
+  <li>save the configuration
+  <br>
+  [LAV SPLITTER CONFIGURATION - END]</li>
+  </ul>
+  </li>
+  <li>on <code>MPC-HC</code> u can now close the player and eveything should be set correctly</li>
+  <li>on <code>MPC-BE</code> u need to go to <code>Priority</code> (under <code>External Filters</code>) and change everything u can from <code>default</code> to <code>LAV Splitter</code>, then save and close the player</li>
+  <li>if everything is set properly, the filters will work; if they dont, then there are only two options:<ul>
+  <li>if they dont work on specific sources, it means that those sources have the subs set/named improperly: u can try remuxing them correctly or editing the string in <code>LAV Splitter</code></li>
+  <li>if they dont work at all, it means u did something wrong while following this guide... congrats, u played yourself, now u need to repeat every passage in this guide and be careful to apply every change <code>XD Rip</code></li>
+  </ul>
+  </li>
+  </ul>
+      <br>
+      
+  <script>function copyText3(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#my-strings-for-lav-splitter");}</script>
+  <h3 id="my-strings-for-lav-splitter"><button onclick="copyText3()">&#128279</button> My strings for LAV Splitter</h3>
+  <p><code>ITA</code> as preferred language (or edit to your preferred language and keywords; remember that, as things stand now, u cant exceed 255 characters):</p>
+  <script>function copyITAstring(){navigator.clipboard.writeText("ita:ita@Cartell,ita:ita@Sign,ita:ita@Forced,ita:ita@Forzat,ita:ita|f,ita:off,eng:eng@Sign,eng:eng@Forced,eng:eng|f,eng:off,*:ita@Dialog,*:ita@Complet,*:ita@Full,*:ita@Udenti,*:ita|!f,*:enm,*:eng@honorific,*:eng@Dialog,*:eng@Full,*:eng@SDH,*:eng|!f,*:*|f");}</script>
+  <textarea rows="3" cols="115" name="usrtxt" wrap="hard">ita:ita@Cartell,ita:ita@Sign,ita:ita@Forced,ita:ita@Forzat,ita:ita|f,ita:off,eng:eng@Sign,eng:eng@Forced,eng:eng|f,eng:off,*:ita@Dialog,*:ita@Complet,*:ita@Full,*:ita@Udenti,*:ita|!f,*:enm,*:eng@honorific,*:eng@Dialog,*:eng@Full,*:eng@SDH,*:eng|!f,*:*|f</textarea> <button onclick="copyITAstring()">Copy</button>
+  <p><code>ENG</code> as preferred language:</p>
+  <script>function copyENGstring(){navigator.clipboard.writeText("eng:eng@Sign,eng:eng@Forced,eng:eng|f,eng:off,*:enm,*:eng@honorific,*:eng@Dialog,*:eng@Full,*:eng@SDH,*:eng|!f,*:*|f");}</script>
+  <textarea rows="1" cols="115" name="usrtxt" wrap="hard">eng:eng@Sign,eng:eng@Forced,eng:eng|f,eng:off,*:enm,*:eng@honorific,*:eng@Dialog,*:eng@Full,*:eng@SDH,*:eng|!f,*:*|f</textarea> <button onclick="copyENGstring()">Copy</button>
+  <p>Notes: the language <code>enm</code> (<code>Middle English</code>) is used for english tracks with honorifics</p>
+      <br>
+      
+  <script>function copyText4(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#more-troubleshooting-and-advices");}</script>
+  <h3 id="more-troubleshooting-and-advices"><button onclick="copyText4()">&#128279</button> More Troubleshooting and Advices:</h3>
+  <ul>
+  <li>use <code>A</code> to change the audio track, <code>S</code> for subtitles (if u set up the preferred languages as explained above, they will automatically change accordingly to your preferences when changing the audio track)</li>
+  <li>use <code>Page Down</code> (and <code>Page Up</code>) to move between the chapters of the video (it goes to the following episode if there are no more chapters)</li>
+  <li>use <code>Ctrl + Page Down</code> (and <code>Ctrl + Page Up</code>) to change episode</li>
+  <li>as of today, MPC-BE has still a bug regarding the issue about opening the files that are over the windows path limit; as a temporary solution, to open such files, do <code>File -&gt; Quick Open File</code> (u can do it faster by using the <code>Ctrl+Q</code> shortcut)</li>
+  </ul>
+  <br>
+  If you have any issue or advice, feel free to comment on <a href="https://gist.github.com/ItachiUchiha-IU/401a1117e6e6d336d21a326e15a912f9">gist.github.com/ItachiUchiha-IU</a> or to contact me through the <a href="https://discord.com/invite/83dRFDFDp7">AV1 discord server</a><br>
+  <br><br>
+  <div>
+    <!-- LikeBtn.com BEGIN -->
+    <span class="likebtn-wrapper" data-theme="custom" data-icon_l="hrt2" data-icon_l_c_v="#ff0000" data-identifier="ghwuirghnpwiugbnerwugrbjn" data-dislike_enabled="false"></span>
+    <script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");</script> Leave a like if you appreciate the work spent on this page!<br>
+    <!-- LikeBtn.com END -->
+  </div>
+  
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <div style="text-align: right;">&#129300</div><br>
 
-If you have any issue or advice, feel free to comment on <a href="https://gist.github.com/ItachiUchiha-IU/401a1117e6e6d336d21a326e15a912f9">gist.github.com/ItachiUchiha-IU</a> or to contact me through the <a href="https://discord.com/invite/83dRFDFDp7">AV1 discord server</a><br>
-<br>
-<!-- LikeBtn.com BEGIN -->
-<span class="likebtn-wrapper" data-theme="custom" data-icon_l="hrt2" data-icon_l_c_v="#ff0000" data-identifier="ghwuirghnpwiugbnerwugrbjn" data-dislike_enabled="false"></span>
-<script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");</script> Leave a like if you appreciated the work spent on this page!<br>
-<!-- LikeBtn.com END -->
-    <br>
 </div>
   </body>
 </html>

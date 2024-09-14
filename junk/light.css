@@ -1,0 +1,21 @@
+body{
+    background-color:#AEB6BF;font-size:15px;font-family:Consolas;color:#FFFFF;font-weight:normal;margin-left:5.72%;margin-right:5.72%;
+}
+
+
+old script.js
+function lighttheme() {
+    $(light).toggleClass('light');
+  };
+  
+  function darktheme() {
+    $(dark).toggleClass('dark');
+  };
+
+
+old index
+
+document.getElementById('light').onclick
+<button onclick="changeColor('blue');">blue</button>
+<button onclick="lighttheme.call(light)">Light Theme</button>
+<button onclick="darktheme.call(dark)">Dark Theme</button>
