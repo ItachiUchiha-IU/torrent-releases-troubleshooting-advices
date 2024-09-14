@@ -11,8 +11,8 @@
     background-color:#AEB6BF;font-size:15px;font-family:Consolas;color:#000000;font-weight:normal;margin-left:5.72%;margin-right:5.72%;
   }
 
-  .dark {
-    background-color:#233241;font-size:15px;font-family:Consolas;color:#FFFFFF;font-weight:normal;margin-left:5.72%;margin-right:5.72%;
+  .blue {
+    background-color:#233241;font-size:15px;font-family:Consolas;color:#E6E6E6;font-weight:normal;margin-left:5.72%;margin-right:5.72%;
   }
 
   .black {
@@ -89,7 +89,7 @@
 
 <div class="top">
   <!--button onclick="lighttheme()">Light Theme</button-->
-  <button onclick="darktheme()">Blue Theme</button>
+  <button onclick="bluetheme()">Blue Theme</button>
   <button onclick="blacktheme()">Black Theme</button>
   <button onclick="func_fontsize18()">Font-size:18</button>
   <button onclick="func_fontweightbold()">Font-weight:bold</button>
@@ -102,9 +102,9 @@
     </script>
 
   <script>
-    function darktheme() {
+    function bluetheme() {
       var element = document.body;
-      element.classList.toggle("dark");
+      element.classList.toggle("blue");
     }
     </script>
 
