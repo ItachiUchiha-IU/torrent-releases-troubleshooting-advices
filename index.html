@@ -13,7 +13,7 @@
   }
 
   body {
-    background-color:#212F3D;font-size:16px;font-family:Consolas;color:#e9e9e9;font-weight:normal;margin-left:5.72%;margin-right:5.72%;margin-top:0%;
+    background-color:#212F3D;font-size:16px;font-family:Consolas;color:#e9e9e9;font-weight:normal;margin-left:15%;margin-right:15%;margin-top:0%;
   }
 
   @media (prefers-color-scheme: light) {
@@ -40,8 +40,12 @@
     background-color:#000000;font-size:16px;font-family:Consolas;color:#E6E6E6;font-weight:normal;
   }
 
-  .biggermargins {
-    margin-left:20%;margin-right:20%;
+  .margins15 {
+    margin-left:15%;margin-right:15%;
+  }
+
+  .margins25 {
+    margin-left:25%;margin-right:25%;
   }
 
   .fontsize15 {
@@ -65,7 +69,9 @@
     background-color: #333;
     position: fixed;
     top: 0;
-    width: 88.56%;
+    width: 70%;
+    left: 50%;
+    transform: translateX(-50%)
   }
   
   html{
@@ -73,7 +79,7 @@
   }
 
   .topnav a {
-    float: left;
+    float: center;
     color: #f2f2f2;
     text-align: center;
     padding: 10px 16px;
@@ -117,7 +123,8 @@
   <button onclick="lighttheme()">Light Theme</button>
   <button onclick="bluetheme()">Blue Theme</button>
   <button onclick="blacktheme()">Black Theme</button>
-  <button onclick="func_biggermargins()">Margins:20%</button>
+  <button onclick="func_margins25()">Margins:25%</button>
+  <button onclick="func_margins7()">Margins:7%</button>
   <button onclick="func_fontsize18()">Font-size:18</button>
   <button onclick="func_fontsize15()">Font-size:15</button>
   <button onclick="func_fontCHANGE()">Font:Arial</button>
@@ -147,12 +154,7 @@
   <script>
     function func_biggermargins() {
       var element = document.body;
-      element.classList.toggle("biggermargins");
-      const converted = {
-        ".topnav": {
-          width: "60%"
-        }
-      }
+      element.classList.toggle("margins20");
     }
     </script>
 
@@ -309,7 +311,8 @@
         <a href="https://www.cutercounter.com/" target="_blank"><img src="https://www.cutercounter.com/hits.php?id=hxqdkdx&nd=7&style=72" border="0" alt="visitor counter"></a>
       </div>
       <div id="block2">
-        &nbsp;&nbsp;&nbsp;<a href="https://www.cutercounter.com/" target="_blank"><img src="https://www.cutercounter.com/hits.php?id=hxqdkxk&nd=7&style=72" border="0" alt="website counter"></a>
+        &nbsp;&nbsp;&nbsp;<a href="https://www.cutercounter.com/" target="_blank"><img src="https://www.cutercounter.com/hits.php?id=hxqdkdx&nd=7&style=72" border="0" alt="website counter"></a>
+        <!--&nbsp;&nbsp;&nbsp;<a href="https://www.cutercounter.com/" target="_blank"><img src="https://www.cutercounter.com/hits.php?id=hxqdkxk&nd=7&style=72" border="0" alt="website counter"></a>-->
       </div>
     </div>
 
