@@ -40,8 +40,8 @@
     background-color:#000000;font-size:16px;font-family:Consolas;color:#E6E6E6;font-weight:normal;
   }
 
-  .margins15 {
-    margin-left:15%;margin-right:15%;
+  .margins7 {
+    margin-left:7%;margin-right:7%;
   }
 
   .margins25 {
@@ -79,7 +79,10 @@
   }
 
   .topnav a {
-    float: center;
+    float: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
     color: #f2f2f2;
     text-align: center;
     padding: 10px 16px;
@@ -152,9 +155,16 @@
     </script>
 
   <script>
-    function func_biggermargins() {
+    function func_margins7() {
       var element = document.body;
-      element.classList.toggle("margins20");
+      element.classList.toggle("margins7");
+    }
+    </script>
+
+  <script>
+    function func_margins25() {
+      var element = document.body;
+      element.classList.toggle("margins25");
     }
     </script>
 
