@@ -314,7 +314,32 @@
     <!-- LikeBtn.com END -->
   </div>
   
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <div class="color-picker">
+    <label for="background-color">Background Color:</label>
+    <input type="color" id="background-color" />
+    <label for="color">Text Color:</label>
+    <input type="color" id="color" />
+  </div>
+  <script>
+    // Get the color picker inputs
+    const background-colorInput = document.getElementById("background-color");
+    const ColorInput = document.getElementById("color");
+    
+    // Update the CSS variables when the inputs change
+    background-colorInput.addEventListener("input", () => {
+      document.documentElement.style.setProperty("--background-color", background-colorInput.value);
+    });
+    
+    ColorInput.addEventListener("input", () => {
+      document.documentElement.style.setProperty(
+        "--Color",
+        ColorInput.value,
+      );
+    });
+    
+    </script>
+    <br><br><br>
 
   <input type="button" value="FAKE BUTTON" id="plus" onClick = "doPlus();" />
 
