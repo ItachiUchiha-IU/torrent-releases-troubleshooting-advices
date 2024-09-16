@@ -89,7 +89,7 @@
   }
   
   html{
-   scroll-padding-top: 83px;
+   scroll-padding-top: 90px;
   }
 
   .topnav a {
@@ -293,7 +293,22 @@
     <!-- LikeBtn.com END -->
   </div>
   
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+  <input type="button" value="FAKE BUTTON" id="plus" onClick = "doPlus();" />
+
+  <label for="">You have clicked the fake button </label>
+    <input type="text"  style="text-align:center;" size="2" value="0" id="count" />
+    <label for="">times.</label>
+  <br>
+
+  <script>
+    function doPlus(){
+      document.getElementById("count").value = ++document.getElementById("count").value;
+    }
+  </script>
+
+  <br><br>
 
   <div align="center">
     <style>.block_container{text-align:center;} #block1, #block2 {display:inline;}</style>
