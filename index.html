@@ -315,7 +315,33 @@
     <!-- LikeBtn.com END -->
   </div>
   
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  
+
+<script>
+
+  function changecolor(el) {
+    document.body.style.backgroundColor = el.value;
+  }
+  </script>
+  
+  <input id="colorpicker" type="color" onchange="changecolor(this)"> <br>
+
+  
+  <script>
+  let colorpicker = document.getElementById('colorpicker');
+  
+    setInterval(()=>{
+        let color = colorpicker.value;
+        document.body.style.backgroundColor = color;
+    }, 200);
+  </script>
+ 
+  
+    <input id = "colorpicker" type = "color" value="#ffffff">
+      <button onclick = "changecolor();"> change Color </button>
+
+  <br><br><br>
 
   <label for="">You have clicked the fake button </label>
     <input type="text"  style="text-align:center;" size="2" value="0" id="count" />
