@@ -229,21 +229,28 @@
           <button onclick="blacktheme()">Black Theme</button>
         </div>
         <div style="float:left;margin-right:9px;">
-          <Label style="display:block;">Margin:</Label>
-          <button onclick="func_margins25()">Margins:25%</button>
-          <button onclick="func_margins7()">Margins:7%</button>
+          <Label style="display:block;">Margins-LR:</Label>
+          <select onchange="margins(this);">
+          	<option>-21%</option>
+            <option>-14%</option>
+            <option>-7%</option>
+            <option selected>0%</option>
+            <option>7%</option>
+       	    <option>14%</option>
+            <option>21%</option>
+          </select>
         </div>
         <div style="float:left;margin-right:9px;">
           <Label style="display:block;">Font-px:</Label>
           <select onchange="fontsize(this);">
-            <option>14px</option>
-            <option>15px</option>
-            <option selected>16px</option>
-            <option>17px</option>
-            <option>18px</option>
-            <option>19px</option>
-            <option>20px</option>
-            <option>32px</option>
+            <option>14</option>
+            <option>15</option>
+            <option selected>16</option>
+            <option>17</option>
+            <option>18</option>
+            <option>19</option>
+            <option>20</option>
+            <option>32</option>
           </select>
         </div>
         <div style="float:left;margin-right:9px;">
@@ -278,7 +285,8 @@
   </div>
 
   <div id="transscale">
-  <div id="applyfontsize">
+  <div id="changemargins">
+  <div id="changefontsize">
     <div class="top">
       <p style="text-align: left;position: relative;top: -2.5px;">Change the layout from the menu just above<br>
       Link to all my releases on nyaa.si: <a href="https://nyaa.si/?f=0&amp;c=0_0&amp;q=itachiuchiha">ItachiUchiha</a>
@@ -456,11 +464,13 @@
             <!--&nbsp;&nbsp;&nbsp;<a href="https://www.cutercounter.com/" target="_blank"><img src="https://www.cutercounter.com/hits.php?id=hxqdkxk&nd=7&style=72" border="0" alt="website counter"></a>-->
           </div>
         </div>
+        <!--div style="text-align: right;">&#129300
+        </div-->
+      </div>
 
-        <!--div style="text-align: right;">&#129300</div-->
-      </div>
-      </div>
     </div>
+  </div>
+  </div>
   </div>
 
 
@@ -603,9 +613,17 @@
   </script>
 
   <script>
+    function margins(selectTag) {
+      var listValue = selectTag.options[selectTag.selectedIndex].text;
+
+      document.getElementById("changemargins").style.margin = "0% " + listValue;
+    }
+  </script>
+  
+  <script>
     function fontsize(selectTag) {
       var listValue = selectTag.options[selectTag.selectedIndex].text;
-      document.getElementById("applyfontsize").style.fontSize = listValue;
+      document.getElementById("changefontsize").style.fontSize = listValue + "px";
     }
   </script>
 
