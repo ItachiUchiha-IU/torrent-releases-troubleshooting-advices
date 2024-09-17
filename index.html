@@ -98,6 +98,11 @@
     --font-weight:bold;
   }
 
+  
+  html{
+   scroll-padding-top: 60px;
+  }
+  
   .topnav {
     overflow: visible;
     background-color: #333333;
@@ -110,10 +115,7 @@
     text-align:center;
     margin:auto;
     transition: top 0.1s;
-  }
-  
-  html{
-   scroll-padding-top: 90px;
+    z-index: 7
   }
 
   .topnav a {
@@ -188,10 +190,10 @@
 
   #toggleLayoutMenu {
     width: 100%;
-    padding: 10px 0;
+    padding: 0px 0px;
     text-align: center;
     background-color: #333333;
-    margin-top: 0px;
+    margin-top: -15px;
     display: none;
   }
 
@@ -209,30 +211,56 @@
     <button onclick="toggleLayoutMenu()" class="dropbtn">Layout</button>
     <div id="myDropdown" class="dropdown-content">
     </div>
-    <p style="display:inline;"></p>
+    <!--p style="display:inline;"></p-->
     <div style="position: relative;top: 0px; left: 13px" 
       <span class="likebtn-wrapper" data-theme="custom" data-icon_l="hrt2" data-icon_l_c_v="#ff0000" data-identifier="ghwuirghnpwiugbnerwugrbjn" data-dislike_enabled="false"></span>
       <script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");</script>
     </div>
-  </div>   
-  <div id="toggleLayoutMenu">
-    <div style="position: relative;top: 0px;">
+</div>
+
+<div id="toggleLayoutMenu">
+    <div style="position: relative;top: 23px;display: inline-block;">
       <!--input id="colorpicker" type="color" value="#212F3D" onchange="changecolor(this)"-->
+    <div style="float:left;margin-right:9px;">
+    <Label style="display:block;">Theme:</Label>
       <button onclick="lighttheme()">Light Theme</button>
       <button onclick="bluetheme()">Blue Theme</button>
       <button onclick="blacktheme()">Black Theme</button>
+    </div>
+        <div style="float:left;margin-right:9px;">
+      <Label style="display:block;">Margin:</Label>
       <button onclick="func_margins25()">Margins:25%</button>
       <button onclick="func_margins7()">Margins:7%</button>
-      <button onclick="func_fontsize18()">Font-size:18</button>
-      <button onclick="func_fontsize15()">Font-size:15</button>
+      </div>
+        <div style="float:left;margin-right:9px;">
+          <Label style="display:block;">Font-px:</Label>
+          <select onchange="fontsize(this);">
+            <option>14px</option>
+            <option>15px</option>
+            <option selected>16px</option>
+            <option>17px</option>
+            <option>18px</option>
+            <option>19px</option>
+            <option>20px</option>
+            <option>32px</option>
+          </select>
+           </div>
+         <div style="float:left;margin-right:9px;">
+      <Label style="display:block;">Font-family:</Label>
       <button onclick="func_fontCHANGE()">Font:Segoe UI</button>
-      <button onclick="func_fontweightbold()">Font-weight:<strong>Bold</strong></button>
+       </div>
+       <div style="float:left;">
+       <Label style="display:block;">Font-weight:</Label>
+      <button onclick="func_fontweightbold()"><strong>Bold</strong></button>
+      </div>
     </div>
   </div>
+  <br>
 </div>
 
+  <div id="fontsizetrigger">
 <div class="top">
-  <p style="text-align: left;">Change the layout from the menu just above<br>
+  <p style="text-align: left;position: relative;top: -2.5px;">Change the layout from the menu just above<br>
   Link to all my releases on nyaa.si: <a href="https://nyaa.si/?f=0&amp;c=0_0&amp;q=itachiuchiha">ItachiUchiha</a>
   </p>
 <hr>
@@ -411,6 +439,7 @@
 
     <!--div style="text-align: right;">&#129300</div-->
   </div>
+  </div>
 </div>
 
 <!--script>
@@ -532,6 +561,13 @@
     }
   }
   </script>
+  
+  <script>
+function fontsize(selectTag) {
+  var listValue = selectTag.options[selectTag.selectedIndex].text;
+  document.getElementById("fontsizetrigger").style.fontSize = listValue;
+}
+</script>
 
   </body>
 </html>
