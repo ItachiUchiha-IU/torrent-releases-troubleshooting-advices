@@ -230,13 +230,13 @@
         <div style="float:left;margin-right:9px;">
           <Label style="display:block;">Margin-LR:</Label>
           <select onchange="margin(this);">
-          	<option>-21%</option>
-            <option>-14%</option>
-            <option>-7%</option>
-            <option selected>0%</option>
-            <option>7%</option>
-       	    <option>14%</option>
-            <option>21%</option>
+          	<option>40%</option>
+            <option>50%</option>
+            <option>60%</option>
+            <option selected>70%</option>
+            <option>80%</option>
+       	    <option>90%</option>
+            <option>100%</option>
           </select>
         </div>
         <div style="float:left;margin-right:9px;">
@@ -626,8 +626,7 @@
   <script>
     function margin(selectTag) {
       var listValue = selectTag.options[selectTag.selectedIndex].text;
-
-      document.getElementById("changemargin").style.margin = "0% " + listValue;
+      document.body.style.width = listValue
     }
   </script>
   
