@@ -227,6 +227,16 @@
           <button onclick="bluetheme()">Blue Theme</button>
           <button onclick="blacktheme()">Black Theme</button>
         </div>
+        
+        <div style="float:left;margin-right:9px;">
+          <Label style="display:block;">Theme:</Label>
+          <select onchange="theme(this);">
+          	<option selected>Blue</option>
+            <option>Light</option>
+            <option>Black</option>
+          </select>
+        </div>
+        
         <div style="float:left;margin-right:9px;">
           <Label style="display:block;">Width:</Label>
           <select onchange="margin(this);">
@@ -299,6 +309,7 @@
 
   </div>
 
+  <div id="changetextcolor">
   <div id="scaleXY">
   <div id="changemargin">
   <div id="changefontsize">
@@ -495,6 +506,7 @@
   </div>
   </div>
   </div>
+  </div>
 
 
 
@@ -634,9 +646,27 @@
   </script>
 
   <script>
+    function theme(selectTag) {
+      var listValue = selectTag.options[selectTag.selectedIndex].text;
+      if (listValue === "Blue") {
+        document.getElementById("changetextcolor").style.color = "#e9e9e9";
+        document.body.style.backgroundColor = "#212F3D";
+      }
+      if (listValue === "Light") {
+        document.getElementById("changetextcolor").style.color = "black";
+        document.body.style.backgroundColor = "#AEB6BF";
+      }
+      if (listValue === "Black") {
+        document.getElementById("changetextcolor").style.color = "#E6E6E6";
+        document.body.style.backgroundColor = "black";
+      }
+	}
+  </script>
+
+  <script>
     function margin(selectTag) {
       var listValue = selectTag.options[selectTag.selectedIndex].text;
-      document.body.style.width = listValue
+      document.body.style.width = listValue;
     }
   </script>
   
