@@ -269,7 +269,12 @@
         </div>
         <div style="float:left;margin-right:9px;">
           <Label style="display:block;">Font-weight:</Label>
-          <button onclick="func_fontweightbold()"><strong>Bold</strong></button>
+          <select onchange="fontweight(this);">
+            <option>300</option>
+            <option selected>Normal</option>
+            <option>600</option>
+       	    <option>Bold</option>
+          </select>
         </div>
         <div style="float:right;margin-right:9px;">
           <Label style="display:block;">ScaleX</Label>
@@ -294,10 +299,12 @@
 
   </div>
 
-  <div id="transscale">
+  <div id="scaleXY">
   <div id="changemargin">
   <div id="changefontsize">
   <div id="changefontfamily">
+  <div id="changefontweight">
+    
     <div class="top">
       <p style="text-align: left;position: relative;top: -2.5px;">Change the layout from the menu just above<br>
       Link to all my releases on nyaa.si: <a href="https://nyaa.si/?f=0&amp;c=0_0&amp;q=itachiuchiha">ItachiUchiha</a>
@@ -484,7 +491,7 @@
   </div>
   </div>
   </div>
-
+  </div>
 
 
 
@@ -645,20 +652,27 @@
   </script>
 
   <script>
+    function fontweight(selectTag) {
+      var listValue = selectTag.options[selectTag.selectedIndex].text;
+      document.getElementById("changefontweight").style.fontWeight = listValue;
+    }
+  </script>
+
+  <script>
     function scaleXfont(e) {
       var scaleamount = document.getElementById("scaleXslider").value;
-      document.getElementById("transscale").style.transform = "scaleX(" + scaleamount + ")";
+      document.getElementById("scaleXY").style.transform = "scaleX(" + scaleamount + ")";
       currentcss();
     }
 
     function scaleYfont(e) {
       var scaleamount = document.getElementById("scaleYslider").value;
-      document.getElementById("transscale").style.transform = "scaleY(" + scaleamount + ")";
+      document.getElementById("scaleXY").style.transform = "scaleY(" + scaleamount + ")";
       currentcss();
     }
 
     function currentcss() {
-    document.getElementById("currentcss").innerText = document.getElementById("transscale").style.cssText;
+    document.getElementById("currentcss").innerText = document.getElementById("scaleXY").style.cssText;
     }
   </script>
 
@@ -666,13 +680,13 @@
     function scalefont(e) {
       var scaleXamount = document.getElementById("scaleXslider").value;
       var scaleYamount = document.getElementById("scaleYslider").value;
-      document.getElementById("transscale").style.transform = "scale(" + scaleXamount + ", " + scaleYamount + ")";
+      document.getElementById("scaleXY").style.transform = "scale(" + scaleXamount + ", " + scaleYamount + ")";
 
       currentcss();
     }
 
     function currentcss() {
-    document.getElementById("currentcss").innerText = document.getElementById("transscale").style.cssText;
+    document.getElementById("currentcss").innerText = document.getElementById("scaleXY").style.cssText;
     }
   </script-->
 
