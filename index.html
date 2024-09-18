@@ -197,9 +197,51 @@
   }
 
 @font-face {
+    font-family: Consolas;
+    src: url("./fonts/Consolas.woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: Consolas;
+    src: url("./fonts/Consolas-Bold.woff2");
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+  font-family: Consolas;
+  src: url("./fonts/Consolas-Italic.woff2");
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+    font-family: Cronos;
+    src: url("./fonts/Cronos Pro Regular.otf");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: Cronos;
+    src: url("./fonts/Cronos Pro Bold.otf");
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+  font-family: Cronos;
+  src: url("./fonts/Cronos Pro Italic.otf");
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
     font-family: Montserrat;
     src: url("./fonts/Montserrat-Regular.woff2");
     font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: Montserrat;
+    src: url("./fonts/Montserrat-SemiBold.woff2");
+    font-weight: 600;
     font-style: normal;
 }
 @font-face {
@@ -296,10 +338,11 @@
           <Label style="display:block;">Font-family:</Label>
           <select onchange="fontfamily(this);">
             <option selected>Consolas</option>
+            <option>Cronos Pro</option>
             <option>Montserrat</option>
             <option>Segoe UI</option>
             <option>Helvetica</option>
-            <option>Baskerville </option>
+            <option>Baskervville </option>
             <!--option>Bembo</option-->
             <!--option>Gotham</option-->
             <!--option>Bodoni</option-->
@@ -308,7 +351,6 @@
         <div style="float:left;margin-right:9px;">
           <Label style="display:block;">Font-weight:</Label>
           <select onchange="fontweight(this);">
-            <option>300</option>
             <option selected>Normal</option>
             <option>600</option>
        	    <option>Bold</option>
