@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <base target="_blank">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <style>
 
   a:link{
@@ -18,14 +20,12 @@
   }
   
   :root {
-  --background-color: #212F3D;
+  --background-color: #101D29;
   --color: #e9e9e9;
   --font-family: Consolas;
-  --font-size: 17px;
+  --font-size: 16px;
   --font-weight: normal;
   --width: 70%;
-  --margin-left: 15%;
-  --margin-right: 15%;
   }
 
   body {
@@ -105,7 +105,7 @@
   
   .topnav {
     overflow: visible;
-    background-color: #333333;
+    background-color: #1D2123;
     top: 0;
     width: 100%;
     display: block;
@@ -192,11 +192,9 @@
     width: 100%;
     padding: 0px 0px;
     text-align: center;
-    background-color: #333333;
     margin-top: -15px;
     display: none;
   }
-
 </style>
 </head>
 
@@ -216,351 +214,419 @@
         <span class="likebtn-wrapper" data-theme="custom" data-icon_l="hrt2" data-icon_l_c_v="#ff0000" data-identifier="ghwuirghnpwiugbnerwugrbjn" data-dislike_enabled="false"></span>
         <script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");</script>
       </div>
-  </div>
-
-<div id="toggleLayoutMenu">
-    <div style="position: relative;top: 23px;display: inline-block;">
-      <!--input id="colorpicker" type="color" value="#212F3D" onchange="changecolor(this)"-->
-    <div style="float:left;margin-right:9px;">
-    <Label style="display:block;">Theme:</Label>
-      <button onclick="lighttheme()">Light Theme</button>
-      <button onclick="bluetheme()">Blue Theme</button>
-      <button onclick="blacktheme()">Black Theme</button>
     </div>
+
+    <div id="toggleLayoutMenu">
+      <div style="position: relative;top: 23px;display: inline-block;font-family:Segoe UI;-webkit-transform: scaleX(0.96);
+    transform: scaleX(0.96);">
+        <!--input id="colorpicker" type="color" value="#212F3D" onchange="changecolor(this)"-->
         <div style="float:left;margin-right:9px;">
-      <Label style="display:block;">Margin:</Label>
-      <button onclick="func_margins25()">Margins:25%</button>
-      <button onclick="func_margins7()">Margins:7%</button>
-      </div>
+          <Label style="display:block;">Theme:</Label>
+          <select onchange="theme(this);">
+          	<option selected>Dark Blue</option>
+          	<option>Blue</option>
+            <option>Light</option>
+            <option>White</option>
+            <option>Dark</option>
+            <option>Black</option>
+          </select>
+        </div>
+        <div style="float:left;margin-right:9px;">
+          <Label style="display:block;">Width:</Label>
+          <select onchange="margin(this);">
+          	<option>40%</option>
+            <option>50%</option>
+            <option>60%</option>
+            <option selected>70%</option>
+            <option>80%</option>
+       	    <option>90%</option>
+            <option>100%</option>
+          </select>
+        </div>
         <div style="float:left;margin-right:9px;">
           <Label style="display:block;">Font-px:</Label>
           <select onchange="fontsize(this);">
-            <option>14px</option>
-            <option>15px</option>
-            <option>16px</option>
-            <option selected>17px</option>
-            <option>18px</option>
-            <option>19px</option>
-            <option>20px</option>
-            <option>32px</option>
+            <option>14</option>
+            <option>15</option>
+            <option selected>16</option>
+            <option>17</option>
+            <option>18</option>
+            <option>19</option>
+            <option>20</option>
+            <option>22</option>
+            <option>24</option>
+            <option>26</option>
+            <option>32</option>
           </select>
-           </div>
-         <div style="float:left;margin-right:9px;">
-      <Label style="display:block;">Font-family:</Label>
-      <button onclick="func_fontCHANGE()">Font:Segoe UI</button>
-       </div>
-       <div style="float:left;">
-       <Label style="display:block;">Font-weight:</Label>
-      <button onclick="func_fontweightbold()"><strong>Bold</strong></button>
+        </div>
+        <div style="float:left;margin-right:9px;">
+          <Label style="display:block;">Font-family:</Label>
+          <select onchange="fontfamily(this);">
+            <option selected>Consolas</option>
+            <option>Segoe UI</option>
+            <option>Helvetica</option>
+            <option>Baskerville </option>
+            <!--option>Bembo</option-->
+            <!--option>Gotham</option-->
+            <!--option>Bodoni</option-->
+          </select>
+        </div>
+        <div style="float:left;margin-right:9px;">
+          <Label style="display:block;">Font-weight:</Label>
+          <select onchange="fontweight(this);">
+            <option>300</option>
+            <option selected>Normal</option>
+            <option>600</option>
+       	    <option>Bold</option>
+          </select>
+        </div>
+        <div style="float:right;margin-right:9px;">
+          <Label style="display:block;">ScaleX</Label>
+          <div class="singlecontrol">
+            <input style="vertical-align: middle;" id="scaleXslider" oninput="scaleXfont(event)" type="range" value="1.0" min="0.5" max="1.5" step="0.001" autocomplete="off" />
+          </div>
+        </div>
+        <!--div class="singlecontrol">
+          <span style="vertical-align: middle;">ScaleX</span>
+          <input style="vertical-align: middle;" id="scaleXslider" oninput="scalefont(event)" type="range" value="1.0" min="0" max="3" step="0.001" autocomplete="off" />
+        </div>
+        <div class="singlecontrol"
+          ><span style="vertical-align: middle;">ScaleY</span>
+          <input style="vertical-align: middle;" id="scaleYslider" oninput="scalefont(event)" type="range" value="1.0" min="0" max="3" step="0.001" autocomplete="off" /></div>
+        <div id="cssinuse">
+          Current CSS = 
+          <span id="currentcss"></span>
+        </div-->
       </div>
     </div>
-  </div>
-  <br>
-</div>
-
-  <div id="fontsizetrigger">
-<div class="top">
-  <p style="text-align: left;position: relative;top: -2.5px;">Change the layout from the menu just above<br>
-  Link to all my releases on nyaa.si: <a href="https://nyaa.si/?f=0&amp;c=0_0&amp;q=itachiuchiha">ItachiUchiha</a>
-  </p>
-<hr>
-  <h2 id="troubleshooting-advices">Torrent Releases - Troubleshooting &amp; Advices:</h2>
-  <ul>
-    <li><a href="https://nyaa.si">https://nyaa.si</a> is the only correct site address, all the others are fakes/clones</li><br>
-    <li>if a file doesn&#39;t open on Windows, it&#39;s because you put the files under an <a href="https://www.google.com/search?q=windows+path+limit">excessively long path</a>: update or install one of the media players I recommend, or use <code>Ctrl+Q</code> to open the files, or move or rename the files</li><br>
-    <li>if your monitor is <code>8-bit</code>, the colors may be completely fucked up when playing <code>10-bit</code> content: try changing between the different video renderes and the color settings themselves possibly</li><br>
-    <li>AV1 releases must never be in 8-bit, if u find one that is in 8-bit, u better stop downloading that encoder's releases!</li>
-  </ul>
-</div>
-
-<div class="all">
-  <script>function copyText1(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#use-one-of-the-following-media-players-highly-recommended");}</script>
-  <h3 id="use-one-of-the-following-media-players-highly-recommended"><button onclick="copyText1()">&#128279</button> Use one of the following media players (<strong>highly recommended</strong>):</h3>
-  <ul>
-    <li><a href="https://rentry.co/vee-ell-cee">DO NOT USE VLC!!</a>
-      <div style="float:right;"><input type="button" value="FAKE BUTTON, DO NOT CLICK !" id="doPlus" onClick = "doPlus();" />
-      </div>
-    </li>
     <br>
-    
-    <li><a href="https://sourceforge.net/projects/mpcbe">MPC-BE</a> (remember to select <code>MPC Video Renderer</code> during the installation otherwise u have to <a href="https://www.videohelp.com/software/MPC-Video-Renderer">manually install it</a>)<ul>
-    <li>optional: install <a href="https://www.videohelp.com/software/madVR">madVR</a> to have more video renderers to be choosen from</li>
-    <li>select your renderers from the matching tabs in <code>Options</code> (press <code>O</code> to open):<ul>
-    <li>in <code>Video</code> select <code>MPC Video Renderer</code> (or <code>madVR</code>)</li>
-    <li>in <code>Audio</code> select <code>MPC Audio Renderer</code></li>
-    <li>in <code>Subtitles</code>, select <code>VSFilter</code> as subtitle renderer</li>
-  </ul>
-  </li>
-  <li>to fix karaoke subtitles flickering: in <code>Options -&gt; Subtitles -&gt; Rendering</code> set <code>Sub pictures to buffer</code> to <code>0</code></li>
-  <li>to show the chapter markers in the seekbar: <code>Options -&gt; Player -&gt; Interface</code> -&gt; <code>Use chapters marker</code></li>
-  <li>to use the preview in the seekbar: <code>Options -&gt; Player -&gt; Interface</code> -&gt; <code>Use the preview in the search</code></li>
-  <li>in <code>Options -&gt; Player</code> uncheck <code>Show OSD</code> (optional)</li>
-  <li>change the settings in <code>Player</code> and in <code>Windows size</code> to your liking</li>
-  <li><a href="https://imgur.com/a/mzqS1gH">Screenshots of my settings on MPC-BE</a></li>
-  </ul>
-  </li>
-  <br>
 
-  <li><a href="https://www.codecguide.com">MPC-HC</a><ul>
-  <li>it may be tricky to install at first for the average user (especially if u already have MPC-BE) but it doesnt require ulterior installations for the best features if u choose the proper package (the <code>Full</code> package is recommended)<ul>
-  <li>to install both BE and HC easily:<ul>
-  <li>download and install <code>MPC-BE</code> following the instructions above</li>
-  <li>download the <a href="https://www.codecguide.com/download_k-lite_codec_pack_full.htm">Full</a> package of <code>MPC-HC</code> and run the installation selecting <code>Install MPC-HC as a secondary player</code> (u can leave everything else on default)</li>
-  </ul>
-  </li>
-  </ul>
-  </li>
-  <li>choose the renderers from: <code>Options -&gt; Playback -&gt; Output</code> :<ul>
-  <li>for <code>Video</code>, select <code>MPC Video Renderer</code> or <code>madVR</code></li>
-  <li>for <code>Subtitles</code>, select <code>VSFilter</code> (optional, but it can be useful in some cases: when some fonts are not muxed into the files and if the karaoke subs aren&#39;t perfectly aligned)</li>
-  </ul>
-  </li>
-  <li>change the settings in <code>Player</code> and in <code>User interface</code> to your liking</li>
-  </ul>
-  </li>
-  <br>
-
-  <li><a href="https://mpv.io/">MPV</a><ul>
-  <li><a href="https://thewiki.moe/tutorials/mpv/">an external guide to install and configure mpv</a></li>
-  <li><a href="https://iamscum.wordpress.com/guides/videoplayback-guide/">an ulterior external guide to install and configure mpv</a>
-  </ul>
-  </li>
-  </ul>
-  </li>
-  <br>
-      
-  <script>function copyText2(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#set-your-preferred-languages-for-audio-and-subtitles-highly-recommended");}</script>
-  <h3 id="set-your-preferred-languages-for-audio-and-subtitles-highly-recommended"><button onclick="copyText2()">&#128279</button> Set your preferred languages for audio and subtitles (<strong>highly recommended</strong>):</h3>
-  <em>the player will open the files in the languages u prefer (both audio and subs) and will select the full subs or signs based on the audio language selected!</em>
-  <ul>
-  <li>on <code>MPC-BE</code>, go to <code>Options -&gt; External Filters</code> and click on <code>Add Filter</code>, then add the <code>Lav Splitter</code> filter and open it<ul>
-  <li>if u dont have the <code>Lav Splitter</code> filter, u need to install the <a href="https://www.videohelp.com/software/LAV-Filters">LAV Filters</a> (during the installation u can choose to install the <code>LAV Splitter</code> only) or, if u are still in doubt about installing both <code>MPC-BE</code> and <code>HC</code>, u can install <code>MPC-HC</code> as secondary player as it contains the <code>LAV Filters</code></li>
-  </ul>
-  </li>
-  <li>on <code>MPC-HC</code>, go to <code>Options -&gt; Internal Filters</code> and click on <code>Splitter</code> to edit the <code>LAV Filters</code></li><br>
-  <li>[LAV SPLITTER CONFIGURATION]<ul>
-  <li>in <code>Subtitle Selection Mode</code> choose <code>Advanced</code> and check <code>Reselect Subtitles on every Audio Switch</code> (with this setting u can simply press <code>A</code> during the play to change the audio track and the subtitles will change automatically accordingly to your preferences)</li>
-  <li>in <code>Audio</code> write your preferred languages for audio (examples: <code>jpn,ita,eng</code>, <code>eng,jpn</code>, <code>ita,eng,jpn</code> etc.)</li>
-  <li>in <code>Subtitles</code> write your preferred languages for subtitles manually or simply copy-paste (and/or edit) a pre-made string (strings made by me are under <a href="#my-strings-for-lav-splitter" target="_self">My strings for LAV Splitter</a>)</li>
-  <li>save the configuration
-  <br></ul>
-  [LAV SPLITTER CONFIGURATION - END]</li><br>
-  </li>
-  <li>on <code>MPC-HC</code> u can now close the player and eveything should be set correctly</li>
-  <li>on <code>MPC-BE</code> u need to go to <code>Priority</code> (under <code>External Filters</code>) and change everything u can from <code>default</code> to <code>LAV Splitter</code>, then save and close the player</li>
-  <li>if everything is set properly, the filters will work; if they dont, then there are only two options:<ul>
-  <li>if they dont work on specific sources, it means that those sources have the subs set/named improperly: u can try remuxing them correctly or editing the string in <code>LAV Splitter</code></li>
-  <li>if they dont work at all, it means u did something wrong while following this guide... congrats, u played yourself, now u need to repeat every passage in this guide and be careful to apply every change <code>XD Rip</code></li>
-  </ul>
-  </li>
-  </ul>
-  <br>
-      
-
-  <script>function copyText3(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#my-strings-for-lav-splitter");}</script>
-  <h3 id="my-strings-for-lav-splitter"><button onclick="copyText3()">&#128279</button> My strings for LAV Splitter</h3>
-
-  <p><code>ITA</code> as preferred language (or edit with your preferred language and keywords; at present, u cant exceed 255 characters; <a href="https://github.com/Nevcairiel/LAVFilters/blob/master/README.txt">rules</a>):</p>
-  
-  <script>
-    function copyITAstring() {
-      let textarea = document.getElementById("ITAstring");
-      textarea.select();
-      document.execCommand("copy");
-    }
-    </script>
-    
-  <textarea id="ITAstring" rows="3" cols="115" maxlength="255" name="usrtxt" wrap="hard">ita:ita@Cartell,ita:ita@Sign,ita:ita@Forced,ita:ita@Forzat,ita:ita|f,ita:off,eng:eng@Sign,eng:eng@Forced,eng:eng|f,eng:off,*:ita@Dialog,*:ita@Complet,*:ita@Full,*:ita@Udenti,*:ita|!f,*:enm,*:eng@honorific,*:eng@Dialog,*:eng@Full,*:eng@SDH,*:eng|!f,*:*|f</textarea>
-  <br>
-  <button onclick="copyITAstring()">&nbsp;&nbsp;Copy&nbsp;&nbsp;</button>
-
-  <p><code>ENG</code> as preferred language:</p>
-
-  <script>
-    function copyENGstring() {
-      let textarea = document.getElementById("ENGstring");
-      textarea.select();
-      document.execCommand("copy");
-    }
-    </script>
-    
-  <textarea id="ENGstring" rows="3" cols="115" maxlength="255" name="usrtxt" wrap="hard">eng:eng@Sign,eng:eng@Forced,eng:eng|f,eng:off,*:enm,*:eng@honorific,*:eng@Dialog,*:eng@Full,*:eng@SDH,*:eng|!f,*:*|f</textarea>
-  <br>
-  <button onclick="copyENGstring()">&nbsp;&nbsp;Copy&nbsp;&nbsp;</button>
-
-  <p>Notes: the language <code>enm</code> (<code>Middle English</code>) is used for english tracks with honorifics</p>
-      <br>
-      
-
-  <script>function copyText4(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#more-troubleshooting-and-advices");}</script>
-  <h3 id="more-troubleshooting-and-advices"><button onclick="copyText4()">&#128279</button> More Troubleshooting and Advices:</h3>
-  <ul>
-  <li>use <code>A</code> to change the audio track, <code>S</code> for subtitles (if u set up the preferred languages as explained above, they will automatically change accordingly to your preferences when changing the audio track)</li>
-  <li>use <code>Page Down</code> (and <code>Page Up</code>) to move between the chapters of the video (it goes to the following episode if there are no more chapters)</li>
-  <li>use <code>Ctrl + Page Down</code> (and <code>Ctrl + Page Up</code>) to change episode</li>
-  <li>as of today, MPC-BE has still a bug regarding the issue about opening the files that are over the windows path limit; as a temporary solution, to open such files, do <code>File -&gt; Quick Open File</code> (u can do it faster by using the <code>Ctrl+Q</code> shortcut)</li>
-  </ul>
-  <br>
-  If you have any issue or advice, feel free to comment on <a href="https://gist.github.com/ItachiUchiha-IU/401a1117e6e6d336d21a326e15a912f9">gist.github.com/ItachiUchiha-IU</a> or to contact me through the <a href="https://discord.com/invite/83dRFDFDp7">AV1 anime discord server</a><br>
-  <br><br>
-  <div>
-    <!-- LikeBtn.com BEGIN -->
-    <span class="likebtn-wrapper" data-theme="custom" data-icon_l="hrt2" data-icon_l_c_v="#ff0000" data-identifier="ghwuirghnpwiugbnerwugrbjn" data-dislike_enabled="false"></span>
-    <script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");</script> Leave a like if you appreciate the work spent on this page!<br>
-    <!-- LikeBtn.com END -->
   </div>
-  
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-  <label for="">You have clicked the <code>FAKE BUTTON</code> </label>
-    <input type="text"  style="text-align:center;" size="2" value="0" id="fakebutton" />
-    <label for="">times.</label>
-  <br>
-
-  <script>
-    function doPlus(){
-      document.getElementById("fakebutton").value = ++document.getElementById("fakebutton").value;
-    }
-  </script>
-
-  <br><br>
-
-  <div align="center">
-    <style>.block_container{text-align:center;} #block1, #block2 {display:inline;}</style>
-    <div id="block_container">
-      <div id="block1">
-        <a href="https://www.cutercounter.com/" target="_blank"><img src="https://www.cutercounter.com/hits.php?id=hxqdkdx&nd=7&style=72" border="0" alt="visitor counter"></a>
-      </div>
-      <div id="block2">
-        &nbsp;&nbsp;&nbsp;<a href="https://www.cutercounter.com/" target="_blank"><img src="https://www.cutercounter.com/hits.php?id=hxqdkxk&nd=7&style=72" border="0" alt="website counter"></a>
-      </div>
+  <div id="changetextcolor">
+  <div id="scaleXY">
+  <div id="changemargin">
+  <div id="changefontsize">
+  <div id="changefontfamily">
+  <div id="changefontweight">
+    
+    <div class="top">
+      <p style="text-align: left;position: relative;top: -2.5px;">Change the layout from the menu above<br>
+      Link to all my releases on nyaa.si: <a href="https://nyaa.si/?f=0&amp;c=0_0&amp;q=itachiuchiha">ItachiUchiha</a>
+      </p>
+    <hr>
+      <h2 id="troubleshooting-advices">Torrent Releases - Troubleshooting &amp; Advices:</h2>
+      <ul>
+        <li><a href="https://nyaa.si">https://nyaa.si</a> is the only correct site address, all the others are fakes/clones</li><br>
+        <li>if a file doesn&#39;t open on Windows, it&#39;s because you put the files under an <a href="https://www.google.com/search?q=windows+path+limit">excessively long path</a>: update or install one of the media players recommended below, or use <code>Ctrl+Q</code> to open the files, or shorten the files' path by moving or renaming them</li><br>
+        <li>if your monitor is <code>8-bit</code>, the colors may be completely fucked up when playing <code>10-bit</code> content: try changing between different video renderes, or fix the colors manually ~</li><br>
+        <li>AV1 releases must never be in 8-bit, if u find one that is in 8-bit, u better stop downloading that encoder's releases!</li>
+      </ul>
     </div>
 
-    <!--div style="text-align: right;">&#129300</div-->
-  </div>
-  </div>
-</div>
+    <div class="all">
+      <script>function copyText1(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#use-one-of-the-following-media-players-highly-recommended");}</script>
+      <h3 id="use-one-of-the-following-media-players-highly-recommended"><button onclick="copyText1()">&#128279</button> Use one of the following media players (<strong>highly recommended</strong>):</h3>
+      <ul>
+        <li><a href="https://rentry.co/vee-ell-cee">DO NOT USE VLC!!</a>
+          <div style="float:right;"><input type="button" value="FAKE BUTTON, DO NOT CLICK !" id="doPlus" onClick = "doPlus();" />
+          </div>
+        </li>
+        <ul>
+          <li>Seriously, dont.</li>
+        </ul>
+        <br>
+        
+        <li><a href="https://sourceforge.net/projects/mpcbe">MPC-BE</a> (remember to select <code>MPC Video Renderer</code> during the installation otherwise u have to <a href="https://www.videohelp.com/software/MPC-Video-Renderer">manually install it</a>)<ul>
+        <li>install <a href="https://www.videohelp.com/software/madVR">madVR</a> (optional)</li>
+        <li>select your renderers from the matching tabs in <code>Options</code> (press <code>O</code> to open):<ul>
+        <li>in <code>Video</code> select <code>MPC Video Renderer</code> (or <code>madVR</code>)</li>
+        <li>in <code>Audio</code> select <code>MPC Audio Renderer</code></li>
+        <li>in <code>Subtitles</code> select <code>xy-VSFilter</code></li>
+      </ul>
+      </li>
+      <li>to fix karaoke subtitles flickering: in <code>Options -&gt; Subtitles -&gt; Rendering</code> set <code>Sub pictures to buffer</code> to <code>0</code></li>
+      <li>to show the chapter markers in the seekbar: <code>Options -&gt; Player -&gt; Interface</code> -&gt; <code>Use chapters marker</code></li>
+      <li>to use the preview in the seekbar: <code>Options -&gt; Player -&gt; Interface</code> -&gt; <code>Use the preview in the search</code></li>
+      <li>in <code>Options -&gt; Player</code> uncheck <code>Show OSD</code> (optional)</li>
+      <li>change the settings in <code>Player</code> and in <code>Windows size</code> to your liking</li>
+      <li><a href="https://imgur.com/a/mzqS1gH">Screenshots of my settings on MPC-BE</a></li>
+      </ul>
+      </li>
+      <br>
 
-<!--script>
-  let colorpicker = document.getElementById('colorpicker');
-    setInterval(()=>{
-        let color = colorpicker.value;
-        document.body.style.backgroundColor = color;
-    }, 200);
+      <li><a href="https://www.codecguide.com">MPC-HC</a><ul>
+      <li>it may be tricky to install at first for the average user (especially if u already have MPC-BE) but it doesnt require ulterior installations for the best features if u choose the proper package (the <code>Full</code> package is recommended)<ul>
+      <li>to install both BE and HC easily:<ul>
+      <li>download and install <code>MPC-BE</code> following the instructions above</li>
+      <li>download the <a href="https://www.codecguide.com/download_k-lite_codec_pack_full.htm">Full</a> package of <code>MPC-HC</code> and run the installation selecting <code>Install MPC-HC as a secondary player</code> (u can leave everything else on default)</li>
+      </ul>
+      </li>
+      </ul>
+      </li>
+      <li>choose the renderers from: <code>Options -&gt; Playback -&gt; Output</code> :<ul>
+      <li>for <code>Video</code>, select <code>MPC Video Renderer</code> or <code>madVR</code></li>
+      <li>for <code>Subtitles</code>, select <code>VSFilter</code> (optional, but it can be useful in some cases: when some fonts are not muxed into the files and if the karaoke subs aren&#39;t perfectly aligned)</li>
+      </ul>
+      </li>
+      <li>change the settings in <code>Player</code> and in <code>User interface</code> to your liking</li>
+      </ul>
+      </li>
+      <br>
+
+      <li><a href="https://mpv.io/">MPV</a><ul>
+      <li><a href="https://thewiki.moe/tutorials/mpv/">an external guide to install and configure mpv</a></li>
+      <li><a href="https://iamscum.wordpress.com/guides/videoplayback-guide/">an ulterior external guide to install and configure mpv</a>
+      </ul>
+      </li>
+      </ul>
+      </li>
+      <br>
+          
+      <script>function copyText2(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#set-your-preferred-languages-for-audio-and-subtitles-highly-recommended");}</script>
+      <h3 id="set-your-preferred-languages-for-audio-and-subtitles-highly-recommended"><button onclick="copyText2()">&#128279</button> Set your preferred languages for audio and subtitles (<strong>highly recommended</strong>):</h3>
+      <em>the player will open the files in the languages u prefer (both audio and subs) and will select the full subs or signs based on the audio language selected!</em>
+      <ul>
+      <li>on <code>MPC-BE</code>, go to <code>Options -&gt; External Filters</code> and click on <code>Add Filter</code>, then add the <code>Lav Splitter</code> filter and open it<ul>
+      <li>if u dont have the <code>Lav Splitter</code> filter, u need to install the <a href="https://www.videohelp.com/software/LAV-Filters">LAV Filters</a> (during the installation u can choose to install the <code>LAV Splitter</code> only) or, if u are still in doubt about installing both <code>MPC-BE</code> and <code>HC</code>, u can install <code>MPC-HC</code> as secondary player as it contains the <code>LAV Filters</code></li>
+      </ul>
+      </li>
+      <li>on <code>MPC-HC</code>, go to <code>Options -&gt; Internal Filters</code> and click on <code>Splitter</code> to edit the <code>LAV Filters</code></li><br>
+      <li>[LAV SPLITTER CONFIGURATION]<ul>
+      <li>in <code>Subtitle Selection Mode</code> choose <code>Advanced</code> and check <code>Reselect Subtitles on every Audio Switch</code> (with this setting u can simply press <code>A</code> during the play to change the audio track and the subtitles will change automatically accordingly to your preferences)</li>
+      <li>in <code>Audio</code> write your preferred languages for audio (examples: <code>jpn,ita,eng</code>, <code>eng,jpn</code>, <code>ita,eng,jpn</code> etc.)</li>
+      <li>in <code>Subtitles</code> write your preferred languages for subtitles manually or simply copy-paste (and/or edit) a pre-made string (strings made by me are under <a href="#my-strings-for-lav-splitter" target="_self">My strings for LAV Splitter</a>)</li>
+      <li>save the configuration
+      <br></ul>
+      [LAV SPLITTER CONFIGURATION - END]</li><br>
+      </li>
+      <li>on <code>MPC-HC</code> u can now close the player and eveything should be set correctly</li>
+      <li>on <code>MPC-BE</code> u need to go to <code>Priority</code> (under <code>External Filters</code>) and change everything u can from <code>default</code> to <code>LAV Splitter</code>, then save and close the player</li>
+      <li>if everything is set properly, the filters will work; if they dont, then there are only two options:<ul>
+      <li>if they dont work on specific sources, it means that those sources have the subs set/named improperly: u can try remuxing them correctly or editing the string in <code>LAV Splitter</code></li>
+      <li>if they dont work at all, it means u did something wrong while following this guide... congrats, u played yourself, now u need to repeat every passage in this guide and be careful to apply every change <code>XD Rip</code></li>
+      </ul>
+      </li>
+      </ul>
+      <br>
+          
+
+      <script>function copyText3(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#my-strings-for-lav-splitter");}</script>
+      <h3 id="my-strings-for-lav-splitter"><button onclick="copyText3()">&#128279</button> My strings for LAV Splitter</h3>
+
+      <p><code>ITA</code> as preferred language (or edit with your preferred language and keywords; at present, u cant exceed 255 characters; <a href="https://github.com/Nevcairiel/LAVFilters/blob/master/README.txt">rules</a>):</p>
+      
+      <script>
+        function copyITAstring() {
+          let textarea = document.getElementById("ITAstring");
+          textarea.select();
+          document.execCommand("copy");
+        }
+        </script>
+        
+      <textarea id="ITAstring" rows="3" cols="115" maxlength="255" name="usrtxt" wrap="hard">ita:ita@Cartell,ita:ita@Sign,ita:ita@Forced,ita:ita@Forzat,ita:ita|f,ita:off,eng:eng@Sign,eng:eng@Forced,eng:eng|f,eng:off,*:ita@Dialog,*:ita@Complet,*:ita@Full,*:ita@Udenti,*:ita|!f,*:enm,*:eng@honorific,*:eng@Dialog,*:eng@Full,*:eng@SDH,*:eng|!f,*:*|f</textarea>
+      <br>
+      <button onclick="copyITAstring()">&nbsp;&nbsp;Copy&nbsp;&nbsp;</button>
+
+      <p><code>ENG</code> as preferred language:</p>
+
+      <script>
+        function copyENGstring() {
+          let textarea = document.getElementById("ENGstring");
+          textarea.select();
+          document.execCommand("copy");
+        }
+        </script>
+        
+      <textarea id="ENGstring" rows="3" cols="115" maxlength="255" name="usrtxt" wrap="hard">eng:eng@Sign,eng:eng@Forced,eng:eng|f,eng:off,*:enm,*:eng@honorific,*:eng@Dialog,*:eng@Full,*:eng@SDH,*:eng|!f,*:*|f</textarea>
+      <br>
+      <button onclick="copyENGstring()">&nbsp;&nbsp;Copy&nbsp;&nbsp;</button>
+
+      <p>Notes: the language <code>enm</code> (<code>Middle English</code>) is used for english tracks with honorifics</p>
+          <br>
+          
+
+      <script>function copyText4(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#more-troubleshooting-and-advices");}</script>
+      <h3 id="more-troubleshooting-and-advices"><button onclick="copyText4()">&#128279</button> More Troubleshooting and Advices:</h3>
+      <ul>
+      <li>use <code>A</code> to change the audio track, <code>S</code> for subtitles (if u set up the preferred languages as explained above, they will automatically change accordingly to your preferences when changing the audio track)</li>
+      <li>use <code>Page Down</code> (and <code>Page Up</code>) to move between the chapters of the video (it goes to the following episode if there are no more chapters)</li>
+      <li>use <code>Ctrl + Page Down</code> (and <code>Ctrl + Page Up</code>) to change episode</li>
+      <li>as of today, MPC-BE has still a bug regarding the issue about opening the files that are over the windows path limit; as a temporary solution, to open such files, do <code>File -&gt; Quick Open File</code> (u can do it faster by using the <code>Ctrl+Q</code> shortcut)</li>
+      </ul>
+      <br>
+      If you have any issue or advice, feel free to comment on <a href="https://gist.github.com/ItachiUchiha-IU/401a1117e6e6d336d21a326e15a912f9">gist.github.com/ItachiUchiha-IU</a> or to contact me through the <a href="https://discord.com/invite/83dRFDFDp7">AV1 anime discord server</a><br>
+      <br><br>
+      <div>
+        <!-- LikeBtn.com BEGIN -->
+        <span class="likebtn-wrapper" data-theme="custom" data-icon_l="hrt2" data-icon_l_c_v="#ff0000" data-identifier="ghwuirghnpwiugbnerwugrbjn" data-dislike_enabled="false"></span>
+        <script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");</script> Leave a like if you appreciate the work spent on this page!<br>
+        <!-- LikeBtn.com END -->
+      </div>
+      
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+      <label for="">You have clicked the <code>FAKE BUTTON</code> </label>
+        <input type="text"  style="text-align:center;" size="2" value="0" id="fakebutton" />
+        <label for="">times.</label>
+      <br>
+
+      <script>
+        function doPlus(){
+          document.getElementById("fakebutton").value = ++document.getElementById("fakebutton").value;
+        }
+      </script>
+
+      <br><br>
+
+      <div align="center">
+        <style>.block_container{text-align:center;} #block1, #block2 {display:inline;}</style>
+        <div id="block_container">
+          <div id="block1">
+            <a href="https://www.cutercounter.com/" target="_blank"><img src="https://www.cutercounter.com/hits.php?id=hxqdkdx&nd=7&style=72" border="0" alt="visitor counter"></a>
+          </div>
+          <div id="block2">
+            &nbsp;&nbsp;&nbsp;<a href="https://www.cutercounter.com/" target="_blank"><img src="https://www.cutercounter.com/hits.php?id=hxqdkxk&nd=7&style=72" border="0" alt="website counter"></a>
+          </div>
+        </div>
+        <!--div style="text-align: right;">&#129300
+        </div-->
+      </div>
+
+    </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+
+
+
+
+
+
+
+
+  <!--script>
+    let colorpicker = document.getElementById('colorpicker');
+      setInterval(()=>{
+          let color = colorpicker.value;
+          document.body.style.backgroundColor = color;
+      }, 200);
   </script-->
 
-<script>
-  function lighttheme() {
-    var element = document.body;
-    element.classList.toggle("light");
-  }
+  <script>
+    function lighttheme() {
+      var element = document.body;
+      element.classList.toggle("light");
+    }
   </script>
 
-<script>
-  function bluetheme() {
-    var element = document.body;
-    element.classList.toggle("blue");
-  }
+  <script>
+    function bluetheme() {
+      var element = document.body;
+      element.classList.toggle("blue");
+    }
   </script>
 
-<script>
-  function blacktheme() {
-    var element = document.body;
-    element.classList.toggle("black");
-  }
+  <script>
+    function blacktheme() {
+      var element = document.body;
+      element.classList.toggle("black");
+    }
   </script>
 
-<script>
-  function func_margins7() {
-    var element = document.body;
-    element.classList.toggle("margins7");
-  }
+  <script>
+    function func_margins7() {
+      var element = document.body;
+      element.classList.toggle("margins7");
+    }
   </script>
 
-<script>
-  function func_margins25() {
-    var element = document.body;
-    element.classList.toggle("margins25");
-  }
+  <script>
+    function func_margins25() {
+      var element = document.body;
+      element.classList.toggle("margins25");
+    }
   </script>
 
-<script>
-  function func_fontsize15() {
-    var element = document.body;
-    element.classList.toggle("fontsize15");
-  }
+  <script>
+    function func_fontsize15() {
+      var element = document.body;
+      element.classList.toggle("fontsize15");
+    }
   </script>
 
-<script>
-  function func_fontsize18() {
-    var element = document.body;
-    element.classList.toggle("fontsize18");
-  }
+  <script>
+    function func_fontsize18() {
+      var element = document.body;
+      element.classList.toggle("fontsize18");
+    }
   </script>
 
-<script>
-  function func_fontCHANGE() {
-    var element = document.body;
-    element.classList.toggle("fontCHANGE");
-  }
+  <script>
+    function func_fontCHANGE() {
+      var element = document.body;
+      element.classList.toggle("fontCHANGE");
+    }
   </script>
 
-<script>
-  function func_fontweightbold() {
-    var element = document.body;
-    element.classList.toggle("fontweightbold");
-  }
+  <script>
+    function func_fontweightbold() {
+      var element = document.body;
+      element.classList.toggle("fontweightbold");
+    }
   </script>
-  
-<script>
-  /* When the user clicks on the button, 
-  toggle between hiding and showing the dropdown content */
-  function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-  }
+    
+  <script>
+    /* When the user clicks on the button, 
+    toggle between hiding and showing the dropdown content */
+    function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
 
-  // Close the dropdown if the user clicks outside of it
-  /*window.onclick = function(event) {
-    if (!event.target.matches('.dropbtn')) {
-      var dropdowns = document.getElementsByClassName("dropdown-content");
-      var i;
-      for (i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show')) {
-          openDropdown.classList.remove('show');
+    // Close the dropdown if the user clicks outside of it
+    /*window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
         }
       }
-    }
-  } */
+    } */
   </script>
 
-
-<script>
-  // doesnt work...
-  var prevScrollpos = window.pageYOffset;
-  window.onscroll = function() {
-  var currentScrollPos = window.pageYOffset;
-    if (prevScrollpos > currentScrollPos) {
-      document.getElementById("topnav").style.top = "0";
-    } else {
-      document.getElementById("topnav").style.top = "-50px";
+  <script>
+    // doesnt work...
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function() {
+    var currentScrollPos = window.pageYOffset;
+      if (prevScrollpos > currentScrollPos) {
+        document.getElementById("topnav").style.top = "0";
+      } else {
+        document.getElementById("topnav").style.top = "-50px";
+      }
+      prevScrollpos = currentScrollPos;
     }
-    prevScrollpos = currentScrollPos;
-  }
   </script>
 
-<script>
-  //Toggle (Hide/Show) an Element
-  function toggleLayoutMenu() {
-    var x = document.getElementById("toggleLayoutMenu");
-    if (x.style.display === "block") {
-      x.style.display = "none";
-    } else {
-      x.style.display = "block";
+  <script>
+    //Toggle (Hide/Show) an Element
+    function toggleLayoutMenu() {
+      var x = document.getElementById("toggleLayoutMenu");
+      if (x.style.display === "block") {
+        x.style.display = "none";
+      } else {
+        x.style.display = "block";
+      }
     }
-  }
   </script>
-  
+    
   <script>
     //Toggle (Hide/Show) an Element
     function toggleLayoutMenu2() {
@@ -568,18 +634,99 @@
       if (x.style.display === "block") {
         x.style.display = "none";
       } else {
-        
       }
     }
-    </script>
+  </script>
 
   <script>
-function fontsize(selectTag) {
-  var listValue = selectTag.options[selectTag.selectedIndex].text;
-  document.getElementById("fontsizetrigger").style.fontSize = listValue;
-}
-</script>
+    function theme(selectTag) {
+      var listValue = selectTag.options[selectTag.selectedIndex].text;
+      if (listValue === "Dark Blue") {
+        document.getElementById("changetextcolor").style.color = "#e9e9e9";
+        document.body.style.backgroundColor = "#101D29";
+      }
+      if (listValue === "Blue") {
+        document.getElementById("changetextcolor").style.color = "#e9e9e9";
+        document.body.style.backgroundColor = "#212F3D";
+      }
+      if (listValue === "Light") {
+        document.getElementById("changetextcolor").style.color = "black";
+        document.body.style.backgroundColor = "#AEB6BF";
+      }
+      if (listValue === "White") {
+        document.getElementById("changetextcolor").style.color = "black";
+        document.body.style.backgroundColor = "#F0F0F0";
+      }
+      if (listValue === "Dark") {
+        document.getElementById("changetextcolor").style.color = "#E6E6E6";
+        document.body.style.backgroundColor = "#1F1F1F";
+      }
+      if (listValue === "Black") {
+        document.getElementById("changetextcolor").style.color = "#E6E6E6";
+        document.body.style.backgroundColor = "black";
+      }
+	}
+  </script>
+
+  <script>
+    function margin(selectTag) {
+      var listValue = selectTag.options[selectTag.selectedIndex].text;
+      document.body.style.width = listValue;
+    }
+  </script>
+  
+  <script>
+    function fontsize(selectTag) {
+      var listValue = selectTag.options[selectTag.selectedIndex].text;
+      document.getElementById("changefontsize").style.fontSize = listValue + "px";
+    }
+  </script>
+
+  <script>
+    function fontfamily(selectTag) {
+      var listValue = selectTag.options[selectTag.selectedIndex].text;
+      document.getElementById("changefontfamily").style.fontFamily = listValue;
+    }
+  </script>
+
+  <script>
+    function fontweight(selectTag) {
+      var listValue = selectTag.options[selectTag.selectedIndex].text;
+      document.getElementById("changefontweight").style.fontWeight = listValue;
+    }
+  </script>
+
+  <script>
+    function scaleXfont(e) {
+      var scaleamount = document.getElementById("scaleXslider").value;
+      document.getElementById("scaleXY").style.transform = "scaleX(" + scaleamount + ")";
+      currentcss();
+    }
+
+    function scaleYfont(e) {
+      var scaleamount = document.getElementById("scaleYslider").value;
+      document.getElementById("scaleXY").style.transform = "scaleY(" + scaleamount + ")";
+      currentcss();
+    }
+
+    function currentcss() {
+    document.getElementById("currentcss").innerText = document.getElementById("scaleXY").style.cssText;
+    }
+  </script>
+
+  <!--script>
+    function scalefont(e) {
+      var scaleXamount = document.getElementById("scaleXslider").value;
+      var scaleYamount = document.getElementById("scaleYslider").value;
+      document.getElementById("scaleXY").style.transform = "scale(" + scaleXamount + ", " + scaleYamount + ")";
+
+      currentcss();
+    }
+
+    function currentcss() {
+    document.getElementById("currentcss").innerText = document.getElementById("scaleXY").style.cssText;
+    }
+  </script-->
 
   </body>
-  
 </html>
