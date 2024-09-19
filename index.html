@@ -23,9 +23,9 @@
   --background-color: #101D29;
   --color: #e9e9e9;
   --font-family: Consolas;
-  --font-size: 16px;
+  --font-size: 16.5px;
   --font-weight: normal;
-  --width: 70%;
+  --width: 65%;
   }
 
   body {
@@ -39,8 +39,6 @@
     margin-right: var(--margin-right);
     margin-top:0%;
     margin:auto;
-    -webkit-transform: scaleX(0.96);
-    transform: scaleX(0.96);
   }
 
   @media (prefers-color-scheme: light) {
@@ -48,15 +46,29 @@
     --background-color: #AEB6BF;
     --color: #000000;
     }
+
     a:link{
       color:rgb(0, 0, 255);
     }
     a:visited{
       color:rgb(0, 121, 255);
     }
+
+    html{
+      color-scheme: light;
+    }
   }
 
-    @media only screen and (max-width: 768px) {
+  @media (prefers-color-scheme: dark) {
+    :root {
+  }
+
+    html{
+      color-scheme: dark;
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
     body {
       width:94%;margin-left:3%;margin-right:3%;
     }
@@ -115,14 +127,15 @@
     text-align:center;
     margin:auto;
     transition: top 0.1s;
-    z-index: 7
+    z-index: 7;
+    border-radius: 6px;
+    padding: .1em .4em;
   }
 
   .topnav a {
     display: inline-block;
     color: #f2f2f2;
     text-align: center;
-    padding: 10px 16px;
     text-decoration: none;
     font-family: Cronos Pro;
     font-size: 26px;
@@ -131,6 +144,8 @@
     right:0;
     text-align:center;
     margin:auto;
+    border-radius: 6px;
+    padding: .3em .4em;
   }
   
   .topnav a:hover {
@@ -151,11 +166,13 @@
     background-color: #292929;
     color: #f2f2f2;
     padding: 14px;
-    font-family: Arial;
-    font-size: 20px;
-    font-weight: 500;
+    font-family: Cronos Pro;
+    font-size: 26px;
+    font-weight: 570;
     border: none;
     cursor: pointer;
+    border-radius: 6px;
+    padding: .3em .4em;
   }
 
   .dropbtn:hover, .dropbtn:focus {
@@ -195,8 +212,91 @@
     margin-top: -15px;
     display: none;
   }
+
+@font-face {
+    font-family: Consolas;
+    src: url("./fonts/Consolas-Regular.woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: Consolas;
+    src: url("./fonts/Consolas-Bold.woff2");
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+  font-family: Consolas;
+  src: url("./fonts/Consolas-Italic.woff2");
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+    font-family: Cronos Pro;
+    src: url("./fonts/Cronos Pro Regular.otf");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: Cronos Pro;
+    src: url("./fonts/Cronos Pro Bold.otf");
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: Montserrat;
+    src: url("./fonts/Montserrat-Regular.woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: Montserrat;
+    src: url("./fonts/Montserrat-Bold.woff2");
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+  font-family: Montserrat;
+  src: url("./fonts/Montserrat-Italic.woff2");
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+    font-family: Segoe UI;
+    src: url("./fonts/SegoeUI-Regular.woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: Segoe UI;
+    src: url("./fonts/SegoeUI-Bold.woff2");
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+  font-family: Baskervville;
+  src: url("./fonts/Baskervville-Regular.woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: Helvetica;
+  src: url("./fonts/HelveticaNowDisplay-Regular.woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
 </style>
 </head>
+
+
+
+
+
+
+
+
+
 
 <body>
 
@@ -206,7 +306,7 @@
     <a href="#set-your-preferred-languages-for-audio-and-subtitles-highly-recommended" target="_self" onclick="toggleLayoutMenu2()">LAV Splitter</a>
     <a href="#more-troubleshooting-and-advices" target="_self" onclick="toggleLayoutMenu2()">More T&A</a>
     <div class="dropdown">
-      <button onclick="toggleLayoutMenu()" class="dropbtn">Layout</button>
+      <button onclick="toggleLayoutMenu()" class="dropbtn">Settings</button>
       <div id="myDropdown" class="dropdown-content">
       </div>
       <!--p style="display:inline;"></p-->
@@ -217,10 +317,9 @@
     </div>
 
     <div id="toggleLayoutMenu">
-      <div style="position: relative;top: 23px;display: inline-block;font-family:Segoe UI;-webkit-transform: scaleX(0.96);
-    transform: scaleX(0.96);">
+      <div style="position: relative;top: 23px;display: inline-block;font-family: Baskerville;font-size: 17px;">
         <!--input id="colorpicker" type="color" value="#212F3D" onchange="changecolor(this)"-->
-        <div style="float:left;margin-right:9px;">
+        <div style="float:left;margin-left:5px;margin-right:15px;">
           <Label style="display:block;">Theme:</Label>
           <select onchange="theme(this);">
           	<option selected>Dark Blue</option>
@@ -231,24 +330,25 @@
             <option>Black</option>
           </select>
         </div>
-        <div style="float:left;margin-right:9px;">
+        <div style="float:left;margin-left:15px;margin-right:15px;">
           <Label style="display:block;">Width:</Label>
           <select onchange="margin(this);">
           	<option>40%</option>
             <option>50%</option>
             <option>60%</option>
-            <option selected>70%</option>
+            <option selected>65%</option>
+            <option>70%</option>
             <option>80%</option>
        	    <option>90%</option>
             <option>100%</option>
           </select>
         </div>
-        <div style="float:left;margin-right:9px;">
+        <div style="float:left;margin-left:15px;margin-right:5px;">
           <Label style="display:block;">Font-px:</Label>
           <select onchange="fontsize(this);">
-            <option>14</option>
             <option>15</option>
-            <option selected>16</option>
+            <option>16</option>
+            <option selected>16.5</option>
             <option>17</option>
             <option>18</option>
             <option>19</option>
@@ -256,31 +356,33 @@
             <option>22</option>
             <option>24</option>
             <option>26</option>
+            <option>28</option>
+            <option>30</option>
             <option>32</option>
           </select>
         </div>
-        <div style="float:left;margin-right:9px;">
+        <div style="float:left;margin-left:5px;margin-right:5px;">
           <Label style="display:block;">Font-family:</Label>
           <select onchange="fontfamily(this);">
             <option selected>Consolas</option>
+            <option>Cronos Pro</option>
+            <option>Montserrat</option>
             <option>Segoe UI</option>
             <option>Helvetica</option>
-            <option>Baskerville </option>
+            <option>Baskervville</option>
             <!--option>Bembo</option-->
             <!--option>Gotham</option-->
             <!--option>Bodoni</option-->
           </select>
         </div>
-        <div style="float:left;margin-right:9px;">
+        <div style="float:left;margin-left:5px;margin-right:15px;">
           <Label style="display:block;">Font-weight:</Label>
           <select onchange="fontweight(this);">
-            <option>300</option>
             <option selected>Normal</option>
-            <option>600</option>
        	    <option>Bold</option>
           </select>
         </div>
-        <div style="float:right;margin-right:9px;">
+        <div style="float:right;margin-left:5px;margin-right:5px;">
           <Label style="display:block;">ScaleX</Label>
           <div class="singlecontrol">
             <input style="vertical-align: middle;" id="scaleXslider" oninput="scaleXfont(event)" type="range" value="1.0" min="0.5" max="1.5" step="0.001" autocomplete="off" />
@@ -303,15 +405,21 @@
 
   </div>
 
+
+
+
+
+
   <div id="changetextcolor">
   <div id="scaleXY">
   <div id="changemargin">
   <div id="changefontsize">
   <div id="changefontfamily">
   <div id="changefontweight">
+  <div style="margin-left:1%;margin-right:1%;">
     
     <div class="top">
-      <p style="text-align: left;position: relative;top: -2.5px;">Change the layout from the menu above<br>
+      <p style="text-align: left;position: relative;top: -2.5px;">Change the style and layout of the page from the settings above<br>
       Link to all my releases on nyaa.si: <a href="https://nyaa.si/?f=0&amp;c=0_0&amp;q=itachiuchiha">ItachiUchiha</a>
       </p>
     <hr>
@@ -366,7 +474,7 @@
       </li>
       <li>choose the renderers from: <code>Options -&gt; Playback -&gt; Output</code> :<ul>
       <li>for <code>Video</code>, select <code>MPC Video Renderer</code> or <code>madVR</code></li>
-      <li>for <code>Subtitles</code>, select <code>VSFilter</code> (optional, but it can be useful in some cases: when some fonts are not muxed into the files and if the karaoke subs aren&#39;t perfectly aligned)</li>
+      <li>for <code>Subtitles</code>, select <code>VSFilter</code></li>
       </ul>
       </li>
       <li>change the settings in <code>Player</code> and in <code>User interface</code> to your liking</li>
@@ -424,7 +532,7 @@
         }
         </script>
         
-      <textarea id="ITAstring" rows="3" cols="115" maxlength="255" name="usrtxt" wrap="hard">ita:ita@Cartell,ita:ita@Sign,ita:ita@Forced,ita:ita@Forzat,ita:ita|f,ita:off,eng:eng@Sign,eng:eng@Forced,eng:eng|f,eng:off,*:ita@Dialog,*:ita@Complet,*:ita@Full,*:ita@Udenti,*:ita|!f,*:enm,*:eng@honorific,*:eng@Dialog,*:eng@Full,*:eng@SDH,*:eng|!f,*:*|f</textarea>
+      <textarea id="ITAstring" readonly rows="3" cols="115" maxlength="255" name="usrtxt" wrap="hard">ita:ita@Cartell,ita:ita@Sign,ita:ita@Forced,ita:ita@Forzat,ita:ita|f,ita:off,eng:eng@Sign,eng:eng@Forced,eng:eng|f,eng:off,*:ita@Dialog,*:ita@Complet,*:ita@Full,*:ita@Udenti,*:ita|!f,*:enm,*:eng@honorific,*:eng@Dialog,*:eng@Full,*:eng@SDH,*:eng|!f,*:*|f</textarea>
       <br>
       <button onclick="copyITAstring()">&nbsp;&nbsp;Copy&nbsp;&nbsp;</button>
 
@@ -438,7 +546,7 @@
         }
         </script>
         
-      <textarea id="ENGstring" rows="3" cols="115" maxlength="255" name="usrtxt" wrap="hard">eng:eng@Sign,eng:eng@Forced,eng:eng|f,eng:off,*:enm,*:eng@honorific,*:eng@Dialog,*:eng@Full,*:eng@SDH,*:eng|!f,*:*|f</textarea>
+      <textarea id="ENGstring" readonly rows="3" cols="115" maxlength="255" name="usrtxt" wrap="hard">eng:eng@Sign,eng:eng@Forced,eng:eng|f,eng:off,*:enm,*:eng@honorific,*:eng@Dialog,*:eng@Full,*:eng@SDH,*:eng|!f,*:*|f</textarea>
       <br>
       <button onclick="copyENGstring()">&nbsp;&nbsp;Copy&nbsp;&nbsp;</button>
 
@@ -455,16 +563,20 @@
       <li>as of today, MPC-BE has still a bug regarding the issue about opening the files that are over the windows path limit; as a temporary solution, to open such files, do <code>File -&gt; Quick Open File</code> (u can do it faster by using the <code>Ctrl+Q</code> shortcut)</li>
       </ul>
       <br>
+      This page is currently a WIP.
+      <br><br>
       If you have any issue or advice, feel free to comment on <a href="https://gist.github.com/ItachiUchiha-IU/401a1117e6e6d336d21a326e15a912f9">gist.github.com/ItachiUchiha-IU</a> or to contact me through the <a href="https://discord.com/invite/83dRFDFDp7">AV1 anime discord server</a><br>
       <br><br>
+
       <div>
         <!-- LikeBtn.com BEGIN -->
         <span class="likebtn-wrapper" data-theme="custom" data-icon_l="hrt2" data-icon_l_c_v="#ff0000" data-identifier="ghwuirghnpwiugbnerwugrbjn" data-dislike_enabled="false"></span>
-        <script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");</script> Leave a like if you appreciate the work spent on this page!<br>
+        <script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");
+        </script> Leave a like if you appreciate the work spent on this page!<br>
         <!-- LikeBtn.com END -->
       </div>
       
-      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
       <label for="">You have clicked the <code>FAKE BUTTON</code> </label>
         <input type="text"  style="text-align:center;" size="2" value="0" id="fakebutton" />
@@ -500,7 +612,7 @@
   </div>
   </div>
   </div>
-
+  </div>
 
 
 
