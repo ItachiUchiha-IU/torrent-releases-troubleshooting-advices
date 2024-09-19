@@ -421,7 +421,7 @@
     <hr>
 
     <div class="all" style="line-height: 1.5;">
-      <h2 id="troubleshooting-advices">Torrent Releases - Troubleshooting &amp; Advices:</h2>
+      <h3 id="troubleshooting-advices">Torrent Releases - Troubleshooting &amp; Advices:</h3>
       <ul>
         <li><a href="https://nyaa.si">https://nyaa.si</a> is the only correct site address, all the others are fakes/clones</li>
         <li>if a file doesn&#39;t open on Windows, it&#39;s because you put the files under an <a href="https://www.google.com/search?q=windows+path+limit">excessively long path</a>: update or install one of the media players recommended below, or use <code>Ctrl+Q</code> to open the files (shortcut for <code>File -&gt; Quick Open File</code>), or shorten the files' path by moving or renaming them</li>
@@ -431,7 +431,7 @@
       
 
       <script>function copyText1(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#use-one-of-the-following-media-players-highly-recommended");}</script>
-      <h2 id="use-one-of-the-following-media-players-highly-recommended"><button onclick="copyText1()">&#128279</button> Use one of the following Media Players (<strong>highly recommended</strong>):</h2>
+      <h3 id="use-one-of-the-following-media-players-highly-recommended"><button onclick="copyText1()">&#128279</button> Use one of the following Media Players (<strong>highly recommended</strong>):</h3>
       <ul>
         <li><a href="https://rentry.co/vee-ell-cee">DO NOT USE VLC!!</a>
           <div style="float:right;"><input type="button" value="FAKE BUTTON, DO NOT CLICK !" id="doPlus" onClick = "doPlus();" />
@@ -495,7 +495,7 @@
       <br>
           
       <script>function copyText2(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#set-your-preferred-languages-for-audio-and-subtitles-highly-recommended");}</script>
-      <h2 id="set-your-preferred-languages-for-audio-and-subtitles-highly-recommended"><button onclick="copyText2()">&#128279</button> LAV Splitter (for MPC-BE/HC) (<strong>highly recommended</strong>):</h2>
+      <h3 id="set-your-preferred-languages-for-audio-and-subtitles-highly-recommended"><button onclick="copyText2()">&#128279</button> LAV Splitter (for MPC-BE/HC) (<strong>highly recommended</strong>):</h3>
       <em>with LAV Splitter the player can open the files in the languages u prefer (both audio and subs) and select the full subs or signs based on the audio language selected, and can even switch the subtitles automatically when u change audio language!</em>
       <ul>
       <li>on <code>MPC-BE</code>, go to <code>Options -&gt; External Filters</code> and click on <code>Add Filter</code>, then add the <code>Lav Splitter</code> filter and open it<ul>
@@ -519,8 +519,6 @@
       </ul>
       </li>
       </ul>
-      <br>
-          
 
       <script>function copyText3(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#my-strings-for-lav-splitter");}</script>
       <h3 id="my-strings-for-lav-splitter"><button onclick="copyText3()">&#128279</button> My strings for LAV Splitter</h3>
@@ -568,6 +566,8 @@
       </ul>
 
       <br><br>
+      Current state of the page: WIP
+      <br>
       If you have any issue or advice (regarding the guide or the page layout), feel free to comment on <a href="https://gist.github.com/ItachiUchiha-IU/401a1117e6e6d336d21a326e15a912f9">gist.github.com/ItachiUchiha-IU</a> or to contact me through the <a href="https://discord.com/invite/83dRFDFDp7">AV1 anime discord server</a><br>
       <br><br>
 
@@ -579,18 +579,11 @@
         <!-- LikeBtn.com END -->
       </div>
 
-      <br><br><br><br><br><br><br><br><br><br><br><br><!--a href="page2.html" target="_self"> Next Page </a--><br><br>
+      <br><br><br><br><br><br><br><br><br><br><!--a href="page2.html" target="_self"> Next Page </a--><br><br>
 
       <label for="">You have clicked the <code>FAKE BUTTON</code> </label>
         <input type="text"  style="text-align:center;" size="2" value="0" id="fakebutton" />
         <label for="">times.</label>
-      <br>
-
-      <script>
-        function doPlus(){
-          document.getElementById("fakebutton").value = ++document.getElementById("fakebutton").value;
-        }
-      </script>
 
       <br><br>
 
@@ -631,6 +624,12 @@
           document.body.style.backgroundColor = color;
       }, 200);
   </script-->
+
+  <script>
+    function doPlus(){
+      document.getElementById("fakebutton").value = ++document.getElementById("fakebutton").value;
+    }
+  </script>
 
   <script>
     function lighttheme() {
