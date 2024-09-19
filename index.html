@@ -46,15 +46,29 @@
     --background-color: #AEB6BF;
     --color: #000000;
     }
+
     a:link{
       color:rgb(0, 0, 255);
     }
     a:visited{
       color:rgb(0, 121, 255);
     }
+
+    html{
+      color-scheme: light;
+    }
   }
 
-    @media only screen and (max-width: 768px) {
+  @media (prefers-color-scheme: dark) {
+    :root {
+  }
+
+    html{
+      color-scheme: dark;
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
     body {
       width:94%;margin-left:3%;margin-right:3%;
     }
@@ -307,7 +321,7 @@
             <option>Black</option>
           </select>
         </div>
-        <div style="float:left;margin-left:15px;margin-right:5px;">
+        <div style="float:left;margin-left:15px;margin-right:15px;">
           <Label style="display:block;">Width:</Label>
           <select onchange="margin(this);">
           	<option>40%</option>
@@ -534,16 +548,21 @@
       <li>as of today, MPC-BE has still a bug regarding the issue about opening the files that are over the windows path limit; as a temporary solution, to open such files, do <code>File -&gt; Quick Open File</code> (u can do it faster by using the <code>Ctrl+Q</code> shortcut)</li>
       </ul>
       <br>
+      This page is currently a WIP.
+      <br>
       If you have any issue or advice, feel free to comment on <a href="https://gist.github.com/ItachiUchiha-IU/401a1117e6e6d336d21a326e15a912f9">gist.github.com/ItachiUchiha-IU</a> or to contact me through the <a href="https://discord.com/invite/83dRFDFDp7">AV1 anime discord server</a><br>
+      <br><br>
+      
       <br><br>
       <div>
         <!-- LikeBtn.com BEGIN -->
         <span class="likebtn-wrapper" data-theme="custom" data-icon_l="hrt2" data-icon_l_c_v="#ff0000" data-identifier="ghwuirghnpwiugbnerwugrbjn" data-dislike_enabled="false"></span>
-        <script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");</script> Leave a like if you appreciate the work spent on this page!<br>
+        <script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");
+        </script> Leave a like if you appreciate the work spent on this page!<br>
         <!-- LikeBtn.com END -->
       </div>
       
-      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
       <label for="">You have clicked the <code>FAKE BUTTON</code> </label>
         <input type="text"  style="text-align:center;" size="2" value="0" id="fakebutton" />
