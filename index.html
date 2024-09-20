@@ -7,18 +7,18 @@
 
 <style>
 
-  a:link{
+  a:link {
     color:rgb(0, 121, 255);
   }
 
-  a:visited{
+  a:visited {
     color:rgb(0, 143, 255);
   }
 
   textarea {
     max-width: 100%;
   }
-  
+
   :root {
   --background-color: #101D29;
   --color: #e9e9e9;
@@ -60,9 +60,6 @@
   }
 
   @media (prefers-color-scheme: dark) {
-    :root {
-  }
-
     html{
       color-scheme: dark;
     }
@@ -159,8 +156,6 @@
   }
   
   code{background-color: rgb(128 128 128 / .65); border-radius: 6px; padding: .1em .4em; text-align: top; font-size: 95%;}
-  div.top{margin-top: 0px}
-  div.all{line-height: 1.5; margin-top: 30px}
 
   .dropbtn {
     background-color: #292929;
@@ -310,10 +305,8 @@
       <div id="myDropdown" class="dropdown-content">
       </div>
       <!--p style="display:inline;"></p-->
-      <div style="position: relative;top: 0px; left: 13px" 
-        <span class="likebtn-wrapper" data-theme="custom" data-icon_l="hrt2" data-icon_l_c_v="#ff0000" data-identifier="ghwuirghnpwiugbnerwugrbjn" data-dislike_enabled="false"></span>
-        <script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");</script>
-      </div>
+      <span class="likebtn-wrapper" data-theme="custom" data-icon_l="hrt2" data-icon_l_c_v="#ff0000" data-identifier="ghwuirghnpwiugbnerwugrbjn" data-dislike_enabled="false" style="position: relative;top: 0px; left: 13px"></span>
+      <script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");</script>
     </div>
 
     <div id="toggleLayoutMenu">
@@ -418,23 +411,25 @@
   <div id="changefontweight">
   <div style="margin-left:1%;margin-right:1%;">
     
-    <div class="top">
+    <div class="toplines">
       <p style="text-align: left;position: relative;top: -2.5px;">Change the style and layout of the page from the settings above<br>
       Link to all my releases on nyaa.si: <a href="https://nyaa.si/?f=0&amp;c=0_0&amp;q=itachiuchiha">ItachiUchiha</a>
       </p>
-    <hr>
-      <h2 id="troubleshooting-advices">Torrent Releases - Troubleshooting &amp; Advices:</h2>
-      <ul>
-        <li><a href="https://nyaa.si">https://nyaa.si</a> is the only correct site address, all the others are fakes/clones</li><br>
-        <li>if a file doesn&#39;t open on Windows, it&#39;s because you put the files under an <a href="https://www.google.com/search?q=windows+path+limit">excessively long path</a>: update or install one of the media players recommended below, or use <code>Ctrl+Q</code> to open the files, or shorten the files' path by moving or renaming them</li><br>
-        <li>if your monitor is <code>8-bit</code>, the colors may be completely fucked up when playing <code>10-bit</code> content: try changing between different video renderes, or fix the colors manually ~</li><br>
-        <li>AV1 releases must never be in 8-bit, if u find one that is in 8-bit, u better stop downloading that encoder's releases!</li>
-      </ul>
     </div>
+    <hr>
 
-    <div class="all">
+    <div class="all" style="line-height: 1.5;">
+      <script>function copyText0(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#");}</script>
+      <h2 class="title" id="troubleshooting-advices"><button onclick="copyText0()">&#128279</button> Torrent Releases - Troubleshooting &amp; Advices:</h2>
+      <ul>
+        <li style="margin-top: -5px;"><a href="https://nyaa.si">https://nyaa.si</a> is the only correct site address, all the others are fakes/clones</li>
+        <li style="margin-top: 10px;">if a file doesn&#39;t open on Windows, it&#39;s because you put the files under an <a href="https://www.google.com/search?q=windows+path+limit">excessively long path</a>: update or install one of the media players recommended below, or use <code>Ctrl+Q</code> to open the files (shortcut for <code>File -&gt; Quick Open File</code>), or shorten the files' path by moving or renaming them</li>
+        <li style="margin-top: 10px;">AV1 releases must never be in 8-bit, if u find one that is in 8-bit, u better stop downloading that encoder's releases!</li>
+        <li style="margin-top: 10px;">more troubleshooting and advices <a href="#more-troubleshooting-and-advices" target="_self">at the bottom</a></li>
+      </ul>
+
       <script>function copyText1(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#use-one-of-the-following-media-players-highly-recommended");}</script>
-      <h3 id="use-one-of-the-following-media-players-highly-recommended"><button onclick="copyText1()">&#128279</button> Use one of the following media players (<strong>highly recommended</strong>):</h3>
+      <h3 class="title" id="use-one-of-the-following-media-players-highly-recommended"  style="margin-top: 40px;"><button onclick="copyText1()">&#128279</button> Use one of the following Media Players (<strong>highly recommended</strong>):</h3>
       <ul>
         <li><a href="https://rentry.co/vee-ell-cee">DO NOT USE VLC!!</a>
           <div style="float:right;"><input type="button" value="FAKE BUTTON, DO NOT CLICK !" id="doPlus" onClick = "doPlus();" />
@@ -445,55 +440,62 @@
         </ul>
         <br>
         
-        <li><a href="https://sourceforge.net/projects/mpcbe">MPC-BE</a> (remember to select <code>MPC Video Renderer</code> during the installation otherwise u have to <a href="https://www.videohelp.com/software/MPC-Video-Renderer">manually install it</a>)<ul>
-        <li>install <a href="https://www.videohelp.com/software/madVR">madVR</a> (optional)</li>
-        <li>select your renderers from the matching tabs in <code>Options</code> (press <code>O</code> to open):<ul>
-        <li>in <code>Video</code> select <code>MPC Video Renderer</code> (or <code>madVR</code>)</li>
-        <li>in <code>Audio</code> select <code>MPC Audio Renderer</code></li>
-        <li>in <code>Subtitles</code> select <code>xy-VSFilter</code></li>
+        <li><a href="https://sourceforge.net/projects/mpcbe">MPC-BE</a> (remember to select <code>MPC Video Renderer</code> during the installation otherwise u have to <a href="https://www.videohelp.com/software/MPC-Video-Renderer">manually install it</a>)
+        <ul>
+          <li>install <a href="https://www.videohelp.com/software/madVR">madVR</a> (optional)</li>
+          <li>choose the renderers from the matching tabs in <code>Options</code> (press <code>O</code> to open):
+          <ul>
+            <li>in <code>Video</code> select <code>MPC Video Renderer</code> (or <code>madVR</code>)</li>
+            <li>in <code>Audio</code> select <code>MPC Audio Renderer</code></li>
+            <li>in <code>Subtitles</code> select <code>xy-VSFilter</code></li>
+          </ul>
+          </li>
+          <li>to fix karaoke subtitles flickering: in <code>Options -&gt; Subtitles -&gt; Rendering</code> set <code>Sub pictures to buffer</code> to <code>0</code></li>
+          <li>to show the chapter markers in the seekbar: <code>Options -&gt; Player -&gt; Interface</code> -&gt; <code>Use chapters marker</code></li>
+          <li>to use the preview in the seekbar: <code>Options -&gt; Player -&gt; Interface</code> -&gt; <code>Use the preview in the search</code></li>
+          <li>in <code>Options -&gt; Player</code> uncheck <code>Show OSD</code> (optional)</li>
+          <li>change the settings in <code>Player</code> and in <code>Windows size</code> to your liking</li>
+          <li><a href="https://imgur.com/a/mzqS1gH">Screenshots of my settings on MPC-BE</a></li>
+        </ul>
+        </li>
+        <br>
+
+        <li><a href="https://www.codecguide.com">MPC-HC</a>
+        <ul>
+          <li>it may be tricky to install at first for the average user (especially if u already have MPC-BE) but it doesnt require ulterior installations for the best features if u choose the proper package (the <code>Full</code> package is recommended)
+          <ul>
+            <li>to install both BE and HC easily:
+            <ul>
+              <li>download and install <code>MPC-BE</code> following the instructions above</li>
+              <li>download the <a href="https://www.codecguide.com/download_k-lite_codec_pack_full.htm">Full</a> package of <code>MPC-HC</code> and run the installation selecting <code>Install MPC-HC as a secondary player</code> (u can leave everything else on default)</li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li>choose the renderers from: <code>Options -&gt; Playback -&gt; Output</code> :
+          <ul>
+            <li>for <code>Video</code>, select <code>MPC Video Renderer</code> (or <code>madVR</code>)</li>
+            <li>for <code>Subtitles</code>, select <code>VSFilter</code></li>
+          </ul>
+          </li>
+          <li>change the settings in <code>Player</code> and in <code>User interface</code> to your liking</li>
+        </ul>
+        </li>
+        <br>
+
+        <li><a href="https://mpv.io/">MPV</a>
+        <ul>
+          <li><a href="https://thewiki.moe/tutorials/mpv/">an external guide to install and configure mpv</a></li>
+          <li><a href="https://iamscum.wordpress.com/guides/videoplayback-guide/">an ulterior external guide to install and configure mpv</a></li>
+        </ul>
+        </li>
       </ul>
-      </li>
-      <li>to fix karaoke subtitles flickering: in <code>Options -&gt; Subtitles -&gt; Rendering</code> set <code>Sub pictures to buffer</code> to <code>0</code></li>
-      <li>to show the chapter markers in the seekbar: <code>Options -&gt; Player -&gt; Interface</code> -&gt; <code>Use chapters marker</code></li>
-      <li>to use the preview in the seekbar: <code>Options -&gt; Player -&gt; Interface</code> -&gt; <code>Use the preview in the search</code></li>
-      <li>in <code>Options -&gt; Player</code> uncheck <code>Show OSD</code> (optional)</li>
-      <li>change the settings in <code>Player</code> and in <code>Windows size</code> to your liking</li>
-      <li><a href="https://imgur.com/a/mzqS1gH">Screenshots of my settings on MPC-BE</a></li>
-      </ul>
-      </li>
       <br>
 
-      <li><a href="https://www.codecguide.com">MPC-HC</a><ul>
-      <li>it may be tricky to install at first for the average user (especially if u already have MPC-BE) but it doesnt require ulterior installations for the best features if u choose the proper package (the <code>Full</code> package is recommended)<ul>
-      <li>to install both BE and HC easily:<ul>
-      <li>download and install <code>MPC-BE</code> following the instructions above</li>
-      <li>download the <a href="https://www.codecguide.com/download_k-lite_codec_pack_full.htm">Full</a> package of <code>MPC-HC</code> and run the installation selecting <code>Install MPC-HC as a secondary player</code> (u can leave everything else on default)</li>
-      </ul>
-      </li>
-      </ul>
-      </li>
-      <li>choose the renderers from: <code>Options -&gt; Playback -&gt; Output</code> :<ul>
-      <li>for <code>Video</code>, select <code>MPC Video Renderer</code> or <code>madVR</code></li>
-      <li>for <code>Subtitles</code>, select <code>VSFilter</code></li>
-      </ul>
-      </li>
-      <li>change the settings in <code>Player</code> and in <code>User interface</code> to your liking</li>
-      </ul>
-      </li>
-      <br>
 
-      <li><a href="https://mpv.io/">MPV</a><ul>
-      <li><a href="https://thewiki.moe/tutorials/mpv/">an external guide to install and configure mpv</a></li>
-      <li><a href="https://iamscum.wordpress.com/guides/videoplayback-guide/">an ulterior external guide to install and configure mpv</a>
-      </ul>
-      </li>
-      </ul>
-      </li>
-      <br>
-          
       <script>function copyText2(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#set-your-preferred-languages-for-audio-and-subtitles-highly-recommended");}</script>
-      <h3 id="set-your-preferred-languages-for-audio-and-subtitles-highly-recommended"><button onclick="copyText2()">&#128279</button> Set your preferred languages for audio and subtitles (<strong>highly recommended</strong>):</h3>
-      <em>the player will open the files in the languages u prefer (both audio and subs) and will select the full subs or signs based on the audio language selected!</em>
+      <h3 class="title" id="set-your-preferred-languages-for-audio-and-subtitles-highly-recommended"><button onclick="copyText2()">&#128279</button> LAV Splitter (for MPC-BE/HC) (<strong>highly recommended</strong>):</h3>
+      <em>with LAV Splitter the player can open the files in the languages u prefer (both audio and subs) and select the full subs or signs based on the audio language selected, and can even switch the subtitles automatically when u change audio language!</em>
       <ul>
       <li>on <code>MPC-BE</code>, go to <code>Options -&gt; External Filters</code> and click on <code>Add Filter</code>, then add the <code>Lav Splitter</code> filter and open it<ul>
       <li>if u dont have the <code>Lav Splitter</code> filter, u need to install the <a href="https://www.videohelp.com/software/LAV-Filters">LAV Filters</a> (during the installation u can choose to install the <code>LAV Splitter</code> only) or, if u are still in doubt about installing both <code>MPC-BE</code> and <code>HC</code>, u can install <code>MPC-HC</code> as secondary player as it contains the <code>LAV Filters</code></li>
@@ -516,11 +518,9 @@
       </ul>
       </li>
       </ul>
-      <br>
-          
 
       <script>function copyText3(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#my-strings-for-lav-splitter");}</script>
-      <h3 id="my-strings-for-lav-splitter"><button onclick="copyText3()">&#128279</button> My strings for LAV Splitter</h3>
+      <h3 class="title" id="my-strings-for-lav-splitter"><button onclick="copyText3()">&#128279</button> My strings for LAV Splitter</h3>
 
       <p><code>ITA</code> as preferred language (or edit with your preferred language and keywords; at present, u cant exceed 255 characters; <a href="https://github.com/Nevcairiel/LAVFilters/blob/master/README.txt">rules</a>):</p>
       
@@ -555,17 +555,19 @@
           
 
       <script>function copyText4(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#more-troubleshooting-and-advices");}</script>
-      <h3 id="more-troubleshooting-and-advices"><button onclick="copyText4()">&#128279</button> More Troubleshooting and Advices:</h3>
+      <h3 class="title" id="more-troubleshooting-and-advices"><button onclick="copyText4()">&#128279</button> More Troubleshooting and Advices:</h3>
       <ul>
-      <li>use <code>A</code> to change the audio track, <code>S</code> for subtitles (if u set up the preferred languages as explained above, they will automatically change accordingly to your preferences when changing the audio track)</li>
-      <li>use <code>Page Down</code> (and <code>Page Up</code>) to move between the chapters of the video (it goes to the following episode if there are no more chapters)</li>
-      <li>use <code>Ctrl + Page Down</code> (and <code>Ctrl + Page Up</code>) to change episode</li>
-      <li>as of today, MPC-BE has still a bug regarding the issue about opening the files that are over the windows path limit; as a temporary solution, to open such files, do <code>File -&gt; Quick Open File</code> (u can do it faster by using the <code>Ctrl+Q</code> shortcut)</li>
+        <li>use <code>A</code> to change the audio track, <code>S</code> for subtitles (if u set up the preferred languages as explained above, they will automatically change accordingly to your preferences when changing the audio track)</li>
+        <li style="margin-top: 10px;">use <code>Page Down</code> (and <code>Page Up</code>) to move between the chapters of the video (it goes to the following episode if there are no more chapters)</li>
+        <li style="margin-top: 10px;">use <code>Ctrl + Page Down</code> (and <code>Ctrl + Page Up</code>) to change episode</li>
+        <li style="margin-top: 10px;">as of today, MPC-BE has still a bug regarding the issue about opening the files that are over the windows path limit; as a temporary solution, to open such files, use <code>Ctrl+Q</code> (shortcut for <code>File -&gt; Quick Open File</code>)</li>
+        <li style="margin-top: 10px;">if your monitor is <code>8-bit</code>, and u notice that the colors are overly saturated when playing <code>10-bit</code> content: try changing video renderer (still avoid the internal video renderer) or on MPC-BE <a href="https://imgur.com/a/1neTl8Y">try this</a></li>
       </ul>
+
       <br>
-      This page is currently a WIP.
+      Current state of the page: WIP
       <br><br>
-      If you have any issue or advice, feel free to comment on <a href="https://gist.github.com/ItachiUchiha-IU/401a1117e6e6d336d21a326e15a912f9">gist.github.com/ItachiUchiha-IU</a> or to contact me through the <a href="https://discord.com/invite/83dRFDFDp7">AV1 anime discord server</a><br>
+      If you have any issue or advice (regarding the guide or the page layout), feel free to comment on <a href="https://gist.github.com/ItachiUchiha-IU/401a1117e6e6d336d21a326e15a912f9">gist.github.com/ItachiUchiha-IU</a> or to contact me through the <a href="https://discord.com/invite/83dRFDFDp7">AV1 anime discord server</a><br>
       <br><br>
 
       <div>
@@ -575,19 +577,12 @@
         </script> Leave a like if you appreciate the work spent on this page!<br>
         <!-- LikeBtn.com END -->
       </div>
-      
-      <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+      <br><br><br><br><br><br><br><br><br><br><!--a href="page2.html" target="_self"> Next Page </a--><br><br>
 
       <label for="">You have clicked the <code>FAKE BUTTON</code> </label>
         <input type="text"  style="text-align:center;" size="2" value="0" id="fakebutton" />
         <label for="">times.</label>
-      <br>
-
-      <script>
-        function doPlus(){
-          document.getElementById("fakebutton").value = ++document.getElementById("fakebutton").value;
-        }
-      </script>
 
       <br><br>
 
@@ -606,14 +601,14 @@
       </div>
 
     </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
 
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
 
 
 
@@ -627,6 +622,12 @@
           document.body.style.backgroundColor = color;
       }, 200);
   </script-->
+
+  <script>
+    function doPlus(){
+      document.getElementById("fakebutton").value = ++document.getElementById("fakebutton").value;
+    }
+  </script>
 
   <script>
     function lighttheme() {
