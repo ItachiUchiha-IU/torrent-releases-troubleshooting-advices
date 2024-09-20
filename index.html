@@ -35,9 +35,6 @@
     font-size: var(--font-size);
     font-weight: var(--font-weight);
     width: var(--width);
-    margin-left: var(--margin-left);
-    margin-right: var(--margin-right);
-    margin-top:0%;
     margin:auto;
   }
 
@@ -70,43 +67,6 @@
       width:94%;margin-left:3%;margin-right:3%;
     }
   }
-
-  .light {
-    --background-color:#AEB6BF;--color:#000000;
-  }
-
-  .blue {
-    --background-color:#212F3D;--color:#e9e9e9;
-  }
-
-  .black {
-    --background-color:#000000;--color:#E6E6E6;
-  }
-
-  .margins7 {
-    --width:86%;--margin-left:7%;--margin-right:7%;
-  }
-
-  .margins25 {
-    --width:50%;--margin-left:25%;--margin-right:25%;
-  }
-
-  .fontsize15 {
-    --font-size:15px;
-  }
-
-  .fontsize18 {
-    --font-size:18px;
-  }
-
-  .fontCHANGE {
-    --font-family:"Segoe UI";
-  }
-
-  .fontweightbold {
-    --font-weight:bold;
-  }
-
   
   html{
    scroll-padding-top: 60px;
@@ -157,7 +117,7 @@
   
   code{background-color: rgb(128 128 128 / .65); border-radius: 6px; padding: .1em .4em; text-align: top; font-size: 95%;}
 
-  .dropbtn {
+  .settingsmenubutton {
     background-color: #292929;
     color: #f2f2f2;
     padding: 14px;
@@ -170,37 +130,20 @@
     padding: .3em .4em;
   }
 
-  .dropbtn:hover, .dropbtn:focus {
+  .settingsmenubutton:hover, .settingsmenubutton:focus {
     background-color: black;
   }
 
-  .dropdown {
+  .settingsmenu {
   position: relative;
   display: inline-block;
   }
 
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-
-  .dropdown a:hover {background-color: #ddd;}
+  .settingsmenu a:hover {background-color: #ddd;}
 
   .show {display: block;}
 
-  #toggleLayoutMenu {
+  #toggleSettingsMenu {
     width: 100%;
     padding: 0px 0px;
     text-align: center;
@@ -297,19 +240,15 @@
 
   <div class="topnav">
     <a class="active" href="#" target="_self">To Top</a>
-    <a href="#use-one-of-the-following-media-players-highly-recommended" target="_self" onclick="toggleLayoutMenu2()">Media Players</a>
-    <a href="#set-your-preferred-languages-for-audio-and-subtitles-highly-recommended" target="_self" onclick="toggleLayoutMenu2()">LAV Splitter</a>
-    <a href="#more-troubleshooting-and-advices" target="_self" onclick="toggleLayoutMenu2()">More T&A</a>
-    <div class="dropdown">
-      <button onclick="toggleLayoutMenu()" class="dropbtn">Settings</button>
-      <div id="myDropdown" class="dropdown-content">
-      </div>
-      <!--p style="display:inline;"></p-->
-      <span class="likebtn-wrapper" data-theme="custom" data-icon_l="hrt2" data-icon_l_c_v="#ff0000" data-identifier="ghwuirghnpwiugbnerwugrbjn" data-dislike_enabled="false" style="position: relative;top: 0px; left: 13px"></span>
-      <script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");</script>
+    <a href="#media-players" target="_self" onclick="hideSettingsMenu()">Media Players</a>
+    <a href="#LAV-Splitter" target="_self" onclick="hideSettingsMenu()">LAV Splitter</a>
+    <a href="#more-troubleshooting-and-advices" target="_self" onclick="hideSettingsMenu()">More T&A</a>
+    <div class="settingsmenu">
+      <button onclick="toggleSettingsMenu()" class="settingsmenubutton">Settings</button>
     </div>
+    <span class="likebtn-wrapper" data-theme="custom" data-icon_l="hrt2" data-icon_l_c_v="#ff0000" data-identifier="ghwuirghnpwiugbnerwugrbjn" data-dislike_enabled="false" style="position:relative;top:-3px;left:10px;margin-right:1px;"></span>
 
-    <div id="toggleLayoutMenu">
+    <div id="toggleSettingsMenu">
       <div style="position: relative;top: 23px;display: inline-block;font-family: Baskerville;font-size: 17px;">
         <!--input id="colorpicker" type="color" value="#212F3D" onchange="changecolor(this)"-->
         <div style="float:left;margin-left:5px;margin-right:15px;">
@@ -363,9 +302,6 @@
             <option>Segoe UI</option>
             <option>Helvetica</option>
             <option>Baskervville</option>
-            <!--option>Bembo</option-->
-            <!--option>Gotham</option-->
-            <!--option>Bodoni</option-->
           </select>
         </div>
         <div style="float:left;margin-left:5px;margin-right:15px;">
@@ -423,13 +359,14 @@
       <h2 class="title" id="troubleshooting-advices"><button onclick="copyText0()">&#128279</button> Torrent Releases - Troubleshooting &amp; Advices:</h2>
       <ul>
         <li style="margin-top: -5px;"><a href="https://nyaa.si">https://nyaa.si</a> is the only correct site address, all the others are fakes/clones</li>
-        <li style="margin-top: 10px;">if a file doesn&#39;t open on Windows, it&#39;s because you put the files under an <a href="https://www.google.com/search?q=windows+path+limit">excessively long path</a>: update or install one of the media players recommended below, or use <code>Ctrl+Q</code> to open the files (shortcut for <code>File -&gt; Quick Open File</code>), or shorten the files' path by moving or renaming them</li>
+        <li style="margin-top: 10px;">For the best quality, best performance and fewest issues, use one of the media players recommended below</li>
+        <li style="margin-top: 10px;">if a file doesn't open on Windows, it's because you put the files under an <a href="https://www.google.com/search?q=windows+path+limit">excessively long path</a> and the media player isn't able to bypass the problem: update or install one of the media players recommended below, or try using <code>Ctrl+Q</code> to open the files (shortcut for <code>File -&gt; Quick Open File</code>), or eventually shorten the files' path by moving or renaming them</li>
         <li style="margin-top: 10px;">AV1 releases must never be in 8-bit, if u find one that is in 8-bit, u better stop downloading that encoder's releases!</li>
         <li style="margin-top: 10px;">more troubleshooting and advices <a href="#more-troubleshooting-and-advices" target="_self">at the bottom</a></li>
       </ul>
 
-      <script>function copyText1(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#use-one-of-the-following-media-players-highly-recommended");}</script>
-      <h3 class="title" id="use-one-of-the-following-media-players-highly-recommended"  style="margin-top: 40px;"><button onclick="copyText1()">&#128279</button> Use one of the following Media Players (<strong>highly recommended</strong>):</h3>
+      <script>function copyText1(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#media-players");}</script>
+      <h3 class="title" id="media-players"  style="margin-top: 40px;"><button onclick="copyText1()">&#128279</button> Media Players (<strong>highly recommended</strong>):</h3>
       <ul>
         <li><a href="https://rentry.co/vee-ell-cee">DO NOT USE VLC!!</a>
           <div style="float:right;"><input type="button" value="FAKE BUTTON, DO NOT CLICK !" id="doPlus" onClick = "doPlus();" />
@@ -493,30 +430,37 @@
       <br>
 
 
-      <script>function copyText2(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#set-your-preferred-languages-for-audio-and-subtitles-highly-recommended");}</script>
-      <h3 class="title" id="set-your-preferred-languages-for-audio-and-subtitles-highly-recommended"><button onclick="copyText2()">&#128279</button> LAV Splitter (for MPC-BE/HC) (<strong>highly recommended</strong>):</h3>
-      <em>with LAV Splitter the player can open the files in the languages u prefer (both audio and subs) and select the full subs or signs based on the audio language selected, and can even switch the subtitles automatically when u change audio language!</em>
+      <script>function copyText2(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#LAV-Splitter");}</script>
+      <h3 class="title" id="LAV-Splitter"><button onclick="copyText2()">&#128279</button> LAV Splitter (for MPC-BE/HC) (<strong>highly recommended</strong>):</h3>
+      <em>with LAV Splitter the media player can open the files in the languages u prefer (both audio and subs) and select the full subs or signs based on the audio language selected, and can even switch the subtitles automatically when u change audio language!</em>
       <ul>
-      <li>on <code>MPC-BE</code>, go to <code>Options -&gt; External Filters</code> and click on <code>Add Filter</code>, then add the <code>Lav Splitter</code> filter and open it<ul>
-      <li>if u dont have the <code>Lav Splitter</code> filter, u need to install the <a href="https://www.videohelp.com/software/LAV-Filters">LAV Filters</a> (during the installation u can choose to install the <code>LAV Splitter</code> only) or, if u are still in doubt about installing both <code>MPC-BE</code> and <code>HC</code>, u can install <code>MPC-HC</code> as secondary player as it contains the <code>LAV Filters</code></li>
-      </ul>
-      </li>
-      <li>on <code>MPC-HC</code>, go to <code>Options -&gt; Internal Filters</code> and click on <code>Splitter</code> to edit the <code>LAV Filters</code></li><br>
-      <li>[LAV SPLITTER CONFIGURATION]<ul>
-      <li>in <code>Subtitle Selection Mode</code> choose <code>Advanced</code> and check <code>Reselect Subtitles on every Audio Switch</code> (with this setting u can simply press <code>A</code> during the play to change the audio track and the subtitles will change automatically accordingly to your preferences)</li>
-      <li>in <code>Audio</code> write your preferred languages for audio (examples: <code>jpn,ita,eng</code>, <code>eng,jpn</code>, <code>ita,eng,jpn</code> etc.)</li>
-      <li>in <code>Subtitles</code> write your preferred languages for subtitles manually or simply copy-paste (and/or edit) a pre-made string (strings made by me are under <a href="#my-strings-for-lav-splitter" target="_self">My strings for LAV Splitter</a>)</li>
-      <li>save the configuration
-      <br></ul>
-      [LAV SPLITTER CONFIGURATION - END]</li><br>
-      </li>
-      <li>on <code>MPC-HC</code> u can now close the player and eveything should be set correctly</li>
-      <li>on <code>MPC-BE</code> u need to go to <code>Priority</code> (under <code>External Filters</code>) and change everything u can from <code>default</code> to <code>LAV Splitter</code>, then save and close the player</li>
-      <li>if everything is set properly, the filters will work; if they dont, then there are only two options:<ul>
-      <li>if they dont work on specific sources, it means that those sources have the subs set/named improperly: u can try remuxing them correctly or editing the string in <code>LAV Splitter</code></li>
-      <li>if they dont work at all, it means u did something wrong while following this guide... congrats, u played yourself, now u need to repeat every passage in this guide and be careful to apply every change <code>XD Rip</code></li>
-      </ul>
-      </li>
+        <li>on <code>MPC-BE</code>, go to <code>Options -&gt; External Filters</code> and click on <code>Add Filter</code>, then add the <code>Lav Splitter</code> filter and open it
+        <ul>
+          <li>if u dont have the <code>Lav Splitter</code> filter, u need to install the <a href="https://www.videohelp.com/software/LAV-Filters">LAV Filters</a> (during the installation u can choose to install the <code>LAV Splitter</code> only) or, if u are still in doubt about installing both <code>MPC-BE</code> and <code>HC</code>, u can install <code>MPC-HC</code> as secondary player as it contains the <code>LAV Filters</code>
+          </li>
+        </ul>
+        </li>
+        <li>on <code>MPC-HC</code>, go to <code>Options -&gt; Internal Filters</code> and click on <code>Splitter</code> to edit the <code>LAV Filters</code></li>
+        <br>
+        <li>[LAV SPLITTER CONFIGURATION]
+        <ul>
+          <li>in <code>Subtitle Selection Mode</code> choose <code>Advanced</code> and check <code>Reselect Subtitles on every Audio Switch</code> (with this setting u can simply press <code>A</code> during the play to change the audio track and the subtitles will change automatically accordingly to your preferences)</li>
+          <li>in <code>Audio</code> write your preferred languages for audio (examples: <code>jpn,ita,eng</code>, <code>eng,jpn</code>, <code>ita,eng,jpn</code> etc.)</li>
+          <li>in <code>Subtitles</code> write your preferred languages for subtitles manually or simply copy-paste (and/or edit) a pre-made string (strings made by me are under <a href="#my-strings-for-lav-splitter" target="_self">My strings for LAV Splitter</a>)</li>
+          <li>save the configuration
+          <br>
+        </ul>
+        [LAV SPLITTER CONFIGURATION - END]
+        </li>
+        <br>
+        <li>on <code>MPC-HC</code> u can now close the player and eveything should be set correctly</li>
+        <li>on <code>MPC-BE</code> u need to go to <code>Priority</code> (under <code>External Filters</code>) and change everything u can from <code>default</code> to <code>LAV Splitter</code>, then save and close the player</li>
+        <li>if everything is set properly, the filters will work; if they dont, then there are only two options:
+        <ul>
+          <li>if they dont work on specific sources, it means that those sources have the subs set/named improperly: u can try remuxing them correctly or editing the string in <code>LAV Splitter</code></li>
+          <li>if they dont work at all, it means u did something wrong while following this guide... congrats, u played yourself, now u need to repeat every passage in this guide and be careful to apply every change <code>XD Rip</code></li>
+        </ul>
+        </li>
       </ul>
 
       <script>function copyText3(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#my-strings-for-lav-splitter");}</script>
@@ -524,35 +468,21 @@
 
       <p><code>ITA</code> as preferred language (or edit with your preferred language and keywords; at present, u cant exceed 255 characters; <a href="https://github.com/Nevcairiel/LAVFilters/blob/master/README.txt">rules</a>):</p>
       
-      <script>
-        function copyITAstring() {
-          let textarea = document.getElementById("ITAstring");
-          textarea.select();
-          document.execCommand("copy");
-        }
-        </script>
-        
       <textarea id="ITAstring" readonly rows="3" cols="115" maxlength="255" name="usrtxt" wrap="hard">ita:ita@Cartell,ita:ita@Sign,ita:ita@Forced,ita:ita@Forzat,ita:ita|f,ita:off,eng:eng@Sign,eng:eng@Forced,eng:eng|f,eng:off,*:ita@Dialog,*:ita@Complet,*:ita@Full,*:ita@Udenti,*:ita|!f,*:enm,*:eng@honorific,*:eng@Dialog,*:eng@Full,*:eng@SDH,*:eng|!f,*:*|f</textarea>
       <br>
+      <script>function copyITAstring() {let textarea = document.getElementById("ITAstring");textarea.select();document.execCommand("copy");}</script>
       <button onclick="copyITAstring()">&nbsp;&nbsp;Copy&nbsp;&nbsp;</button>
 
       <p><code>ENG</code> as preferred language:</p>
 
-      <script>
-        function copyENGstring() {
-          let textarea = document.getElementById("ENGstring");
-          textarea.select();
-          document.execCommand("copy");
-        }
-        </script>
-        
       <textarea id="ENGstring" readonly rows="3" cols="115" maxlength="255" name="usrtxt" wrap="hard">eng:eng@Sign,eng:eng@Forced,eng:eng|f,eng:off,*:enm,*:eng@honorific,*:eng@Dialog,*:eng@Full,*:eng@SDH,*:eng|!f,*:*|f</textarea>
       <br>
+      <script>function copyENGstring() {let textarea = document.getElementById("ENGstring");textarea.select();document.execCommand("copy");}</script>
       <button onclick="copyENGstring()">&nbsp;&nbsp;Copy&nbsp;&nbsp;</button>
 
       <p>Notes: the language <code>enm</code> (<code>Middle English</code>) is used for english tracks with honorifics</p>
-          <br>
-          
+      <br>
+
 
       <script>function copyText4(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#more-troubleshooting-and-advices");}</script>
       <h3 class="title" id="more-troubleshooting-and-advices"><button onclick="copyText4()">&#128279</button> More Troubleshooting and Advices:</h3>
@@ -565,20 +495,16 @@
       </ul>
 
       <br>
-      Current state of the page: WIP
+      Version of the page: v1.02<br>
+      Current state of the page: WIP<br>
+      Github repository: <a href="https://github.com/ItachiUchiha-IU/torrent-releases-troubleshooting-advices">github.com/ItachiUchiha-IU</a>
       <br><br>
       If you have any issue or advice (regarding the guide or the page layout), feel free to comment on <a href="https://gist.github.com/ItachiUchiha-IU/401a1117e6e6d336d21a326e15a912f9">gist.github.com/ItachiUchiha-IU</a> or to contact me through the <a href="https://discord.com/invite/83dRFDFDp7">AV1 anime discord server</a><br>
       <br><br>
 
-      <div>
-        <!-- LikeBtn.com BEGIN -->
-        <span class="likebtn-wrapper" data-theme="custom" data-icon_l="hrt2" data-icon_l_c_v="#ff0000" data-identifier="ghwuirghnpwiugbnerwugrbjn" data-dislike_enabled="false"></span>
-        <script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");
-        </script> Leave a like if you appreciate the work spent on this page!<br>
-        <!-- LikeBtn.com END -->
-      </div>
+      <span class="likebtn-wrapper" data-theme="custom" data-icon_l="hrt2" data-icon_l_c_v="#ff0000" data-identifier="ghwuirghnpwiugbnerwugrbjn" data-dislike_enabled="false"> Leave a like if you appreciate the work spent on this page!</span>
 
-      <br><br><br><br><br><br><br><br><br><br><!--a href="page2.html" target="_self"> Next Page </a--><br><br>
+      <br><br><br><br><br><br><br><!--a href="page2.html" target="_self"> Next Page </a--><br><br>
 
       <label for="">You have clicked the <code>FAKE BUTTON</code> </label>
         <input type="text"  style="text-align:center;" size="2" value="0" id="fakebutton" />
@@ -617,6 +543,7 @@
 
 
   <!--script>
+    // can't apply themes if the colorpicker is used
     let colorpicker = document.getElementById('colorpicker');
       setInterval(()=>{
           let color = colorpicker.value;
@@ -630,70 +557,7 @@
     }
   </script>
 
-  <script>
-    function lighttheme() {
-      var element = document.body;
-      element.classList.toggle("light");
-    }
-  </script>
-
-  <script>
-    function bluetheme() {
-      var element = document.body;
-      element.classList.toggle("blue");
-    }
-  </script>
-
-  <script>
-    function blacktheme() {
-      var element = document.body;
-      element.classList.toggle("black");
-    }
-  </script>
-
-  <script>
-    function func_margins7() {
-      var element = document.body;
-      element.classList.toggle("margins7");
-    }
-  </script>
-
-  <script>
-    function func_margins25() {
-      var element = document.body;
-      element.classList.toggle("margins25");
-    }
-  </script>
-
-  <script>
-    function func_fontsize15() {
-      var element = document.body;
-      element.classList.toggle("fontsize15");
-    }
-  </script>
-
-  <script>
-    function func_fontsize18() {
-      var element = document.body;
-      element.classList.toggle("fontsize18");
-    }
-  </script>
-
-  <script>
-    function func_fontCHANGE() {
-      var element = document.body;
-      element.classList.toggle("fontCHANGE");
-    }
-  </script>
-
-  <script>
-    function func_fontweightbold() {
-      var element = document.body;
-      element.classList.toggle("fontweightbold");
-    }
-  </script>
-    
-  <script>
+  <!--script>
     /* When the user clicks on the button, 
     toggle between hiding and showing the dropdown content */
     function myFunction() {
@@ -713,10 +577,10 @@
         }
       }
     } */
-  </script>
+  </script-->
 
-  <script>
-    // doesnt work...
+  <!--script>
+    // somethings doesnt allow this to work...
     var prevScrollpos = window.pageYOffset;
     window.onscroll = function() {
     var currentScrollPos = window.pageYOffset;
@@ -727,12 +591,12 @@
       }
       prevScrollpos = currentScrollPos;
     }
-  </script>
+  </script-->
 
   <script>
     //Toggle (Hide/Show) an Element
-    function toggleLayoutMenu() {
-      var x = document.getElementById("toggleLayoutMenu");
+    function toggleSettingsMenu() {
+      var x = document.getElementById("toggleSettingsMenu");
       if (x.style.display === "block") {
         x.style.display = "none";
       } else {
@@ -743,8 +607,8 @@
     
   <script>
     //Toggle (Hide/Show) an Element
-    function toggleLayoutMenu2() {
-      var x = document.getElementById("toggleLayoutMenu");
+    function hideSettingsMenu() {
+      var x = document.getElementById("toggleSettingsMenu");
       if (x.style.display === "block") {
         x.style.display = "none";
       } else {
@@ -841,6 +705,11 @@
     document.getElementById("currentcss").innerText = document.getElementById("scaleXY").style.cssText;
     }
   </script-->
+
+  <script>
+    // LikeBtn.com
+    (function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");
+  </script>
 
   </body>
 </html>
