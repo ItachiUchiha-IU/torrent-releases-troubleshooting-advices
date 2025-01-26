@@ -520,23 +520,15 @@
             <!--a href="https://www.cutercounter.com/" target="_blank"><img src="https://www.cutercounter.com/hits.php?id=hxqdkdx&nd=7&style=72" border="0" alt="visitor counter"></a-->
             <script>
               window.onload = function() {
-                console.log("Page is fully loaded. Running the script...");
-                
-                // Create the script element
+                console.log("Page is fully loaded. Loading the script...");
+            
+                // Create the <script> tag
                 var script = document.createElement('script');
                 script.type = 'text/javascript';
-                script.src = '//counter.websiteout.com/js/2/0/230/1';
-                
-                // Append the script to the head
-                document.head.appendChild(script);
-                
-                // Create another script element to handle the document.write call
-                script.onload = function() {
-                    var script2 = document.createElement('script');
-                    script2.type = 'text/javascript';
-                    script2.text = "document.write(\"<script src='\"+document.currentScript.src+\"/?clt=\"+(localStorage.getItem('compteurlt')||0)+\"&ca=\"+(localStorage.getItem('compteuraut')||0)+\"&s=\"+encodeURIComponent(window.location.hostname)+\"'></script>\");";
-                    document.head.appendChild(script2);
-                };
+                script.src = "//counter.websiteout.com/js/2/0/230/1";  // URL of your external script
+            
+                // Append the script to the document
+                document.body.appendChild(script);
               };
             </script>
           </div>
