@@ -518,12 +518,32 @@
         <div id="block_container">
           <div id="block1">
             <!--a href="https://www.cutercounter.com/" target="_blank"><img src="https://www.cutercounter.com/hits.php?id=hxqdkdx&nd=7&style=72" border="0" alt="visitor counter"></a-->
-            <script type="text/javascript" a.src="//counter.websiteout.com/js/2/0/230/1"></script>
+            <script>
+              window.onload = function() {
+                console.log("Page is fully loaded. Running the script...");
+                
+                // Create the script element
+                var script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.src = '//counter.websiteout.com/js/2/0/230/1';
+                
+                // Append the script to the head
+                document.head.appendChild(script);
+                
+                // Create another script element to handle the document.write call
+                script.onload = function() {
+                    var script2 = document.createElement('script');
+                    script2.type = 'text/javascript';
+                    script2.text = "document.write(\"<script src='\"+document.currentScript.src+\"/?clt=\"+(localStorage.getItem('compteurlt')||0)+\"&ca=\"+(localStorage.getItem('compteuraut')||0)+\"&s=\"+encodeURIComponent(window.location.hostname)+\"'></script>\");";
+                    document.head.appendChild(script2);
+                };
+              };
+            </script>
           </div>
           <div id="block2">
             &nbsp;&nbsp;&nbsp;
             <!--a href="https://www.cutercounter.com/" target="_blank"><img src="https://www.cutercounter.com/hits.php?id=hxqdkxk&nd=7&style=72" border="0" alt="website counter"></a-->
-            <a href='https://www.counter12.com' target="_self"><img src='https://www.counter12.com/img-cB4byybY34xC07wz-40.gif' border='0' alt='conter12'></a>
+            <a href='https://www.counter12.com' target="_self"><img a.src='https://www.counter12.com/img-cB4byybY34xC07wz-40.gif' border='0' alt='conter12'></a>
             <script>
               window.onload = function() {
                   console.log("Page is fully loaded. Running the script...");
