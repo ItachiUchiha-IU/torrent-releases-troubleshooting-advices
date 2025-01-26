@@ -252,8 +252,8 @@
       <div style="position: relative;top: 23px;display: inline-block;font-family: Baskerville;font-size: 17px;">
         <!--input id="colorpicker" type="color" value="#212F3D" onchange="changecolor(this)"-->
         <div style="float:left;margin-left:5px;margin-right:15px;">
-          <Label style="display:block;">Theme:</Label>
-          <select onchange="theme(this);">
+          <Label style="display:block;">Theme:<input type="text" value="normal" /></Label>
+          <select id="themeSelect" onchange="theme(this);">
           	<option selected>Dark Blue</option>
           	<option>Blue</option>
             <option>Light</option>
@@ -263,8 +263,8 @@
           </select>
         </div>
         <div style="float:left;margin-left:15px;margin-right:15px;">
-          <Label style="display:block;">Width:</Label>
-          <select onchange="margin(this);">
+          <Label style="display:block;">Width:<input type="text" value="normal" /></Label>
+          <select id="widthSelect" onchange="margin(this);">
           	<option>40%</option>
             <option>50%</option>
             <option>60%</option>
@@ -276,8 +276,8 @@
           </select>
         </div>
         <div style="float:left;margin-left:15px;margin-right:5px;">
-          <Label style="display:block;">Font-px:</Label>
-          <select onchange="fontsize(this);">
+          <Label style="display:block;">Font-px:<input type="text" value="normal" /></Label>
+          <select id="fontpxSelect" onchange="fontsize(this);">
             <option>15</option>
             <option>16</option>
             <option selected>16.5</option>
@@ -294,8 +294,8 @@
           </select>
         </div>
         <div style="float:left;margin-left:5px;margin-right:5px;">
-          <Label style="display:block;">Font-family:</Label>
-          <select onchange="fontfamily(this);">
+          <Label style="display:block;">Font-family:<input type="text" value="normal" /></Label>
+          <select id="fontFamilySelect" onchange="fontfamily(this);">
             <option selected>Consolas</option>
             <option>Cronos Pro</option>
             <option>Montserrat</option>
@@ -305,14 +305,14 @@
           </select>
         </div>
         <div style="float:left;margin-left:5px;margin-right:15px;">
-          <Label style="display:block;">Font-weight:</Label>
-          <select onchange="fontweight(this);">
+          <Label style="display:block;">Font-weight:<input type="text" value="normal" /></Label>
+          <select id="fontWeightSelect" onchange="fontweight(this);">
             <option selected>Normal</option>
        	    <option>Bold</option>
           </select>
         </div>
         <div style="float:right;margin-left:5px;margin-right:5px;">
-          <Label style="display:block;">ScaleX</Label>
+          <Label style="display:block;">ScaleX<input type="text" value="normal" /></Label>
           <div class="singlecontrol">
             <input style="vertical-align: middle;" id="scaleXslider" oninput="scaleXfont(event)" type="range" value="1.0" min="0.5" max="1.5" step="0.001" autocomplete="off" />
           </div>
