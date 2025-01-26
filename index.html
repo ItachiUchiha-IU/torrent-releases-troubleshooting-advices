@@ -518,7 +518,17 @@
         <div id="block_container">
           <div id="block1">
             <!--a href="https://www.cutercounter.com/" target="_blank"><img src="https://www.cutercounter.com/hits.php?id=hxqdkdx&nd=7&style=72" border="0" alt="visitor counter"></a-->
-            <script type="text/javascript" src="//counter.websiteout.com/js/2/0/230/1"></script>
+            <script>
+              window.onload = function() {
+                // Your script logic here
+                console.log("Page is fully loaded. Running the script...");
+                // Load the external script dynamically
+                var script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.src = '//counter.websiteout.com/js/2/0/230/1';
+                document.body.appendChild(script);
+              };
+            </script>
           </div>
           <div id="block2">
             &nbsp;&nbsp;&nbsp;
