@@ -518,37 +518,26 @@
         <div id="block_container">
           <div id="block1">
             <!--a href="https://www.cutercounter.com/" target="_blank"><img src="https://www.cutercounter.com/hits.php?id=hxqdkdx&nd=7&style=72" border="0" alt="visitor counter"></a-->
-            <script>
-              window.onload = function() {
-                  console.log("Page is fully loaded. Running the script...");
-              
-                  // Create the iframe
-                  var iframe = document.createElement('iframe');
-                  iframe.style.display = 'none'; // Hide the iframe
-              
-                  // Embed the external script directly into the iframe using the srcdoc attribute
-                  iframe.srcdoc = `
-                      <html>
-                          <head>
-                              <script src="https://counter.websiteout.com/js/2/0/230/1"></script>
-                          </head>
-                          <body></body>
-                      </html>
-                  `;
-                  
-                  // Append the iframe to the body
-                  document.body.appendChild(iframe);
-              };
-          </script>
+            <script type="text/javascript" src="//counter.websiteout.com/js/2/0/230/1"></script>
           </div>
           <div id="block2">
             &nbsp;&nbsp;&nbsp;
             <!--a href="https://www.cutercounter.com/" target="_blank"><img src="https://www.cutercounter.com/hits.php?id=hxqdkxk&nd=7&style=72" border="0" alt="website counter"></a-->
-            <a href='https://www.counter12.com' target="_self"><img src='https://www.counter12.com/img-cB4byybY34xC07wz-40.gif' border='0' alt='conter12'></a>
-            <script type='text/javascript'>
-              var script2 = document.createElement('script');
-              script2.src = 'https://www.counter12.com/ad.js?id=cB4byybY34xC07wz';
-              document.head.appendChild(script2);
+            <script>
+              window.onload = function() {
+                  console.log("Page is fully loaded. Running the script...");
+      
+                  // Fetch the script content and execute it
+                  fetch('https://www.counter12.com/ad.js?id=cB4byybY34xC07wz')
+                      .then(response => response.text())
+                      .then(scriptContent => {
+                          var script = document.createElement('script');
+                          script.type = 'text/javascript';
+                          script.text = scriptContent;
+                          document.head.appendChild(script);
+                      })
+                      .catch(error => console.error('Error loading script:', error));
+              };
             </script>
           </div>
         </div>
