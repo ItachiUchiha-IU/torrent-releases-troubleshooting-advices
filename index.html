@@ -518,14 +518,17 @@
         <div id="block_container">
           <div id="block1">
             <!--a href="https://www.cutercounter.com/" target="_blank"><img src="https://www.cutercounter.com/hits.php?id=hxqdkdx&nd=7&style=72" border="0" alt="visitor counter"></a-->
-            <iframe src="about:blank" id="counterFrame" style="border:0;width:0;height:0;"></iframe>
-            <script type="text/javascript">
-              var iframe = document.getElementById('counterFrame');
-              var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-              iframeDoc.open();
-              iframeDoc.write('<script src="//counter.websiteout.com/js/2/0/230/1"><\/script>');
-              iframeDoc.close();
-            </script>
+          <script>
+            window.onload = function() {
+              // Your script logic here
+              console.log("Page is fully loaded. Running the script...");
+              // Load the external script
+              var script = document.createElement('script');
+              script.type = 'text/javascript';
+              script.src = '//counter.websiteout.com/js/2/0/230/1';
+              document.body.appendChild(script);
+            };
+          </script>
           </div>
           <div id="block2">
             &nbsp;&nbsp;&nbsp;
