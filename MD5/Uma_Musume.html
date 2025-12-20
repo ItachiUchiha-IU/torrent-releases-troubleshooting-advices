@@ -167,22 +167,31 @@
         `;
 
         document.addEventListener('DOMContentLoaded', function() {
-            const lines = jsonData.trim().split('\n').filter(line => line);
             const tableBody = document.querySelector('#hash-table tbody');
             const scanRootDiv = document.getElementById('scan-root');
             const searchBox = document.getElementById('search-box');
             const copiedFeedback = document.getElementById('copied-feedback');
 
-            lines.forEach(line => {
-                try {
-                    const data = JSON.parse(line);
+            // --- THIS IS THE NEW, MORE ROBUST PARSING LOGIC ---
+            try {
+                // 1. Clean up the string for parsing.
+                //    - Trim whitespace.
+                //    - Replace the `}`{` pattern between objects with `},{` to form a valid JSON array.
+                //    - Wrap the whole thing in `[` and `]`.
+                const parsableJsonString = '[' + jsonData.trim().replace(/}\s*{/g, '},{') + ']';
 
+                // 2. Parse the entire string at once into an array of objects.
+                const dataArray = JSON.parse(parsableJsonString);
+
+                // 3. Loop through the array of data objects.
+                dataArray.forEach(data => {
                     if (data.ScanRoot) {
                         scanRootDiv.textContent = data.ScanRoot;
                     } 
                     else if (data.Hash && data.RelativePath) {
                         const row = document.createElement('tr');
                         
+                        // (The rest of the row creation logic is the same)
                         const dateCell = document.createElement('td');
                         dateCell.textContent = data.Date || 'N/A';
                         row.appendChild(dateCell);
@@ -191,12 +200,9 @@
                         hashCell.textContent = data.Hash;
                         hashCell.className = 'hash';
                         
-                        // NEW: Add click-to-copy event listener
                         hashCell.addEventListener('click', function() {
                             navigator.clipboard.writeText(data.Hash).then(() => {
-                                // Show feedback
                                 copiedFeedback.style.opacity = '1';
-                                // Hide feedback after 2 seconds
                                 setTimeout(() => {
                                     copiedFeedback.style.opacity = '0';
                                 }, 2000);
@@ -213,29 +219,31 @@
                         
                         tableBody.appendChild(row);
                     }
-                } catch (e) {
-                    console.error('Could not parse JSON line:', line, e);
-                }
-            });
+                });
+            } catch (e) {
+                console.error('Failed to parse JSON data block:', e);
+                // Optional: Display an error message to the user on the page
+                scanRootDiv.textContent = "Error: Could not parse the data embedded in the page. It might be malformed.";
+            }
 
-            // NEW: Add search bar event listener
+            // The search listener remains the same
             searchBox.addEventListener('keyup', function() {
                 const searchTerm = searchBox.value.toLowerCase();
                 const rows = tableBody.getElementsByTagName('tr');
 
                 for (const row of rows) {
-                    // Get text content from hash (2nd cell) and path (3rd cell)
                     const hashText = row.cells[1].textContent.toLowerCase();
                     const pathText = row.cells[2].textContent.toLowerCase();
                     
                     if (hashText.includes(searchTerm) || pathText.includes(searchTerm)) {
-                        row.style.display = ''; // Show row
+                        row.style.display = '';
                     } else {
-                        row.style.display = 'none'; // Hide row
+                        row.style.display = 'none';
                     }
                 }
             });
         });
     </script>
 </body>
+
 </html>
