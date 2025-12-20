@@ -209,7 +209,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     document.getElementById('copy-all-jsonl-btn').onclick = () => {
         const jsonl = dataLines.filter(d => !d.ScanRoot).map(d => JSON.stringify(d)).join('\n');
-        navigator.clipboard.writeText(jsonl);
+        navigator.clipboard.writeText(jsonl).then(() => {
+            showCopiedFeedback('Copied all data as JSONL!');
+        });
     };
 
     document.getElementById('export-csv-btn').onclick = () => {
