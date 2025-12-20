@@ -127,6 +127,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     const searchBox = document.getElementById('search-box');
     const copiedFeedback = document.getElementById('copied-feedback');
 
+    function showCopiedFeedback(message = 'Copied to clipboard!') {
+        copiedFeedback.textContent = message;
+        copiedFeedback.style.opacity = '1';
+        setTimeout(() => {
+            copiedFeedback.style.opacity = '0';
+        }, 2000);
+    }
+
     function sanitizeFilename(name) {
         return name
             .normalize('NFKD')
@@ -174,14 +182,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         const hashCell = document.createElement('td');
         hashCell.textContent = data.Hash;
         hashCell.className = 'hash';
-        let hideFeedbackTimeout;
         hashCell.onclick = () => {
             navigator.clipboard.writeText(data.Hash).then(() => {
-                copiedFeedback.style.opacity = '1';
-                if (hideFeedbackTimeout) clearTimeout(hideFeedbackTimeout);
-                hideFeedbackTimeout = setTimeout(() => {
-                    copiedFeedback.style.opacity = '0';
-                }, 2000);
+                showCopiedFeedback(`Copied hash: ${data.Hash.substring(0, 12)}...`);
             });
         };
         row.appendChild(hashCell);
@@ -199,7 +202,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         dataLines.forEach(d => {
             if (d.Hash) lines.push(`${d.Date}\t${d.Hash}\t${d.RelativePath}`);
         });
-        navigator.clipboard.writeText(lines.join('\n'));
+        navigator.clipboard.writeText(lines.join('\n')).then(() => {
+            showCopiedFeedback('Copied all data as TSV!');
+        });
     };
 
     document.getElementById('copy-all-jsonl-btn').onclick = () => {
