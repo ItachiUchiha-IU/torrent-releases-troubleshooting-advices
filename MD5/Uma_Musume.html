@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Hash Report</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background: #fff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        #scan-root {
+            background-color: #ecf0f1;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-family: "Courier New", Courier, monospace;
+            word-wrap: break-word;
+            margin-bottom: 20px;
+        }
+        #search-box {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box; /* Ensures padding doesn't affect width */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        thead th {
+            background-color: #3498db;
+            color: #ffffff;
+            position: sticky;
+            top: 0;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tbody tr:hover {
+            background-color: #e8f4fd;
+        }
+        td.hash {
+            font-family: "Courier New", Courier, monospace;
+            color: #7f8c8d;
+            cursor: pointer; /* Indicates the hash is clickable */
+        }
+        td.hash:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        td.path {
+            word-break: break-all;
+        }
+        .copied-feedback {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2c3e50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>File Hash Report</h1>
+        <p><strong>Scanned Directory:</strong></p>
+        <div id="scan-root">Loading...</div>
+
+        <!-- NEW: Search Bar -->
+        <input type="text" id="search-box" placeholder="Search by hash or filename...">
+
+        <table id="hash-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Hash (MD5)</th>
+                    <th>Relative Path</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be inserted here by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- NEW: Feedback element for copy action -->
+    <div id="copied-feedback" class="copied-feedback">Copied to clipboard!</div>
+
+    <script>
+        const jsonData = `
+{"ScanRoot":"\\\\V-SERVER-001\\Anime Visti$\\Uma Musume\\Uma Musume Pretty Derby [BD] [AV1] [ItachiUchiha]"}
+{"Date":"2025-12-20_12.09.14","Algorithm":"MD5","Hash":"d095d03d0cd6be2c7cf7e97a3f1cdb25","RelativePath":"\\(1.5) OVA\\Uma Musume Pretty Derby - S00E01 - BNW's Oath (Part 1).mkv"}
+{"Date":"2025-12-20_12.09.17","Algorithm":"MD5","Hash":"f95a8e1ce3fd7b1f6c346f529e4e11a8","RelativePath":"\\(1.5) OVA\\Uma Musume Pretty Derby - S00E02 - BNW's Oath (Part 2).mkv"}
+{"Date":"2025-12-20_12.09.21","Algorithm":"MD5","Hash":"65d29c775936b5ae5945ccbb0f56f12a","RelativePath":"\\(1.5) OVA\\Uma Musume Pretty Derby - S00E03 - BNW's Oath (Part 3).mkv"}
+{"Date":"2025-12-20_12.09.24","Algorithm":"MD5","Hash":"428802d422846ee80b2090a9d9d5b76d","RelativePath":"\\(1) Season 1\\Uma Musume Pretty Derby - S01E01 - Gate of Dreams!.mkv"}
+{"Date":"2025-12-20_12.09.27","Algorithm":"MD5","Hash":"035bec693cb6c874812ea8d01e3a160d","RelativePath":"\\(1) Season 1\\Uma Musume Pretty Derby - S01E02 - The Debut Race Out of Nowhere.mkv"}
+{"Date":"2025-12-20_12.09.29","Algorithm":"MD5","Hash":"84758fa6353637f0e2ebe13ad7706b30","RelativePath":"\\(1) Season 1\\Uma Musume Pretty Derby - S01E03 - First Big Win.mkv"}
+{"Date":"2025-12-20_12.09.32","Algorithm":"MD5","Hash":"b8670136a3f8321938ab031d666679d5","RelativePath":"\\(1) Season 1\\Uma Musume Pretty Derby - S01E04 - Special Training!.mkv"}
+{"Date":"2025-12-20_12.09.36","Algorithm":"MD5","Hash":"52d6df9b8d97035d37b3c937e11c73cb","RelativePath":"\\(1) Season 1\\Uma Musume Pretty Derby - S01E05 - The Derby With Rivals.mkv"}
+{"Date":"2025-12-20_12.09.38","Algorithm":"MD5","Hash":"34d81046bd3f9265f8cb59af551ed301","RelativePath":"\\(1) Season 1\\Uma Musume Pretty Derby - S01E06 - Autumn Skies and Horse Girls.mkv"}
+{"Date":"2025-12-20_12.09.41","Algorithm":"MD5","Hash":"8212377d68d365f0a1a6f1addcdfd3b2","RelativePath":"\\(1) Season 1\\Uma Musume Pretty Derby - S01E07 - Promise.mkv"}
+{"Date":"2025-12-20_12.09.44","Algorithm":"MD5","Hash":"da860205063724d615c95abef47c4eb8","RelativePath":"\\(1) Season 1\\Uma Musume Pretty Derby - S01E08 - For You.mkv"}
+{"Date":"2025-12-20_12.09.47","Algorithm":"MD5","Hash":"289f56529012d15f5d13625ddae0d49c","RelativePath":"\\(1) Season 1\\Uma Musume Pretty Derby - S01E09 - Dreams of Spica.mkv"}
+{"Date":"2025-12-20_12.09.50","Algorithm":"MD5","Hash":"7887ae4fd52ca34e10a95239cfe557b2","RelativePath":"\\(1) Season 1\\Uma Musume Pretty Derby - S01E10 - No Matter How Many Times I Lose.mkv"}
+{"Date":"2025-12-20_12.09.53","Algorithm":"MD5","Hash":"a0f95d3d8e0238f407c07ec5d2ff0adc","RelativePath":"\\(1) Season 1\\Uma Musume Pretty Derby - S01E11 - Welcome Back!.mkv"}
+{"Date":"2025-12-20_12.09.56","Algorithm":"MD5","Hash":"2020f4883188ffcb45d24299b1fcd86d","RelativePath":"\\(1) Season 1\\Uma Musume Pretty Derby - S01E12 - Stage of Dreams.mkv"}
+{"Date":"2025-12-20_12.10.00","Algorithm":"MD5","Hash":"75c33a50acc4d442ee931dd1b6d7dd99","RelativePath":"\\(1) Season 1\\Uma Musume Pretty Derby - S01E13 - Echo, Fanfare!.mkv"}
+{"Date":"2025-12-20_12.10.03","Algorithm":"MD5","Hash":"4318bb1e0b8dbf61fa8942721696651b","RelativePath":"\\(2) Season 2\\Uma Musume Pretty Derby - S02E01 - Tokai Teio.mkv"}
+{"Date":"2025-12-20_12.10.05","Algorithm":"MD5","Hash":"1d97905d83a2704fed66e4316bf96972","RelativePath":"\\(2) Season 2\\Uma Musume Pretty Derby - S02E02 - Never Gonna Give It Up!.mkv"}
+{"Date":"2025-12-20_12.10.08","Algorithm":"MD5","Hash":"01ad3a6fee84b8ff5613aa1cbe77bb18","RelativePath":"\\(2) Season 2\\Uma Musume Pretty Derby - S02E03 - Meetings.mkv"}
+{"Date":"2025-12-20_12.10.10","Algorithm":"MD5","Hash":"d42d2c09dddcb0b85226c83fece67a17","RelativePath":"\\(2) Season 2\\Uma Musume Pretty Derby - S02E04 - TM Showdown!.mkv"}
+{"Date":"2025-12-20_12.10.14","Algorithm":"MD5","Hash":"ce372d03e6c23094a1623394b4cc0d45","RelativePath":"\\(2) Season 2\\Uma Musume Pretty Derby - S02E05 - Unbeaten Champion.mkv"}
+{"Date":"2025-12-20_12.10.16","Algorithm":"MD5","Hash":"e0148f17dc8db06ea775c78d827e1c24","RelativePath":"\\(2) Season 2\\Uma Musume Pretty Derby - S02E06 - Searching for a Reason.mkv"}
+{"Date":"2025-12-20_12.10.19","Algorithm":"MD5","Hash":"77506f5b195adbfb830856cb0175743a","RelativePath":"\\(2) Season 2\\Uma Musume Pretty Derby - S02E07 - A Blessed Name.mkv"}
+{"Date":"2025-12-20_12.10.21","Algorithm":"MD5","Hash":"1fbb3dd193d7fd9f12bc86708eddc594","RelativePath":"\\(2) Season 2\\Uma Musume Pretty Derby - S02E08 - A Small Wish.mkv"}
+{"Date":"2025-12-20_12.10.24","Algorithm":"MD5","Hash":"5e88f4194d65ab39ed0011600d6d3d4d","RelativePath":"\\(2) Season 2\\Uma Musume Pretty Derby - S02E09 - Stopwatch.mkv"}
+{"Date":"2025-12-20_12.10.26","Algorithm":"MD5","Hash":"b43b53b94772349eb62d516835b69950","RelativePath":"\\(2) Season 2\\Uma Musume Pretty Derby - S02E10 - One Day, Without a Doubt.mkv"}
+{"Date":"2025-12-20_12.10.28","Algorithm":"MD5","Hash":"293d58b165a22af776267521e5ec542b","RelativePath":"\\(2) Season 2\\Uma Musume Pretty Derby - S02E11 - What I Feel.mkv"}
+{"Date":"2025-12-20_12.10.31","Algorithm":"MD5","Hash":"e03a2803cd897cb78f76e5854e078c88","RelativePath":"\\(2) Season 2\\Uma Musume Pretty Derby - S02E12 - Together.mkv"}
+{"Date":"2025-12-20_12.10.34","Algorithm":"MD5","Hash":"5d46a491d933892a330efe80f749eb65","RelativePath":"\\(2) Season 2\\Uma Musume Pretty Derby - S02E13 - Galloping After Our Dreams.mkv"}
+{"Date":"2025-12-20_12.10.37","Algorithm":"MD5","Hash":"c845122690cfccece0d1676b306867a6","RelativePath":"\\(3) Season 3\\Uma Musume Pretty Derby - S03E01 - The Stage Long Dreamed Of.mkv"}
+{"Date":"2025-12-20_12.10.40","Algorithm":"MD5","Hash":"5dbe5ee088384ee7c0dffcccc96717f3","RelativePath":"\\(3) Season 3\\Uma Musume Pretty Derby - S03E02 - The Start Line.mkv"}
+{"Date":"2025-12-20_12.10.43","Algorithm":"MD5","Hash":"f8a5e7075b9c836701e99b8658eee4f8","RelativePath":"\\(3) Season 3\\Uma Musume Pretty Derby - S03E03 - The Dream Never Ends.mkv"}
+{"Date":"2025-12-20_12.10.46","Algorithm":"MD5","Hash":"192ac44dd48c9360cc84d90e294354b5","RelativePath":"\\(3) Season 3\\Uma Musume Pretty Derby - S03E04 - My Own Shine.mkv"}
+{"Date":"2025-12-20_12.10.49","Algorithm":"MD5","Hash":"b9152c8ec8388e5d946ac5a1146614de","RelativePath":"\\(3) Season 3\\Uma Musume Pretty Derby - S03E05 - Proving Oneself.mkv"}
+{"Date":"2025-12-20_12.10.54","Algorithm":"MD5","Hash":"e0e05cc3e9f2fa2ed4cc3185435b5bae","RelativePath":"\\(3) Season 3\\Uma Musume Pretty Derby - S03E06 - Diamond.mkv"}
+{"Date":"2025-12-20_12.10.57","Algorithm":"MD5","Hash":"15bb6e162b4bd36d4c577208d8eb8e27","RelativePath":"\\(3) Season 3\\Uma Musume Pretty Derby - S03E07 - Our Arima Kinen.mkv"}
+{"Date":"2025-12-20_12.11.00","Algorithm":"MD5","Hash":"24d5226ab41d5ad72144bc10ea669e01","RelativePath":"\\(3) Season 3\\Uma Musume Pretty Derby - S03E08 - What's Always Been There.mkv"}
+{"Date":"2025-12-20_12.11.04","Algorithm":"MD5","Hash":"f3ded4067b9c4d29abd828c70cc3a78d","RelativePath":"\\(3) Season 3\\Uma Musume Pretty Derby - S03E09 - Pushed by the Approaching Heat.mkv"}
+{"Date":"2025-12-20_12.11.07","Algorithm":"MD5","Hash":"76993517467b752f07f589a33226a4be","RelativePath":"\\(3) Season 3\\Uma Musume Pretty Derby - S03E10 - Festival.mkv"}
+{"Date":"2025-12-20_12.11.10","Algorithm":"MD5","Hash":"708dedd51cb7553f2329f5460e2b3e62","RelativePath":"\\(3) Season 3\\Uma Musume Pretty Derby - S03E11 - Decision.mkv"}
+{"Date":"2025-12-20_12.11.13","Algorithm":"MD5","Hash":"7f63bde43b976d9383c6c4e1b2562716","RelativePath":"\\(3) Season 3\\Uma Musume Pretty Derby - S03E12 - Kitasan Black.mkv"}
+{"Date":"2025-12-20_12.11.16","Algorithm":"MD5","Hash":"c1d110f23be7769e5abf92c9e59ef718","RelativePath":"\\(3) Season 3\\Uma Musume Pretty Derby - S03E13 - And Yours....mkv"}
+{"Date":"2025-12-20_12.11.26","Algorithm":"MD5","Hash":"b6e0b7c3d9d417081269f7b935a1a11a","RelativePath":"\\(4) Movies\\Uma Musume Pretty Derby - S00E06-S00E09 - Road to the Top! (2024) [BD] [AV1] [ItachiUchiha].mkv"}
+{"Date":"2025-12-20_12.11.42","Algorithm":"MD5","Hash":"61b24097179185146215346450a420de","RelativePath":"\\(4) Movies\\Uma Musume Pretty Derby - S00E10 - Beginning of a New Era (2024) [BD] [AV1] [ItachiUchiha].mkv"}
+{"Date":"2025-12-20_12.11.42","Algorithm":"MD5","Hash":"bd85b0a7cb94d4dbb7818ec8e0bc20eb","RelativePath":"\\Ω-hashes-BLAKE3.jsonl"}
+        `;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const lines = jsonData.trim().split('\n').filter(line => line);
+            const tableBody = document.querySelector('#hash-table tbody');
+            const scanRootDiv = document.getElementById('scan-root');
+            const searchBox = document.getElementById('search-box');
+            const copiedFeedback = document.getElementById('copied-feedback');
+
+            lines.forEach(line => {
+                try {
+                    const data = JSON.parse(line);
+
+                    if (data.ScanRoot) {
+                        scanRootDiv.textContent = data.ScanRoot;
+                    } 
+                    else if (data.Hash && data.RelativePath) {
+                        const row = document.createElement('tr');
+                        
+                        const dateCell = document.createElement('td');
+                        dateCell.textContent = data.Date || 'N/A';
+                        row.appendChild(dateCell);
+
+                        const hashCell = document.createElement('td');
+                        hashCell.textContent = data.Hash;
+                        hashCell.className = 'hash';
+                        
+                        // NEW: Add click-to-copy event listener
+                        hashCell.addEventListener('click', function() {
+                            navigator.clipboard.writeText(data.Hash).then(() => {
+                                // Show feedback
+                                copiedFeedback.style.opacity = '1';
+                                // Hide feedback after 2 seconds
+                                setTimeout(() => {
+                                    copiedFeedback.style.opacity = '0';
+                                }, 2000);
+                            }).catch(err => {
+                                console.error('Failed to copy hash: ', err);
+                            });
+                        });
+                        row.appendChild(hashCell);
+
+                        const pathCell = document.createElement('td');
+                        pathCell.textContent = data.RelativePath;
+                        pathCell.className = 'path';
+                        row.appendChild(pathCell);
+                        
+                        tableBody.appendChild(row);
+                    }
+                } catch (e) {
+                    console.error('Could not parse JSON line:', line, e);
+                }
+            });
+
+            // NEW: Add search bar event listener
+            searchBox.addEventListener('keyup', function() {
+                const searchTerm = searchBox.value.toLowerCase();
+                const rows = tableBody.getElementsByTagName('tr');
+
+                for (const row of rows) {
+                    // Get text content from hash (2nd cell) and path (3rd cell)
+                    const hashText = row.cells[1].textContent.toLowerCase();
+                    const pathText = row.cells[2].textContent.toLowerCase();
+                    
+                    if (hashText.includes(searchTerm) || pathText.includes(searchTerm)) {
+                        row.style.display = ''; // Show row
+                    } else {
+                        row.style.display = 'none'; // Hide row
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
