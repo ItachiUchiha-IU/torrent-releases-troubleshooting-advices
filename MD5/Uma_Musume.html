@@ -24,6 +24,18 @@
         h1 {
             color: #2c3e50;
         }
+        .action-btn {
+            padding: 8px 12px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 4px;
+            background: #3498db;
+            color: white;
+            cursor: pointer;
+        }
+        .action-btn:hover {
+            background: #2980b9;
+        }
         #scan-root {
             background-color: #ecf0f1;
             padding: 10px 15px;
@@ -40,18 +52,6 @@
             border-radius: 4px;
             font-size: 16px;
             box-sizing: border-box; /* Ensures padding doesn't affect width */
-        }
-        #copy-all-btn {
-            padding: 8px 12px;
-            margin-bottom: 10px;
-            border: none;
-            border-radius: 4px;
-            background: #3498db;
-            color: white;
-            cursor: pointer;
-        }
-        #copy-all-btn:hover {
-            background: #2980b9;
         }
         table {
             width: 100%;
@@ -111,8 +111,8 @@
         <!-- NEW: Search Bar -->
         <input type="text" id="search-box" placeholder="Search by hash or filename...">
 
-        <button id="copy-all-btn">Copy all (TSV)</button>
-        <button id="export-csv-btn">Export CSV</button>
+        <button id="copy-all-btn" class="action-btn">Copy All</button>
+        <button id="export-csv-button" class="action-btn">Export CSV</button>
 
         <table id="hash-table">
             <thead>
