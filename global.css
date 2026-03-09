@@ -2,10 +2,9 @@
 @font-face { font-family: Consolas; src: url("/fonts/Consolas-Regular.woff2"); font-weight: normal; }
 @font-face { font-family: 'Cronos Pro'; src: url("/fonts/Cronos Pro Regular.otf"); font-weight: normal; }
 
-/* THE SCROLL FIX: Add this to the very top */
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 100px; /* Adjust this if your bar gets taller */
+    scroll-padding-top: 60px;
 }
 
 :root {
@@ -15,6 +14,16 @@ html {
   --font-size: 16.5px;
   --font-weight: normal;
   --width: 65%;
+}
+
+/* Non-viewed links (Normal) */
+a:link { 
+    color: rgb(60, 160, 255); /* Lighter blue */
+}
+
+/* Viewed links (Visited) */
+a:visited { 
+    color: rgb(150, 100, 255); /* Soft Purple/Blue */
 }
 
 body {
@@ -49,7 +58,7 @@ body {
     font-size: 24px;
     font-weight: 570;
     border-radius: 6px;
-    padding: 8px 12px;
+    padding: 8px 10px;
     cursor: pointer;
     background: none;
     border: none;
