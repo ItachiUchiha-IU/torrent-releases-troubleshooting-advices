@@ -54,6 +54,24 @@
             margin-bottom: 15px;
             line-height: 1.6;
         }
+
+        .copied-feedback {
+            position: fixed; 
+            bottom: 40px; 
+            left: 50%; 
+            transform: translateX(-50%);
+            background-color: #2c3e50; 
+            color: #ffffff; 
+            padding: 12px 24px; 
+            border-radius: 8px;
+            opacity: 0; /* Hidden by default */
+            transition: opacity 0.3s; 
+            pointer-events: none; 
+            z-index: 99999; 
+            border: 1px solid #3498db;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
     </style>
 </head>
 <body>
@@ -65,12 +83,12 @@
   <div id="changefontweight">
   <div style="margin-left:1%;margin-right:1%; padding-top: 20px;">
 
-    <h2 class="title" id="MPV-Track-Selection-Script-lua" style="margin-top: 40px;"><button onclick="copyLink('MPV-Track-Selection-Script-lua')">&#128279</button> MPV Track Selection Script (.lua)</h2>
+    <h2 class="title" id="MPV-Track-Selection-Script-lua"><button onclick="copyLink('MPV-Track-Selection-Script-lua')">&#128279</button> MPV Track Selection Script (.lua)</h2>
     
     <div class="script-info">
 		<p>
 		  This script automates audio and subtitle selection in MPV.
-          <br>Save it as <code>track-selector.lua</code> 
+          Save it as <code>track-selector.lua</code> 
 		  in your mpv <code>scripts</code> folder. 
           <br>(e.g. <code>C:\Program Files\mpv\portable_config\scripts</code>)
 		  <br><br>
@@ -82,7 +100,7 @@
 
     <div class="code-container">
         <div class="code-header">
-            <span>Language: Lua</span>
+            <span>track-selector.lua</span>
             <button class="copy-btn" onclick="copyLuaCode()">Copy Code</button>
 			<button class="copy-btn" onclick="downloadLuaCode()" style="background-color: #27ae60; margin-left: 5px;">Download .lua</button>
         </div>
@@ -587,35 +605,35 @@ mp.observe_property("sid", "number", on_manual_sub_change)</code></pre>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-lua.min.js"></script>
 
   <script>
+    function showFeedback(msg) {
+        const feedback = document.getElementById('copied-feedback');
+        feedback.textContent = msg;
+        feedback.style.opacity = '1';
+        setTimeout(() => { feedback.style.opacity = '0'; }, 2000);
+    }
+
     function copyLuaCode() {
         const code = document.getElementById('lua-script').textContent;
-        const feedback = document.getElementById('copied-feedback');
-        
         navigator.clipboard.writeText(code).then(() => {
-            // Show feedback (using your existing logic)
-            feedback.style.opacity = '1';
-            setTimeout(() => {
-                feedback.style.opacity = '0';
-            }, 2000);
+            showFeedback("Code Copied to Clipboard!");
         });
     }
-	function downloadLuaCode() {
-		const code = document.getElementById('lua-script').textContent;
-		const blob = new Blob([code], { type: 'text/plain' });
-		const url = URL.createObjectURL(blob);
-		const a = document.createElement('a');
-		
-		a.href = url;
-		a.download = 'track-selector.lua'; // The name the file will have when downloaded
-		document.body.appendChild(a);
-		a.click();
-		
-		// Cleanup
-		setTimeout(() => {
-			document.body.removeChild(a);
-			window.URL.revokeObjectURL(url);
-		}, 100);
-	}
+
+    function downloadLuaCode() {
+        const code = document.getElementById('lua-script').textContent;
+        const blob = new Blob([code], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'track-selector.lua';
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }, 100);
+        showFeedback("Downloading .lua file...");
+    }
   </script>
 
 </body>
