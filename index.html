@@ -27,27 +27,32 @@
     <hr>
 
     <div class="all" style="line-height: 1.5;">
-      <h2 class="title" id="troubleshooting-advices"><button onclick="copyText0()">&#128279</button> Torrent Releases - Troubleshooting &amp; Advices:</h2>
+      <h2 class="title" id="troubleshooting-advices"><button onclick="copyLink('')">&#128279</button> Torrent Releases - Troubleshooting &amp; Advices:</h2>
       <ul>
-        <li style="margin-top: -5px;"><a href="https://nyaa.si" target="_blank">https://nyaa.si</a> is the only correct site address, all the others are fakes/clones</li>
+        <li style="margin-top: -5px;"><a href="https://nyaa.si/" target="_blank">https://nyaa.si/</a> is the only correct site address, all the others are fakes/clones</li>
+        <li style="margin-top: -5px;"><a href="https://nekobt.to/" target="_blank">nekoBT</a> is a new torrent site, allowing registration to new users and even to post their own releases</li>
         <li style="margin-top: 10px;">for the best quality, best performance and fewest issues, use one of the media players recommended below</li>
-        <li style="margin-top: 10px;">if a file doesn't open on Windows, it's because you put the files under an <a href="https://www.google.com/search?q=windows+path+limit" target="_blank">excessively long path</a> and the media player isn't able to bypass the problem: update or install one of the media players recommended below, or try using <code>Ctrl+Q</code> to open the files (shortcut for <code>File -&gt; Quick Open File</code>), or eventually shorten the files' path by moving or renaming them</li>
-        <li style="margin-top: 10px;">AV1 releases must never be in 8-bit, if u find one that is in 8-bit, u better stop downloading that encoder's releases!</li>
+        <li style="margin-top: 10px;">are u having issues playing some audio tracks? <u>try one of the media players recommended below</u></li>
+        <li style="margin-top: 10px;">are u trying to open a file but it just doesnt and fails silently? it's because you put the files under an <a href="https://www.google.com/search?q=windows+path+limit" target="_blank">excessively long path</a> and the media player isn't able to bypass this Windows limitation: update or <u>install one of the media players recommended below</u>, or try using <code>Ctrl+Q</code> to open the files (shortcut for <code>File -&gt; Quick Open File</code>), or eventually shorten the files' path by moving or renaming them</li>
+        <li style="margin-top: 10px;">AV1 releases must never be in <code>8-bit</code>; if u find one that is in <code>8-bit</code>, u better stop downloading that encoder's releases!</li>
+        <li style="margin-top: 10px;">releases should <u>never</u> be hardware encoded (not even private encodes, as hardware encoding is supposed to be used for streaming!!); if u find a release that is hardware encoded, u better blacklist that encoder!!!</li>
         <li style="margin-top: 10px;">more troubleshooting and advices <a href="#more-troubleshooting-and-advices" target="_self">at the bottom</a></li>
       </ul>
 
-      <h3 class="title" id="media-players" style="margin-top: 40px;"><button onclick="copyText1()">&#128279</button> Media Players (<strong>highly recommended</strong>):</h3>
+
+
+      <h2 class="title" id="media-players" style="margin-top: 40px;"><button onclick="copyLink('media-players')">&#128279</button> Media Players (<strong>highly recommended</strong>):</h2>
       <ul>
         <li><a href="https://mpv.rocks/#vlc-issues" target="_blank">DO NOT USE VLC!!</a>
           <div style="float:right;"><input type="button" value="FAKE BUTTON, DO NOT CLICK !" id="doPlus" onClick = "doPlus();" />
           </div>
         </li>
         <ul>
-          <li>Seriously, dont.</li>
+          <li>Seriously, don't. As surprising as it may seem to some, it's unironically the worst media player.</li>
         </ul>
         <br>
         
-        <li><a href="https://mpv.io/" target="_blank">MPV</a>
+        <li><a href="https://mpv.io/" target="_blank">MPV</a> (the best media player)
         <ul>
           <li>the best site to approach MPV: <a href="https://mpv.rocks/" target="_blank">https://mpv.rocks/</a></li>
           <li>other sites/guides:
@@ -62,7 +67,7 @@
 
         <li><a href="https://sourceforge.net/projects/mpcbe" target="_blank">MPC-BE</a> (remember to select <code>MPC Video Renderer</code> during the installation otherwise u have to <a href="https://www.videohelp.com/software/MPC-Video-Renderer" target="_blank">manually install it</a>)
         <ul>
-          <li>install <a href="https://www.videohelp.com/software/madVR" target="_blank">madVR</a> (optional)</li>
+          <li>install <a href="https://www.videohelp.com/software/madVR" target="_blank">madVR</a> (optional, recommended)</li>
           <li>choose the renderers from the matching tabs in <code>Options</code> (press <code>O</code> to open):
           <ul>
             <li>in <code>Video</code> select <code>MPC Video Renderer</code> (or <code>madVR</code>)</li>
@@ -107,9 +112,29 @@
       <br>
 
 
-      <script>function copyText2(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#LAV-Splitter");}</script>
-      <h3 class="title" id="LAV-Splitter"><button onclick="copyText2()">&#128279</button> LAV Splitter (for MPC-BE/HC) (<strong>highly recommended</strong>):</h3>
-      <em>with LAV Splitter the media player can open the files in the languages u prefer (both audio and subs) and select the full subs or signs based on the audio language selected, and can even switch the subtitles automatically when u change audio language!</em>
+
+      <h2 class="title" id="Track_Auto-Select"><button onclick="copyLink('Track_Auto-Select')">&#128279</button> Track Auto-Select (<strong>highly recommended</strong>):</h2>
+
+
+      <h3 class="title" id="MPV_Track_Auto-Select" style="margin-top: 40px;">
+        <button onclick="copyLink('MPV_Track_Auto-Select')">&#128279</button> MPV Track Auto-Select:
+      </h3>
+      <ul>
+        <li>
+          <strong>Advanced Track Auto-Select (recommended):</strong><br>
+          Download or save the <code>.lua</code> file at <a href="/MPV_Track_Auto-Select" target="_blank">/MPV_Track_Auto-Select</a> 
+          and put it into your <code>scripts</code> folder inside your mpv installation path 
+          (e.g. <code>C:\Program Files\mpv\portable_config\scripts</code>).
+        </li>
+        <li>
+          Basic Track Auto-Select:<br>
+          set your preferred languages inside the <code>mpv.conf</code> file or use an app manager like <a href="https://mpv.rocks/manager/" target="_blank">https://mpv.rocks/manager/</a>
+        </li>
+      </ul>
+
+
+      <h3 class="title" id="LAV-Splitter" style="margin-top: 40px;"><button onclick="copyLink('LAV-Splitter')">&#128279</button> LAV Splitter (for MPC-BE/HC):</h3>
+      <em>with LAV Splitter the media player can open the files in the languages u prefer (both audio and subs) and select the full subs or signs based on the audio language selected, and can even switch the subtitles automatically when u change audio language!<br>MPV can do this with the use of personalized scripts, no need for any external tool</em>
       <ul>
         <li>on <code>MPC-BE</code>, go to <code>Options -&gt; External Filters</code> and click on <code>Add Filter</code>, then add the <code>Lav Splitter</code> filter and open it
         <ul>
@@ -140,8 +165,9 @@
         </li>
       </ul>
 
-      <script>function copyText3(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#my-strings-for-lav-splitter");}</script>
-      <h3 class="title" id="my-strings-for-lav-splitter"><button onclick="copyText3()">&#128279</button> My strings for LAV Splitter</h3>
+
+
+      <h3 class="title" id="my-strings-for-lav-splitter"><button onclick="copyLink('my-strings-for-lav-splitter')">&#128279</button> My strings for LAV Splitter</h3>
 
       <p><code>ITA</code> as preferred language (or edit with your preferred language and keywords; at present, u cant exceed 255 characters; <a href="https://github.com/Nevcairiel/LAVFilters/blob/master/README.txt" target="_blank">rules</a>):</p>
       
@@ -161,8 +187,8 @@
       <br>
 
 
-      <script>function copyText4(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#more-troubleshooting-and-advices");}</script>
-      <h3 class="title" id="more-troubleshooting-and-advices"><button onclick="copyText4()">&#128279</button> More Troubleshooting and Advices:</h3>
+
+      <h2 class="title" id="more-troubleshooting-and-advices"><button onclick="copyLink('more-troubleshooting-and-advices')">&#128279</button> More Troubleshooting and Advices:</h2>
       <ul>
         <li>use <code>A</code> to change the audio track, <code>S</code> for subtitles (if u set up the preferred languages as explained above, they will automatically change accordingly to your preferences when changing the audio track)</li>
         <li style="margin-top: 10px;">use <code>Page Down</code> (and <code>Page Up</code>) to move between the chapters of the video (it goes to the following episode if there are no more chapters)</li>

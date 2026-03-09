@@ -122,14 +122,29 @@ function applySavedSettings() {
 }
 
 // Global UI helpers
-function doPlus(){ document.getElementById("fakebutton").value = ++document.getElementById("fakebutton").value; }
-function copyText0(){navigator.clipboard.writeText(window.location.origin + "/#");}
-function copyText1(){navigator.clipboard.writeText(window.location.origin + "/#media-players");}
-function copyText2(){navigator.clipboard.writeText(window.location.origin + "/#LAV-Splitter");}
-function copyText3(){navigator.clipboard.writeText(window.location.origin + "/#my-strings-for-lav-splitter");}
-function copyText4(){navigator.clipboard.writeText(window.location.origin + "/#more-troubleshooting-and-advices");}
-function copyITAstring() {let t = document.getElementById("ITAstring"); t.select(); document.execCommand("copy");}
-function copyENGstring() {let t = document.getElementById("ENGstring"); t.select(); document.execCommand("copy");}
+function doPlus(){ 
+    const el = document.getElementById("fakebutton");
+    if(el) el.value = ++el.value; 
+}
+
+// Universal copy function for section links
+function copyLink(id) {
+    const url = window.location.origin + window.location.pathname + (id ? "#" + id : "");
+    
+    navigator.clipboard.writeText(url).then(() => {
+        const feedback = document.getElementById('copied-feedback');
+        if (feedback) {
+            feedback.textContent = "Link Copied!";
+            feedback.style.opacity = '1';
+            setTimeout(() => { feedback.style.opacity = '0'; }, 2000);
+        }
+    });
+}
+
+// Unique logic for textareas
+function copyITAstring() { let t = document.getElementById("ITAstring"); t.select(); document.execCommand("copy"); }
+function copyENGstring() { let t = document.getElementById("ENGstring"); t.select(); document.execCommand("copy"); }
+
 
 async function fetchLastUpdated() {
     const linkElement = document.getElementById('last-updated-link');
@@ -157,5 +172,4 @@ async function fetchLastUpdated() {
     }
 }
 
-// Make sure to call it!
 document.addEventListener("DOMContentLoaded", fetchLastUpdated);
