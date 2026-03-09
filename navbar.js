@@ -4,17 +4,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const navHtml = `
     <div class="topnav">
+        <button class="nav-btn" onclick="toggleMenu('toggleIndexMenu')">Page INDEX</button>
         <a href="/" class="${isHome ? 'active' : ''}">Home Page</a>
-        ${isHome ? `<button class="nav-btn" onclick="toggleMenu('toggleIndexMenu')">Page INDEX</button>` : ''}
         <a href="/Hashes" class="${window.location.pathname.includes('/Hashes') ? 'active' : ''}">Hashes</a>
-        <button class="nav-btn" onclick="toggleMenu('toggleSettingsMenu')">Settings</button>
+        <button class="nav-btn" onclick="toggleMenu('toggleSettingsMenu')">Layout</button>
         <span class="likebtn-wrapper" data-theme="custom" data-icon_l="hrt2" data-icon_l_c_v="#ff0000" data-identifier="torrent_advices_main" data-dislike_enabled="false" style="vertical-align:middle; margin-left:10px;"></span>
 
         <div id="toggleIndexMenu">
             <a href="#" onclick="toggleMenu('toggleIndexMenu')">To Top</a>
-            <a href="#media-players" onclick="toggleMenu('toggleIndexMenu')">Media Players</a>
-            <a href="#LAV-Splitter" onclick="toggleMenu('toggleIndexMenu')">LAV Splitter</a>
-            <a href="#more-troubleshooting-and-advices" onclick="toggleMenu('toggleIndexMenu')">More T&A</a>
+            ${isHome ? `<a href="#media-players" onclick="toggleMenu('toggleIndexMenu')">Media Players</a>` : ''}
+            ${isHome ? `<a href="#LAV-Splitter" onclick="toggleMenu('toggleIndexMenu')">LAV Splitter</a>` : ''}
+            ${isHome ? `<a href="#more-troubleshooting-and-advices" onclick="toggleMenu('toggleIndexMenu')">More T&A</a>` : ''}
         </div>
 
         <div id="toggleSettingsMenu">
