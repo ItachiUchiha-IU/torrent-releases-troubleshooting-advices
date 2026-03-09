@@ -1,98 +1,128 @@
 // navbar.js
 document.addEventListener("DOMContentLoaded", () => {
-    const isHome = window.location.pathname === "/" || window.location.pathname.endsWith("index.html");
+    // Detect if we are on the Home Page (root or index.html not in a subfolder)
+    const isHome = window.location.pathname === "/" || (window.location.pathname.endsWith("index.html") && !window.location.pathname.includes("/Hashes/"));
 
     const navHtml = `
     <div class="topnav">
-        <a class="${isHome ? 'active' : ''}" href="/" target="_self">${isHome ? 'To Top' : 'Home'}</a>
-        ${isHome ? `
-            <a href="#media-players" target="_self" onclick="hideSettingsMenu()">Media Players</a>
-            <a href="#LAV-Splitter" target="_self" onclick="hideSettingsMenu()">LAV Splitter</a>
-            <a href="#more-troubleshooting-and-advices" target="_self" onclick="hideSettingsMenu()">More T&A</a>
-        ` : ''}
-        <a href="/Hashes">Hashes</a>
-        <div class="settingsmenu">
-            <button onclick="toggleSettingsMenu()" class="settingsmenubutton">Settings</button>
+        <a href="/" class="${isHome ? 'active' : ''}">Home Page</a>
+        ${isHome ? `<button class="nav-btn" onclick="toggleMenu('toggleIndexMenu')">Page INDEX</button>` : ''}
+        <a href="/Hashes" class="${window.location.pathname.includes('/Hashes') ? 'active' : ''}">Hashes</a>
+        <button class="nav-btn" onclick="toggleMenu('toggleSettingsMenu')">Settings</button>
+        <span class="likebtn-wrapper" data-theme="custom" data-icon_l="hrt2" data-icon_l_c_v="#ff0000" data-identifier="torrent_advices_main" data-dislike_enabled="false" style="vertical-align:middle; margin-left:10px;"></span>
+
+        <div id="toggleIndexMenu">
+            <a href="#media-players" onclick="toggleMenu('toggleIndexMenu')">Media Players</a>
+            <a href="#LAV-Splitter" onclick="toggleMenu('toggleIndexMenu')">LAV Splitter</a>
+            <a href="#more-troubleshooting-and-advices" onclick="toggleMenu('toggleIndexMenu')">More T&A</a>
         </div>
-        <span class="likebtn-wrapper" data-theme="custom" data-icon_l="hrt2" data-icon_l_c_v="#ff0000" data-identifier="ghwuirghnpwiugbnerwugrbjn" data-dislike_enabled="false" style="position:relative;top:-3px;left:10px;margin-right:1px;"></span>
 
         <div id="toggleSettingsMenu">
-            <div style="position: relative;top: 23px;display: inline-block;font-family: Baskerville;font-size: 17px; padding-bottom: 20px;">
-                <div style="float:left;margin-left:5px;margin-right:15px;">
-                    <Label style="display:block;">Theme:</Label>
-                    <select id="themeSelect" onchange="theme(this);">
-                        <option selected>Dark Blue</option><option>Blue</option><option>Light</option><option>White</option><option>Dark</option><option>Black</option>
+            <div class="settings-container">
+                <div class="settings-item"><label>Theme:</label><br>
+                    <select id="themeSelect" onchange="updateSetting('theme', this.value)">
+                        <option>Dark Blue</option><option>Blue</option><option>Light</option><option>White</option><option>Dark</option><option>Black</option>
                     </select>
                 </div>
-                <div style="float:left;margin-left:15px;margin-right:15px;">
-                    <Label style="display:block;">Width:</Label>
-                    <select id="widthSelect" onchange="margin(this);">
-                        <option>40%</option><option>50%</option><option>60%</option><option selected>65%</option><option>70%</option><option>80%</option><option>90%</option><option>100%</option>
+                <div class="settings-item"><label>Width:</label><br>
+                    <select id="widthSelect" onchange="updateSetting('width', this.value)">
+                        <option>40%</option><option>50%</option><option>60%</option><option>65%</option><option>70%</option><option>80%</option><option>90%</option><option>100%</option>
                     </select>
                 </div>
-                <div style="float:left;margin-left:15px;margin-right:5px;">
-                    <Label style="display:block;">Font-px:</Label>
-                    <select id="fontpxSelect" onchange="fontsize(this);">
-                        <option>15</option><option>16</option><option selected>16.5</option><option>17</option><option>18</option><option>19</option><option>20</option><option>22</option><option>24</option><option>26</option><option>28</option><option>30</option><option>32</option>
+                <div class="settings-item"><label>Font-px:</label><br>
+                    <select id="fontpxSelect" onchange="updateSetting('fontSize', this.value)">
+                        <option>15</option><option>16</option><option>16.5</option><option>17</option><option>18</option><option>20</option><option>22</option><option>26</option>
                     </select>
                 </div>
-                <div style="float:left;margin-left:5px;margin-right:5px;">
-                    <Label style="display:block;">Font-family:</Label>
-                    <select id="fontFamilySelect" onchange="fontfamily(this);">
-                        <option selected>Consolas</option><option>Cronos Pro</option><option>Montserrat</option><option>Segoe UI</option><option>Helvetica</option><option>Baskervville</option>
+                <div class="settings-item"><label>Font-family:</label><br>
+                    <select id="fontFamilySelect" onchange="updateSetting('fontFamily', this.value)">
+                        <option>Consolas</option><option>Cronos Pro</option><option>Montserrat</option><option>Segoe UI</option><option>Helvetica</option><option>Baskervville</option>
                     </select>
                 </div>
-                <div style="float:left;margin-left:5px;margin-right:15px;">
-                    <Label style="display:block;">Font-weight:</Label>
-                    <select id="fontWeightSelect" onchange="fontweight(this);">
-                        <option selected>Normal</option><option>Bold</option>
+                <div class="settings-item"><label>Font-weight:</label><br>
+                    <select id="fontWeightSelect" onchange="updateSetting('fontWeight', this.value)">
+                        <option>Normal</option><option>Bold</option>
                     </select>
                 </div>
-                <div style="float:right;margin-left:5px;margin-right:5px;">
-                    <Label style="display:block;">ScaleX</Label>
-                    <input id="scaleXslider" oninput="scaleXfont(event)" type="range" value="1.0" min="0.5" max="1.5" step="0.001" />
+                <div class="settings-item" style="float:right;">
+                    <label>ScaleX</label><br>
+                    <input id="scaleXslider" type="range" value="1.0" min="0.5" max="1.5" step="0.001" oninput="updateSetting('scaleX', this.value)" />
                 </div>
             </div>
         </div>
-        <br>
     </div>`;
 
     document.body.insertAdjacentHTML("afterbegin", navHtml);
+    applySavedSettings();
 
-    // Initialize Like Button
     (function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");
 });
 
-/* Original Functions */
+function toggleMenu(id) {
+    const menus = ['toggleSettingsMenu', 'toggleIndexMenu'];
+    menus.forEach(m => {
+        const el = document.getElementById(m);
+        if (el) el.style.display = (m === id && el.style.display !== 'block') ? 'block' : 'none';
+    });
+}
+
+function updateSetting(key, value) {
+    localStorage.setItem(key, value);
+    applySavedSettings();
+}
+
+function applySavedSettings() {
+    const s = {
+        theme: localStorage.getItem('theme') || 'Dark Blue',
+        width: localStorage.getItem('width') || '65%',
+        fontSize: localStorage.getItem('fontSize') || '16.5',
+        fontFamily: localStorage.getItem('fontFamily') || 'Consolas',
+        fontWeight: localStorage.getItem('fontWeight') || 'Normal',
+        scaleX: localStorage.getItem('scaleX') || '1.0'
+    };
+
+    // Apply Theme Logic (Matches your original colors exactly)
+    const target = document.getElementById("changetextcolor");
+    if(target) {
+        if (s.theme === "Dark Blue") { target.style.color = "#e9e9e9"; document.body.style.backgroundColor = "#101D29"; }
+        else if (s.theme === "Blue") { target.style.color = "#e9e9e9"; document.body.style.backgroundColor = "#212F3D"; }
+        else if (s.theme === "Light") { target.style.color = "black"; document.body.style.backgroundColor = "#AEB6BF"; }
+        else if (s.theme === "White") { target.style.color = "black"; document.body.style.backgroundColor = "#F0F0F0"; }
+        else if (s.theme === "Dark") { target.style.color = "#E6E6E6"; document.body.style.backgroundColor = "#1F1F1F"; }
+        else if (s.theme === "Black") { target.style.color = "#E6E6E6"; document.body.style.backgroundColor = "black"; }
+    }
+
+    // Apply Other Settings
+    document.body.style.width = s.width;
+    const divs = {
+        changefontsize: (el) => el.style.fontSize = s.fontSize + "px",
+        changefontfamily: (el) => el.style.fontFamily = s.fontFamily,
+        changefontweight: (el) => el.style.fontWeight = s.fontWeight,
+        scaleXY: (el) => el.style.transform = `scaleX(${s.scaleX})`
+    };
+
+    Object.keys(divs).forEach(id => {
+        const el = document.getElementById(id);
+        if(el) divs[id](el);
+    });
+
+    // Sync UI Selects
+    ['themeSelect', 'widthSelect', 'fontpxSelect', 'fontFamilySelect', 'fontWeightSelect'].forEach(id => {
+        const el = document.getElementById(id);
+        if(el) el.value = s[id.replace('Select', '').replace('px', '')];
+    });
+    if(document.getElementById('scaleXslider')) document.getElementById('scaleXslider').value = s.scaleX;
+}
+
+// Global UI helper functions
+function hideSettingsMenu() { toggleMenu('none'); }
 function doPlus(){ document.getElementById("fakebutton").value = ++document.getElementById("fakebutton").value; }
-function toggleSettingsMenu() { 
-    var x = document.getElementById("toggleSettingsMenu");
-    x.style.display = (x.style.display === "block") ? "none" : "block"; 
-}
-function hideSettingsMenu() { document.getElementById("toggleSettingsMenu").style.display = "none"; }
 
-function theme(selectTag) {
-    var listValue = selectTag.options[selectTag.selectedIndex].text;
-    var target = document.getElementById("changetextcolor");
-    if (listValue === "Dark Blue") { target.style.color = "#e9e9e9"; document.body.style.backgroundColor = "#101D29"; }
-    else if (listValue === "Blue") { target.style.color = "#e9e9e9"; document.body.style.backgroundColor = "#212F3D"; }
-    else if (listValue === "Light") { target.style.color = "black"; document.body.style.backgroundColor = "#AEB6BF"; }
-    else if (listValue === "White") { target.style.color = "black"; document.body.style.backgroundColor = "#F0F0F0"; }
-    else if (listValue === "Dark") { target.style.color = "#E6E6E6"; document.body.style.backgroundColor = "#1F1F1F"; }
-    else if (listValue === "Black") { target.style.color = "#E6E6E6"; document.body.style.backgroundColor = "black"; }
-}
-
-function margin(selectTag) { document.body.style.width = selectTag.options[selectTag.selectedIndex].text; }
-function fontsize(selectTag) { document.getElementById("changefontsize").style.fontSize = selectTag.options[selectTag.selectedIndex].text + "px"; }
-function fontfamily(selectTag) { document.getElementById("changefontfamily").style.fontFamily = selectTag.options[selectTag.selectedIndex].text; }
-function fontweight(selectTag) { document.getElementById("changefontweight").style.fontWeight = selectTag.options[selectTag.selectedIndex].text; }
-function scaleXfont(e) { document.getElementById("scaleXY").style.transform = "scaleX(" + document.getElementById("scaleXslider").value + ")"; }
-
-/* Content Copy Functions */
-function copyText0(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#");}
-function copyText1(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#media-players");}
-function copyText2(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#LAV-Splitter");}
-function copyText3(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#my-strings-for-lav-splitter");}
-function copyText4(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#more-troubleshooting-and-advices");}
-function copyITAstring() {let textarea = document.getElementById("ITAstring");textarea.select();document.execCommand("copy");}
-function copyENGstring() {let textarea = document.getElementById("ENGstring");textarea.select();document.execCommand("copy");}
+// Copy functions
+function copyText0(){navigator.clipboard.writeText(window.location.origin + "/#");}
+function copyText1(){navigator.clipboard.writeText(window.location.origin + "/#media-players");}
+function copyText2(){navigator.clipboard.writeText(window.location.origin + "/#LAV-Splitter");}
+function copyText3(){navigator.clipboard.writeText(window.location.origin + "/#my-strings-for-lav-splitter");}
+function copyText4(){navigator.clipboard.writeText(window.location.origin + "/#more-troubleshooting-and-advices");}
+function copyITAstring() {let t = document.getElementById("ITAstring"); t.select(); document.execCommand("copy");}
+function copyENGstring() {let t = document.getElementById("ENGstring"); t.select(); document.execCommand("copy");}
