@@ -130,3 +130,32 @@ function copyText3(){navigator.clipboard.writeText(window.location.origin + "/#m
 function copyText4(){navigator.clipboard.writeText(window.location.origin + "/#more-troubleshooting-and-advices");}
 function copyITAstring() {let t = document.getElementById("ITAstring"); t.select(); document.execCommand("copy");}
 function copyENGstring() {let t = document.getElementById("ENGstring"); t.select(); document.execCommand("copy");}
+
+async function fetchLastUpdated() {
+    const linkElement = document.getElementById('last-updated-link');
+    if (!linkElement) return; // Only run if the element exists on the page
+
+    try {
+        // Fetch repo info from GitHub API
+        const response = await fetch('https://api.github.com/repos/ItachiUchiha-IU/torrent-releases-troubleshooting-advices');
+        const data = await response.json();
+        
+        // Get the "pushed_at" date (last time you pushed code)
+        const date = new Date(data.pushed_at);
+        
+        // Format it nicely (e.g., "March 9, 2026")
+        const formattedDate = date.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+        linkElement.textContent = formattedDate;
+    } catch (error) {
+        console.error("Failed to fetch GitHub date:", error);
+        linkElement.textContent = "Visit GitHub for updates";
+    }
+}
+
+// Make sure to call it!
+document.addEventListener("DOMContentLoaded", fetchLastUpdated);
