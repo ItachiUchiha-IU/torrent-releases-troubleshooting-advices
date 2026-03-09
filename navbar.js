@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="setting-item">
                     <label>Font-px:</label>
                     <select id="fontpxSelect" onchange="updateSetting('fontSize', this.value)">
-                        <option>15</option><option>16</option><option>16.5</option><option>17</option><option>18</option><option>20</option><option>22</option><option>26</option>
+                        <option value="15">15</option><option value="16">16</option><option value="16.5">16.5</option><option value="17">17</option><option value="18">18</option><option value="20">20</option><option value="22">22</option><option value="26">26</option>
                     </select>
                 </div>
                 <div class="setting-item">
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <input id="scaleXslider" type="range" value="1.0" min="0.5" max="1.5" step="0.001" oninput="updateSetting('scaleX', this.value)" />
                 </div>
                 <div class="setting-item">
-                    <button class="reset-btn" onclick="resetSettings()">Reset All</button>
+                    <button class="reset-btn" onclick="resetSettings()">Reset</button>
                 </div>
             </div>
         </div>
@@ -62,15 +62,14 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.insertAdjacentHTML("afterbegin", navHtml);
     applySavedSettings();
 
-    // Like Button
     (function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");
 });
 
 function toggleMenu(id) {
-    const ids = ['toggleSettingsMenu', 'toggleIndexMenu'];
-    ids.forEach(mId => {
-        const el = document.getElementById(mId);
-        if (el) el.style.display = (mId === id && el.style.display !== 'block') ? 'block' : 'none';
+    const menus = ['toggleSettingsMenu', 'toggleIndexMenu'];
+    menus.forEach(m => {
+        const el = document.getElementById(m);
+        if (el) el.style.display = (m === id && el.style.display !== 'block') ? 'block' : 'none';
     });
 }
 
@@ -80,14 +79,11 @@ function updateSetting(key, value) {
 }
 
 function resetSettings() {
-    if(confirm("Reset all layout settings to default?")) {
-        localStorage.clear();
-        location.reload();
-    }
+    localStorage.clear();
+    location.reload();
 }
 
 function applySavedSettings() {
-    // Defaults
     const s = {
         theme: localStorage.getItem('theme') || 'Dark Blue',
         width: localStorage.getItem('width') || '65%',
@@ -97,7 +93,6 @@ function applySavedSettings() {
         scaleX: localStorage.getItem('scaleX') || '1.0'
     };
 
-    // 1. Theme Logic
     const target = document.getElementById("changetextcolor");
     if(target) {
         if (s.theme === "Dark Blue") { target.style.color = "#e9e9e9"; document.body.style.backgroundColor = "#101D29"; }
@@ -108,41 +103,29 @@ function applySavedSettings() {
         else if (s.theme === "Black") { target.style.color = "#E6E6E6"; document.body.style.backgroundColor = "black"; }
     }
 
-    // 2. CSS Logic
     document.body.style.width = s.width;
     
-    const divs = {
-        changefontsize: (el) => el.style.fontSize = s.fontSize + "px",
-        changefontfamily: (el) => el.style.fontFamily = s.fontFamily,
-        changefontweight: (el) => el.style.fontWeight = s.fontWeight,
-        scaleXY: (el) => el.style.transform = `scaleX(${s.scaleX})`
-    };
+    // Apply Settings to DIVs
+    const elFS = document.getElementById("changefontsize"); if(elFS) elFS.style.fontSize = s.fontSize + "px";
+    const elFF = document.getElementById("changefontfamily"); if(elFF) elFF.style.fontFamily = s.fontFamily;
+    const elFW = document.getElementById("changefontweight"); if(elFW) elFW.style.fontWeight = s.fontWeight;
+    const elSX = document.getElementById("scaleXY"); if(elSX) elSX.style.transform = `scaleX(${s.scaleX})`;
 
-    Object.keys(divs).forEach(id => {
-        const el = document.getElementById(id);
-        if(el) divs[id](el);
-    });
-
-    // 3. Sync the Settings UI (Dropdowns/Sliders)
-    const selectSync = {
-        'themeSelect': s.theme,
-        'widthSelect': s.width,
-        'fontpxSelect': s.fontSize, // Fixed: This was likely the "disappearing" bug
-        'fontFamilySelect': s.fontFamily,
-        'fontWeightSelect': s.fontWeight
-    };
-
-    Object.keys(selectSync).forEach(id => {
-        const el = document.getElementById(id);
-        if(el) el.value = selectSync[id];
-    });
-    
-    if(document.getElementById('scaleXslider')) {
-        document.getElementById('scaleXslider').value = s.scaleX;
-    }
+    // Sync UI
+    if(document.getElementById('themeSelect')) document.getElementById('themeSelect').value = s.theme;
+    if(document.getElementById('widthSelect')) document.getElementById('widthSelect').value = s.width;
+    if(document.getElementById('fontpxSelect')) document.getElementById('fontpxSelect').value = s.fontSize;
+    if(document.getElementById('fontFamilySelect')) document.getElementById('fontFamilySelect').value = s.fontFamily;
+    if(document.getElementById('fontWeightSelect')) document.getElementById('fontWeightSelect').value = s.fontWeight;
+    if(document.getElementById('scaleXslider')) document.getElementById('scaleXslider').value = s.scaleX;
 }
 
-// Keep your copy functions...
-function copyText0(){navigator.clipboard.writeText(window.location.origin + "/#");}
-function copyITAstring() {let t = document.getElementById("ITAstring"); t.select(); document.execCommand("copy");}
+// Global UI helpers
 function doPlus(){ document.getElementById("fakebutton").value = ++document.getElementById("fakebutton").value; }
+function copyText0(){navigator.clipboard.writeText(window.location.origin + "/#");}
+function copyText1(){navigator.clipboard.writeText(window.location.origin + "/#media-players");}
+function copyText2(){navigator.clipboard.writeText(window.location.origin + "/#LAV-Splitter");}
+function copyText3(){navigator.clipboard.writeText(window.location.origin + "/#my-strings-for-lav-splitter");}
+function copyText4(){navigator.clipboard.writeText(window.location.origin + "/#more-troubleshooting-and-advices");}
+function copyITAstring() {let t = document.getElementById("ITAstring"); t.select(); document.execCommand("copy");}
+function copyENGstring() {let t = document.getElementById("ENGstring"); t.select(); document.execCommand("copy");}

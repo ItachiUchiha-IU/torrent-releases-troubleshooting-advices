@@ -1,7 +1,32 @@
 /* global.css */
-/* ... (Keep your @font-face and basic body styles from before) ... */
+@font-face { font-family: Consolas; src: url("/fonts/Consolas-Regular.woff2"); font-weight: normal; }
+@font-face { font-family: 'Cronos Pro'; src: url("/fonts/Cronos Pro Regular.otf"); font-weight: normal; }
 
-/* Sticky Navbar */
+:root {
+  --background-color: #101D29;
+  --color: #e9e9e9;
+  --font-family: Consolas;
+  --font-size: 16.5px;
+  --font-weight: normal;
+  --width: 65%;
+}
+
+/* THE FIX FOR CENTERING: ensures body behaves like your old version */
+body {
+  background-color: var(--background-color);
+  color: var(--color);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  width: var(--width);
+  margin: 0 auto !important; /* Forces centering */
+  display: block; /* Prevents flexbox from taking over the whole page */
+}
+
+a:link { color: rgb(0, 121, 255); }
+a:visited { color: rgb(0, 143, 255); }
+
+/* Navigation Bar */
 .topnav {
     background-color: #1D2123;
     top: 0;
@@ -14,7 +39,6 @@
     white-space: nowrap;
 }
 
-/* Base Button/Link Style */
 .topnav a, .nav-btn {
     display: inline-block;
     color: #f2f2f2;
@@ -42,47 +66,40 @@
     white-space: normal;
 }
 
-/* Settings Grid - THIS FIXES THE CENTERING */
+/* THE FIX FOR ALIGNMENT AND COLORS */
 .settings-grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 25px;
-    align-items: flex-end; /* Aligns everything to the bottom of the row */
+    gap: 20px;
+    align-items: flex-end;
 }
 
 .setting-item {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centers label over the select */
-    gap: 8px;
+    align-items: center;
+    gap: 5px;
     font-family: Baskervville, serif;
     font-size: 16px;
+    color: inherit; /* FIX: Makes labels whitish/correct color */
 }
 
 .setting-item label {
-    font-weight: bold;
+    color: inherit; /* FIX: Ensures labels are not black */
 }
 
-.setting-item select, .setting-item input {
-    padding: 4px;
-    border-radius: 4px;
-}
-
-/* Reset Button Style */
 .reset-btn {
     background-color: #c0392b;
     color: white;
     font-size: 14px;
     padding: 5px 10px;
     border-radius: 4px;
-    cursor: pointer;
     border: none;
-    margin-top: 10px;
+    cursor: pointer;
 }
-.reset-btn:hover { background-color: #e74c3c; }
 
 @media only screen and (max-width: 768px) {
+    body { width: 94% !important; margin: 0 3% !important; }
     .topnav { white-space: normal; }
-    .settings-grid { gap: 15px; }
 }
