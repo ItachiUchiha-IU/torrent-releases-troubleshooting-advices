@@ -86,17 +86,18 @@
     <h2 class="title" id="MPV-Track-Selection-Script-lua"><button onclick="copyLink('MPV-Track-Selection-Script-lua')">&#128279</button> MPV Track Selection Script (.lua)</h2>
     
     <div class="script-info">
-		<p>
-		  This script automates audio and subtitle selection in MPV.
-          <br>MPV will automatically load your preferred languages for both audio and subtitles. The player will also distinguish between full dialogue and signs/songs based on your audio selection, even updating subtitles instantly when you switch audio tracks.
-          <br><br>
-          Save it as <code>track-selector.lua</code> in your mpv <code>scripts</code> folder. 
-          <br>(e.g. <code>C:\Program Files\mpv\portable_config\scripts</code>)
-		  <br><br>
-		  <strong>Note:</strong> This version is pre-configured for <strong>Italian</strong>. 
-		  If you prefer a different language, you must manually edit the <code>preferred_lang_codes</code> 
-		  section inside the <strong>User Configuration</strong>.
-		</p>
+        <p>
+            This script automates audio and subtitle selection in MPV.
+            <br>MPV will automatically load your preferred languages for both audio and subtitles. The player will also distinguish between full dialogue and signs/songs based on your audio selection, even updating subtitles instantly when you switch audio tracks.
+            <br><br>
+            Save it as <strong><code>track-selector.lua</code></strong> in your mpv <code>scripts</code> folder. 
+            <br>(e.g. <code>C:\Program Files\mpv\portable_config\scripts</code>)
+            <br><br>
+            <strong>Note:</strong> This version is pre-configured for <strong>Italian</strong>. 
+            If you prefer a different language, you must manually edit the <code>preferred_lang_codes</code> 
+            section inside the <strong>User Configuration</strong>.
+            <br>E.g.: <code>local preferred_lang_codes = {"it", "ita"}</code> &rarr; <code>local preferred_lang_codes = {"es-419", "es", "spa"}</code>
+        </p>
     </div>
 
     <div class="code-container">
