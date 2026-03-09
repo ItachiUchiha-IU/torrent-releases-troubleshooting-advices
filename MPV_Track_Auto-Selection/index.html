@@ -106,7 +106,48 @@
 			<button class="copy-btn" onclick="downloadLuaCode()" style="background-color: #27ae60; margin-left: 5px;">Download track-selector.lua</button>
         </div>
         <!-- Note: We use the <pre> and <code> tags for Prism.js -->
-        <pre><code id="lua-script" class="language-lua">--[[
+        <pre><code id="lua-script" class="language-lua">-- ############ USER CONFIGURATION ############
+
+-- Set your single preferred language here. All other logic will adapt to this.
+-- The first code in the list is considered the primary one for keyword lookups (e.g., "it" for Italian).
+local preferred_lang_codes = {"it", "ita"}
+
+-- Set to true to prioritize preferred language audio only if it's the default track.
+-- Set to false to always prioritize preferred language audio.
+local prioritize_preferred_lang_audio_only_if_default = true -- default = true
+
+-- Set audio priorities.
+local audio_priority = {
+    {"ja", "jpn", "jp"},   -- Japanese
+    {"ko", "kor"},         -- Korean
+    preferred_lang_codes,  -- Your preferred language
+    {"en", "eng"}          -- English
+}
+
+-- Set keywords for the preferred language (Forced Subs)
+local preferred_lang_Forced_Subs_Keywords = {"cartell", "sign", "forced", "forzat"}
+
+-- Set keywords for the preferred language (Normal Subs)
+local preferred_lang_Normal_Subs_Keywords = {"dialog", "complet", "full"}
+
+-- Set keywords for English (Forced Subs)
+local English_Forced_Subs_Keywords = {"sign", "forced"}
+
+-- Set keywords for English (Normal Subs)
+local English_Normal_Subs_Keywords = {"honorific", "dialog", "full", "complet"}
+
+-- Set to true to prioritize "enm" (Middle English / Honorifics) subtitles over "en","eng" (English) subtitles.
+-- Set to false to treat "enm" just like any other English subtitle.
+local prioritize_honorifics = true -- default = true
+
+-- If no Forced subs are picked through the rules, fall back to the first forced sub available
+local fallback_to_any_forced_subs = false -- default = false
+
+-- ######### USER CONFIGURATION - END #########
+
+
+
+--[[
 -- =================================================================================================
 --                                  SCRIPT LOGIC - DETAILED EXPLANATION
 -- =================================================================================================
@@ -222,45 +263,6 @@
 --
 -- =================================================================================================
 --]]
-
--- ############ USER CONFIGURATION ############
-
--- Set your single preferred language here. All other logic will adapt to this.
--- The first code in the list is considered the primary one for keyword lookups (e.g., "it" for Italian).
-local preferred_lang_codes = {"it", "ita"}
-
--- Set to true to prioritize preferred language audio only if it's the default track.
--- Set to false to always prioritize preferred language audio.
-local prioritize_preferred_lang_audio_only_if_default = true -- default = true
-
--- Set audio priorities.
-local audio_priority = {
-    {"ja", "jpn", "jp"},   -- Japanese
-    {"ko", "kor"},         -- Korean
-    preferred_lang_codes,  -- Your preferred language
-    {"en", "eng"}          -- English
-}
-
--- Set keywords for the preferred language (Forced Subs)
-local preferred_lang_Forced_Subs_Keywords = {"cartell", "sign", "forced", "forzat"}
-
--- Set keywords for the preferred language (Normal Subs)
-local preferred_lang_Normal_Subs_Keywords = {"dialog", "complet", "full"}
-
--- Set keywords for English (Forced Subs)
-local English_Forced_Subs_Keywords = {"sign", "forced"}
-
--- Set keywords for English (Normal Subs)
-local English_Normal_Subs_Keywords = {"honorific", "dialog", "full", "complet"}
-
--- Set to true to prioritize "enm" (Middle English / Honorifics) subtitles over "en","eng" (English) subtitles.
--- Set to false to treat "enm" just like any other English subtitle.
-local prioritize_honorifics = true -- default = true
-
--- If no Forced subs are picked through the rules, fall back to the first forced sub available
-local fallback_to_any_forced_subs = false -- default = false
-
--- ######### USER CONFIGURATION - END #########
 
 
 
