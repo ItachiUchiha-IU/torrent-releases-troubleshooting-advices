@@ -1,344 +1,14 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <base target="_self">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<style>
-
-  a:link {
-    color:rgb(0, 121, 255);
-  }
-
-  a:visited {
-    color:rgb(0, 143, 255);
-  }
-
-  textarea {
-    max-width: 100%;
-  }
-
-  :root {
-  --background-color: #101D29;
-  --color: #e9e9e9;
-  --font-family: Consolas;
-  --font-size: 16.5px;
-  --font-weight: normal;
-  --width: 65%;
-  }
-
-  body {
-    background-color: var(--background-color);
-    color: var(--color);
-    font-family: var(--font-family);
-    font-size: var(--font-size);
-    font-weight: var(--font-weight);
-    width: var(--width);
-    margin:auto;
-  }
-
-  @media (prefers-color-scheme: light) {
-    :root {
-    --background-color: #AEB6BF;
-    --color: #000000;
-    }
-
-    a:link{
-      color:rgb(0, 0, 255);
-    }
-    a:visited{
-      color:rgb(0, 121, 255);
-    }
-
-    html{
-      color-scheme: light;
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    html{
-      color-scheme: dark;
-    }
-  }
-
-  @media only screen and (max-width: 768px) {
-    body {
-      width:94%;margin-left:3%;margin-right:3%;
-    }
-  }
-  
-  html{
-   scroll-padding-top: 60px;
-  }
-  
-  .topnav {
-    overflow: visible;
-    background-color: #1D2123;
-    top: 0;
-    width: 100%;
-    display: block;
-    position: sticky;
-    left:0;
-    right:0;
-    text-align:center;
-    margin:auto;
-    transition: top 0.1s;
-    z-index: 7;
-    border-radius: 6px;
-    padding: .1em .4em;
-  }
-
-  .topnav a {
-    display: inline-block;
-    color: #f2f2f2;
-    text-align: center;
-    text-decoration: none;
-    font-family: Cronos Pro;
-    font-size: 26px;
-    font-weight: 570;
-    left:0;
-    right:0;
-    text-align:center;
-    margin:auto;
-    border-radius: 6px;
-    padding: .3em .4em;
-  }
-  
-  .topnav a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-  
-  .topnav a.active {
-    background-color: #555555;
-    color: white;
-  }
-  
-  code{background-color: rgb(128 128 128 / .65); border-radius: 6px; padding: .1em .4em; text-align: top; font-size: 95%;}
-
-  .settingsmenubutton {
-    background-color: #292929;
-    color: #f2f2f2;
-    padding: 14px;
-    font-family: Cronos Pro;
-    font-size: 26px;
-    font-weight: 570;
-    border: none;
-    cursor: pointer;
-    border-radius: 6px;
-    padding: .3em .4em;
-  }
-
-  .settingsmenubutton:hover, .settingsmenubutton:focus {
-    background-color: black;
-  }
-
-  .settingsmenu {
-  position: relative;
-  display: inline-block;
-  }
-
-  .settingsmenu a:hover {background-color: #ddd;}
-
-  .show {display: block;}
-
-  #toggleSettingsMenu {
-    width: 100%;
-    padding: 0px 0px;
-    text-align: center;
-    margin-top: -15px;
-    display: none;
-  }
-
-@font-face {
-    font-family: Consolas;
-    src: url("./fonts/Consolas-Regular.woff2");
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: Consolas;
-    src: url("./fonts/Consolas-Bold.woff2");
-    font-weight: bold;
-    font-style: normal;
-}
-@font-face {
-  font-family: Consolas;
-  src: url("./fonts/Consolas-Italic.woff2");
-  font-weight: normal;
-  font-style: italic;
-}
-@font-face {
-    font-family: Cronos Pro;
-    src: url("./fonts/Cronos Pro Regular.otf");
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: Cronos Pro;
-    src: url("./fonts/Cronos Pro Bold.otf");
-    font-weight: bold;
-    font-style: normal;
-}
-@font-face {
-    font-family: Montserrat;
-    src: url("./fonts/Montserrat-Regular.woff2");
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: Montserrat;
-    src: url("./fonts/Montserrat-Bold.woff2");
-    font-weight: bold;
-    font-style: normal;
-}
-@font-face {
-  font-family: Montserrat;
-  src: url("./fonts/Montserrat-Italic.woff2");
-  font-weight: normal;
-  font-style: italic;
-}
-@font-face {
-    font-family: Segoe UI;
-    src: url("./fonts/SegoeUI-Regular.woff2");
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: Segoe UI;
-    src: url("./fonts/SegoeUI-Bold.woff2");
-    font-weight: bold;
-    font-style: normal;
-}
-@font-face {
-  font-family: Baskervville;
-  src: url("./fonts/Baskervville-Regular.woff2");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: Helvetica;
-  src: url("./fonts/HelveticaNowDisplay-Regular.woff2");
-  font-weight: normal;
-  font-style: normal;
-}
-
-</style>
+  <title>Torrent Releases - Troubleshooting & Advices</title>
+  <link rel="stylesheet" href="/global.css">
+  <script src="/navbar.js"></script>
 </head>
 
-
-
-
-
-
-
-
-
-
 <body>
-
-  <div class="topnav">
-    <a class="active" href="#" target="_self">To Top</a>
-    <a href="#media-players" target="_self" onclick="hideSettingsMenu()">Media Players</a>
-    <a href="#LAV-Splitter" target="_self" onclick="hideSettingsMenu()">LAV Splitter</a>
-    <a href="#more-troubleshooting-and-advices" target="_self" onclick="hideSettingsMenu()">More T&A</a>
-    <div class="settingsmenu">
-      <button onclick="toggleSettingsMenu()" class="settingsmenubutton">Settings</button>
-    </div>
-    <span class="likebtn-wrapper" data-theme="custom" data-icon_l="hrt2" data-icon_l_c_v="#ff0000" data-identifier="ghwuirghnpwiugbnerwugrbjn" data-dislike_enabled="false" style="position:relative;top:-3px;left:10px;margin-right:1px;"></span>
-
-    <div id="toggleSettingsMenu">
-      <div style="position: relative;top: 23px;display: inline-block;font-family: Baskerville;font-size: 17px;">
-        <!--input id="colorpicker" type="color" value="#212F3D" onchange="changecolor(this)"-->
-        <div style="float:left;margin-left:5px;margin-right:15px;">
-          <Label style="display:block;">Theme:</Label>
-          <select id="themeSelect" onchange="theme(this);">
-          	<option selected>Dark Blue</option>
-          	<option>Blue</option>
-            <option>Light</option>
-            <option>White</option>
-            <option>Dark</option>
-            <option>Black</option>
-          </select>
-        </div>
-        <div style="float:left;margin-left:15px;margin-right:15px;">
-          <Label style="display:block;">Width:</Label>
-          <select id="widthSelect" onchange="margin(this);">
-          	<option>40%</option>
-            <option>50%</option>
-            <option>60%</option>
-            <option selected>65%</option>
-            <option>70%</option>
-            <option>80%</option>
-       	    <option>90%</option>
-            <option>100%</option>
-          </select>
-        </div>
-        <div style="float:left;margin-left:15px;margin-right:5px;">
-          <Label style="display:block;">Font-px:</Label>
-          <select id="fontpxSelect" onchange="fontsize(this);">
-            <option>15</option>
-            <option>16</option>
-            <option selected>16.5</option>
-            <option>17</option>
-            <option>18</option>
-            <option>19</option>
-            <option>20</option>
-            <option>22</option>
-            <option>24</option>
-            <option>26</option>
-            <option>28</option>
-            <option>30</option>
-            <option>32</option>
-          </select>
-        </div>
-        <div style="float:left;margin-left:5px;margin-right:5px;">
-          <Label style="display:block;">Font-family:</Label>
-          <select id="fontFamilySelect" onchange="fontfamily(this);">
-            <option selected>Consolas</option>
-            <option>Cronos Pro</option>
-            <option>Montserrat</option>
-            <option>Segoe UI</option>
-            <option>Helvetica</option>
-            <option>Baskervville</option>
-          </select>
-        </div>
-        <div style="float:left;margin-left:5px;margin-right:15px;">
-          <Label style="display:block;">Font-weight:</Label>
-          <select id="fontWeightSelect" onchange="fontweight(this);">
-            <option selected>Normal</option>
-       	    <option>Bold</option>
-          </select>
-        </div>
-        <div style="float:right;margin-left:5px;margin-right:5px;">
-          <Label style="display:block;">ScaleX</Label>
-          <div class="singlecontrol">
-            <input style="vertical-align: middle;" id="scaleXslider" oninput="scaleXfont(event)" type="range" value="1.0" min="0.5" max="1.5" step="0.001" autocomplete="off" />
-          </div>
-        </div>
-        <!--div class="singlecontrol">
-          <span style="vertical-align: middle;">ScaleX</span>
-          <input style="vertical-align: middle;" id="scaleXslider" oninput="scalefont(event)" type="range" value="1.0" min="0" max="3" step="0.001" autocomplete="off" />
-        </div>
-        <div class="singlecontrol"
-          ><span style="vertical-align: middle;">ScaleY</span>
-          <input style="vertical-align: middle;" id="scaleYslider" oninput="scalefont(event)" type="range" value="1.0" min="0" max="3" step="0.001" autocomplete="off" /></div>
-        <div id="cssinuse">
-          Current CSS = 
-          <span id="currentcss"></span>
-        </div-->
-      </div>
-    </div>
-    <br>
-
-  </div>
-
-
-
-
-
-
   <div id="changetextcolor">
   <div id="scaleXY">
   <div id="changemargin">
@@ -348,14 +18,15 @@
   <div style="margin-left:1%;margin-right:1%;">
     
     <div class="toplines">
-      <p style="text-align: left;position: relative;top: -2.5px;">Change the style and layout of the page from the settings above<br>
-      Link to all my releases on nyaa.si: <a href="https://nyaa.si/?f=0&amp;c=0_0&amp;q=itachiuchiha" target="_blank">ItachiUchiha</a>
+      <p style="text-align: left; margin-top: 20px; margin-bottom: 24px;">
+        Last Updated: <a id="last-updated-link" href="https://github.com/ItachiUchiha-IU/torrent-releases-troubleshooting-advices" target="_blank">Loading date...</a><br>
+        <br>
+        Links to all my releases: <a href="https://nyaa.si/?f=0&amp;c=0_0&amp;q=itachiuchiha" target="_blank">nyaa.si</a>, <a href="https://nekobt.to/users/7255405361937" target="_blank">nekoBT</a>
       </p>
     </div>
     <hr>
 
     <div class="all" style="line-height: 1.5;">
-      <script>function copyText0(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#");}</script>
       <h2 class="title" id="troubleshooting-advices"><button onclick="copyText0()">&#128279</button> Torrent Releases - Troubleshooting &amp; Advices:</h2>
       <ul>
         <li style="margin-top: -5px;"><a href="https://nyaa.si" target="_blank">https://nyaa.si</a> is the only correct site address, all the others are fakes/clones</li>
@@ -365,10 +36,9 @@
         <li style="margin-top: 10px;">more troubleshooting and advices <a href="#more-troubleshooting-and-advices" target="_self">at the bottom</a></li>
       </ul>
 
-      <script>function copyText1(){navigator.clipboard.writeText("https://torrent-releases-troubleshooting-advices.pages.dev/#media-players");}</script>
-      <h3 class="title" id="media-players"  style="margin-top: 40px;"><button onclick="copyText1()">&#128279</button> Media Players (<strong>highly recommended</strong>):</h3>
+      <h3 class="title" id="media-players" style="margin-top: 40px;"><button onclick="copyText1()">&#128279</button> Media Players (<strong>highly recommended</strong>):</h3>
       <ul>
-        <li><a href="https://rentry.co/vee-ell-cee" target="_blank">DO NOT USE VLC!!</a>
+        <li><a href="https://mpv.rocks/#vlc-issues" target="_blank">DO NOT USE VLC!!</a>
           <div style="float:right;"><input type="button" value="FAKE BUTTON, DO NOT CLICK !" id="doPlus" onClick = "doPlus();" />
           </div>
         </li>
@@ -377,6 +47,19 @@
         </ul>
         <br>
         
+        <li><a href="https://mpv.io/" target="_blank">MPV</a>
+        <ul>
+          <li>the best site to approach MPV: <a href="https://mpv.rocks/" target="_blank">https://mpv.rocks/</a></li>
+          <li>other sites/guides:
+          <ul>
+            <li><a href="https://thewiki.moe/tutorials/mpv/" target="_blank">https://thewiki.moe/tutorials/mpv/</a></li>
+            <li><a href="https://iamscum.wordpress.com/guides/videoplayback-guide/" target="_blank">https://iamscum.wordpress.com/guides/videoplayback-guide/</a></li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+        <br>
+
         <li><a href="https://sourceforge.net/projects/mpcbe" target="_blank">MPC-BE</a> (remember to select <code>MPC Video Renderer</code> during the installation otherwise u have to <a href="https://www.videohelp.com/software/MPC-Video-Renderer" target="_blank">manually install it</a>)
         <ul>
           <li>install <a href="https://www.videohelp.com/software/madVR" target="_blank">madVR</a> (optional)</li>
@@ -420,12 +103,6 @@
         </li>
         <br>
 
-        <li><a href="https://mpv.io/" target="_blank">MPV</a>
-        <ul>
-          <li><a href="https://thewiki.moe/tutorials/mpv/" target="_blank">an external guide to install and configure mpv</a></li>
-          <li><a href="https://iamscum.wordpress.com/guides/videoplayback-guide/" target="_blank">an ulterior external guide to install and configure mpv</a></li>
-        </ul>
-        </li>
       </ul>
       <br>
 
@@ -494,197 +171,18 @@
         <li style="margin-top: 10px;">if your monitor is <code>8-bit</code>, and u notice that the colors are overly saturated when playing <code>10-bit</code> content: try changing video renderer (still avoid the internal video renderer) or on MPC-BE <a href="https://imgur.com/a/1neTl8Y" target="_blank">try this</a></li>
       </ul>
 
-      <br>
-      Version of the page: v1.03<br>
-      Github repository: <a href="https://github.com/ItachiUchiha-IU/torrent-releases-troubleshooting-advices" target="_blank">github.com/ItachiUchiha-IU</a><br>
-      <br>
-      If you have any issue or advice (regarding the guide or the page layout), feel free to comment on <a href="https://gist.github.com/ItachiUchiha-IU/401a1117e6e6d336d21a326e15a912f9" target="_blank">gist.github.com/ItachiUchiha-IU</a> or to contact me through the <a href="https://discord.com/invite/83dRFDFDp7" target="_blank">AV1 anime discord server</a><br>
-      <br>
+      <br><br><br><br><br>
+      If you have any issue or advice (regarding the guide or the page layout too), feel free to comment under my torrents (I can only reply on nekoBT, where registrations are open), or on <a href="https://gist.github.com/ItachiUchiha-IU/401a1117e6e6d336d21a326e15a912f9" target="_blank">gist.github.com/ItachiUchiha-IU</a> or contact me through the <a href="https://discord.com/invite/83dRFDFDp7" target="_blank">AV1 anime discord server</a><br>
+      <br><br><br>
       Leave a like if you appreciated the work spent on this page!
 
-      <br><br><br><br><br><br><br><br><br><br><!--a href="page2.html" target="_self"> Next Page </a--><br><br>
+      <br><br><br><br><br><br><br><!--a href="page2.html" target="_self"> Next Page </a--><br><br>
 
       <label for="fakebutton">You have clicked the <code>FAKE BUTTON</code> </label>
         <input type="text"  style="text-align:center;" size="2" value="0" id="fakebutton" />
         <label for="fakebutton">times.</label>
 
       <br><br>
-
-
-
-
-
-
-
-
-  <!--script>
-    // can't apply themes if the colorpicker is used
-    let colorpicker = document.getElementById('colorpicker');
-      setInterval(()=>{
-          let color = colorpicker.value;
-          document.body.style.backgroundColor = color;
-      }, 200);
-  </script-->
-
-  <script>
-    function doPlus(){
-      document.getElementById("fakebutton").value = ++document.getElementById("fakebutton").value;
-    }
-  </script>
-
-  <!--script>
-    /* When the user clicks on the button, 
-    toggle between hiding and showing the dropdown content */
-    function myFunction() {
-      document.getElementById("myDropdown").classList.toggle("show");
-    }
-
-    // Close the dropdown if the user clicks outside of it
-    /*window.onclick = function(event) {
-      if (!event.target.matches('.dropbtn')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        var i;
-        for (i = 0; i < dropdowns.length; i++) {
-          var openDropdown = dropdowns[i];
-          if (openDropdown.classList.contains('show')) {
-            openDropdown.classList.remove('show');
-          }
-        }
-      }
-    } */
-  </script-->
-
-  <!--script>
-    // somethings doesnt allow this to work...
-    var prevScrollpos = window.pageYOffset;
-    window.onscroll = function() {
-    var currentScrollPos = window.pageYOffset;
-      if (prevScrollpos > currentScrollPos) {
-        document.getElementById("topnav").style.top = "0";
-      } else {
-        document.getElementById("topnav").style.top = "-50px";
-      }
-      prevScrollpos = currentScrollPos;
-    }
-  </script-->
-
-  <script>
-    //Toggle (Hide/Show) an Element
-    function toggleSettingsMenu() {
-      var x = document.getElementById("toggleSettingsMenu");
-      if (x.style.display === "block") {
-        x.style.display = "none";
-      } else {
-        x.style.display = "block";
-      }
-    }
-  </script>
-    
-  <script>
-    //Toggle (Hide/Show) an Element
-    function hideSettingsMenu() {
-      var x = document.getElementById("toggleSettingsMenu");
-      if (x.style.display === "block") {
-        x.style.display = "none";
-      } else {
-      }
-    }
-  </script>
-
-  <script>
-    function theme(selectTag) {
-      var listValue = selectTag.options[selectTag.selectedIndex].text;
-      if (listValue === "Dark Blue") {
-        document.getElementById("changetextcolor").style.color = "#e9e9e9";
-        document.body.style.backgroundColor = "#101D29";
-      }
-      if (listValue === "Blue") {
-        document.getElementById("changetextcolor").style.color = "#e9e9e9";
-        document.body.style.backgroundColor = "#212F3D";
-      }
-      if (listValue === "Light") {
-        document.getElementById("changetextcolor").style.color = "black";
-        document.body.style.backgroundColor = "#AEB6BF";
-      }
-      if (listValue === "White") {
-        document.getElementById("changetextcolor").style.color = "black";
-        document.body.style.backgroundColor = "#F0F0F0";
-      }
-      if (listValue === "Dark") {
-        document.getElementById("changetextcolor").style.color = "#E6E6E6";
-        document.body.style.backgroundColor = "#1F1F1F";
-      }
-      if (listValue === "Black") {
-        document.getElementById("changetextcolor").style.color = "#E6E6E6";
-        document.body.style.backgroundColor = "black";
-      }
-	}
-  </script>
-
-  <script>
-    function margin(selectTag) {
-      var listValue = selectTag.options[selectTag.selectedIndex].text;
-      document.body.style.width = listValue;
-    }
-  </script>
-  
-  <script>
-    function fontsize(selectTag) {
-      var listValue = selectTag.options[selectTag.selectedIndex].text;
-      document.getElementById("changefontsize").style.fontSize = listValue + "px";
-    }
-  </script>
-
-  <script>
-    function fontfamily(selectTag) {
-      var listValue = selectTag.options[selectTag.selectedIndex].text;
-      document.getElementById("changefontfamily").style.fontFamily = listValue;
-    }
-  </script>
-
-  <script>
-    function fontweight(selectTag) {
-      var listValue = selectTag.options[selectTag.selectedIndex].text;
-      document.getElementById("changefontweight").style.fontWeight = listValue;
-    }
-  </script>
-
-  <script>
-    function scaleXfont(e) {
-      var scaleamount = document.getElementById("scaleXslider").value;
-      document.getElementById("scaleXY").style.transform = "scaleX(" + scaleamount + ")";
-      currentcss();
-    }
-
-    function scaleYfont(e) {
-      var scaleamount = document.getElementById("scaleYslider").value;
-      document.getElementById("scaleXY").style.transform = "scaleY(" + scaleamount + ")";
-      currentcss();
-    }
-
-    function currentcss() {
-    document.getElementById("currentcss").innerText = document.getElementById("scaleXY").style.cssText;
-    }
-  </script>
-
-  <!--script>
-    function scalefont(e) {
-      var scaleXamount = document.getElementById("scaleXslider").value;
-      var scaleYamount = document.getElementById("scaleYslider").value;
-      document.getElementById("scaleXY").style.transform = "scale(" + scaleXamount + ", " + scaleYamount + ")";
-
-      currentcss();
-    }
-
-    function currentcss() {
-    document.getElementById("currentcss").innerText = document.getElementById("scaleXY").style.cssText;
-    }
-  </script-->
-
-  <script>
-    // LikeBtn.com
-    (function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");
-  </script>
 
 
   <div align="center">
