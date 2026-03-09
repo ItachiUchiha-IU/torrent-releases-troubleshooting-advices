@@ -55,7 +55,7 @@
     </div>
     <div id="copied-feedback" class="copied-feedback">Copied!</div>
 
-    <script>
+<script>
     document.addEventListener('DOMContentLoaded', async () => {
         const tableBody = document.querySelector('#hash-table tbody');
         const feedback = document.getElementById('copied-feedback');
@@ -86,17 +86,29 @@
             });
         } catch (e) { console.error(e); }
 
-        // Buttons
+        // --- NEW/FIXED BUTTON LOGIC ---
         document.getElementById('copy-all-btn').onclick = () => {
             const lines = dataLines.filter(d => !d.ScanRoot).map(d => `${d.Date}\t${d.Hash}\t${d.RelativePath}`);
             navigator.clipboard.writeText("Date\tHash\tPath\n" + lines.join('\n'));
             showFeedback("TSV Copied!");
         };
 
+        document.getElementById('copy-all-jsonl-btn').onclick = () => {
+            const jsonl = dataLines.filter(d => !d.ScanRoot).map(d => JSON.stringify(d)).join('\n');
+            navigator.clipboard.writeText(jsonl);
+            showFeedback("JSONL Copied!");
+        };
+
         document.getElementById('export-csv-btn').onclick = () => {
             const csv = dataLines.filter(d => !d.ScanRoot).map(d => `"${d.Date}","${d.Hash}","${d.RelativePath}"`).join('\n');
             const blob = new Blob(["Date,Hash,Path\n" + csv], { type: 'text/csv' });
             const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `hashes.csv`; a.click();
+        };
+
+        document.getElementById('export-jsonl-btn').onclick = () => {
+            const jsonl = dataLines.filter(d => !d.ScanRoot).map(d => JSON.stringify(d)).join('\n');
+            const blob = new Blob([jsonl], { type: 'application/jsonl' });
+            const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `hashes.jsonl`; a.click();
         };
 
         // Search logic
