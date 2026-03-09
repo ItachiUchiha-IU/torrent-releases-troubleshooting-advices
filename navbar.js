@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <span class="likebtn-wrapper" data-theme="custom" data-icon_l="hrt2" data-icon_l_c_v="#ff0000" data-identifier="torrent_advices_main" data-dislike_enabled="false" style="vertical-align:middle; margin-left:10px;"></span>
 
         <div id="toggleIndexMenu">
+            <a href="#" onclick="toggleMenu('toggleIndexMenu')">To Top</a>
             <a href="#media-players" onclick="toggleMenu('toggleIndexMenu')">Media Players</a>
             <a href="#LAV-Splitter" onclick="toggleMenu('toggleIndexMenu')">LAV Splitter</a>
             <a href="#more-troubleshooting-and-advices" onclick="toggleMenu('toggleIndexMenu')">More T&A</a>
