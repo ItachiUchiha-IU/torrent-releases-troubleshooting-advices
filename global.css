@@ -1,0 +1,89 @@
+/* global.css */
+
+/* Fonts */
+@font-face { font-family: Consolas; src: url("/fonts/Consolas-Regular.woff2"); font-weight: normal; font-style: normal; }
+@font-face { font-family: Consolas; src: url("/fonts/Consolas-Bold.woff2"); font-weight: bold; font-style: normal; }
+@font-face { font-family: Consolas; src: url("/fonts/Consolas-Italic.woff2"); font-weight: normal; font-style: italic; }
+@font-face { font-family: 'Cronos Pro'; src: url("/fonts/Cronos Pro Regular.otf"); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'Cronos Pro'; src: url("/fonts/Cronos Pro Bold.otf"); font-weight: bold; font-style: normal; }
+@font-face { font-family: Montserrat; src: url("/fonts/Montserrat-Regular.woff2"); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'Segoe UI'; src: url("/fonts/SegoeUI-Regular.woff2"); font-weight: normal; font-style: normal; }
+@font-face { font-family: Baskervville; src: url("/fonts/Baskervville-Regular.woff2"); font-weight: normal; font-style: normal; }
+@font-face { font-family: Helvetica; src: url("/fonts/HelveticaNowDisplay-Regular.woff2"); font-weight: normal; font-style: normal; }
+
+/* Variables & Body */
+:root {
+  --background-color: #101D29;
+  --color: #e9e9e9;
+  --font-family: Consolas;
+  --font-size: 16.5px;
+  --font-weight: normal;
+  --width: 65%;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--color);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  width: var(--width);
+  margin: auto;
+}
+
+/* Links */
+a:link { color: rgb(0, 121, 255); }
+a:visited { color: rgb(0, 143, 255); }
+
+/* Navigation Styling */
+.topnav {
+    overflow: visible;
+    background-color: #1D2123;
+    top: 0;
+    width: 100%;
+    display: block;
+    position: sticky;
+    left: 0; right: 0;
+    text-align: center;
+    margin: auto;
+    z-index: 1000;
+    border-radius: 6px;
+    padding: .1em .4em;
+}
+
+.topnav a, .settingsmenubutton {
+    display: inline-block;
+    color: #f2f2f2;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Cronos Pro';
+    font-size: 26px;
+    font-weight: 570;
+    border-radius: 6px;
+    padding: .3em .4em;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.topnav a:hover, .settingsmenubutton:hover { background-color: #ddd; color: black; }
+.topnav a.active { background-color: #555555; color: white; }
+
+/* Settings Menu */
+#toggleSettingsMenu {
+    width: 100%;
+    padding: 0px 0px;
+    text-align: center;
+    margin-top: -15px;
+    display: none;
+}
+
+/* Utilities */
+code { background-color: rgb(128 128 128 / .65); border-radius: 6px; padding: .1em .4em; font-size: 95%; }
+textarea { max-width: 100%; }
+
+@media only screen and (max-width: 768px) {
+    body { width: 94%; margin-left: 3%; margin-right: 3%; }
+}
+
+html { scroll-padding-top: 60px; }
