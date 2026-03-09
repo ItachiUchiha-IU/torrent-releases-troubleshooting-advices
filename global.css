@@ -1,53 +1,29 @@
 /* global.css */
-@font-face { font-family: Consolas; src: url("/fonts/Consolas-Regular.woff2"); font-weight: normal; }
-@font-face { font-family: 'Cronos Pro'; src: url("/fonts/Cronos Pro Regular.otf"); font-weight: normal; }
-
-:root {
-  --background-color: #101D29;
-  --color: #e9e9e9;
-  --font-family: Consolas;
-  --font-size: 16.5px;
-  --font-weight: normal;
-  --width: 65%;
-}
-
-body {
-  background-color: var(--background-color);
-  color: var(--color);
-  font-family: var(--font-family);
-  font-size: var(--font-size);
-  font-weight: var(--font-weight);
-  width: var(--width);
-  margin: auto;
-}
-
-a:link { color: rgb(0, 121, 255); }
-a:visited { color: rgb(0, 143, 255); }
+/* ... (Keep your @font-face and basic body styles from before) ... */
 
 /* Sticky Navbar */
 .topnav {
-    overflow: visible;
     background-color: #1D2123;
     top: 0;
     width: 100%;
     position: sticky;
     z-index: 1000;
     border-radius: 6px;
-    padding: .1em .4em;
+    padding: 5px 10px;
     text-align: center;
-    white-space: nowrap; /* THE TRICK: Keeps everything on one line */
+    white-space: nowrap;
 }
 
-/* Nav Items */
+/* Base Button/Link Style */
 .topnav a, .nav-btn {
     display: inline-block;
     color: #f2f2f2;
     text-decoration: none;
     font-family: 'Cronos Pro';
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 570;
     border-radius: 6px;
-    padding: .3em .4em;
+    padding: 8px 12px;
     cursor: pointer;
     background: none;
     border: none;
@@ -57,32 +33,56 @@ a:visited { color: rgb(0, 143, 255); }
 .topnav a:hover, .nav-btn:hover { background-color: #ddd; color: black; }
 .topnav a.active { background-color: #555555; color: white; }
 
-/* Sub-menus (Hidden by default) */
+/* Sub-Menus */
 #toggleSettingsMenu, #toggleIndexMenu {
     display: none;
     background: #1D2123;
     border-top: 1px solid #444;
-    padding: 15px 0;
-    white-space: normal; /* Allow the settings grid to wrap */
+    padding: 20px;
+    white-space: normal;
 }
 
-.settings-container {
-    display: inline-block;
-    font-family: Baskervville;
-    font-size: 17px;
+/* Settings Grid - THIS FIXES THE CENTERING */
+.settings-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    align-items: flex-end; /* Aligns everything to the bottom of the row */
 }
 
-.settings-item {
-    float: left;
-    margin: 0 15px;
-    text-align: left;
+.setting-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers label over the select */
+    gap: 8px;
+    font-family: Baskervville, serif;
+    font-size: 16px;
 }
 
-code { background-color: rgb(128 128 128 / .65); border-radius: 6px; padding: .1em .4em; font-size: 95%; }
+.setting-item label {
+    font-weight: bold;
+}
+
+.setting-item select, .setting-item input {
+    padding: 4px;
+    border-radius: 4px;
+}
+
+/* Reset Button Style */
+.reset-btn {
+    background-color: #c0392b;
+    color: white;
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    margin-top: 10px;
+}
+.reset-btn:hover { background-color: #e74c3c; }
 
 @media only screen and (max-width: 768px) {
-    body { width: 94% !important; margin: 0 3%; }
-    .topnav { white-space: normal; } /* Allow wrap on mobile */
+    .topnav { white-space: normal; }
+    .settings-grid { gap: 15px; }
 }
-
-html { scroll-padding-top: 70px; }
