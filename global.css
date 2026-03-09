@@ -5,6 +5,7 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
+    color-scheme: dark light;
 }
 
 :root {
@@ -35,6 +36,43 @@ body {
   width: var(--width);
   margin: 0 auto !important; /* Centering */
   display: block;
+}
+
+code {
+    background-color: rgb(128 128 128 / .65); 
+    border-radius: 6px; 
+    padding: .1em .4em; 
+    font-size: 95%;
+    font-family: Consolas, monospace;
+}
+
+textarea, select, input[type="text"], input[type="button"] {
+    background-color: rgba(128, 128, 128, 0.2);
+    color: inherit;
+    border: 1px solid rgba(128, 128, 128, 0.4);
+    border-radius: 4px;
+    padding: 5px;
+}
+
+/* Style for "Copy" and "Fake Button" buttons */
+button {
+    background-color: rgba(128, 128, 128, 0.3);
+    color: inherit;
+    border: 1px solid rgba(128, 128, 128, 0.5);
+    border-radius: 4px;
+    padding: 3px 10px;
+    cursor: pointer;
+    font-family: inherit;
+}
+button:hover { background-color: rgba(128, 128, 128, 0.5); }
+
+/* The link buttons (🔗) next to titles */
+.title button {
+    background: none;
+    border: none;
+    font-size: 0.9em;
+    padding: 0;
+    margin-right: 5px;
 }
 
 /* Navigation Bar */
