@@ -2,6 +2,12 @@
 @font-face { font-family: Consolas; src: url("/fonts/Consolas-Regular.woff2"); font-weight: normal; }
 @font-face { font-family: 'Cronos Pro'; src: url("/fonts/Cronos Pro Regular.otf"); font-weight: normal; }
 
+/* THE SCROLL FIX: Add this to the very top */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px; /* Adjust this if your bar gets taller */
+}
+
 :root {
   --background-color: #101D29;
   --color: #e9e9e9;
@@ -11,7 +17,6 @@
   --width: 65%;
 }
 
-/* THE FIX FOR CENTERING: ensures body behaves like your old version */
 body {
   background-color: var(--background-color);
   color: var(--color);
@@ -19,12 +24,9 @@ body {
   font-size: var(--font-size);
   font-weight: var(--font-weight);
   width: var(--width);
-  margin: 0 auto !important; /* Forces centering */
-  display: block; /* Prevents flexbox from taking over the whole page */
+  margin: 0 auto !important; /* Centering */
+  display: block;
 }
-
-a:link { color: rgb(0, 121, 255); }
-a:visited { color: rgb(0, 143, 255); }
 
 /* Navigation Bar */
 .topnav {
@@ -57,7 +59,6 @@ a:visited { color: rgb(0, 143, 255); }
 .topnav a:hover, .nav-btn:hover { background-color: #ddd; color: black; }
 .topnav a.active { background-color: #555555; color: white; }
 
-/* Sub-Menus */
 #toggleSettingsMenu, #toggleIndexMenu {
     display: none;
     background: #1D2123;
@@ -66,7 +67,6 @@ a:visited { color: rgb(0, 143, 255); }
     white-space: normal;
 }
 
-/* THE FIX FOR ALIGNMENT AND COLORS */
 .settings-grid {
     display: flex;
     flex-wrap: wrap;
@@ -82,12 +82,10 @@ a:visited { color: rgb(0, 143, 255); }
     gap: 5px;
     font-family: Baskervville, serif;
     font-size: 16px;
-    color: inherit; /* FIX: Makes labels whitish/correct color */
+    color: inherit;
 }
 
-.setting-item label {
-    color: inherit; /* FIX: Ensures labels are not black */
-}
+.setting-item label { color: inherit; }
 
 .reset-btn {
     background-color: #c0392b;
