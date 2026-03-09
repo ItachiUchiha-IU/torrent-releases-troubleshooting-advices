@@ -44,7 +44,7 @@
 
 
 
-      <h2 class="title" id="media-players" style="margin-top: 40px;"><button onclick="copyLink('media-players')">&#128279</button> Media Players (<strong>highly recommended</strong>):</h2>
+      <h2 class="title" id="media-players" style="margin-top: 40px;"><button onclick="copyLink('media-players')">&#128279</button> Media Players (highly recommended):</h2>
       <ul>
 
         <li><a href="https://mpv.rocks/#vlc-issues" target="_blank">DO NOT USE VLC!!</a>
@@ -58,13 +58,14 @@
         
         <li><a href="https://mpv.io/" target="_blank">MPV</a> (the best media player)
         <ul>
-          <li>the best site to approach MPV: <a href="https://mpv.rocks/" target="_blank">https://mpv.rocks/</a></li>
+          <li>the best site for non-expert users to approach MPV: <a href="https://mpv.rocks/" target="_blank">https://mpv.rocks/</a></li>
           <li>other sites/guides:
           <ul>
             <li><a href="https://thewiki.moe/tutorials/mpv/" target="_blank">https://thewiki.moe/tutorials/mpv/</a></li>
             <li><a href="https://iamscum.wordpress.com/guides/videoplayback-guide/" target="_blank">https://iamscum.wordpress.com/guides/videoplayback-guide/</a></li>
           </ul>
           </li>
+          <li>for the best experience, it's recommended to use the <a href="#MPV_Track_Auto-Selection" target="_self">Advanced Track Auto-Selector</a></li>
         </ul>
         </li>
         <br>
@@ -110,34 +111,33 @@
           <li>change the settings in <code>Player</code> and in <code>User interface</code> to your liking</li>
         </ul>
         </li>
-        <br>
 
       </ul>
 
 
 
-      <h2 class="title" id="Track_Auto-Select" style="margin-top: 40px;"><button onclick="copyLink('Track_Auto-Select')">&#128279</button> Track Auto-Select (<strong>highly recommended</strong>):</h2>
+      <h2 class="title" id="Track_Auto-Selection" style="margin-top: 40px;"><button onclick="copyLink('Track_Auto-Selection')">&#128279</button> Track Auto-Selection (<strong>highly recommended</strong>):</h2>
+      <em>Automatically load your preferred languages for both audio and subtitles. The player will distinguish between full dialogue and signs/songs based on your audio selection, even updating subtitles instantly when you switch audio tracks.</em>
 
 
-      <h3 class="title" id="MPV_Track_Auto-Select" style="margin-top: 40px;">
-        <button onclick="copyLink('MPV_Track_Auto-Select')">&#128279</button> MPV Track Auto-Select:
+      <h3 class="title" id="MPV_Track_Auto-Selection" style="margin-top: 20px;">
+        <button onclick="copyLink('MPV_Track_Auto-Selection')">&#128279</button> MPV Track Auto-Selection:
       </h3>
       <ul>
         <li>
-          <strong>Advanced Track Auto-Select (recommended):</strong><br>
-          Download or save the <code>.lua</code> file at <a href="/MPV_Track_Auto-Select" target="_blank">/MPV_Track_Auto-Select</a> 
+          <strong>Advanced Track Auto-Selector (.lua script) (highly recommended):</strong><br>
+          Download or save the <code>.lua</code> file at <a href="/MPV_Track_Auto-Selection" target="_blank">/MPV_Track_Auto-Selection</a> 
           and put it into your <code>scripts</code> folder inside your mpv installation path 
           (e.g. <code>C:\Program Files\mpv\portable_config\scripts</code>).
         </li>
         <li>
-          Basic Track Auto-Select:<br>
-          set your preferred languages inside the <code>mpv.conf</code> file or use an app manager like <a href="https://mpv.rocks/manager/" target="_blank">https://mpv.rocks/manager/</a>
+          Very Basic Track Auto-Selection (mpv.conf):<br>
+          (can't update when switching audio tracks, can't distinguish between full dialogue and signs/songs) set your preferred languages inside the <code>mpv.conf</code> file or use an app manager to do it like <a href="https://mpv.rocks/manager/" target="_blank">https://mpv.rocks/manager/</a>
         </li>
       </ul>
 
 
       <h3 class="title" id="LAV-Splitter" style="margin-top: 40px;"><button onclick="copyLink('LAV-Splitter')">&#128279</button> LAV Splitter (for MPC-BE/HC):</h3>
-      <em>with LAV Splitter the media player can open the files in the languages u prefer (both audio and subs) and select the full subs or signs based on the audio language selected, and can even switch the subtitles automatically when u change audio language!<br>MPV can do this with the use of personalized scripts, no need for any external tool</em>
       <ul>
         <li>on <code>MPC-BE</code>, go to <code>Options -&gt; External Filters</code> and click on <code>Add Filter</code>, then add the <code>Lav Splitter</code> filter and open it
         <ul>
