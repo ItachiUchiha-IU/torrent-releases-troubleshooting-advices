@@ -146,6 +146,19 @@ function copyLink(id) {
 function copyITAstring() { let t = document.getElementById("ITAstring"); t.select(); document.execCommand("copy"); }
 function copyENGstring() { let t = document.getElementById("ENGstring"); t.select(); document.execCommand("copy"); }
 
+// Unique logic for commands (page2.html)
+function copyTriggerCmd() {
+    const cmd = document.getElementById('cf-trigger').textContent;
+    navigator.clipboard.writeText(cmd).then(() => {
+        // Re-using your existing feedback logic
+        const feedback = document.getElementById('copied-feedback');
+        if (feedback) {
+            feedback.textContent = "Commands Copied!";
+            feedback.style.opacity = '1';
+            setTimeout(() => { feedback.style.opacity = '0'; }, 2000);
+        }
+    });
+}
 
 async function fetchLastUpdated() {
     const linkElement = document.getElementById('last-updated-link');
