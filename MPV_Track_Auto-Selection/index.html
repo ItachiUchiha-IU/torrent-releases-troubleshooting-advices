@@ -93,7 +93,8 @@
             Save it as <strong><code>track-selector.lua</code></strong> in your mpv <code>scripts</code> folder. 
             <br>(e.g. <code>C:\Program Files\mpv\portable_config\scripts</code>)
             <br><br>
-            <strong>Note:</strong> This version is pre-configured for <strong>Italian</strong>. 
+            <strong>Notes:</strong>
+            <br>This version is pre-configured for <strong>Italian</strong>. 
             If you prefer a different language, you must manually edit 
             the <code>preferred_lang_codes</code>, 
             <code>preferred_lang_Forced_Subs_Keywords</code> and 
@@ -101,12 +102,10 @@
             sections inside the <strong>User Configuration</strong>.
             <br><br>
             If you want to prioritize subtitles from a specific region, remember to put the <strong>regional code</strong> as the first choice, followed by general fallbacks (e.g., <code>es-419</code> for Latin American Spanish, then <code>es</code> and <code>spa</code>).
+            <br>E.g. Language (preferred_lang_codes):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <code>{"it", "ita"}</code> &rarr; <code>{"es-419", "es", "spa"}</code>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Forced (preferred_lang_Forced_Subs_Keywords): <code>{"cartell", "forzat"}</code> &rarr; <code>{"whatever", "keywords"}</code>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Normal (preferred_lang_Normal_Subs_Keywords): <code>{"dialog", "complet"}</code> &rarr; <code>{"whatever", "keywords"}</code>
         </p>
-        <div style="font-family: monospace; font-size: 0.9em; background: rgba(128,128,128,0.1); padding: 10px; border-radius: 4px;">
-            E.g. Language (preferred_lang_codes)             : <code>{"it", "ita"}</code> &rarr; <code>{"es-419", "es", "spa"}</code>
-            <br>E.g. Forced (preferred_lang_Forced_Subs_Keywords): <code>{"cartell", "forzat"}</code> &rarr; <code>{"whatever", "keywords"}</code>
-            <br>E.g. Normal (preferred_lang_Normal_Subs_Keywords): <code>{"dialog", "complet"}</code> &rarr; <code>{"whatever", "keywords"}</code>
-        </div>
     </div>
 
     <div class="code-container">
