@@ -6,7 +6,14 @@
 </head>
     <body>
         
-    empty
+    <div style="margin-top: 80px; padding: 15px; border-top: 1px dashed rgba(128,128,128,0.5);">
+        <p style="font-size: 0.9em;">
+            <strong>Admin Note:</strong> If Cloudflare doesn't detect a push, open the <strong>Terminal</strong> in VS Code 
+            (press <code>Ctrl + `</code> or go to <code>Terminal -> New Terminal</code>) and run:
+        </p>
+        <pre id="cf-trigger" style="background: rgba(128,128,128,0.2); padding: 10px; border-radius: 5px; cursor: pointer; font-size: 0.85em; border: 1px solid rgba(128,128,128,0.3);" onclick="copyTriggerCmd()">git commit --allow-empty -m "trigger cloudflare"&#10;git push origin test1</pre>
+        <small style="opacity: 0.6;">(Click the gray box above to copy the commands)</small>
+    </div>
 
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b1ec2ea52e064507896ad4099735d4e2"}'></script><!-- End Cloudflare Web Analytics -->
 

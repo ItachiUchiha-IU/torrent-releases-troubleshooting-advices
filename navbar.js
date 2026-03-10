@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <div class="topnav">
         <button class="nav-btn" onclick="toggleMenu('toggleIndexMenu')">Page INDEX</button>
         <a href="/" class="${isHome ? 'active' : ''}">Home Page</a>
+        <a href="/MPV_Track_Auto-Selection" class="${window.location.pathname.includes('/MPV_Track_Auto-Selection') ? 'active' : ''}">MPV .lua</a>
         <a href="/Hashes" class="${window.location.pathname.includes('/Hashes') ? 'active' : ''}">Hashes</a>
         <button class="nav-btn" onclick="toggleMenu('toggleSettingsMenu')">Layout</button>
         <span class="likebtn-wrapper" data-theme="custom" data-icon_l="hrt2" data-icon_l_c_v="#ff0000" data-identifier="ghwuirghnpwiugbnerwugrbjn" data-dislike_enabled="false" style="vertical-align:middle; margin-left:10px;"></span>
@@ -13,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div id="toggleIndexMenu">
             <a href="#" onclick="toggleMenu('toggleIndexMenu')">To Top</a>
             ${isHome ? `<a href="#media-players" onclick="toggleMenu('toggleIndexMenu')">Media Players</a>` : ''}
-            ${isHome ? `<a href="#LAV-Splitter" onclick="toggleMenu('toggleIndexMenu')">LAV Splitter</a>` : ''}
+            ${isHome ? `<a href="#Track_Auto-Selection" onclick="toggleMenu('toggleIndexMenu')">Track Auto-Selection</a>` : ''}
             ${isHome ? `<a href="#more-troubleshooting-and-advices" onclick="toggleMenu('toggleIndexMenu')">More T&A</a>` : ''}
         </div>
 
@@ -122,14 +123,42 @@ function applySavedSettings() {
 }
 
 // Global UI helpers
-function doPlus(){ document.getElementById("fakebutton").value = ++document.getElementById("fakebutton").value; }
-function copyText0(){navigator.clipboard.writeText(window.location.origin + "/#");}
-function copyText1(){navigator.clipboard.writeText(window.location.origin + "/#media-players");}
-function copyText2(){navigator.clipboard.writeText(window.location.origin + "/#LAV-Splitter");}
-function copyText3(){navigator.clipboard.writeText(window.location.origin + "/#my-strings-for-lav-splitter");}
-function copyText4(){navigator.clipboard.writeText(window.location.origin + "/#more-troubleshooting-and-advices");}
-function copyITAstring() {let t = document.getElementById("ITAstring"); t.select(); document.execCommand("copy");}
-function copyENGstring() {let t = document.getElementById("ENGstring"); t.select(); document.execCommand("copy");}
+function doPlus(){ 
+    const el = document.getElementById("fakebutton");
+    if(el) el.value = ++el.value; 
+}
+
+// Universal copy function for section links
+function copyLink(id) {
+    const url = window.location.origin + window.location.pathname + (id ? "#" + id : "");
+    
+    navigator.clipboard.writeText(url).then(() => {
+        const feedback = document.getElementById('copied-feedback');
+        if (feedback) {
+            feedback.textContent = "Link Copied!";
+            feedback.style.opacity = '1';
+            setTimeout(() => { feedback.style.opacity = '0'; }, 2000);
+        }
+    });
+}
+
+// Unique logic for textareas
+function copyITAstring() { let t = document.getElementById("ITAstring"); t.select(); document.execCommand("copy"); }
+function copyENGstring() { let t = document.getElementById("ENGstring"); t.select(); document.execCommand("copy"); }
+
+// Unique logic for commands (page2.html)
+function copyTriggerCmd() {
+    const cmd = document.getElementById('cf-trigger').textContent;
+    navigator.clipboard.writeText(cmd).then(() => {
+        // Re-using your existing feedback logic
+        const feedback = document.getElementById('copied-feedback');
+        if (feedback) {
+            feedback.textContent = "Commands Copied!";
+            feedback.style.opacity = '1';
+            setTimeout(() => { feedback.style.opacity = '0'; }, 2000);
+        }
+    });
+}
 
 async function fetchLastUpdated() {
     const linkElement = document.getElementById('last-updated-link');
@@ -157,5 +186,4 @@ async function fetchLastUpdated() {
     }
 }
 
-// Make sure to call it!
 document.addEventListener("DOMContentLoaded", fetchLastUpdated);

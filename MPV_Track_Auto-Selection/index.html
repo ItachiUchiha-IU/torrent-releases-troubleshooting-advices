@@ -1,0 +1,662 @@
+<!-- Hashes/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MPV Track Auto-Select Script</title>
+    <link rel="stylesheet" href="/global.css">
+    <script src="/navbar.js"></script>
+    
+    <!-- Prism.js CSS for Syntax Highlighting (Colors) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+    <style>
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            background: rgba(128, 128, 128, 0.1);
+            padding: 10px 15px;
+            border-radius: 8px 8px 0 0;
+            border: 1px solid rgba(128, 128, 128, 0.3);
+            border-bottom: none;
+        }
+
+        .code-container {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        /* This controls the "impagination" (scroll window) */
+        pre[class*="language-"] {
+            margin-top: 0 !important;
+            border-radius: 0 0 8px 8px !important;
+            max-height: 600px; /* Limits height so page isn't infinitely long */
+            overflow: auto;
+            border: 1px solid rgba(128, 128, 128, 0.3) !important;
+        }
+
+        .copy-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .copy-btn:hover { background-color: #2980b9; }
+
+        .script-info {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .copied-feedback {
+            position: fixed; 
+            bottom: 40px; 
+            left: 50%; 
+            transform: translateX(-50%);
+            background-color: #2c3e50; 
+            color: #ffffff; 
+            padding: 12px 24px; 
+            border-radius: 8px;
+            opacity: 0; /* Hidden by default */
+            transition: opacity 0.3s; 
+            pointer-events: none; 
+            z-index: 99999; 
+            border: 1px solid #3498db;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+  <div id="changetextcolor">
+  <div id="scaleXY">
+  <div id="changemargin">
+  <div id="changefontsize">
+  <div id="changefontfamily">
+  <div id="changefontweight">
+  <div style="margin-left:1%;margin-right:1%; padding-top: 20px;">
+
+    <h2 class="title" id="MPV-Track-Selection-Script-lua"><button onclick="copyLink('MPV-Track-Selection-Script-lua')">&#128279</button> MPV Track Selection Script (.lua)</h2>
+    
+    <div class="script-info">
+        <p>
+            This script automates audio and subtitle selection in MPV.
+            <br>MPV will automatically load your preferred languages for both audio and subtitles. The player will also distinguish between full dialogue and signs/songs based on your audio selection, even updating subtitles instantly when you switch audio tracks.
+            <br><br>
+            Save it as <strong><code>track-selector.lua</code></strong> in your mpv <code>scripts</code> folder. 
+            <br>(e.g. <code>C:\Program Files\mpv\portable_config\scripts</code>)
+            <br><br>
+            <hr>
+            <br>
+            <strong>Notes:</strong>
+            <br>This version is pre-configured for <strong>Italian</strong>. 
+            If you prefer a different language, you must manually edit 
+            the <code>preferred_lang_codes</code>, 
+            <code>preferred_lang_Forced_Subs_Keywords</code> and 
+            <code>preferred_lang_Normal_Subs_Keywords</code> 
+            sections inside the <strong>User Configuration</strong>.
+            <br><br>
+            If you want to prioritize subtitles from a specific region, remember to put the <strong>regional code</strong> as the first choice, followed by general fallbacks (e.g., <code>es-419</code> for Latin American Spanish, then <code>es</code> and <code>spa</code>).
+            <br><br>
+            E.g. Language (<code>preferred_lang_codes</code>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <code>{"it", "ita"}</code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &rarr; <code>{"es-419", "es", "spa"}</code>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Forced (<code>preferred_lang_Forced_Subs_Keywords</code>): <code>{"cartell", "forzat"}</code> &rarr; <code>{"whatever", "keywords"}</code>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Normal (<code>preferred_lang_Normal_Subs_Keywords</code>): <code>{"dialog", "complet"}</code> &rarr; <code>{"whatever", "keywords"}</code>
+            <br><br>
+        </p>
+    </div>
+
+    <div class="code-container">
+        <div class="code-header">
+            <span>track-selector.lua</span>
+            <button class="copy-btn" onclick="copyLuaCode()">Copy Code</button>
+			<button class="copy-btn" onclick="downloadLuaCode()" style="background-color: #27ae60; margin-left: 5px;">Download track-selector.lua</button>
+        </div>
+        <!-- Note: We use the <pre> and <code> tags for Prism.js -->
+        <pre><code id="lua-script" class="language-lua">-- ############ USER CONFIGURATION ############
+
+-- Set your preferred language codes here. All script logic will adapt to this.
+-- The first code is the primary choice for keyword lookups (e.g., "it" for Italian).
+-- To prioritize a specific region, put the regional code first followed by general
+-- fallbacks (e.g., {"es-419", "es", "spa"} for Latin American Spanish).
+local preferred_lang_codes = {"it", "ita"}
+
+-- Set to true to prioritize preferred language audio ONLY if it is tagged as a "default" track.
+-- Set to false to always prioritize preferred language audio if it exists in the file.
+local prioritize_preferred_lang_audio_only_if_default = true -- default = true
+
+-- Set audio priorities.
+-- This list is used as a fallback only if:
+-- 1. The file does not contain any audio tracks matching "preferred_lang_codes".
+-- 2. "prioritize_preferred_lang_audio_only_if_default" is true and the preferred 
+--    language tracks are not tagged as "default".
+local audio_priority = {
+    {"ja", "jpn", "jp"},   -- Japanese
+    {"ko", "kor"},         -- Korean
+    preferred_lang_codes,  -- Your preferred language
+    {"en", "eng"}          -- English
+}
+
+-- Set keywords for the preferred language (Forced Subs)
+local preferred_lang_Forced_Subs_Keywords = {"cartell", "sign", "forced", "forzat"}
+
+-- Set keywords for the preferred language (Normal Subs)
+local preferred_lang_Normal_Subs_Keywords = {"dialog", "complet", "full"}
+
+-- Set keywords for English (Forced Subs)
+local English_Forced_Subs_Keywords = {"sign", "forced"}
+
+-- Set keywords for English (Normal Subs)
+local English_Normal_Subs_Keywords = {"honorific", "dialog", "full", "complet"}
+
+-- Set to true to prioritize "enm" (Middle English / Honorifics) subtitles over "en","eng" (English) subtitles.
+-- Set to false to treat "enm" just like any other English subtitle.
+local prioritize_honorifics = true -- default = true
+
+-- If no Forced subs are picked through the rules, fall back to the first forced sub available
+local fallback_to_any_forced_subs = false -- default = false
+
+-- ######### USER CONFIGURATION - END #########
+
+
+
+--[[
+-- =================================================================================================
+--                                  SCRIPT LOGIC - DETAILED EXPLANATION
+-- =================================================================================================
+--
+-- This script automates the selection of audio and subtitle tracks in mpv based on a
+-- user-defined hierarchy of preferences. Its goal is to provide a "set it and forget it"
+-- experience by intelligently choosing the best tracks for any given media file.
+--
+--
+-- ### Core Concepts ###
+--
+-- 1. Event-Driven: The script doesn't run from top to bottom once. Instead, it waits for
+--    specific events to happen in the player. The main events are:
+--    * `file-loaded`: When you open a new video, this triggers the entire logic flow.
+--    * `aid` changes: When the audio track is changed (either by the script or manually
+--      by you), the subtitle selection logic runs again to find the best match for the
+--      new audio language.
+--    * `sid` changes: A small helper watches for manual subtitle selections to ensure they
+--      are always visible.
+--
+-- 2. Language Matching: The script supports both base language codes (like "it", "en") and
+--    region-specific codes (like "it-IT", "en-US"). It does this by checking if a track's
+--    language code either matches exactly OR starts with the base code followed by a dash.
+--
+-- 3. Keyword-Based Selection: Beyond language codes, the script can inspect the "title" of
+--    a track for specific keywords (e.g., "Forced", "Signs", "Full", "Dialog") to make
+--    more granular decisions. This is crucial for distinguishing between different types
+--    of subtitles or to find wrongly tagged tracks.
+--
+--
+-- ### Execution Flow ###
+--
+-- When a video is loaded (`file-loaded` event):
+--
+-- #### STEP 1: AUDIO SELECTION (`set_preferred_audio` function)
+--
+-- The script first tries to select the best audio track. The logic depends on the
+-- `prioritize_preferred_lang_audio_only_if_default` setting:
+--
+--   * IF `true` (Default behavior):
+--     1. It looks for an audio track that is BOTH in your preferred language AND has the
+--        "default" flag set in the media container. This is the ideal scenario.
+--     2. If not found, it falls back to finding ANY track with the "default" flag, in case
+--        the language code is missing or incorrect.
+--
+--   * IF `false`:
+--     1. It simply finds the very FIRST audio track that matches your preferred language,
+--        ignoring whether it's the "default" track or not.
+--
+--   * AUDIO FALLBACK:
+--     If neither of the above methods selects a track, the script will loop through the
+--     `audio_priority` list (`ja` -> `ko` -> your preferred lang -> `en`) and pick the first
+--     one it finds.
+--
+--
+-- #### STEP 2: SUBTITLE SELECTION (`update_subtitle` function)
+--
+-- After the audio track is set, this function runs to find the perfect subtitle match. This
+-- is the most complex part of the script.
+--
+--   * A. Get Context:
+--     - It first determines the language of the CURRENTLY PLAYING audio track. This language
+--       is the primary context for all subtitle decisions.
+--     - If no audio is playing, subtitles are turned off, and the function stops.
+--
+--   * B. "Strict Mode" vs. "Normal Mode":
+--     - The script has an internal concept of a "strict mode". This mode is activated if the
+--       audio is in a language you are presumed to understand (your preferred language or English).
+--     - In "strict mode", the script assumes you ONLY want "Forced" subtitles (for signs,
+--       on-screen text, or non-English dialogue). It will NOT look for full dialogue subtitles.
+--     - If the audio is in any other language (e.g., Japanese), "strict mode" is off, and the
+--       script assumes you need full dialogue subtitles to understand the content.
+--
+--   * C. Subtitle Search Logic:
+--     The script follows a long, cascading set of rules to find a subtitle track (`sid`).
+--     As soon as a rule finds a match, the search stops.
+--
+--     -- IF AUDIO IS PREFERRED LANGUAGE or ENGLISH ("Strict Mode"): --
+--        The goal is to find FORCED subtitles ONLY.
+--
+--        1. Preferred Language Forced Subs:
+--           - Seeks PREFERRED language subs with the "forced" flag AND matching keywords (e.g., "cartell").
+--           - Then, PREFERRED language subs with just the "forced" flag.
+--           - Then, PREFERRED language subs with just the keywords (in case the flag is missing).
+--
+--        2. English Forced Subs (prioritizing Honorifics if enabled):
+--           - It repeats the same 3-step search (flag+keyword, flag only, keyword only) for
+--             `enm` (Honorifics), and then for `en`/`eng` (standard English).
+--
+--        3. Final Forced Fallback:
+--           - If still nothing is found, it will look for ANY subtitle track with the "forced"
+--             flag, in the order defined by `final_fallback_sub_priority`.
+--
+--
+--     -- IF AUDIO IS OTHER LANGUAGE (e.g., Japanese) ("Normal Mode"): --
+--        The goal is to find FULL DIALOGUE subtitles.
+--
+--        1. Preferred Language Full Subs:
+--           - Seeks PREFERRED language subs with normal keywords (e.g., "dialog", "full").
+--           - Then, ANY PREFERRED language sub if the keyword search fails.
+--
+--        2. English Full Subs (prioritizing Honorifics if enabled):
+--           - It repeats the same 2-step search (keyword, then any) for `enm` (Honorifics),
+--             and then for `en`/`eng` (standard English).
+--
+--        3. Final Full Sub Fallback:
+--           - If still nothing is found, it picks the first available subtitle from the
+--             `final_fallback_sub_priority` list.
+--
+--   * D. Final Action:
+--     - If a matching subtitle track (`sid`) was found, it is selected and subtitles are made visible.
+--     - If no suitable track was found after all the checks, subtitles are turned off.
+--
+-- =================================================================================================
+--]]
+
+
+
+-- ######### SCRIPT LOGIC (No need to edit below) #########
+
+-- Derive primary code from the user setting for keyword map lookups
+local preferred_lang_primary_code = preferred_lang_codes[1]
+
+local audio_priority_keywords_map = {
+    [preferred_lang_primary_code] = {preferred_lang_codes[2]} -- e.g., ["it"] = {"ita"}
+}
+
+-- Build subtitle priorities dynamically from user settings
+local sub_priority_PREFERRED_LANG = { preferred_lang_codes }
+
+local sub_priority_ENM = {
+    {"enm"}                -- Middle English (honorifics)
+}
+
+local sub_priority_STANDARD_ENG = {
+    {"en", "eng"}          -- English
+}
+
+-- Build the final fallback list dynamically
+local final_fallback_sub_priority = { preferred_lang_codes }
+if prioritize_honorifics then
+    -- If true, search for 'enm' first, then 'en'/'eng' as a fallback.
+    table.insert(final_fallback_sub_priority, {"enm"})
+    table.insert(final_fallback_sub_priority, {"en", "eng"})
+else
+    -- If false, search for all English variants together.
+    table.insert(final_fallback_sub_priority, {"en", "eng", "enm"})
+end
+
+
+local forced_subs_keywords_map = {
+    [preferred_lang_primary_code] = preferred_lang_Forced_Subs_Keywords,
+    [preferred_lang_codes[2]] = preferred_lang_Forced_Subs_Keywords,
+    ["enm"] = English_Forced_Subs_Keywords,
+    ["en"] = English_Forced_Subs_Keywords,
+    ["eng"] = English_Forced_Subs_Keywords
+}
+
+local normal_subs_keywords_map = {
+    [preferred_lang_primary_code] = preferred_lang_Normal_Subs_Keywords,
+    [preferred_lang_codes[2]] = preferred_lang_Normal_Subs_Keywords,
+    ["enm"] = English_Normal_Subs_Keywords,
+    ["en"] = English_Normal_Subs_Keywords,
+    ["eng"] = English_Normal_Subs_Keywords
+}
+
+-- Helper function to check for base language code match (e.g., "it-it" matches "it")
+local function lang_matches(track_lang, target_lang)
+    -- Direct match (e.g., "it" == "it")
+    if track_lang == target_lang then
+        return true
+    end
+    -- Region-specific match (e.g., "it-it" starts with "it-")
+    if track_lang:sub(1, #target_lang + 1) == target_lang .. "-" then
+        return true
+    end
+    return false
+end
+
+-- Helper function to check if a language is in a list of codes
+local function is_lang_in_list(lang_to_check, lang_list)
+    for _, lang in ipairs(lang_list) do
+        if lang_matches(lang_to_check, lang) then
+            return true
+        end
+    end
+    return false
+end
+
+local function track_has_keywords(track, keywords)
+    if not keywords then return false end
+    local title = (track.title or ""):lower()
+    local filename = track.external and (track.external_filename or ""):lower() or ""
+    for _, kw in ipairs(keywords) do
+        if title:find(kw:lower(), 1, true) or filename:find(kw:lower(), 1, true) then
+            return true
+        end
+    end
+    return false
+end
+
+-- THIS FUNCTION HAS BEEN CORRECTED TO BE STRICTER
+local function find_matching_track(tracks, track_type, lang_list, require_forced, keywords)
+    -- Split tracks into non-forced and forced groups
+    local non_forced_tracks = {}
+    local forced_tracks = {}
+    for _, track in ipairs(tracks) do
+        if track.type == track_type then
+            if track.forced then
+                table.insert(forced_tracks, track)
+            else
+                table.insert(non_forced_tracks, track)
+            end
+        end
+    end
+
+    -- This logic is now stricter. It will only search the category specified by require_forced.
+    local tracks_to_search = require_forced and forced_tracks or non_forced_tracks
+
+    for _, track in ipairs(tracks_to_search) do
+        local track_lang = (track.lang or ""):lower()
+        for _, lang_group in ipairs(lang_list) do
+            for _, lang in ipairs(lang_group) do
+                if lang == "*" or lang_matches(track_lang, lang) then
+                    if not keywords or track_has_keywords(track, keywords) then
+                        return track.id
+                    end
+                end
+            end
+        end
+    end
+    -- If nothing is found, it will implicitly return nil.
+end
+
+local function set_preferred_audio()
+    local tracks = mp.get_property_native("track-list", {})
+    local aid_to_set = nil
+
+    if prioritize_preferred_lang_audio_only_if_default then
+        -- TRUE CASE: Requires the preferred language track to be 'default'.
+        -- Check for PREFERRED_LANG default audio first by ISO code.
+        for _, track in ipairs(tracks) do
+            if track.type == "audio" then
+                local lang = (track.lang or ""):lower()
+                if is_lang_in_list(lang, preferred_lang_codes) and track.default then
+                    aid_to_set = track.id
+                    break
+                end
+            end
+        end
+
+        -- If no ISO-code match, look for a default audio track whose label/title contains any keyword.
+        if not aid_to_set then
+            for _, track in ipairs(tracks) do
+                if track.type == "audio" and track.default then
+                    local text = ((track.title or "") .. " " .. (track.label or "")):lower()
+                    for lang_code, kw_list in pairs(audio_priority_keywords_map) do
+                        for _, kw in ipairs(kw_list) do
+                            if text:find(kw:lower(), 1, true) then
+                                aid_to_set = track.id
+                                break
+                            end
+                        end
+                        if aid_to_set then break end
+                    end
+                    if aid_to_set then break end
+                end
+            end
+        end
+    else
+        -- FALSE CASE: Prioritizes preferred language audio even if it's not default.
+        for _, track in ipairs(tracks) do
+            if track.type == "audio" then
+                local lang = (track.lang or ""):lower()
+                if is_lang_in_list(lang, preferred_lang_codes) then
+                    aid_to_set = track.id
+                    break -- Found the first preferred language track, that's what we want.
+                end
+            end
+        end
+    end
+
+    -- Final step: Apply the chosen track or fall back to the general audio_priority list.
+    if aid_to_set then
+        mp.set_property("aid", aid_to_set)
+    else
+        local fallback_aid = find_matching_track(tracks, "audio", audio_priority, false)
+        if fallback_aid then
+            mp.set_property("aid", fallback_aid)
+        end
+    end
+end
+
+local function update_subtitle()
+    local tracks = mp.get_property_native("track-list", {})
+    local current_aid = mp.get_property_number("aid")
+    local audio_lang = nil
+    local strict_mode = false
+
+    -- if no audio track is selected, turn off subs and exit
+    if not current_aid or current_aid == 0 then
+        mp.set_property("sid", "no")
+        mp.set_property("sub-visibility", "no")
+        return
+    end
+
+	-- Get current audio language
+	if current_aid then
+		for _, track in ipairs(tracks) do
+			if track.id == current_aid and track.type == "audio" then
+				audio_lang = (track.lang or ""):lower()
+				
+				-- If lang is empty, try detecting it in title/label using our keyword map
+				if audio_lang == "" then
+					local text = ((track.title or "") .. " " .. (track.label or "")):lower()
+					for lang_code, kw_list in pairs(audio_priority_keywords_map) do
+						for _, kw in ipairs(kw_list) do
+							if text:find(kw, 1, true) then
+								audio_lang = lang_code  -- use the language key from the map
+								break
+							end
+						end
+						if audio_lang ~= "" then break end
+					end
+				end
+				break
+			end
+		end
+	end
+
+    local sid = nil
+
+    -- 1. Selecting Forced Subs for PREFERRED LANGUAGE Audio
+    if is_lang_in_list(audio_lang, preferred_lang_codes) then
+        strict_mode = true
+        -- Preferred Language
+        sid = find_matching_track(tracks, "sub", sub_priority_PREFERRED_LANG, true, forced_subs_keywords_map[preferred_lang_primary_code])                       -- 1. Flag + Keyword
+        if not sid then sid = find_matching_track(tracks, "sub", sub_priority_PREFERRED_LANG, true) end                                                          -- 2. Flag Only
+        if not sid then sid = find_matching_track(tracks, "sub", sub_priority_PREFERRED_LANG, false, forced_subs_keywords_map[preferred_lang_primary_code]) end  -- 3. Keyword Only (out of the non-Forced subs)
+        
+        -- Middle English (if enabled)
+        if prioritize_honorifics then
+            if not sid then sid = find_matching_track(tracks, "sub", sub_priority_ENM, true, forced_subs_keywords_map.enm) end       -- 1. Flag + Keyword
+            if not sid then sid = find_matching_track(tracks, "sub", sub_priority_ENM, true) end                                     -- 2. Flag Only
+            if not sid then sid = find_matching_track(tracks, "sub", sub_priority_ENM, false, forced_subs_keywords_map.enm) end      -- 3. Keyword Only (out of the non-Forced subs)
+        end
+        
+        -- Standard English
+        if not sid then sid = find_matching_track(tracks, "sub", sub_priority_STANDARD_ENG, true, forced_subs_keywords_map.en) end   -- 1. Flag + Keyword
+        if not sid then sid = find_matching_track(tracks, "sub", sub_priority_STANDARD_ENG, true) end                                -- 2. Flag Only
+        if not sid then sid = find_matching_track(tracks, "sub", sub_priority_STANDARD_ENG, false, forced_subs_keywords_map.en) end  -- 3. Keyword Only (out of the non-Forced subs)
+		
+        -- Fallback to final_fallback_sub_priority order
+        if not sid then
+            sid = find_matching_track(tracks, "sub", final_fallback_sub_priority, true)
+        end
+		
+        -- Fallback to any Forced subs (if enabled)
+		if not sid and fallback_to_any_forced_subs then
+			sid = find_matching_track(tracks, "sub", {{"*"}}, true)
+		end
+    end
+
+	-- 2. Selecting Forced Subs for English Audio (Forced ENG Only, prioritizing 'enm' if enabled)
+	if not sid and audio_lang and (audio_lang == "en" or audio_lang == "eng") then
+		strict_mode = true
+        -- Middle English (if enabled)
+        if prioritize_honorifics then
+            sid = find_matching_track(tracks, "sub", sub_priority_ENM, true, forced_subs_keywords_map.enm)                           -- 1. Flag + Keyword
+            if not sid then sid = find_matching_track(tracks, "sub", sub_priority_ENM, true) end                                     -- 2. Flag Only
+            if not sid then sid = find_matching_track(tracks, "sub", sub_priority_ENM, false, forced_subs_keywords_map.enm) end      -- 3. Keyword Only (out of the non-Forced subs)
+        end
+		
+        -- Standard English
+        if not sid then sid = find_matching_track(tracks, "sub", sub_priority_STANDARD_ENG, true, forced_subs_keywords_map.en) end   -- 1. Flag + Keyword
+        if not sid then sid = find_matching_track(tracks, "sub", sub_priority_STANDARD_ENG, true) end                                -- 2. Flag Only
+        if not sid then sid = find_matching_track(tracks, "sub", sub_priority_STANDARD_ENG, false, forced_subs_keywords_map.en) end  -- 3. Keyword Only (out of the non-Forced subs)
+		
+        -- Fallback to final_fallback_sub_priority order
+        if not sid then
+            sid = find_matching_track(tracks, "sub", final_fallback_sub_priority, true)
+        end
+	end
+
+    -- 3. Selecting Non-Forced Subs (non-strict mode)
+    if not sid and not strict_mode then
+        -- 1. Preferred Language (Flag + Keyword)
+        sid = find_matching_track(tracks, "sub", sub_priority_PREFERRED_LANG, false, normal_subs_keywords_map[preferred_lang_primary_code])
+        
+        -- 2. Preferred Language (Flag Only)
+        if not sid then
+            sid = find_matching_track(tracks, "sub", sub_priority_PREFERRED_LANG, false)
+        end
+
+        -- 3. & 4. Middle English ('enm') with and without keywords (only if enabled)
+        if prioritize_honorifics then
+			-- 3. Middle English ('enm') (Flag + Keyword) (if enabled)
+            if not sid then
+                sid = find_matching_track(tracks, "sub", sub_priority_ENM, false, normal_subs_keywords_map.enm)
+            end
+            -- 4. Any Middle English ('enm') (Flag Only) (if enabled)
+            if not sid then
+                sid = find_matching_track(tracks, "sub", sub_priority_ENM, false)
+            end
+        end
+
+        -- 5. Standard English ('en'/'eng') (Flag + Keyword)
+        if not sid then
+            sid = find_matching_track(tracks, "sub", sub_priority_STANDARD_ENG, false, normal_subs_keywords_map.en)
+        end
+
+        -- 6. Any Standard English ('en'/'eng') (Flag Only)
+        if not sid then
+            sid = find_matching_track(tracks, "sub", sub_priority_STANDARD_ENG, false)
+        end
+
+        -- 7. Final fallback to final_fallback_sub_priority order (Flag Only)
+        if not sid then
+            sid = find_matching_track(tracks, "sub", final_fallback_sub_priority, false)
+        end
+    end
+
+    if sid then
+        mp.set_property("sid", sid)
+        mp.set_property("sub-visibility", "yes")
+    else
+        mp.set_property("sid", "no")
+        mp.set_property("sub-visibility", "no")
+    end
+end
+
+-- This function fixes the manual override problem
+local function on_manual_sub_change(_, new_sid)
+    -- If a subtitle track is manually selected (not 'no'), ensure visibility is on.
+    if new_sid and new_sid > 0 then
+        mp.set_property("sub-visibility", "yes")
+    end
+end
+
+-- Event handlers
+mp.register_event("file-loaded", function()
+    set_preferred_audio()
+    update_subtitle()
+end)
+
+mp.observe_property("aid", "number", update_subtitle)
+-- This observer listens for manual subtitle changes and ensures they become visible.
+mp.observe_property("sid", "number", on_manual_sub_change)</code></pre>
+    </div>
+
+  </div></div></div></div></div></div></div>
+
+  <!-- Feedback Message for Copying -->
+  <div id="copied-feedback" class="copied-feedback">Copied!</div>
+
+  <!-- Prism.js Script for Syntax Highlighting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-lua.min.js"></script>
+
+  <script>
+    function showFeedback(msg) {
+        const feedback = document.getElementById('copied-feedback');
+        feedback.textContent = msg;
+        feedback.style.opacity = '1';
+        setTimeout(() => { feedback.style.opacity = '0'; }, 2000);
+    }
+
+    function copyLuaCode() {
+        const code = document.getElementById('lua-script').textContent;
+        navigator.clipboard.writeText(code).then(() => {
+            showFeedback("Code Copied to Clipboard!");
+        });
+    }
+
+    function downloadLuaCode() {
+        const code = document.getElementById('lua-script').textContent;
+        const blob = new Blob([code], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'track-selector.lua';
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }, 100);
+        showFeedback("Downloading .lua file...");
+    }
+  </script>
+
+</body>
+</html>
