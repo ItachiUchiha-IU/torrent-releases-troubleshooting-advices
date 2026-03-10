@@ -6,14 +6,14 @@ document.addEventListener("DOMContentLoaded", () => {
     <div class="topnav">
         <!-- LEFT SECTION -->
         <div class="nav-left">
-            ${isHome ? `<button class="nav-btn" onclick="toggleMenu('toggleIndexMenu')">Page Index</button>` : ''}
+            <a href="/" class="${isHome ? 'active' : ''}">Home Page</a>
+            <a href="/MPV_Track_Auto-Selection" class="${window.location.pathname.includes('/MPV_Track_Auto-Selection') ? 'active' : ''}">MPV .lua</a>
+            <a href="/Hashes" class="${window.location.pathname.includes('/Hashes') ? 'active' : ''}">Hashes</a>
         </div>
 
         <!-- CENTER SECTION (Locked) -->
         <div class="nav-center">
-            <a href="/" class="${isHome ? 'active' : ''}">Home Page</a>
-            <a href="/MPV_Track_Auto-Selection" class="${window.location.pathname.includes('/MPV_Track_Auto-Selection') ? 'active' : ''}">MPV .lua</a>
-            <a href="/Hashes" class="${window.location.pathname.includes('/Hashes') ? 'active' : ''}">Hashes</a>
+            <button class="nav-btn" onclick="toggleMenu('toggleIndexMenu')">Page Index</button>
             <button class="nav-btn" onclick="toggleMenu('toggleSettingsMenu')">Layout</button>
         </div>
 
