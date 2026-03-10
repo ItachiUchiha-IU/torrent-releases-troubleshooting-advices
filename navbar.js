@@ -15,6 +15,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             <button class="nav-btn" onclick="toggleMenu('toggleIndexMenu')">Page Index</button>
             <button class="nav-btn" onclick="toggleMenu('toggleSettingsMenu')">Layout</button>
+            
+            <!-- Vertical Divider -->
+            <div class="nav-divider"></div>
+
             <span class="likebtn-wrapper" data-theme="custom" data-icon_l="hrt2" data-icon_l_c_v="#ff0000" data-identifier="ghwuirghnpwiugbnerwugrbjn" data-dislike_enabled="false"></span>
         </div>
 
