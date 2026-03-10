@@ -81,7 +81,7 @@
   <div id="changefontsize">
   <div id="changefontfamily">
   <div id="changefontweight">
-  <div style="margin-left:1%;margin-right:1%; padding-top: 20px;">
+  <div style="margin-left:1%;margin-right:1%; padding-top: 10px;">
 
     <h2 class="title" id="MPV-Track-Selection-Script-lua"><button onclick="copyLink('MPV-Track-Selection-Script-lua')">&#128279</button> MPV Track Selection Script (.lua)</h2>
     
@@ -89,12 +89,11 @@
         <p>
             This script automates audio and subtitle selection in MPV.
             <br>MPV will automatically load your preferred languages for both audio and subtitles. The player will also distinguish between full dialogue and signs/songs based on your audio selection, even updating subtitles instantly when you switch audio tracks.
-            <br><br>
+            <br><div style="height: 0.5em;"></div>
             Save it as <strong><code>track-selector.lua</code></strong> in your mpv <code>scripts</code> folder. 
             <br>(e.g. <code>C:\Program Files\mpv\portable_config\scripts</code>)
-            <br><br>
-            <hr>
-            <br>
+            <br><div style="height: 0.5em;"></div>
+            <hr><div style="height: 0.5em;"></div>
             <strong>Notes:</strong>
             <br>This version is pre-configured for <strong>Italian</strong>. 
             If you prefer a different language, you must manually edit 
@@ -102,15 +101,15 @@
             <code>preferred_lang_Forced_Subs_Keywords</code> and 
             <code>preferred_lang_Normal_Subs_Keywords</code> 
             sections inside the <strong>User Configuration</strong>.
-            <br><br>
+            <br><div style="height: 0.5em;"></div>
             If you want to prioritize subtitles from a specific region, remember to put the <strong>regional code</strong> as the first choice, followed by general fallbacks (e.g., <code>es-419</code> for Latin American Spanish, then <code>es</code> and <code>spa</code>).
-            <br><br>
+            <br><div style="height: 0.5em;"></div>
             E.g. Language (<code>preferred_lang_codes</code>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <code>{"it", "ita"}</code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &rarr; <code>{"es-419", "es", "spa"}</code>
             <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Forced (<code>preferred_lang_Forced_Subs_Keywords</code>): <code>{"cartell", "forzat"}</code> &rarr; <code>{"whatever", "keywords"}</code>
             <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Normal (<code>preferred_lang_Normal_Subs_Keywords</code>): <code>{"dialog", "complet"}</code> &rarr; <code>{"whatever", "keywords"}</code>
             <br><br>
             A detailed explanation of the script logic can be found just below the <strong>User Configuration</strong>.
-            <br>
+            <br><div style="height: 0.5em;"></div>
         </p>
     </div>
 
