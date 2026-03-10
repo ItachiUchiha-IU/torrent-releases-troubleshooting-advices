@@ -4,18 +4,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const navHtml = `
     <div class="topnav">
-        <button class="nav-btn" onclick="toggleMenu('toggleIndexMenu')">Page INDEX</button>
-        <a href="/" class="${isHome ? 'active' : ''}">Home Page</a>
-        <a href="/MPV_Track_Auto-Selection" class="${window.location.pathname.includes('/MPV_Track_Auto-Selection') ? 'active' : ''}">MPV .lua</a>
-        <a href="/Hashes" class="${window.location.pathname.includes('/Hashes') ? 'active' : ''}">Hashes</a>
-        <button class="nav-btn" onclick="toggleMenu('toggleSettingsMenu')">Layout</button>
-        <span class="likebtn-wrapper" data-theme="custom" data-icon_l="hrt2" data-icon_l_c_v="#ff0000" data-identifier="ghwuirghnpwiugbnerwugrbjn" data-dislike_enabled="false" style="vertical-align:middle; margin-left:10px;"></span>
+        <!-- LEFT SECTION: All navigation and controls -->
+        <div class="nav-left">
+            <a href="/" class="${isHome ? 'active' : ''}">Home Page</a>
+            <a href="/MPV_Track_Auto-Selection" class="${window.location.pathname.includes('/MPV_Track_Auto-Selection') ? 'active' : ''}">MPV .lua</a>
+            <a href="/Hashes" class="${window.location.pathname.includes('/Hashes') ? 'active' : ''}">Hashes</a>
+            
+            <!-- Vertical Divider -->
+            <div class="nav-divider"></div>
 
+            <button class="nav-btn" onclick="toggleMenu('toggleIndexMenu')">Page Index</button>
+            <button class="nav-btn" onclick="toggleMenu('toggleSettingsMenu')">Layout</button>
+            
+            <!-- Vertical Divider -->
+            <div class="nav-divider"></div>
+
+            <span class="likebtn-wrapper" data-theme="custom" data-icon_l="hrt2" data-icon_l_c_v="#ff0000" data-identifier="ghwuirghnpwiugbnerwugrbjn" data-dislike_enabled="false"></span>
+        </div>
+
+        <!-- RIGHT SECTION (Pinned to the right edge) -->
+        <div class="nav-right">
+        </div>
+
+        <!-- DROPDOWN MENUS (Absolute positioned below the bar) -->
         <div id="toggleIndexMenu">
-            <a href="#" onclick="toggleMenu('toggleIndexMenu')">To Top</a>
-            ${isHome ? `<a href="#media-players" onclick="toggleMenu('toggleIndexMenu')">Media Players</a>` : ''}
-            ${isHome ? `<a href="#Track_Auto-Selection" onclick="toggleMenu('toggleIndexMenu')">Track Auto-Selection</a>` : ''}
-            ${isHome ? `<a href="#more-troubleshooting-and-advices" onclick="toggleMenu('toggleIndexMenu')">More T&A</a>` : ''}
+            <div class="settings-grid">
+                <a class="nav-btn" href="#" onclick="toggleMenu('toggleIndexMenu')">To Top</a>
+                ${isHome ? `<a class="nav-btn" href="#media-players" onclick="toggleMenu('toggleIndexMenu')">Media Players</a>` : ''}
+                ${isHome ? `<a class="nav-btn" href="#Track_Auto-Selection" onclick="toggleMenu('toggleIndexMenu')">Track Auto-Selection</a>` : ''}
+                ${isHome ? `<a class="nav-btn" href="#more-troubleshooting-and-advices" onclick="toggleMenu('toggleIndexMenu')">More T&A</a>` : ''}
+            </div>
         </div>
 
         <div id="toggleSettingsMenu">

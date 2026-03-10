@@ -9,15 +9,21 @@
     <link rel="stylesheet" href="/global.css">
     <script src="/navbar.js"></script>
     <style>
-        /* Only keep CSS here that is UNIQUE to the search page */
+        /* UNIQUE STYLES FOR THE SEARCH PAGE */
+        h1 { margin-top: 0; color: inherit; }
+
         #search { 
             width: 100%; 
             padding: 12px; 
             margin: 20px 0; 
-            border: 1px solid #ccc; 
+            /* Changed to rgba and inherit so it adapts to themes */
+            border: 1px solid rgba(128, 128, 128, 0.4); 
+            background: rgba(128, 128, 128, 0.05);
+            color: inherit;
             border-radius: 4px; 
             font-family: inherit;
         }
+
         ul#list { list-style: none; padding: 0; }
         ul#list li { margin: 10px 0; }
         ul#list a { font-size: 1.2em; text-decoration: none; }

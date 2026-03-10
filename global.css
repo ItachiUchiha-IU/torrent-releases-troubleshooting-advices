@@ -6,6 +6,7 @@ html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
     color-scheme: dark light;
+    overflow-y: scroll;
 }
 
 :root {
@@ -75,19 +76,49 @@ button:hover { background-color: rgba(128, 128, 128, 0.5); }
     margin-right: 5px;
 }
 
-/* Navigation Bar */
+
+/* ============================
+    NAVIGATION BAR & DROPDOWNS 
+   ============================ */
+
+/* Top Bar Container */
 .topnav {
     background-color: #1D2123;
     top: 0;
     width: 100%;
     position: sticky;
-    z-index: 1000;
+    z-index: 10000;
     border-radius: 6px;
     padding: 4px 10px;
-    text-align: center;
-    white-space: nowrap;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
+/* LEFT SECTION: All buttons together */
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Vertical Divider Styling */
+.nav-divider {
+    width: 1px;
+    height: 30px; /* Adjust height to match buttons */
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 0 10px;
+}
+
+/* RIGHT SECTION: Pinned to right edge */
+.nav-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-width: 100px; /* Prevents shifting when loading */
+}
+
+/* Button & Link Appearance */
 .topnav a, .nav-btn {
     display: inline-block;
     color: #f2f2f2;
@@ -106,14 +137,20 @@ button:hover { background-color: rgba(128, 128, 128, 0.5); }
 .topnav a:hover, .nav-btn:hover { background-color: #ddd; color: black; }
 .topnav a.active { background-color: #555555; color: white; }
 
+/* Sub-menus: Absolute to cover the full width below the bar */
 #toggleSettingsMenu, #toggleIndexMenu {
     display: none;
     background: #1D2123;
     border-top: 1px solid #444;
     padding: 6px;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
     white-space: normal;
 }
 
+/* Internal Layout for the Dropdowns */
 .settings-grid {
     display: flex;
     flex-wrap: wrap;
@@ -144,7 +181,22 @@ button:hover { background-color: rgba(128, 128, 128, 0.5); }
     cursor: pointer;
 }
 
-@media only screen and (max-width: 768px) {
+/* Mobile Adjustments */
+@media only screen and (max-width: 1000px) {
     body { width: 94% !important; margin: 0 3% !important; }
-    .topnav { white-space: normal; }
+    .topnav {
+        flex-direction: column;
+        height: auto;
+    }
+    .nav-left {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .nav-divider {
+        display: none; /* Hide divider on mobile to save space */
+    }
+    .nav-right {
+        justify-content: center;
+        margin-top: 10px;
+    }
 }
