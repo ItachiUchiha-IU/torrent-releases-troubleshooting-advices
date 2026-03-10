@@ -6,6 +6,7 @@ html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
     color-scheme: dark light;
+    overflow-y: scroll;
 }
 
 :root {
@@ -179,10 +180,11 @@ button:hover { background-color: rgba(128, 128, 128, 0.5); }
 
 /* Mobile Adjustments */
 @media only screen and (max-width: 1000px) {
+    body { width: 94% !important; margin: 0 3% !important; }
     .topnav {
         display: flex;
         flex-direction: column;
-        white-space: normal;
+        grid-template-columns: none;
     }
     .nav-right {
         padding-left: 0;
