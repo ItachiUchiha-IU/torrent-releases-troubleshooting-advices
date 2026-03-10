@@ -94,10 +94,19 @@
             <br>(e.g. <code>C:\Program Files\mpv\portable_config\scripts</code>)
             <br><br>
             <strong>Note:</strong> This version is pre-configured for <strong>Italian</strong>. 
-            If you prefer a different language, you must manually edit the <code>preferred_lang_codes</code> 
-            section inside the <strong>User Configuration</strong>.
-            <br>E.g.: <code>local preferred_lang_codes = {"it", "ita"}</code> &rarr; <code>local preferred_lang_codes = {"es-419", "es", "spa"}</code>
+            If you prefer a different language, you must manually edit 
+            the <code>preferred_lang_codes</code>, 
+            <code>preferred_lang_Forced_Subs_Keywords</code> and 
+            <code>preferred_lang_Normal_Subs_Keywords</code> 
+            sections inside the <strong>User Configuration</strong>.
+            <br><br>
+            If you want to prioritize subtitles from a specific region, remember to put the <strong>regional code</strong> as the first choice, followed by general fallbacks (e.g., <code>es-419</code> for Latin American Spanish, then <code>es</code> and <code>spa</code>).
         </p>
+        <div style="font-family: monospace; font-size: 0.9em; background: rgba(128,128,128,0.1); padding: 10px; border-radius: 4px;">
+            E.g. Language (preferred_lang_codes)             : <code>{"it", "ita"}</code> &rarr; <code>{"es-419", "es", "spa"}</code>
+            <br>E.g. Forced (preferred_lang_Forced_Subs_Keywords): <code>{"cartell", "forzat"}</code> &rarr; <code>{"whatever", "keywords"}</code>
+            <br>E.g. Normal (preferred_lang_Normal_Subs_Keywords): <code>{"dialog", "complet"}</code> &rarr; <code>{"whatever", "keywords"}</code>
+        </div>
     </div>
 
     <div class="code-container">
@@ -109,11 +118,13 @@
         <!-- Note: We use the <pre> and <code> tags for Prism.js -->
         <pre><code id="lua-script" class="language-lua">-- ############ USER CONFIGURATION ############
 
--- Set your single preferred language here. All other logic will adapt to this.
--- The first code in the list is considered the primary one for keyword lookups (e.g., "it" for Italian).
+-- Set your preferred language codes here. All script logic will adapt to this.
+-- The first code is the primary choice for keyword lookups (e.g., "it" for Italian).
+-- To prioritize a specific region, put the regional code first followed by general
+-- fallbacks (e.g., {"es-419", "es", "spa"} for Latin American Spanish).
 local preferred_lang_codes = {"it", "ita"}
 
--- Set to true to prioritize preferred language audio only if it's the default track.
+-- Set to true to prioritize preferred language audio only if it's tagged as default track.
 -- Set to false to always prioritize preferred language audio.
 local prioritize_preferred_lang_audio_only_if_default = true -- default = true
 
