@@ -9,6 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
             <a href="/" class="${isHome ? 'active' : ''}">Home Page</a>
             <a href="/MPV_Track_Auto-Selection" class="${window.location.pathname.includes('/MPV_Track_Auto-Selection') ? 'active' : ''}">MPV .lua</a>
             <a href="/Hashes" class="${window.location.pathname.includes('/Hashes') ? 'active' : ''}">Hashes</a>
+            <button class="nav-btn" onclick="toggleMenu('toggleIndexMenu')">Page Index</button>
+            <button class="nav-btn" onclick="toggleMenu('toggleSettingsMenu')">Layout</button>
+            <span class="likebtn-wrapper" data-theme="custom" data-icon_l="hrt2" data-icon_l_c_v="#ff0000" data-identifier="ghwuirghnpwiugbnerwugrbjn" data-dislike_enabled="false"></span>
         </div>
 
         <!-- CENTER SECTION (Locked) -->
@@ -17,9 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         <!-- RIGHT SECTION (Leaning against center) -->
         <div class="nav-right">
-            <button class="nav-btn" onclick="toggleMenu('toggleIndexMenu')">Page Index</button>
-            <button class="nav-btn" onclick="toggleMenu('toggleSettingsMenu')">Layout</button>
-            <span class="likebtn-wrapper" data-theme="custom" data-icon_l="hrt2" data-icon_l_c_v="#ff0000" data-identifier="ghwuirghnpwiugbnerwugrbjn" data-dislike_enabled="false"></span>
         </div>
 
         <!-- DROPDOWN MENUS -->
