@@ -87,32 +87,35 @@ button:hover { background-color: rgba(128, 128, 128, 0.5); }
     top: 0;
     width: 100%;
     position: sticky;
-    z-index: 1000;
+    z-index: 10000;
     border-radius: 6px;
     padding: 4px 10px;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr; 
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
-/* LEFT SECTION: Page Index */
+/* LEFT SECTION: All buttons together */
 .nav-left {
     display: flex;
-    justify-content: flex-start;
-}
-
-/* CENTER SECTION: Main Buttons (Locked to screen center) */
-.nav-center {
-    display: flex;
-    justify-content: center;
+    align-items: center;
     gap: 5px;
 }
 
-/* RIGHT SECTION: Like Button (Starts right after the center block) */
+/* Vertical Divider Styling */
+.nav-divider {
+    width: 1px;
+    height: 30px; /* Adjust height to match buttons */
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 0 10px;
+}
+
+/* RIGHT SECTION: Pinned to right edge */
 .nav-right {
     display: flex;
-    justify-content: flex-start; /* Keeps it leaning against the center block */
-    padding-left: 10px;
+    justify-content: flex-end;
+    align-items: center;
+    min-width: 100px; /* Prevents shifting when loading */
 }
 
 /* Button & Link Appearance */
@@ -134,7 +137,7 @@ button:hover { background-color: rgba(128, 128, 128, 0.5); }
 .topnav a:hover, .nav-btn:hover { background-color: #ddd; color: black; }
 .topnav a.active { background-color: #555555; color: white; }
 
-/* Dropdown Sub-menus (Detach from the grid row) */
+/* Sub-menus: Absolute to cover the full width below the bar */
 #toggleSettingsMenu, #toggleIndexMenu {
     display: none;
     background: #1D2123;
@@ -180,14 +183,19 @@ button:hover { background-color: rgba(128, 128, 128, 0.5); }
 
 /* Mobile Adjustments */
 @media only screen and (max-width: 1000px) {
-    body { width: 94% !important; margin: 0 3% !important; }
     .topnav {
-        display: flex;
         flex-direction: column;
-        grid-template-columns: none;
+        height: auto;
+    }
+    .nav-left {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .nav-divider {
+        display: none; /* Hide divider on mobile to save space */
     }
     .nav-right {
-        padding-left: 0;
         justify-content: center;
+        margin-top: 10px;
     }
 }
