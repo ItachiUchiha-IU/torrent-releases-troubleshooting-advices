@@ -127,11 +127,15 @@
 -- fallbacks (e.g., {"es-419", "es", "spa"} for Latin American Spanish).
 local preferred_lang_codes = {"it", "ita"}
 
--- Set to true to prioritize preferred language audio only if it's tagged as default track.
--- Set to false to always prioritize preferred language audio.
+-- Set to true to prioritize preferred language audio ONLY if it is tagged as "default" track.
+-- Set to false to always prioritize preferred language audio if it exists in the file.
 local prioritize_preferred_lang_audio_only_if_default = true -- default = true
 
 -- Set audio priorities.
+-- This list is used as a fallback only if:
+-- 1. The file does not contain any audio tracks matching "preferred_lang_codes".
+-- 2. "prioritize_preferred_lang_audio_only_if_default" is true, but the preferred 
+--    language tracks are not tagged as "default".
 local audio_priority = {
     {"ja", "jpn", "jp"},   -- Japanese
     {"ko", "kor"},         -- Korean
