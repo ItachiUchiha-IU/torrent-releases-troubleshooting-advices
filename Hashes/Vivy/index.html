@@ -104,31 +104,54 @@
             });
         } catch (e) { console.error(e); }
 
+        // --- TSV COPY ---
         document.getElementById('copy-all-btn').onclick = () => {
-            const lines = dataLines.filter(d => !d.ScanRoot).map(d => `${d.Date}\t${d.Hash}\t${d.RelativePath}`);
-            navigator.clipboard.writeText("Date\tHash\tPath\n" + lines.join('\n'));
-            showFeedback("TSV Copied!");
+            const head = "Date\tMD5\tBLAKE3\tPath\n";
+            const lines = dataLines.filter(d => !d.ScanRoot).map(d => 
+                `${d.Date || ''}\t${d.MD5 || ''}\t${d.BLAKE3 || ''}\t${d.RelativePath || ''}`
+            ).join('\n');
+            navigator.clipboard.writeText(head + lines).then(() => showFeedback("TSV Copied!"));
         };
 
+        // --- JSONL COPY ---
         document.getElementById('copy-all-jsonl-btn').onclick = () => {
             const jsonl = dataLines.filter(d => !d.ScanRoot).map(d => JSON.stringify(d)).join('\n');
-            navigator.clipboard.writeText(jsonl);
-            showFeedback("JSONL Copied!");
+            navigator.clipboard.writeText(jsonl).then(() => showFeedback("JSONL Copied!"));
         };
 
+        // --- CSV EXPORT ---
         document.getElementById('export-csv-btn').onclick = () => {
-            const csv = dataLines.filter(d => !d.ScanRoot).map(d => `"${d.Date}","${d.Hash}","${d.RelativePath}"`).join('\n');
-            const blob = new Blob(["Date,Hash,Path\n" + csv], { type: 'text/csv' });
-            const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `hashes.csv`; a.click();
+            const head = "Date,MD5,BLAKE3,Path\n";
+            const csv = dataLines.filter(d => !d.ScanRoot).map(d => 
+                `"${d.Date || ''}","${d.MD5 || ''}","${d.BLAKE3 || ''}","${d.RelativePath || ''}"`
+            ).join('\n');
+            const blob = new Blob([head + csv], { type: 'text/csv' });
+            triggerDownload(blob, "hashes.csv");
             showFeedback("Exporting CSV...");
         };
 
+        // --- JSONL EXPORT ---
         document.getElementById('export-jsonl-btn').onclick = () => {
             const jsonl = dataLines.filter(d => !d.ScanRoot).map(d => JSON.stringify(d)).join('\n');
             const blob = new Blob([jsonl], { type: 'application/jsonl' });
-            const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `hashes.jsonl`; a.click();
+            triggerDownload(blob, "hashes.jsonl");
             showFeedback("Exporting JSONL...");
         };
+
+        // Helper function to ensure downloads trigger correctly in all browsers
+        function triggerDownload(blob, filename) {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(() => {
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            }, 100);
+        }
 
         // Search logic (checks Path, MD5, and BLAKE3)
         document.getElementById('search-box').onkeyup = (e) => {
