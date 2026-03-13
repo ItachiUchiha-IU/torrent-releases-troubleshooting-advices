@@ -8,32 +8,17 @@
     <script src="/navbar.js"></script>
     <style>
         .container { margin: auto; padding: 0px 0px; }
-        h1 { color: inherit; }
-        .action-btn {
-            padding: 8px 12px; margin: 5px 2px; border: none; border-radius: 4px;
-            background: #3498db; color: white; cursor: pointer; font-family: inherit;
-        }
+        .action-btn { padding: 8px 12px; margin: 5px 2px; border: none; border-radius: 4px; background: #3498db; color: white; cursor: pointer; font-family: inherit; }
         #scan-root { background-color: rgba(128, 128, 128, 0.15); padding: 10px 15px; border-radius: 5px; margin-top: 14px; margin-bottom: 20px; }
-        #search-box {
-            width: 98.1%; padding: 10px; margin-bottom: 20px; border: 1px solid rgba(128, 128, 128, 0.4);
-            border-radius: 4px; background: rgba(128, 128, 128, 0.05); color: inherit;
-        }
+        #search-box { width: 98.1%; padding: 10px; margin-bottom: 20px; border: 1px solid rgba(128, 128, 128, 0.4); border-radius: 4px; background: rgba(128, 128, 128, 0.05); color: inherit; }
         table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.9em; }
         th, td { padding: 10px; text-align: left; border-bottom: 1px solid rgba(128, 128, 128, 0.2); }
         thead th { background-color: #3498db; color: #ffffff; position: sticky; top: 0; z-index: 10; }
-        
-        /* Specific Hash Styling */
         .hash-cell { font-family: Consolas, monospace; cursor: pointer; word-break: break-all; line-height: 1.2; }
         .md5 { color: #3498db; width: 15%; }
-        .blake3 { color: #27ae60; width: 25%; } /* Green for Blake3 to distinguish */
+        .blake3 { color: #27ae60; width: 25%; }
         .path { word-break: break-all; }
-        
-        .copied-feedback {
-            position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%);
-            background-color: #2c3e50; color: #ffffff; padding: 12px 24px; border-radius: 8px;
-            opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 99999;
-            border: 1px solid #3498db; font-weight: bold;
-        }
+        .copied-feedback { position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%); background-color: #2c3e50; color: #ffffff; padding: 12px 24px; border-radius: 8px; opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 99999; border: 1px solid #3498db; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -41,8 +26,8 @@
   <div style="margin-left:1%;margin-right:1%; padding-top: 20px;">
 
     <div class="container">
-        <h2 class="title title-mid">File Hash Report</h2>
-        <div id="scan-root">Loading...</div>
+        <h2 class="title title-mid" id="page-title">File Hash Report</h2>
+        <div id="scan-root">Loading data...</div>
 
         <input type="text" id="search-box" placeholder="Search by hash or filename...">
 
@@ -52,80 +37,72 @@
         <button id="export-jsonl-btn" class="action-btn">Export JSONL</button>
 
         <table id="hash-table">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>MD5</th>
-                    <th>BLAKE3</th>
-                    <th>Path</th>
-                </tr>
-            </thead>
+            <thead><tr><th>Date</th><th>MD5</th><th>BLAKE3</th><th>Path</th></tr></thead>
             <tbody></tbody>
         </table>
     </div>
 
     <script>
     document.addEventListener('DOMContentLoaded', async () => {
+        // 1. GET THE FOLDER NAME FROM THE URL (e.g., view.html?s=Vivy)
+        const params = new URLSearchParams(window.location.search);
+        const folder = params.get('s');
+        
+        if (!folder) {
+            document.getElementById('scan-root').textContent = "Error: No show specified.";
+            return;
+        }
+
         const tableBody = document.querySelector('#hash-table tbody');
         const feedback = document.getElementById('copied-feedback');
-        let dataLines = []; // This is the main data storage
+        let dataLines = [];
 
         function showFeedback(msg) {
-            feedback.textContent = msg;
-            feedback.style.opacity = '1';
+            feedback.textContent = msg; feedback.style.opacity = '1';
             setTimeout(() => { feedback.style.opacity = '0'; }, 2000);
         }
 
-        // Helper to ensure downloads trigger correctly
         function triggerDownload(blob, filename) {
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
-            a.style.display = 'none';
-            a.href = url;
-            a.download = filename;
-            document.body.appendChild(a);
-            a.click();
-            setTimeout(() => {
-                document.body.removeChild(a);
-                window.URL.revokeObjectURL(url);
-            }, 100);
+            a.href = url; a.download = filename;
+            document.body.appendChild(a); a.click();
+            setTimeout(() => { document.body.removeChild(a); window.URL.revokeObjectURL(url); }, 100);
         }
 
         try {
-            const response = await fetch('hashes.jsonl');
+            // 2. FETCH DATA FROM THE SPECIFIC FOLDER
+            const response = await fetch(`./${folder}/hashes.jsonl`);
             const text = await response.text();
             dataLines = text.split('\n').filter(Boolean).map(JSON.parse);
             
-            document.getElementById('scan-root').textContent = dataLines.find(d => d.ScanRoot)?.ScanRoot || 'Report';
+            const scanRoot = dataLines.find(d => d.ScanRoot)?.ScanRoot || folder.replace(/_/g, ' ');
+            document.getElementById('scan-root').textContent = scanRoot;
+            document.title = "Hashes | " + scanRoot;
+            document.getElementById('page-title').textContent = "Hashes: " + scanRoot;
 
             dataLines.forEach(data => {
                 if (data.ScanRoot) return;
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${data.Date || ''}</td>
-                    <td class="hash-cell md5" title="Click to copy MD5">${data.MD5 || 'N/A'}</td>
-                    <td class="hash-cell blake3" title="Click to copy BLAKE3">${data.BLAKE3 || 'N/A'}</td>
+                    <td class="hash-cell md5" title="Copy MD5">${data.MD5 || 'N/A'}</td>
+                    <td class="hash-cell blake3" title="Copy BLAKE3">${data.BLAKE3 || 'N/A'}</td>
                     <td class="path">${data.RelativePath || ''}</td>
                 `;
-                
-                row.querySelector('.md5').onclick = () => {
-                    navigator.clipboard.writeText(data.MD5).then(() => showFeedback("MD5 Copied!"));
-                };
-                row.querySelector('.blake3').onclick = () => {
-                    navigator.clipboard.writeText(data.BLAKE3).then(() => showFeedback("BLAKE3 Copied!"));
-                };
-                
+                row.querySelector('.md5').onclick = () => { navigator.clipboard.writeText(data.MD5).then(() => showFeedback("MD5 Copied!")); };
+                row.querySelector('.blake3').onclick = () => { navigator.clipboard.writeText(data.BLAKE3).then(() => showFeedback("BLAKE3 Copied!")); };
                 tableBody.appendChild(row);
             });
-        } catch (e) { console.error(e); }
+        } catch (e) { 
+            document.getElementById('scan-root').textContent = "Could not load data for: " + folder;
+        }
 
-        // --- BUTTON LOGIC FOR MD5/BLAKE3 ---
+        // Button logic (using dataLines)
         document.getElementById('copy-all-btn').onclick = () => {
             const head = "Date\tMD5\tBLAKE3\tPath\n";
-            const lines = dataLines.filter(d => !d.ScanRoot).map(d => 
-                `${d.Date || ''}\t${d.MD5 || ''}\t${d.BLAKE3 || ''}\t${d.RelativePath || ''}`
-            ).join('\n');
-            navigator.clipboard.writeText(head + lines).then(() => showFeedback("TSV Copied!"));
+            const content = dataLines.filter(d => !d.ScanRoot).map(d => `${d.Date}\t${d.MD5}\t${d.BLAKE3}\t${d.RelativePath}`).join('\n');
+            navigator.clipboard.writeText(head + content).then(() => showFeedback("TSV Copied!"));
         };
 
         document.getElementById('copy-all-jsonl-btn').onclick = () => {
@@ -135,18 +112,14 @@
 
         document.getElementById('export-csv-btn').onclick = () => {
             const head = "Date,MD5,BLAKE3,Path\n";
-            const csv = dataLines.filter(d => !d.ScanRoot).map(d => 
-                `"${d.Date || ''}","${d.MD5 || ''}","${d.BLAKE3 || ''}","${d.RelativePath || ''}"`
-            ).join('\n');
-            const blob = new Blob([head + csv], { type: 'text/csv' });
-            triggerDownload(blob, "hashes.csv");
+            const csv = dataLines.filter(d => !d.ScanRoot).map(d => `"${d.Date}","${d.MD5}","${d.BLAKE3}","${d.RelativePath}"`).join('\n');
+            triggerDownload(new Blob([head + csv], { type: 'text/csv' }), `${folder}_hashes.csv`);
             showFeedback("Exporting CSV...");
         };
 
         document.getElementById('export-jsonl-btn').onclick = () => {
             const jsonl = dataLines.filter(d => !d.ScanRoot).map(d => JSON.stringify(d)).join('\n');
-            const blob = new Blob([jsonl], { type: 'application/jsonl' });
-            triggerDownload(blob, "hashes.jsonl");
+            triggerDownload(new Blob([jsonl], { type: 'application/jsonl' }), `${folder}_hashes.jsonl`);
             showFeedback("Exporting JSONL...");
         };
 
