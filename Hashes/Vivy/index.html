@@ -15,7 +15,7 @@
         }
         #scan-root { background-color: rgba(128, 128, 128, 0.15); padding: 10px 15px; border-radius: 5px; margin-top: 14px; margin-bottom: 20px; }
         #search-box {
-            width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid rgba(128, 128, 128, 0.4);
+            width: 98.1%; padding: 10px; margin-bottom: 20px; border: 1px solid rgba(128, 128, 128, 0.4);
             border-radius: 4px; background: rgba(128, 128, 128, 0.05); color: inherit;
         }
         table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.9em; }
@@ -47,7 +47,9 @@
         <input type="text" id="search-box" placeholder="Search by hash or filename...">
 
         <button id="copy-all-btn" class="action-btn">Copy All (TSV)</button>
+        <button id="copy-all-jsonl-btn" class="action-btn">Copy All (JSONL)</button>
         <button id="export-csv-btn" class="action-btn">Export CSV</button>
+        <button id="export-jsonl-btn" class="action-btn">Export JSONL</button>
 
         <table id="hash-table">
             <thead>
@@ -101,6 +103,32 @@
                 tableBody.appendChild(row);
             });
         } catch (e) { console.error(e); }
+
+        document.getElementById('copy-all-btn').onclick = () => {
+            const lines = dataLines.filter(d => !d.ScanRoot).map(d => `${d.Date}\t${d.Hash}\t${d.RelativePath}`);
+            navigator.clipboard.writeText("Date\tHash\tPath\n" + lines.join('\n'));
+            showFeedback("TSV Copied!");
+        };
+
+        document.getElementById('copy-all-jsonl-btn').onclick = () => {
+            const jsonl = dataLines.filter(d => !d.ScanRoot).map(d => JSON.stringify(d)).join('\n');
+            navigator.clipboard.writeText(jsonl);
+            showFeedback("JSONL Copied!");
+        };
+
+        document.getElementById('export-csv-btn').onclick = () => {
+            const csv = dataLines.filter(d => !d.ScanRoot).map(d => `"${d.Date}","${d.Hash}","${d.RelativePath}"`).join('\n');
+            const blob = new Blob(["Date,Hash,Path\n" + csv], { type: 'text/csv' });
+            const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `hashes.csv`; a.click();
+            showFeedback("Exporting CSV...");
+        };
+
+        document.getElementById('export-jsonl-btn').onclick = () => {
+            const jsonl = dataLines.filter(d => !d.ScanRoot).map(d => JSON.stringify(d)).join('\n');
+            const blob = new Blob([jsonl], { type: 'application/jsonl' });
+            const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `hashes.jsonl`; a.click();
+            showFeedback("Exporting JSONL...");
+        };
 
         // Search logic (checks Path, MD5, and BLAKE3)
         document.getElementById('search-box').onkeyup = (e) => {
