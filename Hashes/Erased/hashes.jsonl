@@ -1,14 +1,14 @@
 {"ScanRoot":"Erased [BD] [AV1] [ItachiUchiha]"}
-{"Date":"2026-03-10_02.52.25","Algorithm":"MD5","Hash":"b826af5e4bda64217f0be26873b9fc69","RelativePath":"\\Erased - EP01 - Flashing Before My Eyes.mkv"}
-{"Date":"2026-03-10_02.52.27","Algorithm":"MD5","Hash":"f5986ce731a1659746aba3695b5c4510","RelativePath":"\\Erased - EP02 - Palm of the Hand.mkv"}
-{"Date":"2026-03-10_02.52.29","Algorithm":"MD5","Hash":"e12e498bc89e80636d0bad443de475b1","RelativePath":"\\Erased - EP03 - Bruises.mkv"}
-{"Date":"2026-03-10_02.52.31","Algorithm":"MD5","Hash":"3a01e267e96aceeeffb799a9329aa1d8","RelativePath":"\\Erased - EP04 - Accomplishment.mkv"}
-{"Date":"2026-03-10_02.52.33","Algorithm":"MD5","Hash":"60c0876e3084d294cd30e818d41ea025","RelativePath":"\\Erased - EP05 - Escape.mkv"}
-{"Date":"2026-03-10_02.52.35","Algorithm":"MD5","Hash":"10b658587e9465527df534ca86877ab1","RelativePath":"\\Erased - EP06 - Shinigami.mkv"}
-{"Date":"2026-03-10_02.52.37","Algorithm":"MD5","Hash":"10aae7598afaa6f9f761dda0e55742c5","RelativePath":"\\Erased - EP07 - Runaway.mkv"}
-{"Date":"2026-03-10_02.52.39","Algorithm":"MD5","Hash":"20240bc97788fcea48216cee503ae8b2","RelativePath":"\\Erased - EP08 - Spiral.mkv"}
-{"Date":"2026-03-10_02.52.41","Algorithm":"MD5","Hash":"80b4d50c82694c5e81e57fafc70a69d9","RelativePath":"\\Erased - EP09 - Closure.mkv"}
-{"Date":"2026-03-10_02.52.42","Algorithm":"MD5","Hash":"5fbc43416924c966da80ffd1431c2b0a","RelativePath":"\\Erased - EP10 - Delight.mkv"}
-{"Date":"2026-03-10_02.52.44","Algorithm":"MD5","Hash":"24166ddf59c3264c227b19b3242ef722","RelativePath":"\\Erased - EP11 - Future.mkv"}
-{"Date":"2026-03-10_02.52.46","Algorithm":"MD5","Hash":"569a8bbdcba0864e80ebe3f768f3fee6","RelativePath":"\\Erased - EP12 - Treasure.mkv"}
-{"Date":"2026-03-10_02.52.46","Algorithm":"MD5","Hash":"64603c6dc02c0b5debe012343adb83e6","RelativePath":"\\Ω info.txt"}
+{"Date":"2026-03-13_21.44.37","RelativePath":"\\Erased - EP01 - Flashing Before My Eyes.mkv","MD5":"b826af5e4bda64217f0be26873b9fc69","BLAKE3":"61ddcecb3ecddbc60c3b67b576c43d7ef32d4a9292b8abdb8be0f9264c629bfa"}
+{"Date":"2026-03-13_21.44.41","RelativePath":"\\Erased - EP02 - Palm of the Hand.mkv","MD5":"f5986ce731a1659746aba3695b5c4510","BLAKE3":"0b8eba5500b7169244536550526af48a4d5ec0cf47f788f2e3c55085d3bdc84b"}
+{"Date":"2026-03-13_21.44.43","RelativePath":"\\Erased - EP03 - Bruises.mkv","MD5":"e12e498bc89e80636d0bad443de475b1","BLAKE3":"02b966feefb84b315e655c22dff8ff63de4307ee7b52ad7bf4839d9a140d232e"}
+{"Date":"2026-03-13_21.44.45","RelativePath":"\\Erased - EP04 - Accomplishment.mkv","MD5":"3a01e267e96aceeeffb799a9329aa1d8","BLAKE3":"a5ef8c5457f2544abff1f4182b08d5af845d82aee5bd9ec6c9f59e8cf66e5bc1"}
+{"Date":"2026-03-13_21.44.47","RelativePath":"\\Erased - EP05 - Escape.mkv","MD5":"60c0876e3084d294cd30e818d41ea025","BLAKE3":"115763cdafa8f3a246b14b9e2b7c2cea2a639c3ba2be85cb51f8ce618d886130"}
+{"Date":"2026-03-13_21.44.49","RelativePath":"\\Erased - EP06 - Shinigami.mkv","MD5":"10b658587e9465527df534ca86877ab1","BLAKE3":"51c995e4461d150a6700ffca947b0b24f8e3e00bb9d56bd25c1b7abc2f537537"}
+{"Date":"2026-03-13_21.44.52","RelativePath":"\\Erased - EP07 - Runaway.mkv","MD5":"10aae7598afaa6f9f761dda0e55742c5","BLAKE3":"bb86f3b504d574bc9da16b42cb54bcbe50623ff090b6427cee3f267a2ec8a4b7"}
+{"Date":"2026-03-13_21.44.54","RelativePath":"\\Erased - EP08 - Spiral.mkv","MD5":"20240bc97788fcea48216cee503ae8b2","BLAKE3":"1e21f523be5d8042ad9cbca938dcdb34be9463c514a47f6f3925ca708b1debfa"}
+{"Date":"2026-03-13_21.44.55","RelativePath":"\\Erased - EP09 - Closure.mkv","MD5":"80b4d50c82694c5e81e57fafc70a69d9","BLAKE3":"3e16b326dfce17b4f6af62d152b204ca312237e28a199a22c90e9592a8c682c7"}
+{"Date":"2026-03-13_21.44.57","RelativePath":"\\Erased - EP10 - Delight.mkv","MD5":"5fbc43416924c966da80ffd1431c2b0a","BLAKE3":"b26234152e63cf01f3bec506d6dd84be9fd2b58b81f771bb78d5e9167a40a58f"}
+{"Date":"2026-03-13_21.44.59","RelativePath":"\\Erased - EP11 - Future.mkv","MD5":"24166ddf59c3264c227b19b3242ef722","BLAKE3":"ecc01206eaa79bd86a5d210fb5a90aa83534117df7685f95b9ea2c5cf7dc407d"}
+{"Date":"2026-03-13_21.45.01","RelativePath":"\\Erased - EP12 - Treasure.mkv","MD5":"569a8bbdcba0864e80ebe3f768f3fee6","BLAKE3":"552675cb5e7d499d14fd36f9986b8e5e0fc92417e0b4989b3efed85a7522f2b4"}
+{"Date":"2026-03-13_21.45.03","RelativePath":"\\Ω info.txt","MD5":"64603c6dc02c0b5debe012343adb83e6","BLAKE3":"962e7fa353de9fd91c22455b12bbb5a3813102de5b12e853baa9c2082b8b252e"}

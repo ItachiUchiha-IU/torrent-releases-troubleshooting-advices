@@ -15,7 +15,7 @@
         #search { 
             width: 100%; 
             padding: 12px; 
-            margin: 20px 0; 
+            margin: 17px 0; 
             /* Changed to rgba and inherit so it adapts to themes */
             border: 1px solid rgba(128, 128, 128, 0.4); 
             background: rgba(128, 128, 128, 0.05);
@@ -58,7 +58,8 @@
         function renderList(items) {
             const list = document.getElementById('list');
             list.innerHTML = items.map(item => 
-                `<li><a href="./${item}/">${item.replace(/_/g, ' ')}</a></li>`
+                // Link to view.html with the folder name as a parameter
+                `<li><a href="./view.html?s=${item}">${item.replace(/_/g, ' ')}</a></li>`
             ).join('');
         }
 
