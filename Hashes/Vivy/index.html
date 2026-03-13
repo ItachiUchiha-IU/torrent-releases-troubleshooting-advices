@@ -68,77 +68,15 @@
     document.addEventListener('DOMContentLoaded', async () => {
         const tableBody = document.querySelector('#hash-table tbody');
         const feedback = document.getElementById('copied-feedback');
-        
+        let dataLines = []; // This is the main data storage
+
         function showFeedback(msg) {
-            feedback.textContent = msg; feedback.style.opacity = '1';
+            feedback.textContent = msg;
+            feedback.style.opacity = '1';
             setTimeout(() => { feedback.style.opacity = '0'; }, 2000);
         }
 
-        try {
-            const response = await fetch('hashes.jsonl');
-            const text = await response.text();
-            const dataLines = text.split('\n').filter(Boolean).map(JSON.parse);
-            
-            document.getElementById('scan-root').textContent = dataLines.find(d => d.ScanRoot)?.ScanRoot || 'Report';
-
-            dataLines.forEach(data => {
-                if (data.ScanRoot) return;
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${data.Date || ''}</td>
-                    <td class="hash-cell md5" title="Click to copy MD5">${data.MD5 || 'N/A'}</td>
-                    <td class="hash-cell blake3" title="Click to copy BLAKE3">${data.BLAKE3 || 'N/A'}</td>
-                    <td class="path">${data.RelativePath}</td>
-                `;
-                
-                // Clicking MD5 cell
-                row.querySelector('.md5').onclick = () => {
-                    navigator.clipboard.writeText(data.MD5).then(() => showFeedback("MD5 Copied!"));
-                };
-                // Clicking BLAKE3 cell
-                row.querySelector('.blake3').onclick = () => {
-                    navigator.clipboard.writeText(data.BLAKE3).then(() => showFeedback("BLAKE3 Copied!"));
-                };
-                
-                tableBody.appendChild(row);
-            });
-        } catch (e) { console.error(e); }
-
-        // --- TSV COPY ---
-        document.getElementById('copy-all-btn').onclick = () => {
-            const head = "Date\tMD5\tBLAKE3\tPath\n";
-            const lines = dataLines.filter(d => !d.ScanRoot).map(d => 
-                `${d.Date || ''}\t${d.MD5 || ''}\t${d.BLAKE3 || ''}\t${d.RelativePath || ''}`
-            ).join('\n');
-            navigator.clipboard.writeText(head + lines).then(() => showFeedback("TSV Copied!"));
-        };
-
-        // --- JSONL COPY ---
-        document.getElementById('copy-all-jsonl-btn').onclick = () => {
-            const jsonl = dataLines.filter(d => !d.ScanRoot).map(d => JSON.stringify(d)).join('\n');
-            navigator.clipboard.writeText(jsonl).then(() => showFeedback("JSONL Copied!"));
-        };
-
-        // --- CSV EXPORT ---
-        document.getElementById('export-csv-btn').onclick = () => {
-            const head = "Date,MD5,BLAKE3,Path\n";
-            const csv = dataLines.filter(d => !d.ScanRoot).map(d => 
-                `"${d.Date || ''}","${d.MD5 || ''}","${d.BLAKE3 || ''}","${d.RelativePath || ''}"`
-            ).join('\n');
-            const blob = new Blob([head + csv], { type: 'text/csv' });
-            triggerDownload(blob, "hashes.csv");
-            showFeedback("Exporting CSV...");
-        };
-
-        // --- JSONL EXPORT ---
-        document.getElementById('export-jsonl-btn').onclick = () => {
-            const jsonl = dataLines.filter(d => !d.ScanRoot).map(d => JSON.stringify(d)).join('\n');
-            const blob = new Blob([jsonl], { type: 'application/jsonl' });
-            triggerDownload(blob, "hashes.jsonl");
-            showFeedback("Exporting JSONL...");
-        };
-
-        // Helper function to ensure downloads trigger correctly in all browsers
+        // Helper to ensure downloads trigger correctly
         function triggerDownload(blob, filename) {
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -153,7 +91,66 @@
             }, 100);
         }
 
-        // Search logic (checks Path, MD5, and BLAKE3)
+        try {
+            const response = await fetch('hashes.jsonl');
+            const text = await response.text();
+            // FIX 1: Remove "const" here so it updates the outer variable
+            dataLines = text.split('\n').filter(Boolean).map(JSON.parse);
+            
+            document.getElementById('scan-root').textContent = dataLines.find(d => d.ScanRoot)?.ScanRoot || 'Report';
+
+            dataLines.forEach(data => {
+                if (data.ScanRoot) return;
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${data.Date || ''}</td>
+                    <td class="hash-cell md5" title="Click to copy MD5">${data.MD5 || 'N/A'}</td>
+                    <td class="hash-cell blake3" title="Click to copy BLAKE3">${data.BLAKE3 || 'N/A'}</td>
+                    <td class="path">${data.RelativePath || ''}</td>
+                `;
+                
+                row.querySelector('.md5').onclick = () => {
+                    navigator.clipboard.writeText(data.MD5).then(() => showFeedback("MD5 Copied!"));
+                };
+                row.querySelector('.blake3').onclick = () => {
+                    navigator.clipboard.writeText(data.BLAKE3).then(() => showFeedback("BLAKE3 Copied!"));
+                };
+                
+                tableBody.appendChild(row);
+            });
+        } catch (e) { console.error(e); }
+
+        // --- BUTTON LOGIC UPDATED FOR MD5/BLAKE3 ---
+        document.getElementById('copy-all-btn').onclick = () => {
+            const head = "Date\tMD5\tBLAKE3\tPath\n";
+            const lines = dataLines.filter(d => !d.ScanRoot).map(d => 
+                `${d.Date || ''}\t${d.MD5 || ''}\t${d.BLAKE3 || ''}\t${d.RelativePath || ''}`
+            ).join('\n');
+            navigator.clipboard.writeText(head + lines).then(() => showFeedback("TSV Copied!"));
+        };
+
+        document.getElementById('copy-all-jsonl-btn').onclick = () => {
+            const jsonl = dataLines.filter(d => !d.ScanRoot).map(d => JSON.stringify(d)).join('\n');
+            navigator.clipboard.writeText(jsonl).then(() => showFeedback("JSONL Copied!"));
+        };
+
+        document.getElementById('export-csv-btn').onclick = () => {
+            const head = "Date,MD5,BLAKE3,Path\n";
+            const csv = dataLines.filter(d => !d.ScanRoot).map(d => 
+                `"${d.Date || ''}","${d.MD5 || ''}","${d.BLAKE3 || ''}","${d.RelativePath || ''}"`
+            ).join('\n');
+            const blob = new Blob([head + csv], { type: 'text/csv' });
+            triggerDownload(blob, "hashes.csv");
+            showFeedback("Exporting CSV...");
+        };
+
+        document.getElementById('export-jsonl-btn').onclick = () => {
+            const jsonl = dataLines.filter(d => !d.ScanRoot).map(d => JSON.stringify(d)).join('\n');
+            const blob = new Blob([jsonl], { type: 'application/jsonl' });
+            triggerDownload(blob, "hashes.jsonl");
+            showFeedback("Exporting JSONL...");
+        };
+
         document.getElementById('search-box').onkeyup = (e) => {
             const term = e.target.value.toLowerCase();
             [...tableBody.rows].forEach(row => {
