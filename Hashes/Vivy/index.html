@@ -94,7 +94,6 @@
         try {
             const response = await fetch('hashes.jsonl');
             const text = await response.text();
-            // FIX 1: Remove "const" here so it updates the outer variable
             dataLines = text.split('\n').filter(Boolean).map(JSON.parse);
             
             document.getElementById('scan-root').textContent = dataLines.find(d => d.ScanRoot)?.ScanRoot || 'Report';
@@ -120,7 +119,7 @@
             });
         } catch (e) { console.error(e); }
 
-        // --- BUTTON LOGIC UPDATED FOR MD5/BLAKE3 ---
+        // --- BUTTON LOGIC FOR MD5/BLAKE3 ---
         document.getElementById('copy-all-btn').onclick = () => {
             const head = "Date\tMD5\tBLAKE3\tPath\n";
             const lines = dataLines.filter(d => !d.ScanRoot).map(d => 
