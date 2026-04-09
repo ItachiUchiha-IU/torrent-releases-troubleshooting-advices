@@ -142,6 +142,7 @@ local audio_priority = {
     {"ja", "jpn", "jp"},   -- Japanese
     {"ko", "kor"},         -- Korean
     preferred_lang_codes,  -- Your preferred language
+    {"zh", "chi", "zho"},  -- Chinese
     {"en", "eng"}          -- English
 }
 
@@ -388,10 +389,12 @@ local function find_matching_track(tracks, track_type, lang_list, require_forced
     -- This logic is now stricter. It will only search the category specified by require_forced.
     local tracks_to_search = require_forced and forced_tracks or non_forced_tracks
 
-    for _, track in ipairs(tracks_to_search) do
-        local track_lang = (track.lang or ""):lower()
-        for _, lang_group in ipairs(lang_list) do
-            for _, lang in ipairs(lang_group) do
+    for _, lang_group in ipairs(lang_list) do
+        -- For each language in the priority group, look for a matching track
+        for _, lang in ipairs(lang_group) do
+            for _, track in ipairs(tracks_to_search) do
+                local track_lang = (track.lang or ""):lower()
+                
                 if lang == "*" or lang_matches(track_lang, lang) then
                     if not keywords or track_has_keywords(track, keywords) then
                         return track.id
@@ -400,7 +403,7 @@ local function find_matching_track(tracks, track_type, lang_list, require_forced
             end
         end
     end
-    -- If nothing is found, it will implicitly return nil.
+    return nil
 end
 
 local function set_preferred_audio()
