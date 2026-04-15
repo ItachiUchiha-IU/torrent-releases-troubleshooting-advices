@@ -72,6 +72,30 @@
             font-weight: bold;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
+		
+        .security-box {
+            background-color: rgba(231, 76, 60, 0.1);
+            border: 1px solid #e74c3c;
+            border-radius: 8px;
+            padding: 15px 20px 5px;
+            margin-top: 5px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .security-box h3 {
+            color: #e74c3c;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .step-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            border-left: 3px solid #3498db;
+        }
     </style>
 </head>
 <body>
@@ -83,8 +107,40 @@
   <div id="changefontweight">
   <div style="margin-left:1%;margin-right:1%; padding-top: 6px;">
 
+    <div class="security-box" id="security-notice">
+        <h3 style="margin-top: 0; color: #e74c3c;">
+            <button onclick="copyLink('security-notice')">&#128279</button> 🛡️ Security Note & Best Practices
+        </h3>
+        <p>
+            mpv <code>.lua</code> scripts are extremely powerful. Unlike a web browser, mpv does <strong>not</strong> "sandbox" its scripts. This means a script has the same permissions as your Windows user account: it can read/write files, execute system commands, and access the network.
+        </p>
+        
+        <p><strong>How do I know a script is safe?</strong></p>
+        <p>
+            You should never put a script into your mpv folder unless you trust the source or have verified the code. For those who aren't programmers, the most "noob-proof" method is to use AI as a safety auditor:
+        </p>
+        
+        <div class="step-box">
+            <strong>The AI Audit Method:</strong>
+            <br>1. Open an AI (e.g., <a href="https://chatgpt.com" target="_blank" style="color: #3498db;">ChatGPT</a>, <a href="https://aistudio.google.com" target="_blank" style="color: #3498db;">Google Gemini</a>, or Claude).
+            <br>2. Paste the script content and ask: <em>"Does this script contain any malicious behavior, hidden network calls, or dangerous system commands?"</em>
+            <br>3. You can also ask it to explain exactly what each part of the script does in detail.
+        </div>
+
+        <p style="margin-top: 15px;">
+            <strong>Verification:</strong> 
+            Always ensure that the <code>.lua</code> file you download/save matches the code displayed on this page. While this site is served securely via GitHub and Cloudflare, "supply chain" attacks can happen. If a source repository is ever compromised, the code could be changed without notice. <strong>Always inspect what you execute.</strong>
+        </p>
+    </div>
+
     <h2 class="title" id="MPV-Track-Selection-Script-lua"><button onclick="copyLink('MPV-Track-Selection-Script-lua')">&#128279</button> MPV Track Selection Script (.lua)</h2>
     
+    <div style="margin-top: -10px; margin-bottom: 15px;">
+        <a href="#security-notice" style="color: #e74c3c; text-decoration: none; font-size: 0.85em; font-weight: bold; background: rgba(231, 76, 60, 0.1); padding: 4px 8px; border-radius: 4px; border: 1px solid rgba(231, 76, 60, 0.3);">
+            🛡️ Read the Security Note before installing
+        </a>
+    </div>
+
     <div class="script-info">
         <p>
             This script automates audio and subtitle selection in MPV.
