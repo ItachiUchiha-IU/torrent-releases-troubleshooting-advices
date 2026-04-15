@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <!-- DROPDOWN MENUS (Absolute positioned below the bar) -->
         <div id="toggleIndexMenu">
             <div class="settings-grid">
-                ${!isMPV_lua ? `<a class="nav-btn" href="#" onclick="toggleMenu('toggleIndexMenu')">To Top</a>` : ''}
+                <a class="nav-btn" href="#" onclick="toggleMenu('toggleIndexMenu')" title="Back to Top">&uarr; Top</a>
                 ${isHome ? `<a class="nav-btn" href="#media-players" onclick="toggleMenu('toggleIndexMenu')">Media Players</a>` : ''}
                 ${isHome ? `<a class="nav-btn" href="#Track_Auto-Selection" onclick="toggleMenu('toggleIndexMenu')">Track Auto-Selection</a>` : ''}
                 ${isHome ? `<a class="nav-btn" href="#more-troubleshooting-and-advices" onclick="toggleMenu('toggleIndexMenu')">More T&A</a>` : ''}
@@ -82,13 +82,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
             </div>
         </div>
-    </div>`;
+    </div>
+    <button id="scrollToTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Go to top">&uarr;</button>
+    `;
 
     document.body.insertAdjacentHTML("afterbegin", navHtml);
     applySavedSettings();
 
     (function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");
 });
+
+window.onscroll = function() {
+    const btn = document.getElementById("scrollToTopBtn");
+    if (btn) {
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            btn.style.display = "block";
+        } else {
+            btn.style.display = "none";
+        }
+    }
+};
 
 function toggleMenu(id) {
     const menus = ['toggleSettingsMenu', 'toggleIndexMenu'];

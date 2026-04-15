@@ -189,6 +189,30 @@ button:hover { background-color: rgba(128, 128, 128, 0.5); }
     cursor: pointer;
 }
 
+#scrollToTopBtn {
+    display: none; /* Hidden by default */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: #3498db; /* Your theme blue */
+    color: white;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 50%; /* Makes it a circle */
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+#scrollToTopBtn:hover {
+    background-color: #2980b9;
+    transform: scale(1.1);
+}
+
 /* Mobile Adjustments */
 @media only screen and (max-width: 1000px) {
     body { width: 94% !important; margin: 0 3% !important; }
