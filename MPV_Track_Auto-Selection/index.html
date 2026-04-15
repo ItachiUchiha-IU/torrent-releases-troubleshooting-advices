@@ -107,7 +107,9 @@
   <div style="margin-left:1%;margin-right:1%; padding-top: 6px;">
 
     <div class="security-box" id="security-notice">
-        <h3>🛡️ Security Note & Best Practices</h3>
+        <h3 style="margin-top: 0; color: #e74c3c;">
+            <button onclick="copyLink('security-notice')">&#128279</button> 🛡️ Security Note & Best Practices
+        </h3>
         <p>
             mpv <code>.lua</code> scripts are extremely powerful. Unlike a web browser, mpv does <strong>not</strong> "sandbox" its scripts. This means a script has the same permissions as your Windows user account: it can read/write files, execute system commands, and access the network.
         </p>
