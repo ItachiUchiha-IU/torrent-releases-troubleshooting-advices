@@ -32,12 +32,12 @@ document.addEventListener("DOMContentLoaded", () => {
         <!-- DROPDOWN MENUS (Absolute positioned below the bar) -->
         <div id="toggleIndexMenu">
             <div class="settings-grid">
-                <a class="nav-btn" href="#" onclick="toggleMenu('toggleIndexMenu')">To Top</a>
+                ${!isMPV_lua ? `<a class="nav-btn" href="#" onclick="toggleMenu('toggleIndexMenu')">To Top</a>` : ''}
                 ${isHome ? `<a class="nav-btn" href="#media-players" onclick="toggleMenu('toggleIndexMenu')">Media Players</a>` : ''}
                 ${isHome ? `<a class="nav-btn" href="#Track_Auto-Selection" onclick="toggleMenu('toggleIndexMenu')">Track Auto-Selection</a>` : ''}
                 ${isHome ? `<a class="nav-btn" href="#more-troubleshooting-and-advices" onclick="toggleMenu('toggleIndexMenu')">More T&A</a>` : ''}
                 ${isMPV_lua ? `<a class="nav-btn" href="#security-notice" onclick="toggleMenu('toggleIndexMenu')">Security Note</a>` : ''}
-                ${isMPV_lua ? `<a class="nav-btn" href="#MPV-Track-Selection-Script-lua" onclick="toggleMenu('toggleIndexMenu')">Track Auto-Selector</a>` : ''}
+                ${isMPV_lua ? `<a class="nav-btn" href="#MPV-Track-Selection-Script-lua" onclick="toggleMenu('toggleIndexMenu')">Track Auto-Selector (.lua)</a>` : ''}
             </div>
         </div>
 
