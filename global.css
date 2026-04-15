@@ -61,6 +61,22 @@ textarea, select, input[type="text"], input[type="button"] {
     border: 1px solid rgba(128, 128, 128, 0.4);
     border-radius: 4px;
     padding: 5px;
+
+    /* --- The Mobile/Smart Fixes --- */
+    width: 98.1%;
+    max-width: 98.1%;       /* Don't go outside the parent */
+    box-sizing: border-box; /* Padding won't push the box wider */
+    display: block;         /* Ensures it behaves correctly with width: 100% */
+    
+    /* --- Break Anywhere --- */
+    word-break: break-all;  /* Force wrap even if no spaces/punctuation */
+    white-space: pre-wrap;  /* Preserves formatting but wraps text */
+}
+
+/* Force long URLs to break and wrap to the next line */
+ul li a {
+    word-break: break-all;  /* Allows breaking anywhere to prevent overflow */
+    overflow-wrap: break-word;
 }
 
 /* Style for "Copy" and "Fake Button" buttons */
