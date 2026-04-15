@@ -1,14 +1,17 @@
 // navbar.js
 document.addEventListener("DOMContentLoaded", () => {
-    const isHome = window.location.pathname === "/" || (window.location.pathname.endsWith("index.html") && !window.location.pathname.includes("/Hashes/"));
+    const path = window.location.pathname;
+    const isHome = path === "/" || path === "/index.html" || path === "";
+    const isMPV_lua = path.includes('MPV_lua');
+    const isHashes = path.includes('Hashes');
 
     const navHtml = `
     <div class="topnav">
         <!-- LEFT SECTION: All navigation and controls -->
         <div class="nav-left">
             <a href="/" class="${isHome ? 'active' : ''}">Home Page</a>
-            <a href="/MPV_Track_Auto-Selection" class="${window.location.pathname.includes('/MPV_Track_Auto-Selection') ? 'active' : ''}">MPV .lua</a>
-            <a href="/Hashes" class="${window.location.pathname.includes('/Hashes') ? 'active' : ''}">Hashes</a>
+            <a href="/MPV_lua" class="${isMPV_lua ? 'active' : ''}">MPV .lua</a>
+            <a href="/Hashes" class="${isHashes ? 'active' : ''}">Hashes</a>
             
             <!-- Vertical Divider -->
             <div class="nav-divider"></div>
@@ -33,6 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 ${isHome ? `<a class="nav-btn" href="#media-players" onclick="toggleMenu('toggleIndexMenu')">Media Players</a>` : ''}
                 ${isHome ? `<a class="nav-btn" href="#Track_Auto-Selection" onclick="toggleMenu('toggleIndexMenu')">Track Auto-Selection</a>` : ''}
                 ${isHome ? `<a class="nav-btn" href="#more-troubleshooting-and-advices" onclick="toggleMenu('toggleIndexMenu')">More T&A</a>` : ''}
+                ${isMPV_lua ? `<a class="nav-btn" href="#security-notice" onclick="toggleMenu('toggleIndexMenu')">Security Note</a>` : ''}
+                ${isMPV_lua ? `<a class="nav-btn" href="#MPV-Track-Selection-Script-lua" onclick="toggleMenu('toggleIndexMenu')">Track Auto-Selector</a>` : ''}
             </div>
         </div>
 
