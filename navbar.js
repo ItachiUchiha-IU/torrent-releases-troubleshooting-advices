@@ -157,7 +157,7 @@ function resetSettings() {
 function applySavedSettings() {
     const s = {
         theme: localStorage.getItem('theme') || 'Dark Blue',
-        width: localStorage.getItem('width') || '65%',
+        width: localStorage.getItem('width'),
         fontSize: localStorage.getItem('fontSize') || '16.5',
         fontFamily: localStorage.getItem('fontFamily') || 'Consolas',
         fontWeight: localStorage.getItem('fontWeight') || 'Normal',
@@ -175,7 +175,13 @@ function applySavedSettings() {
     }
 
     // Update the CSS variable instead of the body directly
-    document.documentElement.style.setProperty('--width', s.width);
+    if (s.width) {
+        // Apply the manual choice from the menu
+        document.documentElement.style.setProperty('--user-width', s.width);
+    } else {
+        // If "Reset" or first visit, remove the choice so CSS fallbacks take over
+        document.documentElement.style.removeProperty('--user-width');
+    }
     
     // Ensure centering is always on
     document.body.style.marginLeft = "auto";
@@ -189,7 +195,7 @@ function applySavedSettings() {
 
     // Sync UI
     if(document.getElementById('themeSelect')) document.getElementById('themeSelect').value = s.theme;
-    if(document.getElementById('widthSelect')) document.getElementById('widthSelect').value = s.width;
+    if(document.getElementById('widthSelect')) document.getElementById('widthSelect').value = s.width || (window.innerWidth <= 1000 ? '96%' : '65%');
     if(document.getElementById('fontpxSelect')) document.getElementById('fontpxSelect').value = s.fontSize;
     if(document.getElementById('fontFamilySelect')) document.getElementById('fontFamilySelect').value = s.fontFamily;
     if(document.getElementById('fontWeightSelect')) document.getElementById('fontWeightSelect').value = s.fontWeight;
