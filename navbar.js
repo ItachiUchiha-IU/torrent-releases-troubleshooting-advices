@@ -222,4 +222,22 @@ async function fetchLastUpdated() {
     }
 }
 
+// --- EVENT LISTENERS ---
+
+// 1. Trigger the GitHub date fetch when HTML is ready
 document.addEventListener("DOMContentLoaded", fetchLastUpdated);
+
+// 2. Force textareas and inputs to reset to original values every time page is shown
+window.addEventListener("pageshow", () => {
+    // List the IDs of the elements you want to reset
+    const toReset = ["ITAstring", "ENGstring", "fakebutton"];
+    
+    toReset.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            // .defaultValue is the text you wrote in the HTML file
+            // Setting .value to .defaultValue wipes out anything the browser "remembered"
+            el.value = el.defaultValue;
+        }
+    });
+});
