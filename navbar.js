@@ -93,6 +93,23 @@ window.onscroll = function() {
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 };
 
+function lazyLoadLuaCode() {
+    const source = document.getElementById('lua-code-source');
+    const target = document.getElementById('lua-script');
+
+    if (source && target) {
+        // 1. Move the text from the hidden script to the visible code block
+        target.textContent = source.textContent.trim();
+
+        // 2. Tell Prism.js to highlight it (since it was added dynamically)
+        if (window.Prism) {
+            Prism.highlightElement(target);
+        }
+        
+        console.log("Lua code lazy-loaded successfully.");
+    }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     // Inject Navbar
     const path = window.location.pathname;
@@ -190,6 +207,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.body.insertAdjacentHTML("afterbegin", navHtml);
     applySavedSettings();
+
+    lazyLoadLuaCode();
 
     (function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");
 });
