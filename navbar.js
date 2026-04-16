@@ -1,31 +1,57 @@
 // navbar.js
 
-// --- CONFIGURATION ---
-const BREAKPOINT = 1120; // px value to change from desktop mode to mobile mode
-const scrollDelta = 5; // Minimum pixels to scroll before action
+
+// --- 1. CONFIGURATION ---
+const BREAKPOINT = 1120; 
+const scrollDelta = 5; 
 let lastScrollTop = 0;
+// Initialize state immediately
 let isMobileMode = window.innerWidth <= BREAKPOINT;
 
-// Function to handle mode switching and CSS class toggling
-function syncViewportMode() {
+
+// --- 2. THE "INSTANT" PATH (Visuals) ---
+// This function does NOT touch the <body>, so it can run at the very top of the file
+// without crashing, making it effectively instant.
+function applyInstantVisuals() {
     const currentMode = window.innerWidth <= BREAKPOINT;
     
-    // Toggle a class on the <html> element so CSS can see it immediately
+    // Set the class on <html> immediately
     document.documentElement.classList.toggle('is-mobile', currentMode);
 
-    // Detect if we just crossed the boundary to reset manual width
+    // Sync width logic
+    const savedWidth = localStorage.getItem('width');
+    if (savedWidth) {
+        document.documentElement.style.setProperty('--user-width', savedWidth);
+    } else {
+        document.documentElement.style.removeProperty('--user-width');
+    }
+
+    // Apply background color to the root so there is no white flash
+    const savedTheme = localStorage.getItem('theme') || 'Dark Blue';
+    const bgColors = {
+        'Dark Blue': "#101D29", 'Blue': "#212F3D", 'Light': "#AEB6BF",
+        'White': "#F0F0F0", 'Dark': "#1F1F1F", 'Black': "black"
+    };
+    document.documentElement.style.setProperty('--background-color', bgColors[savedTheme] || "#101D29");
+
+    // Detect threshold crossing for width reset
     if (currentMode !== isMobileMode) {
         isMobileMode = currentMode;
         localStorage.removeItem('width'); // Reset manual width on switch
     }
 }
 
-// Initial check
-syncViewportMode();
+// EXECUTE IMMEDIATELY
+applyInstantVisuals();
+
+
+// --- 3. EVENT LISTENERS ---
 
 window.onresize = function() {
-    syncViewportMode();
-    applySavedSettings();
+    applyInstantVisuals();
+    if (document.readyState === "complete" || document.readyState === "interactive") {
+        applySavedSettings(); // Sync UI dropdowns
+    }
 };
 
 window.onscroll = function() {
@@ -68,6 +94,7 @@ window.onscroll = function() {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Inject Navbar
     const path = window.location.pathname;
     const isHome = path === "/" || path === "/index.html" || path === "";
     const isMPV_lua = path.includes('MPV_lua');
@@ -177,7 +204,8 @@ function toggleMenu(id) {
 
 function updateSetting(key, value) {
     localStorage.setItem(key, value);
-    applySavedSettings();
+    applyInstantVisuals(); // Update variables immediately
+    applySavedSettings(); // Sync UI
 }
 
 function resetSettings() {
@@ -195,28 +223,19 @@ function applySavedSettings() {
         scaleX: localStorage.getItem('scaleX') || '1.0'
     };
 
+    // Note: Background and Width are handled by applyInstantVisuals() to avoid delay.
+    // This function now primarily handles text colors and UI sync.
+
     const target = document.getElementById("changetextcolor");
     if(target) {
-        if (s.theme === "Dark Blue") { target.style.color = "#e9e9e9"; document.body.style.backgroundColor = "#101D29"; }
-        else if (s.theme === "Blue") { target.style.color = "#e9e9e9"; document.body.style.backgroundColor = "#212F3D"; }
-        else if (s.theme === "Light") { target.style.color = "black"; document.body.style.backgroundColor = "#AEB6BF"; }
-        else if (s.theme === "White") { target.style.color = "black"; document.body.style.backgroundColor = "#F0F0F0"; }
-        else if (s.theme === "Dark") { target.style.color = "#E6E6E6"; document.body.style.backgroundColor = "#1F1F1F"; }
-        else if (s.theme === "Black") { target.style.color = "#E6E6E6"; document.body.style.backgroundColor = "black"; }
-    }
-
-    // Update the CSS variable instead of the body directly
-    if (s.width) {
-        // Apply the manual choice from the menu
-        document.documentElement.style.setProperty('--user-width', s.width);
-    } else {
-        // If "Reset" or first visit, remove the choice so CSS fallbacks take over
-        document.documentElement.style.removeProperty('--user-width');
+        if (['Light', 'White'].includes(s.theme)) { target.style.color = "black"; }
+        else { target.style.color = "#e9e9e9"; }
     }
     
-    // Ensure centering is always on
-    document.body.style.marginLeft = "auto";
-    document.body.style.marginRight = "auto";
+    if (document.body) {
+        document.body.style.marginLeft = "auto";
+        document.body.style.marginRight = "auto";
+    }
     
     // Apply Settings to DIVs
     const elFS = document.getElementById("changefontsize"); if(elFS) elFS.style.fontSize = s.fontSize + "px";
@@ -233,8 +252,9 @@ function applySavedSettings() {
         // If there is a manual width in storage, show it.
         // Otherwise, show the responsive default (96% for mobile, 65% for desktop).
         const isMobile = document.documentElement.classList.contains('is-mobile');
-        widthSelect.value = savedWidth || (isMobile ? '96%' : '65%');
+        widthSelect.value = s.width || (isMobile ? '96%' : '65%');
     }
+
     if(document.getElementById('fontpxSelect')) document.getElementById('fontpxSelect').value = s.fontSize;
     if(document.getElementById('fontFamilySelect')) document.getElementById('fontFamilySelect').value = s.fontFamily;
     if(document.getElementById('fontWeightSelect')) document.getElementById('fontWeightSelect').value = s.fontWeight;
