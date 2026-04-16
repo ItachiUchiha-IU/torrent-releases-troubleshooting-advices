@@ -245,8 +245,8 @@ function applySavedSettings() {
         scaleX: localStorage.getItem('scaleX') || '1.0'
     };
 
-    // Note: Background and Width are primarily handled by applyInstantVisuals()
-    applyInstantVisuals();
+    // Note: Background and Width are handled by applyInstantVisuals() to avoid delay.
+    // This function now primarily handles text colors and UI sync.
 
     const target = document.getElementById("changetextcolor");
     if(target) {
