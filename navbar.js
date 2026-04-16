@@ -19,7 +19,8 @@ function syncViewportMode() {
         localStorage.removeItem('width'); // Reset manual width on switch
     }
 
-    // --- FAST PATH: Apply Visuals immediately to avoid "flash" during heavy page parsing ---
+    // --- FAST PATH: Apply Visuals via CSS Variables immediately ---
+    // We apply these to documentElement (<html>) because <body> might not exist yet
     const savedWidth = localStorage.getItem('width');
     if (savedWidth) {
         document.documentElement.style.setProperty('--user-width', savedWidth);
@@ -32,7 +33,10 @@ function syncViewportMode() {
         'Dark Blue': "#101D29", 'Blue': "#212F3D", 'Light': "#AEB6BF",
         'White': "#F0F0F0", 'Dark': "#1F1F1F", 'Black': "black"
     };
-    document.body.style.backgroundColor = bgColors[savedTheme] || "#101D29";
+    
+    // Set the background color variable globally. 
+    // Since your CSS uses background-color: var(--background-color), this works instantly.
+    document.documentElement.style.setProperty('--background-color', bgColors[savedTheme] || "#101D29");
 }
 
 // Initial check
@@ -213,6 +217,9 @@ function applySavedSettings() {
     // Note: Background color and width variables are now updated via syncViewportMode() 
     // to ensure they apply before the DOM finishes parsing heavy content.
 
+    // Update variables again (for when settings change manually)
+    syncViewportMode();
+
     const target = document.getElementById("changetextcolor");
     if(target) {
         if (s.theme === "Dark Blue") { target.style.color = "#e9e9e9"; }
@@ -223,9 +230,11 @@ function applySavedSettings() {
         else if (s.theme === "Black") { target.style.color = "#E6E6E6"; }
     }
     
-    // Ensure centering is always on
-    document.body.style.marginLeft = "auto";
-    document.body.style.marginRight = "auto";
+    // Ensure centering is always on (Safe here because it's called after load)
+    if (document.body) {
+        document.body.style.marginLeft = "auto";
+        document.body.style.marginRight = "auto";
+    }
     
     // Apply Settings to DIVs
     const elFS = document.getElementById("changefontsize"); if(elFS) elFS.style.fontSize = s.fontSize + "px";
