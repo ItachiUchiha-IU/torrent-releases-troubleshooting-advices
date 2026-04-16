@@ -99,7 +99,7 @@ function lazyLoadLuaCode() {
 
     if (source && target) {
         // 1. Move the text from the hidden script to the visible code block
-        target.textContent = source.content.textContent.trim();
+        target.textContent = source.textContent.trim();
 
         // 2. Tell Prism.js to highlight it (since it was added dynamically)
         if (window.Prism) {
