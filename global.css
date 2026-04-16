@@ -209,6 +209,20 @@ button:hover { background-color: rgba(128, 128, 128, 0.5); }
     padding-left: 20px; /* Optional: adds a little breathing room from the left edge */
 }
 
+/* Force the Index Menu to be a vertical list */
+#toggleIndexMenu .settings-grid {
+    flex-direction: column;
+    align-items: flex-start; /* Aligns items to the left */
+    gap: 10px;               /* Space between items */
+    padding: 10px 25px;      /* Standard spacing */
+}
+
+/* Ensure Layout Menu stays horizontal (centered) */
+#toggleSettingsMenu .settings-grid {
+    flex-direction: row;
+    justify-content: center;
+}
+
 .is-mobile .settings-grid {
     justify-content: center; /* Aligns to the CENTER on mobile */
     padding-left: 0;         /* Removes the desktop padding */
