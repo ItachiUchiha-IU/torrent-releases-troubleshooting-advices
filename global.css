@@ -264,6 +264,7 @@ button:hover { background-color: rgba(128, 128, 128, 0.5); }
 .is-mobile body {
     --width: 96%; /* Update the fallback variable too */
     margin: 0 auto !important;
+    padding-top: 100px !important; /* Add padding-top so that the navbar doesn't cover your first lines at the top */
 }
 
 .is-mobile .topnav {
