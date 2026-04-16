@@ -8,7 +8,7 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 80px;
+    scroll-padding-top: 70px;
     color-scheme: dark light;
     overflow-y: scroll;
 }
@@ -248,13 +248,7 @@ button:hover { background-color: rgba(128, 128, 128, 0.5); }
 @media only screen and (max-width: 1000px) {
     body { 
         width: 96% !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-        
-        /* Ensure no horizontal overflow */
-        overflow-x: hidden; 
+        margin: 0 auto !important;
     }
 
     .topnav {
@@ -263,12 +257,22 @@ button:hover { background-color: rgba(128, 128, 128, 0.5); }
         height: auto;
         width: 100%;
         box-sizing: border-box;
+        
+        /* Switch to fixed for reliable smart-header behavior */
+        position: fixed !important; 
+        top: 0;
+        left: 0;
+        right: 0;
+        border-radius: 0; /* Looks better full-width on mobile */
+
+        /* Smooth animation settings */
+        transition: transform 0.3s ease-in-out !important;
+        transform: translateY(0);
+        z-index: 10000;
     }
 
-    .nav-left {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 0px 10px;
+    /* Move the bar completely off-screen when hidden */
+    .nav-hidden {
+        transform: translateY(-100%) !important;
     }
 }
