@@ -10,7 +10,7 @@ let isMobileMode = window.innerWidth <= BREAKPOINT;
 function syncViewportMode() {
     const currentMode = window.innerWidth <= BREAKPOINT;
     
-    // Toggle a class on the <html> element so CSS can see it
+    // Toggle a class on the <html> element so CSS can see it immediately
     document.documentElement.classList.toggle('is-mobile', currentMode);
 
     // Detect if we just crossed the boundary to reset manual width
@@ -18,6 +18,21 @@ function syncViewportMode() {
         isMobileMode = currentMode;
         localStorage.removeItem('width'); // Reset manual width on switch
     }
+
+    // --- FAST PATH: Apply Visuals immediately to avoid "flash" during heavy page parsing ---
+    const savedWidth = localStorage.getItem('width');
+    if (savedWidth) {
+        document.documentElement.style.setProperty('--user-width', savedWidth);
+    } else {
+        document.documentElement.style.removeProperty('--user-width');
+    }
+
+    const savedTheme = localStorage.getItem('theme') || 'Dark Blue';
+    const bgColors = {
+        'Dark Blue': "#101D29", 'Blue': "#212F3D", 'Light': "#AEB6BF",
+        'White': "#F0F0F0", 'Dark': "#1F1F1F", 'Black': "black"
+    };
+    document.body.style.backgroundColor = bgColors[savedTheme] || "#101D29";
 }
 
 // Initial check
@@ -35,7 +50,9 @@ window.onscroll = function() {
     let scrollTop = window.scrollY || document.documentElement.scrollTop;
 
     // --- 1. Floating Back to Top Button ---
-    if (btn) btn.style.display = (scrollTop > 300) ? "block" : "none";
+    if (btn) {
+        btn.style.display = (scrollTop > 300) ? "block" : "none";
+    }
 
     // --- 2. Smart Navbar Hide/Show ---
     if (nav && isMobile) {
@@ -193,23 +210,17 @@ function applySavedSettings() {
         scaleX: localStorage.getItem('scaleX') || '1.0'
     };
 
+    // Note: Background color and width variables are now updated via syncViewportMode() 
+    // to ensure they apply before the DOM finishes parsing heavy content.
+
     const target = document.getElementById("changetextcolor");
     if(target) {
-        if (s.theme === "Dark Blue") { target.style.color = "#e9e9e9"; document.body.style.backgroundColor = "#101D29"; }
-        else if (s.theme === "Blue") { target.style.color = "#e9e9e9"; document.body.style.backgroundColor = "#212F3D"; }
-        else if (s.theme === "Light") { target.style.color = "black"; document.body.style.backgroundColor = "#AEB6BF"; }
-        else if (s.theme === "White") { target.style.color = "black"; document.body.style.backgroundColor = "#F0F0F0"; }
-        else if (s.theme === "Dark") { target.style.color = "#E6E6E6"; document.body.style.backgroundColor = "#1F1F1F"; }
-        else if (s.theme === "Black") { target.style.color = "#E6E6E6"; document.body.style.backgroundColor = "black"; }
-    }
-
-    // Update the CSS variable instead of the body directly
-    if (s.width) {
-        // Apply the manual choice from the menu
-        document.documentElement.style.setProperty('--user-width', s.width);
-    } else {
-        // If "Reset" or first visit, remove the choice so CSS fallbacks take over
-        document.documentElement.style.removeProperty('--user-width');
+        if (s.theme === "Dark Blue") { target.style.color = "#e9e9e9"; }
+        else if (s.theme === "Blue") { target.style.color = "#e9e9e9"; }
+        else if (s.theme === "Light") { target.style.color = "black"; }
+        else if (s.theme === "White") { target.style.color = "black"; }
+        else if (s.theme === "Dark") { target.style.color = "#E6E6E6"; }
+        else if (s.theme === "Black") { target.style.color = "#E6E6E6"; }
     }
     
     // Ensure centering is always on
