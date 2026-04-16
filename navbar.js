@@ -18,25 +18,6 @@ function syncViewportMode() {
         isMobileMode = currentMode;
         localStorage.removeItem('width'); // Reset manual width on switch
     }
-
-    // --- FAST PATH: Apply Visuals via CSS Variables immediately ---
-    // We apply these to documentElement (<html>) because <body> might not exist yet
-    const savedWidth = localStorage.getItem('width');
-    if (savedWidth) {
-        document.documentElement.style.setProperty('--user-width', savedWidth);
-    } else {
-        document.documentElement.style.removeProperty('--user-width');
-    }
-
-    const savedTheme = localStorage.getItem('theme') || 'Dark Blue';
-    const bgColors = {
-        'Dark Blue': "#101D29", 'Blue': "#212F3D", 'Light': "#AEB6BF",
-        'White': "#F0F0F0", 'Dark': "#1F1F1F", 'Black': "black"
-    };
-    
-    // Set the background color variable globally. 
-    // Since your CSS uses background-color: var(--background-color), this works instantly.
-    document.documentElement.style.setProperty('--background-color', bgColors[savedTheme] || "#101D29");
 }
 
 // Initial check
@@ -214,27 +195,28 @@ function applySavedSettings() {
         scaleX: localStorage.getItem('scaleX') || '1.0'
     };
 
-    // Note: Background color and width variables are now updated via syncViewportMode() 
-    // to ensure they apply before the DOM finishes parsing heavy content.
-
-    // Update variables again (for when settings change manually)
-    syncViewportMode();
-
     const target = document.getElementById("changetextcolor");
     if(target) {
-        if (s.theme === "Dark Blue") { target.style.color = "#e9e9e9"; }
-        else if (s.theme === "Blue") { target.style.color = "#e9e9e9"; }
-        else if (s.theme === "Light") { target.style.color = "black"; }
-        else if (s.theme === "White") { target.style.color = "black"; }
-        else if (s.theme === "Dark") { target.style.color = "#E6E6E6"; }
-        else if (s.theme === "Black") { target.style.color = "#E6E6E6"; }
+        if (s.theme === "Dark Blue") { target.style.color = "#e9e9e9"; document.body.style.backgroundColor = "#101D29"; }
+        else if (s.theme === "Blue") { target.style.color = "#e9e9e9"; document.body.style.backgroundColor = "#212F3D"; }
+        else if (s.theme === "Light") { target.style.color = "black"; document.body.style.backgroundColor = "#AEB6BF"; }
+        else if (s.theme === "White") { target.style.color = "black"; document.body.style.backgroundColor = "#F0F0F0"; }
+        else if (s.theme === "Dark") { target.style.color = "#E6E6E6"; document.body.style.backgroundColor = "#1F1F1F"; }
+        else if (s.theme === "Black") { target.style.color = "#E6E6E6"; document.body.style.backgroundColor = "black"; }
+    }
+
+    // Update the CSS variable instead of the body directly
+    if (s.width) {
+        // Apply the manual choice from the menu
+        document.documentElement.style.setProperty('--user-width', s.width);
+    } else {
+        // If "Reset" or first visit, remove the choice so CSS fallbacks take over
+        document.documentElement.style.removeProperty('--user-width');
     }
     
-    // Ensure centering is always on (Safe here because it's called after load)
-    if (document.body) {
-        document.body.style.marginLeft = "auto";
-        document.body.style.marginRight = "auto";
-    }
+    // Ensure centering is always on
+    document.body.style.marginLeft = "auto";
+    document.body.style.marginRight = "auto";
     
     // Apply Settings to DIVs
     const elFS = document.getElementById("changefontsize"); if(elFS) elFS.style.fontSize = s.fontSize + "px";
