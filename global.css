@@ -1,10 +1,14 @@
 /* global.css */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 @font-face { font-family: Consolas; src: url("/fonts/Consolas-Regular.woff2"); font-weight: normal; }
 @font-face { font-family: 'Cronos Pro'; src: url("/fonts/Cronos Pro Regular.otf"); font-weight: normal; }
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 80px;
+    scroll-padding-top: 70px;
     color-scheme: dark light;
     overflow-y: scroll;
 }
@@ -34,7 +38,7 @@ body {
   font-family: var(--font-family);
   font-size: var(--font-size);
   font-weight: var(--font-weight);
-  width: var(--width);
+  width: var(--user-width, var(--width));
   margin: 0 auto !important; /* Centering */
   display: block;
 }
@@ -55,12 +59,37 @@ code {
     font-family: Consolas, monospace;
 }
 
+/* 1. Shared Appearance (Colors, Borders, Padding) */
 textarea, select, input[type="text"], input[type="button"] {
     background-color: rgba(128, 128, 128, 0.2);
     color: inherit;
     border: 1px solid rgba(128, 128, 128, 0.4);
     border-radius: 4px;
     padding: 5px;
+    box-sizing: border-box; /* Prevents padding from breaking width */
+}
+
+/* 2. Full-Width Layout for Textareas only */
+textarea {
+    width: 100%;            /* Fills the line */
+    display: block;         /* Moves to its own line */
+    margin: 10px 0;         /* Spacing top/bottom */
+    word-break: break-all;  /* Fix for long LAV strings */
+    white-space: pre-wrap;
+}
+
+/* 3. Inline Layout for small inputs (The Fake Button fix) */
+input[type="text"] {
+    width: auto;            /* Only as wide as needed (or uses 'size') */
+    display: inline-block;  /* Stays inside the sentence */
+    vertical-align: middle; /* Aligns nicely with labels */
+    word-break: normal;
+}
+
+/* Force long URLs to break and wrap to the next line */
+ul li a {
+    word-break: break-all;  /* Allows breaking anywhere to prevent overflow */
+    overflow-wrap: break-word;
 }
 
 /* Style for "Copy" and "Fake Button" buttons */
@@ -93,11 +122,11 @@ button:hover { background-color: rgba(128, 128, 128, 0.5); }
 .topnav {
     background-color: #1D2123;
     top: 0;
-    width: 98.3%;
+    width: 100%;
     position: sticky;
     z-index: 10000;
     border-radius: 6px;
-    padding: 1px 10px;
+    padding: 1px 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -107,6 +136,9 @@ button:hover { background-color: rgba(128, 128, 128, 0.5); }
 .nav-left {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0px 10px;
     gap: 5px;
 }
 
@@ -123,7 +155,6 @@ button:hover { background-color: rgba(128, 128, 128, 0.5); }
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    min-width: 100px; /* Prevents shifting when loading */
 }
 
 /* Button & Link Appearance */
@@ -145,6 +176,16 @@ button:hover { background-color: rgba(128, 128, 128, 0.5); }
 .topnav a:hover, .nav-btn:hover { background-color: #ddd; color: black; }
 .topnav a.active { background-color: #555555; color: white; }
 
+/* Style the specific index icon button */
+.index-toggle {
+    font-size: 32px !important; /* Icons usually need to be larger than text to look balanced */
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+}
+
 /* Sub-menus: Absolute to cover the full width below the bar */
 #toggleSettingsMenu, #toggleIndexMenu {
     display: none;
@@ -162,9 +203,15 @@ button:hover { background-color: rgba(128, 128, 128, 0.5); }
 .settings-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start; /* Aligns to the LEFT by default */
     gap: 20px;
     align-items: flex-end;
+    padding-left: 20px; /* Optional: adds a little breathing room from the left edge */
+}
+
+.is-mobile .settings-grid {
+    justify-content: center; /* Aligns to the CENTER on mobile */
+    padding-left: 0;         /* Removes the desktop padding */
 }
 
 .setting-item {
@@ -189,22 +236,66 @@ button:hover { background-color: rgba(128, 128, 128, 0.5); }
     cursor: pointer;
 }
 
-/* Mobile Adjustments */
-@media only screen and (max-width: 1000px) {
-    body { width: 94% !important; margin: 0 3% !important; }
-    .topnav {
-        flex-direction: column;
-        height: auto;
-    }
-    .nav-left {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    .nav-divider {
-        display: none; /* Hide divider on mobile to save space */
-    }
-    .nav-right {
-        justify-content: center;
-        margin-top: 10px;
-    }
+#scrollToTopBtn {
+    display: none; /* Hidden by default */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: #3498db; /* Your theme blue */
+    color: white;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 50%; /* Makes it a circle */
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+#scrollToTopBtn:hover {
+    background-color: #2980b9;
+    transform: scale(1.1);
+}
+
+/* Mobile view triggered by JavaScript BREAKPOINT */
+.is-mobile body {
+    --width: 96%; /* Update the fallback variable too */
+    margin: 0 auto !important;
+    padding-top: 100px !important; /* Add padding-top so that the navbar doesn't cover your first lines at the top */
+}
+
+.is-mobile .topnav {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    box-sizing: border-box;
+    
+    /* Switch to fixed for reliable smart-header behavior */
+    position: fixed !important; 
+    top: 0;
+    left: 0;
+    right: 0;
+    border-radius: 0; /* Looks better full-width on mobile */
+
+    /* Smooth animation settings */
+    transition: transform 0.3s ease-in-out !important;
+    transform: translateY(0);
+    z-index: 10000;
+}
+
+/* Move the bar completely off-screen when hidden */
+.is-mobile .nav-hidden {
+    transform: translateY(-100%) !important;
+}
+
+.is-mobile .nav-divider {
+    display: none;
+}
+
+.is-mobile .index-toggle {
+    font-size: 38px !important; /* Make it an easy thumb target on mobile */
 }

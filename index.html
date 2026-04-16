@@ -129,7 +129,7 @@
       <ul>
         <li>
           <strong>Advanced Track Auto-Selector (.lua script) (highly recommended):</strong>
-          <br>Download or save the <code>.lua</code> file at <a href="/MPV_Track_Auto-Selection" target="_blank">/MPV_Track_Auto-Selection</a> 
+          <br>Download or save the <code>.lua</code> file at <a href="/MPV_lua/#MPV-Track-Selection-Script-lua" target="_blank">/MPV_lua/#MPV-Track-Selection-Script-lua</a> 
           and put it into your <code>scripts</code> folder inside your mpv installation path 
           (e.g. <code>C:\Program Files\mpv\portable_config\scripts</code>).
         </li>
@@ -178,15 +178,13 @@
 
       <p><code>ITA</code> as preferred language (or edit with your preferred language and keywords; in case u need to apply a very long string, check if u can exceed the 255 characters limit, because at the time it silently truncated the string, but I was also told the limit was going to get greatly increased: <a href="https://github.com/Nevcairiel/LAVFilters/issues/614" target="_blank">LAVFilters/issues/614</a>):</p>
       
-      <textarea id="ITAstring" readonly rows="3" cols="115" maxlength="255" name="usrtxt" wrap="hard">ita:ita@Cartell,ita:ita@Sign,ita:ita@Forced,ita:ita@Forzat,ita:ita|f,ita:off,eng:eng@Sign,eng:eng@Forced,eng:eng|f,eng:off,*:ita@Dialog,*:ita@Complet,*:ita@Full,*:ita@Udenti,*:ita|!f,*:enm,*:eng@honorific,*:eng@Dialog,*:eng@Full,*:eng@SDH,*:eng|!f,*:*|f</textarea>
-      <br>
+      <textarea id="ITAstring" rows="3" maxlength="255" name="usrtxt" wrap="soft">ita:ita@Cartell,ita:ita@Sign,ita:ita@Forced,ita:ita@Forzat,ita:ita|f,ita:off,eng:eng@Sign,eng:eng@Forced,eng:eng|f,eng:off,*:ita@Dialog,*:ita@Complet,*:ita@Full,*:ita@Udenti,*:ita|!f,*:enm,*:eng@honorific,*:eng@Dialog,*:eng@Full,*:eng@SDH,*:eng|!f,*:*|f</textarea>
       <script>function copyITAstring() {let textarea = document.getElementById("ITAstring");textarea.select();document.execCommand("copy");}</script>
       <button onclick="copyITAstring()">&nbsp;&nbsp;Copy&nbsp;&nbsp;</button>
 
       <p><code>ENG</code> as preferred language:</p>
 
-      <textarea id="ENGstring" readonly rows="3" cols="115" maxlength="255" name="usrtxt" wrap="hard">eng:eng@Sign,eng:eng@Forced,eng:eng|f,eng:off,*:enm,*:eng@honorific,*:eng@Dialog,*:eng@Full,*:eng@SDH,*:eng|!f,*:*|f</textarea>
-      <br>
+      <textarea id="ENGstring" rows="3" maxlength="255" name="usrtxt" wrap="soft">eng:eng@Sign,eng:eng@Forced,eng:eng|f,eng:off,*:enm,*:eng@honorific,*:eng@Dialog,*:eng@Full,*:eng@SDH,*:eng|!f,*:*|f</textarea>
       <script>function copyENGstring() {let textarea = document.getElementById("ENGstring");textarea.select();document.execCommand("copy");}</script>
       <button onclick="copyENGstring()">&nbsp;&nbsp;Copy&nbsp;&nbsp;</button>
 

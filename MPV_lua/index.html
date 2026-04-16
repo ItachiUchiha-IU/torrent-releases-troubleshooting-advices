@@ -174,10 +174,16 @@
         <div class="code-header">
             <span>track-selector.lua</span>
             <button class="copy-btn" onclick="copyLuaCode()">Copy Code</button>
-			<button class="copy-btn" onclick="downloadLuaCode()" style="background-color: #27ae60; margin-left: 5px;">Download track-selector.lua</button>
+            <button class="copy-btn" onclick="downloadLuaCode()" style="background-color: #27ae60; margin-left: 5px;">Download track-selector.lua</button>
         </div>
-        <!-- Note: We use the <pre> and <code> tags for Prism.js -->
-        <pre><code id="lua-script" class="language-lua">-- ############ USER CONFIGURATION ############
+        
+        <!-- 1. The Code block starts EMPTY so the page is lightweight -->
+        <pre><code id="lua-script" class="language-lua">Loading script content...</code></pre>
+    </div>
+
+    <!-- 2. Put the actual code here in a "plain text" script tag. 
+        The browser will NOT try to render this, so it won't lag the phone. -->
+    <script type="text/plain" id="lua-code-source">-- ############ USER CONFIGURATION ############
 
 -- Set your preferred language codes here. All script logic will adapt to this.
 -- The first code is the primary choice for keyword lookups (e.g., "it" for Italian).
@@ -675,7 +681,7 @@ end)
 
 mp.observe_property("aid", "number", update_subtitle)
 -- This observer listens for manual subtitle changes and ensures they become visible.
-mp.observe_property("sid", "number", on_manual_sub_change)</code></pre>
+mp.observe_property("sid", "number", on_manual_sub_change)</script></pre>
     </div>
 
   </div></div></div></div></div></div></div>

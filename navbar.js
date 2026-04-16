@@ -1,19 +1,144 @@
 // navbar.js
+
+
+// --- 1. CONFIGURATION ---
+const BREAKPOINT = 1120; 
+const scrollDelta = 5; 
+let lastScrollTop = 0;
+// Initialize state immediately
+let isMobileMode = window.innerWidth <= BREAKPOINT;
+
+
+// --- 2. THE "INSTANT" PATH (Visuals) ---
+// This function does NOT touch the <body>, so it can run at the very top of the file
+// without crashing, making it effectively instant.
+function applyInstantVisuals() {
+    const currentMode = window.innerWidth <= BREAKPOINT;
+    
+    // Set the class on <html> immediately
+    document.documentElement.classList.toggle('is-mobile', currentMode);
+
+    // Sync width logic
+    const savedWidth = localStorage.getItem('width');
+    if (savedWidth) {
+        document.documentElement.style.setProperty('--user-width', savedWidth);
+    } else {
+        document.documentElement.style.removeProperty('--user-width');
+    }
+
+    // Apply background color to the root so there is no white flash
+    const savedTheme = localStorage.getItem('theme') || 'Dark Blue';
+    const bgColors = {
+        'Dark Blue': "#101D29", 'Blue': "#212F3D", 'Light': "#AEB6BF",
+        'White': "#F0F0F0", 'Dark': "#1F1F1F", 'Black': "black"
+    };
+    document.documentElement.style.setProperty('--background-color', bgColors[savedTheme] || "#101D29");
+
+    // Detect threshold crossing for width reset
+    if (currentMode !== isMobileMode) {
+        isMobileMode = currentMode;
+        localStorage.removeItem('width'); // Reset manual width on switch
+    }
+}
+
+// EXECUTE IMMEDIATELY
+applyInstantVisuals();
+
+
+// --- 3. EVENT LISTENERS ---
+
+window.onresize = function() {
+    applyInstantVisuals();
+    if (document.readyState === "complete" || document.readyState === "interactive") {
+        applySavedSettings(); // Sync UI dropdowns
+    }
+};
+
+window.onscroll = function() {
+    const btn = document.getElementById("scrollToTopBtn");
+    const nav = document.querySelector(".topnav");
+    const isMobile = document.documentElement.classList.contains('is-mobile');
+    let scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+    // --- 1. Floating Back to Top Button ---
+    if (btn) {
+        btn.style.display = (scrollTop > 300) ? "block" : "none";
+    }
+
+    // --- 2. Smart Navbar Hide/Show ---
+    if (nav && isMobile) {
+        
+        // Only act if we scrolled more than the delta (5px)
+        if (Math.abs(lastScrollTop - scrollTop) <= scrollDelta) return;
+        
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            // SCROLLING DOWN
+            nav.classList.add("nav-hidden");
+            
+            // Auto-close any open sub-menus
+            ['toggleSettingsMenu', 'toggleIndexMenu'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.style.display = 'none';
+            });
+        } else {
+            // SCROLLING UP (Immediate re-appearance)
+            nav.classList.remove("nav-hidden");
+        }
+    } else if (nav) {
+        // Desktop safety: always show
+        nav.classList.remove("nav-hidden");
+    }
+
+    // Update lastScrollTop, ensuring it doesn't go negative (iOS bounce)
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+};
+
+function lazyLoadLuaCode() {
+    const source = document.getElementById('lua-code-source');
+    const target = document.getElementById('lua-script');
+
+    if (source && target) {
+        // 1. Move the text from the hidden script to the visible code block
+        target.textContent = source.textContent.trim();
+
+        // 2. Tell Prism.js to highlight it (since it was added dynamically)
+        if (window.Prism) {
+            Prism.highlightElement(target);
+        } else {
+            // If Prism is still downloading, wait for it
+            document.addEventListener("PrismHighlight", () => Prism.highlightElement(target));
+        }
+        
+        console.log("Lua code lazy-loaded successfully.");
+    }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-    const isHome = window.location.pathname === "/" || (window.location.pathname.endsWith("index.html") && !window.location.pathname.includes("/Hashes/"));
+    // Inject Navbar
+    const path = window.location.pathname;
+    const isHome = path === "/" || path === "/index.html" || path === "";
+    const isMPV_lua = path.includes('MPV_lua');
+    const isHashes = path.includes('Hashes');
 
     const navHtml = `
     <div class="topnav">
         <!-- LEFT SECTION: All navigation and controls -->
         <div class="nav-left">
-            <a href="/" class="${isHome ? 'active' : ''}">Home Page</a>
-            <a href="/MPV_Track_Auto-Selection" class="${window.location.pathname.includes('/MPV_Track_Auto-Selection') ? 'active' : ''}">MPV .lua</a>
-            <a href="/Hashes" class="${window.location.pathname.includes('/Hashes') ? 'active' : ''}">Hashes</a>
+            <!-- 1. The Index Icon Button -->
+            <button class="nav-btn index-toggle" onclick="toggleMenu('toggleIndexMenu')" title="Page Index">&#9776;</button>
+
+            <!-- Vertical Divider -->
+            <div class="nav-divider"></div>
+
+            <!-- 2. The Navigation Links -->
+            <a href="/" class="${isHome ? 'active' : ''}">Home</a>
+            <a href="/MPV_lua" class="${isMPV_lua ? 'active' : ''}">MPV .lua</a>
+            <a href="/Hashes" class="${isHashes ? 'active' : ''}">Hashes</a>
             
             <!-- Vertical Divider -->
             <div class="nav-divider"></div>
 
-            <button class="nav-btn" onclick="toggleMenu('toggleIndexMenu')">Page Index</button>
+            <!-- 3. The Layout Button -->
             <button class="nav-btn" onclick="toggleMenu('toggleSettingsMenu')">Layout</button>
             
             <!-- Vertical Divider -->
@@ -29,10 +154,12 @@ document.addEventListener("DOMContentLoaded", () => {
         <!-- DROPDOWN MENUS (Absolute positioned below the bar) -->
         <div id="toggleIndexMenu">
             <div class="settings-grid">
-                <a class="nav-btn" href="#" onclick="toggleMenu('toggleIndexMenu')">To Top</a>
+                <a class="nav-btn" href="#" onclick="toggleMenu('toggleIndexMenu')" title="Back to Top">&uarr; Top</a>
                 ${isHome ? `<a class="nav-btn" href="#media-players" onclick="toggleMenu('toggleIndexMenu')">Media Players</a>` : ''}
                 ${isHome ? `<a class="nav-btn" href="#Track_Auto-Selection" onclick="toggleMenu('toggleIndexMenu')">Track Auto-Selection</a>` : ''}
                 ${isHome ? `<a class="nav-btn" href="#more-troubleshooting-and-advices" onclick="toggleMenu('toggleIndexMenu')">More T&A</a>` : ''}
+                ${isMPV_lua ? `<a class="nav-btn" href="#security-notice" onclick="toggleMenu('toggleIndexMenu')">Security Note</a>` : ''}
+                ${isMPV_lua ? `<a class="nav-btn" href="#MPV-Track-Selection-Script-lua" onclick="toggleMenu('toggleIndexMenu')">Track Auto-Selector (.lua)</a>` : ''}
             </div>
         </div>
 
@@ -47,7 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="setting-item">
                     <label>Width:</label>
                     <select id="widthSelect" onchange="updateSetting('width', this.value)">
-                        <option>40%</option><option>50%</option><option>60%</option><option>65%</option><option>70%</option><option>80%</option><option>90%</option><option>100%</option>
+                        <option>40%</option><option>50%</option><option>60%</option><option>65%</option><option>70%</option><option>80%</option><option>90%</option><option>96%</option><option>100%</option>
                     </select>
                 </div>
                 <div class="setting-item">
@@ -77,10 +204,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
             </div>
         </div>
-    </div>`;
+    </div>
+    <button id="scrollToTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Go to top">&uarr;</button>
+    `;
 
     document.body.insertAdjacentHTML("afterbegin", navHtml);
     applySavedSettings();
+
+    lazyLoadLuaCode();
 
     (function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");
 });
@@ -95,7 +226,8 @@ function toggleMenu(id) {
 
 function updateSetting(key, value) {
     localStorage.setItem(key, value);
-    applySavedSettings();
+    applyInstantVisuals(); // Update variables immediately
+    applySavedSettings(); // Sync UI
 }
 
 function resetSettings() {
@@ -106,24 +238,26 @@ function resetSettings() {
 function applySavedSettings() {
     const s = {
         theme: localStorage.getItem('theme') || 'Dark Blue',
-        width: localStorage.getItem('width') || '65%',
+        width: localStorage.getItem('width'),
         fontSize: localStorage.getItem('fontSize') || '16.5',
         fontFamily: localStorage.getItem('fontFamily') || 'Consolas',
         fontWeight: localStorage.getItem('fontWeight') || 'Normal',
         scaleX: localStorage.getItem('scaleX') || '1.0'
     };
 
+    // Note: Background and Width are handled by applyInstantVisuals() to avoid delay.
+    // This function now primarily handles text colors and UI sync.
+
     const target = document.getElementById("changetextcolor");
     if(target) {
-        if (s.theme === "Dark Blue") { target.style.color = "#e9e9e9"; document.body.style.backgroundColor = "#101D29"; }
-        else if (s.theme === "Blue") { target.style.color = "#e9e9e9"; document.body.style.backgroundColor = "#212F3D"; }
-        else if (s.theme === "Light") { target.style.color = "black"; document.body.style.backgroundColor = "#AEB6BF"; }
-        else if (s.theme === "White") { target.style.color = "black"; document.body.style.backgroundColor = "#F0F0F0"; }
-        else if (s.theme === "Dark") { target.style.color = "#E6E6E6"; document.body.style.backgroundColor = "#1F1F1F"; }
-        else if (s.theme === "Black") { target.style.color = "#E6E6E6"; document.body.style.backgroundColor = "black"; }
+        if (['Light', 'White'].includes(s.theme)) { target.style.color = "black"; }
+        else { target.style.color = "#e9e9e9"; }
     }
-
-    document.body.style.width = s.width;
+    
+    if (document.body) {
+        document.body.style.marginLeft = "auto";
+        document.body.style.marginRight = "auto";
+    }
     
     // Apply Settings to DIVs
     const elFS = document.getElementById("changefontsize"); if(elFS) elFS.style.fontSize = s.fontSize + "px";
@@ -131,9 +265,18 @@ function applySavedSettings() {
     const elFW = document.getElementById("changefontweight"); if(elFW) elFW.style.fontWeight = s.fontWeight;
     const elSX = document.getElementById("scaleXY"); if(elSX) elSX.style.transform = `scaleX(${s.scaleX})`;
 
-    // Sync UI
+    // --- Sync UI Elements ---
     if(document.getElementById('themeSelect')) document.getElementById('themeSelect').value = s.theme;
-    if(document.getElementById('widthSelect')) document.getElementById('widthSelect').value = s.width;
+    // Improved Width Sync
+    const widthSelect = document.getElementById('widthSelect');
+    if(widthSelect) {
+        const savedWidth = localStorage.getItem('width');
+        // If there is a manual width in storage, show it.
+        // Otherwise, show the responsive default (96% for mobile, 65% for desktop).
+        const isMobile = document.documentElement.classList.contains('is-mobile');
+        widthSelect.value = savedWidth || (isMobile ? '96%' : '65%');
+    }
+
     if(document.getElementById('fontpxSelect')) document.getElementById('fontpxSelect').value = s.fontSize;
     if(document.getElementById('fontFamilySelect')) document.getElementById('fontFamilySelect').value = s.fontFamily;
     if(document.getElementById('fontWeightSelect')) document.getElementById('fontWeightSelect').value = s.fontWeight;
@@ -204,4 +347,22 @@ async function fetchLastUpdated() {
     }
 }
 
+// --- EVENT LISTENERS ---
+
+// 1. Trigger the GitHub date fetch when HTML is ready
 document.addEventListener("DOMContentLoaded", fetchLastUpdated);
+
+// 2. Force textareas and inputs to reset to original values every time page is shown
+window.addEventListener("pageshow", () => {
+    // List the IDs of the elements you want to reset
+    const toReset = ["ITAstring", "ENGstring", "fakebutton"];
+    
+    toReset.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            // .defaultValue is the text you wrote in the HTML file
+            // Setting .value to .defaultValue wipes out anything the browser "remembered"
+            el.value = el.defaultValue;
+        }
+    });
+});
