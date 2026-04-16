@@ -1,32 +1,54 @@
 // navbar.js
-let lastScrollTop = 0;
+
+// --- CONFIGURATION ---
+const BREAKPOINT = 1120; // px value to change from desktop mode to mobile mode
 const scrollDelta = 5; // Minimum pixels to scroll before action
+let lastScrollTop = 0;
+let isMobileMode = window.innerWidth <= BREAKPOINT;
+
+// Function to handle mode switching and CSS class toggling
+function syncViewportMode() {
+    const currentMode = window.innerWidth <= BREAKPOINT;
+    
+    // Toggle a class on the <html> element so CSS can see it
+    document.documentElement.classList.toggle('is-mobile', currentMode);
+
+    // Detect if we just crossed the boundary to reset manual width
+    if (currentMode !== isMobileMode) {
+        isMobileMode = currentMode;
+        localStorage.removeItem('width'); // Reset manual width on switch
+    }
+}
+
+// Initial check
+syncViewportMode();
+
+window.onresize = function() {
+    syncViewportMode();
+    applySavedSettings();
+};
 
 window.onscroll = function() {
     const btn = document.getElementById("scrollToTopBtn");
     const nav = document.querySelector(".topnav");
+    const isMobile = document.documentElement.classList.contains('is-mobile');
     let scrollTop = window.scrollY || document.documentElement.scrollTop;
 
     // --- 1. Floating Back to Top Button ---
-    if (btn) {
-        btn.style.display = (scrollTop > 300) ? "block" : "none";
-    }
+    if (btn) btn.style.display = (scrollTop > 300) ? "block" : "none";
 
     // --- 2. Smart Navbar Hide/Show ---
-    if (nav && window.innerWidth <= 1000) {
+    if (nav && isMobile) {
         
         // Only act if we scrolled more than the delta (5px)
-        if (Math.abs(lastScrollTop - scrollTop) <= scrollDelta) {
-            return;
-        }
-
+        if (Math.abs(lastScrollTop - scrollTop) <= scrollDelta) return;
+        
         if (scrollTop > lastScrollTop && scrollTop > 100) {
             // SCROLLING DOWN
             nav.classList.add("nav-hidden");
             
             // Auto-close any open sub-menus
-            const menus = ['toggleSettingsMenu', 'toggleIndexMenu'];
-            menus.forEach(id => {
+            ['toggleSettingsMenu', 'toggleIndexMenu'].forEach(id => {
                 const el = document.getElementById(id);
                 if (el) el.style.display = 'none';
             });
@@ -96,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="setting-item">
                     <label>Width:</label>
                     <select id="widthSelect" onchange="updateSetting('width', this.value)">
-                        <option>40%</option><option>50%</option><option>60%</option><option>65%</option><option>70%</option><option>80%</option><option>90%</option><option>100%</option>
+                        <option>40%</option><option>50%</option><option>60%</option><option>65%</option><option>70%</option><option>80%</option><option>90%</option><option>96%</option><option>100%</option>
                     </select>
                 </div>
                 <div class="setting-item">
@@ -193,9 +215,17 @@ function applySavedSettings() {
     const elFW = document.getElementById("changefontweight"); if(elFW) elFW.style.fontWeight = s.fontWeight;
     const elSX = document.getElementById("scaleXY"); if(elSX) elSX.style.transform = `scaleX(${s.scaleX})`;
 
-    // Sync UI
+    // --- Sync UI Elements ---
     if(document.getElementById('themeSelect')) document.getElementById('themeSelect').value = s.theme;
-    if(document.getElementById('widthSelect')) document.getElementById('widthSelect').value = s.width || (window.innerWidth <= 1000 ? '96%' : '65%');
+    // Improved Width Sync
+    const widthSelect = document.getElementById('widthSelect');
+    if(widthSelect) {
+        const savedWidth = localStorage.getItem('width');
+        // If there is a manual width in storage, show it.
+        // Otherwise, show the responsive default (96% for mobile, 65% for desktop).
+        const isMobile = document.documentElement.classList.contains('is-mobile');
+        widthSelect.value = savedWidth || (isMobile ? '96%' : '65%');
+    }
     if(document.getElementById('fontpxSelect')) document.getElementById('fontpxSelect').value = s.fontSize;
     if(document.getElementById('fontFamilySelect')) document.getElementById('fontFamilySelect').value = s.fontFamily;
     if(document.getElementById('fontWeightSelect')) document.getElementById('fontWeightSelect').value = s.fontWeight;

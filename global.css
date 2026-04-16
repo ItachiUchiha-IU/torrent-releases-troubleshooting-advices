@@ -244,35 +244,37 @@ button:hover { background-color: rgba(128, 128, 128, 0.5); }
     transform: scale(1.1);
 }
 
-/* Mobile Adjustments */
-@media only screen and (max-width: 1000px) {
-    body {
-        --width: 96%;
-        margin: 0 auto !important;
-    }
+/* Mobile view triggered by JavaScript BREAKPOINT */
+.is-mobile body {
+    --width: 96%; /* Update the fallback variable too */
+    margin: 0 auto !important;
+}
 
-    .topnav {
-        display: flex;
-        flex-direction: column;
-        height: auto;
-        width: 100%;
-        box-sizing: border-box;
-        
-        /* Switch to fixed for reliable smart-header behavior */
-        position: fixed !important; 
-        top: 0;
-        left: 0;
-        right: 0;
-        border-radius: 0; /* Looks better full-width on mobile */
+.is-mobile .topnav {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    box-sizing: border-box;
+    
+    /* Switch to fixed for reliable smart-header behavior */
+    position: fixed !important; 
+    top: 0;
+    left: 0;
+    right: 0;
+    border-radius: 0; /* Looks better full-width on mobile */
 
-        /* Smooth animation settings */
-        transition: transform 0.3s ease-in-out !important;
-        transform: translateY(0);
-        z-index: 10000;
-    }
+    /* Smooth animation settings */
+    transition: transform 0.3s ease-in-out !important;
+    transform: translateY(0);
+    z-index: 10000;
+}
 
-    /* Move the bar completely off-screen when hidden */
-    .nav-hidden {
-        transform: translateY(-100%) !important;
-    }
+/* Move the bar completely off-screen when hidden */
+.is-mobile .nav-hidden {
+    transform: translateY(-100%) !important;
+}
+
+.is-mobile .nav-divider {
+    display: none;
 }
