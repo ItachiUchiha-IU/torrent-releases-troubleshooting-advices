@@ -99,7 +99,7 @@ function lazyLoadLuaCode() {
 
     if (source && target) {
         // 1. Move the text from the hidden script to the visible code block
-        target.textContent = source.textContent.trim();
+        target.textContent = source.content.textContent.trim();
 
         // 2. Tell Prism.js to highlight it (since it was added dynamically)
         if (window.Prism) {
@@ -245,8 +245,8 @@ function applySavedSettings() {
         scaleX: localStorage.getItem('scaleX') || '1.0'
     };
 
-    // Note: Background and Width are handled by applyInstantVisuals() to avoid delay.
-    // This function now primarily handles text colors and UI sync.
+    // Note: Background and Width are primarily handled by applyInstantVisuals()
+    applyInstantVisuals();
 
     const target = document.getElementById("changetextcolor");
     if(target) {
