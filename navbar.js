@@ -174,8 +174,10 @@ function applySavedSettings() {
         else if (s.theme === "Black") { target.style.color = "#E6E6E6"; document.body.style.backgroundColor = "black"; }
     }
 
-    // Use setProperty so we can add 'important' to override the media query
-    document.body.style.setProperty('width', s.width, 'important');
+    // Update the CSS variable instead of the body directly
+    document.documentElement.style.setProperty('--width', s.width);
+    
+    // Ensure centering is always on
     document.body.style.marginLeft = "auto";
     document.body.style.marginRight = "auto";
     
