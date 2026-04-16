@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <div class="topnav">
         <!-- LEFT SECTION: All navigation and controls -->
         <div class="nav-left">
-            <a href="/" class="${isHome ? 'active' : ''}">Home Page</a>
+            <a href="/" class="${isHome ? 'active' : ''}">Home</a>
             <a href="/MPV_lua" class="${isMPV_lua ? 'active' : ''}">MPV .lua</a>
             <a href="/Hashes" class="${isHashes ? 'active' : ''}">Hashes</a>
             
