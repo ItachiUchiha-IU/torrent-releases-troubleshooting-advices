@@ -75,6 +75,13 @@ document.addEventListener("DOMContentLoaded", () => {
     <div class="topnav">
         <!-- LEFT SECTION: All navigation and controls -->
         <div class="nav-left">
+            <!-- 1. The Index Icon Button -->
+            <button class="nav-btn index-toggle" onclick="toggleMenu('toggleIndexMenu')" title="Page Index">&#9776;</button>
+
+            <!-- Vertical Divider -->
+            <div class="nav-divider"></div>
+
+            <!-- 2. The Navigation Links -->
             <a href="/" class="${isHome ? 'active' : ''}">Home</a>
             <a href="/MPV_lua" class="${isMPV_lua ? 'active' : ''}">MPV .lua</a>
             <a href="/Hashes" class="${isHashes ? 'active' : ''}">Hashes</a>
@@ -82,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <!-- Vertical Divider -->
             <div class="nav-divider"></div>
 
-            <button class="nav-btn" onclick="toggleMenu('toggleIndexMenu')">Page Index</button>
+            <!-- 3. The Layout Button -->
             <button class="nav-btn" onclick="toggleMenu('toggleSettingsMenu')">Layout</button>
             
             <!-- Vertical Divider -->
