@@ -203,9 +203,15 @@ button:hover { background-color: rgba(128, 128, 128, 0.5); }
 .settings-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start; /* Aligns to the LEFT by default */
     gap: 20px;
     align-items: flex-end;
+    padding-left: 20px; /* Optional: adds a little breathing room from the left edge */
+}
+
+.is-mobile .settings-grid {
+    justify-content: center; /* Aligns to the CENTER on mobile */
+    padding-left: 0;         /* Removes the desktop padding */
 }
 
 .setting-item {
