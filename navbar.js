@@ -104,6 +104,9 @@ function lazyLoadLuaCode() {
         // 2. Tell Prism.js to highlight it (since it was added dynamically)
         if (window.Prism) {
             Prism.highlightElement(target);
+        } else {
+            // If Prism is still downloading, wait for it
+            document.addEventListener("PrismHighlight", () => Prism.highlightElement(target));
         }
         
         console.log("Lua code lazy-loaded successfully.");
@@ -271,7 +274,7 @@ function applySavedSettings() {
         // If there is a manual width in storage, show it.
         // Otherwise, show the responsive default (96% for mobile, 65% for desktop).
         const isMobile = document.documentElement.classList.contains('is-mobile');
-        widthSelect.value = s.width || (isMobile ? '96%' : '65%');
+        widthSelect.value = savedWidth || (isMobile ? '96%' : '65%');
     }
 
     if(document.getElementById('fontpxSelect')) document.getElementById('fontpxSelect').value = s.fontSize;
