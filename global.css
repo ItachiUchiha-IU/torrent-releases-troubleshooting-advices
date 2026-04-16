@@ -1,4 +1,8 @@
 /* global.css */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 @font-face { font-family: Consolas; src: url("/fonts/Consolas-Regular.woff2"); font-weight: normal; }
 @font-face { font-family: 'Cronos Pro'; src: url("/fonts/Cronos Pro Regular.otf"); font-weight: normal; }
 
@@ -55,22 +59,31 @@ code {
     font-family: Consolas, monospace;
 }
 
+/* 1. Shared Appearance (Colors, Borders, Padding) */
 textarea, select, input[type="text"], input[type="button"] {
     background-color: rgba(128, 128, 128, 0.2);
     color: inherit;
     border: 1px solid rgba(128, 128, 128, 0.4);
     border-radius: 4px;
     padding: 5px;
+    box-sizing: border-box; /* Prevents padding from breaking width */
+}
 
-    /* --- The Mobile/Smart Fixes --- */
-    width: 98.1%;
-    max-width: 98.1%;       /* Don't go outside the parent */
-    box-sizing: border-box; /* Padding won't push the box wider */
-    display: block;         /* Ensures it behaves correctly with width: 100% */
-    
-    /* --- Break Anywhere --- */
-    word-break: break-all;  /* Force wrap even if no spaces/punctuation */
-    white-space: pre-wrap;  /* Preserves formatting but wraps text */
+/* 2. Full-Width Layout for Textareas only */
+textarea {
+    width: 100%;            /* Fills the line */
+    display: block;         /* Moves to its own line */
+    margin: 10px 0;         /* Spacing top/bottom */
+    word-break: break-all;  /* Fix for long LAV strings */
+    white-space: pre-wrap;
+}
+
+/* 3. Inline Layout for small inputs (The Fake Button fix) */
+input[type="text"] {
+    width: auto;            /* Only as wide as needed (or uses 'size') */
+    display: inline-block;  /* Stays inside the sentence */
+    vertical-align: middle; /* Aligns nicely with labels */
+    word-break: normal;
 }
 
 /* Force long URLs to break and wrap to the next line */
@@ -109,11 +122,11 @@ button:hover { background-color: rgba(128, 128, 128, 0.5); }
 .topnav {
     background-color: #1D2123;
     top: 0;
-    width: 98.3%;
+    width: 100%;
     position: sticky;
     z-index: 10000;
     border-radius: 6px;
-    padding: 1px 10px;
+    padding: 1px 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -123,6 +136,9 @@ button:hover { background-color: rgba(128, 128, 128, 0.5); }
 .nav-left {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0px 10px;
     gap: 5px;
 }
 
@@ -139,7 +155,6 @@ button:hover { background-color: rgba(128, 128, 128, 0.5); }
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    min-width: 100px; /* Prevents shifting when loading */
 }
 
 /* Button & Link Appearance */
@@ -231,20 +246,29 @@ button:hover { background-color: rgba(128, 128, 128, 0.5); }
 
 /* Mobile Adjustments */
 @media only screen and (max-width: 1000px) {
-    body { width: 94% !important; margin: 0 3% !important; }
+    body { 
+        width: 96% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        
+        /* Ensure no horizontal overflow */
+        overflow-x: hidden; 
+    }
+
     .topnav {
+        display: flex;
         flex-direction: column;
         height: auto;
+        width: 100%;
+        box-sizing: border-box;
     }
+
     .nav-left {
+        display: flex;
         flex-wrap: wrap;
         justify-content: center;
-    }
-    .nav-divider {
-        display: none; /* Hide divider on mobile to save space */
-    }
-    .nav-right {
-        justify-content: center;
-        margin-top: 10px;
+        padding: 0px 10px;
     }
 }
