@@ -174,7 +174,10 @@ function applySavedSettings() {
         else if (s.theme === "Black") { target.style.color = "#E6E6E6"; document.body.style.backgroundColor = "black"; }
     }
 
-    document.body.style.width = s.width;
+    // Use setProperty so we can add 'important' to override the media query
+    document.body.style.setProperty('width', s.width, 'important');
+    document.body.style.marginLeft = "auto";
+    document.body.style.marginRight = "auto";
     
     // Apply Settings to DIVs
     const elFS = document.getElementById("changefontsize"); if(elFS) elFS.style.fontSize = s.fontSize + "px";

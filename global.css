@@ -247,7 +247,7 @@ button:hover { background-color: rgba(128, 128, 128, 0.5); }
 /* Mobile Adjustments */
 @media only screen and (max-width: 1000px) {
     body { 
-        width: 96% !important;
+        width: 96%;
         margin: 0 auto !important;
     }
 
