@@ -1,4 +1,48 @@
 // navbar.js
+let lastScrollTop = 0;
+const scrollDelta = 5; // Minimum pixels to scroll before action
+
+window.onscroll = function() {
+    const btn = document.getElementById("scrollToTopBtn");
+    const nav = document.querySelector(".topnav");
+    let scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+    // --- 1. Floating Back to Top Button ---
+    if (btn) {
+        btn.style.display = (scrollTop > 300) ? "block" : "none";
+    }
+
+    // --- 2. Smart Navbar Hide/Show ---
+    if (nav && window.innerWidth <= 1000) {
+        
+        // Only act if we scrolled more than the delta (5px)
+        if (Math.abs(lastScrollTop - scrollTop) <= scrollDelta) {
+            return;
+        }
+
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            // SCROLLING DOWN
+            nav.classList.add("nav-hidden");
+            
+            // Auto-close any open sub-menus
+            const menus = ['toggleSettingsMenu', 'toggleIndexMenu'];
+            menus.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.style.display = 'none';
+            });
+        } else {
+            // SCROLLING UP (Immediate re-appearance)
+            nav.classList.remove("nav-hidden");
+        }
+    } else if (nav) {
+        // Desktop safety: always show
+        nav.classList.remove("nav-hidden");
+    }
+
+    // Update lastScrollTop, ensuring it doesn't go negative (iOS bounce)
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+};
+
 document.addEventListener("DOMContentLoaded", () => {
     const path = window.location.pathname;
     const isHome = path === "/" || path === "/index.html" || path === "";
@@ -91,17 +135,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     (function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");
 });
-
-window.onscroll = function() {
-    const btn = document.getElementById("scrollToTopBtn");
-    if (btn) {
-        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-            btn.style.display = "block";
-        } else {
-            btn.style.display = "none";
-        }
-    }
-};
 
 function toggleMenu(id) {
     const menus = ['toggleSettingsMenu', 'toggleIndexMenu'];
