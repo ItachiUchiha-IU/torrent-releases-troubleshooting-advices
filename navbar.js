@@ -134,8 +134,8 @@ document.addEventListener("DOMContentLoaded", () => {
             <!-- 2. The Navigation Links -->
             <a href="/" class="${isHome ? 'active' : ''}">Home</a>
             <a href="/MPV_lua" class="${isMPV_lua ? 'active' : ''}">MPV .lua</a>
-            <a href="/Hashes" class="${isHashes ? 'active' : ''}">Hashes</a>
             <a href="/Basics" class="${isBasics ? 'active' : ''}">Piracy Basics</a>
+            <a href="/Hashes" class="${isHashes ? 'active' : ''}">Hashes</a>
             
             <!-- Vertical Divider -->
             <div class="nav-divider"></div>
