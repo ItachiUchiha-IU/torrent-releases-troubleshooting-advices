@@ -119,6 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const isHome = path === "/" || path === "/index.html" || path === "";
     const isMPV_lua = path.includes('MPV_lua');
     const isHashes = path.includes('Hashes');
+    const isBasics = path.includes('Basics');
 
     const navHtml = `
     <div class="topnav">
@@ -133,6 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <!-- 2. The Navigation Links -->
             <a href="/" class="${isHome ? 'active' : ''}">Home</a>
             <a href="/MPV_lua" class="${isMPV_lua ? 'active' : ''}">MPV .lua</a>
+            <a href="/Basics" class="${isBasics ? 'active' : ''}">Piracy Basics</a>
             <a href="/Hashes" class="${isHashes ? 'active' : ''}">Hashes</a>
             
             <!-- Vertical Divider -->
@@ -155,11 +157,23 @@ document.addEventListener("DOMContentLoaded", () => {
         <div id="toggleIndexMenu">
             <div class="settings-grid">
                 <a class="nav-btn" href="#" onclick="toggleMenu('toggleIndexMenu')" title="Back to Top">&uarr; Top</a>
-                ${isHome ? `<a class="nav-btn" href="#media-players" onclick="toggleMenu('toggleIndexMenu')">Media Players</a>` : ''}
-                ${isHome ? `<a class="nav-btn" href="#Track_Auto-Selection" onclick="toggleMenu('toggleIndexMenu')">Track Auto-Selection</a>` : ''}
-                ${isHome ? `<a class="nav-btn" href="#more-troubleshooting-and-advices" onclick="toggleMenu('toggleIndexMenu')">More T&A</a>` : ''}
-                ${isMPV_lua ? `<a class="nav-btn" href="#security-notice" onclick="toggleMenu('toggleIndexMenu')">Security Note</a>` : ''}
-                ${isMPV_lua ? `<a class="nav-btn" href="#MPV-Track-Selection-Script-lua" onclick="toggleMenu('toggleIndexMenu')">Track Auto-Selector (.lua)</a>` : ''}
+                ${isHome ? `
+                    <a class="nav-btn" href="#media-players" onclick="toggleMenu('toggleIndexMenu')">Media Players</a>
+                    <a class="nav-btn" href="#Track_Auto-Selection" onclick="toggleMenu('toggleIndexMenu')">Track Auto-Selection</a>
+                    <a class="nav-btn" href="#more-troubleshooting-and-advices" onclick="toggleMenu('toggleIndexMenu')">More T&A</a>
+                ` : ''}
+                ${isMPV_lua ? `
+                    <a class="nav-btn" href="#security-notice" onclick="toggleMenu('toggleIndexMenu')">Security Note</a>
+                    <a class="nav-btn" href="#MPV-Track-Selection-Script-lua" onclick="toggleMenu('toggleIndexMenu')">Track Auto-Selector (.lua)</a>
+                ` : ''}
+                ${isBasics ? `
+                    <!-- this index wont work for the Italian version of the page because I'm too lazy to fix it -->
+                    <a class="nav-btn" href="#dns" onclick="toggleMenu('toggleIndexMenu')">DNS Settings</a>
+                    <a class="nav-btn" href="#browser" onclick="toggleMenu('toggleIndexMenu')">Browser</a>
+                    <a class="nav-btn" href="#torrent-client" onclick="toggleMenu('toggleIndexMenu')">Torrent Client</a>
+                    <a class="nav-btn" href="#anime-sites" onclick="toggleMenu('toggleIndexMenu')">Anime Sites</a>
+                    <a class="nav-btn" href="#games" onclick="toggleMenu('toggleIndexMenu')">Cracked Games</a>
+                ` : ''}
             </div>
         </div>
 
@@ -220,7 +234,15 @@ function toggleMenu(id) {
     const menus = ['toggleSettingsMenu', 'toggleIndexMenu'];
     menus.forEach(m => {
         const el = document.getElementById(m);
-        if (el) el.style.display = (m === id && el.style.display !== 'block') ? 'block' : 'none';
+        if (el) {
+            if (m === id) {
+                // Toggle the clicked menu
+                el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+            } else {
+                // Hide the other one
+                el.style.display = 'none';
+            }
+        }
     });
 }
 
@@ -365,4 +387,29 @@ window.addEventListener("pageshow", () => {
             el.value = el.defaultValue;
         }
     });
+});
+
+
+// Close menus when clicking outside
+window.addEventListener('click', function(event) {
+    const settingsMenu = document.getElementById('toggleSettingsMenu');
+    const indexMenu = document.getElementById('toggleIndexMenu');
+    
+    // We check if the click was NOT on a button and NOT inside a menu
+    const isButtonClick = event.target.closest('.nav-btn');
+    
+    if (!isButtonClick) {
+        if (settingsMenu && settingsMenu.style.display === 'block') {
+            // Only close if the click was actually outside the menu area
+            if (!settingsMenu.contains(event.target)) {
+                settingsMenu.style.display = 'none';
+            }
+        }
+        if (indexMenu && indexMenu.style.display === 'block') {
+            // Only close if the click was actually outside the menu area
+            if (!indexMenu.contains(event.target)) {
+                indexMenu.style.display = 'none';
+            }
+        }
+    }
 });
