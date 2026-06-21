@@ -171,6 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <a class="nav-btn" href="#dns" onclick="toggleMenu('toggleIndexMenu')">DNS Settings</a>
                     <a class="nav-btn" href="#browser" onclick="toggleMenu('toggleIndexMenu')">Browser</a>
                     <a class="nav-btn" href="#torrent-client" onclick="toggleMenu('toggleIndexMenu')">Torrent Client</a>
+                    <a class="nav-btn" href="#manga-sites" onclick="toggleMenu('toggleIndexMenu')">Manga Sites</a>
                     <a class="nav-btn" href="#anime-sites" onclick="toggleMenu('toggleIndexMenu')">Anime Sites</a>
                     <a class="nav-btn" href="#games" onclick="toggleMenu('toggleIndexMenu')">Cracked Games</a>
                 ` : ''}
