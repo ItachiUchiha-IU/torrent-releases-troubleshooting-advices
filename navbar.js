@@ -167,10 +167,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     <a class="nav-btn" href="#MPV-Track-Selection-Script-lua" onclick="toggleMenu('toggleIndexMenu')">Track Auto-Selector (.lua)</a>
                 ` : ''}
                 ${isBasics ? `
+                    <!-- this index wont work for the Italian version of the page because I'm too lazy to fix it -->
                     <a class="nav-btn" href="#dns" onclick="toggleMenu('toggleIndexMenu')">DNS Settings</a>
                     <a class="nav-btn" href="#browser" onclick="toggleMenu('toggleIndexMenu')">Browser</a>
-                    <a class="nav-btn" href="#torrent" onclick="toggleMenu('toggleIndexMenu')">BitTorrent</a>
-                    <a class="nav-btn" href="#anime" onclick="toggleMenu('toggleIndexMenu')">Anime Sites</a>
+                    <a class="nav-btn" href="#torrent-client" onclick="toggleMenu('toggleIndexMenu')">BitTorrent</a>
+                    <a class="nav-btn" href="#anime-sites" onclick="toggleMenu('toggleIndexMenu')">Anime Sites</a>
                     <a class="nav-btn" href="#games" onclick="toggleMenu('toggleIndexMenu')">Cracked Games</a>
                 ` : ''}
             </div>
