@@ -8,7 +8,7 @@
     <script src="/navbar.js"></script>
     <style>
         /* Language Toggle */
-        .lang-toggle-wrap { display: flex; justify-content: flex-end; margin-bottom: 20px; gap: 10px; }
+        .lang-toggle-wrap { display: flex; justify-content: flex-start; margin-bottom: 20px; gap: 10px; }
         .lang-btn { 
             background: rgba(128,128,128,0.2); border: 1px solid rgba(128,128,128,0.4); 
             color: inherit; padding: 6px 12px; cursor: pointer; border-radius: 6px; 
@@ -50,7 +50,7 @@
                 If you don't know how to do it or a site still won't load, search "How to change DNS" on <a href="https://google.com" target="_blank">Google</a> (lol).
             </div>
 
-            <h3 class="title" id="browser">1. Recommended Browser</h3>
+            <h2 class="title" id="browser"><button onclick="copyLink('browser')">&#128279</button>Recommended Browser</h2>
             <p>Use <strong>Firefox</strong>. Avoid Chrome at all costs—it has implemented restrictions that block adblockers.</p>
             <p><strong>Essential Extensions:</strong></p>
             <ul>
@@ -64,13 +64,13 @@
                 <a href="https://addons.mozilla.org/it/firefox/addon/ublacklist/" target="_blank">uBlacklist</a>.
             </p>
 
-            <h3 class="title" id="torrent">2. BitTorrent Client</h3>
+            <h2 class="title" id="torrent">BitTorrent Client</h2>
             <p>Use <a href="https://www.qbittorrent.org/" target="_blank">qBitTorrent</a>. It is open-source and contains no ads or spyware.</p>
             <div class="info-box">
                 <strong>Pro-Tip:</strong> Organize your downloads by setting a default folder (e.g., <code>Downloads\Torrent</code>) and a separate folder for incomplete files (e.g., <code>Downloads\Torrent\.temp downloads</code>).
             </div>
 
-            <h3 class="title" id="anime">3. Where to find Anime?</h3>
+            <h2 class="title" id="anime">Where to find Anime?</h2>
             <ul>
                 <li><a href="https://nyaa.si" target="_blank">Nyaa.si</a>: The standard for anime. Use the <code>.si</code> domain only.</li>
                 <li><a href="https://nekobt.to" target="_blank">nekoBT</a>: A great alternative that allows user registration.</li>
@@ -82,7 +82,7 @@
                 Check our <a href="/#media-players" target="_self">dedicated section</a> for high-quality playback.
             </div>
 
-            <h3 class="title" id="games">4. Cracked Games (Repacks)</h3>
+            <h2 class="title" id="games">Cracked Games (Repacks)</h2>
             <p>Use trusted repackers like <a href="https://fitgirl-repacks.site/" target="_blank">FitGirl</a> or <a href="https://dodi-repacks.site/" target="_blank">DODI</a>. 
             Repacks take the original cracked game and compress it into a smaller installer.</p>
             
@@ -93,15 +93,15 @@
             <p><strong>Antivirus Warnings:</strong> Antivirus programs often flag "setup.exe" or "crack" files as viruses (False Positives). If you downloaded from the official sites listed above, you can safely "Allow on device."</p>
             <img src="/images/piracy/img1.png" alt="Antivirus Allow Guide">
 
-            <h4 class="title">How to download</h4>
+            <h3 class="title">How to download</h3>
             <p>Look for the "Magnet" link or the torrent file. Avoid direct download buttons unless you are using an adblocker.</p>
             <img src="/images/piracy/img2.png" alt="Download example 1">
 
-            <h4 class="title">How to install</h4>
+            <h3 class="title">How to install</h3>
             <p>Once the torrent finishes, run <code>setup.exe</code>. Follow the instructions and choose your path (e.g., <code>C:\Games\GAMENAME</code>). You can usually uncheck components like DirectX or C++ Redistributables if you already have them.</p>
             <img src="/images/piracy/img4.png" alt="Installation example">
             
-            <h4 class="title">Updating Games</h4>
+            <h3 class="title">Updating Games</h3>
             <img src="/images/piracy/img3.png" alt="Update example">
             <p>Install updates in order (1, 2, etc.). For multi-choice updates, pick the one that fits your needs.</p>
             <div class="nb-box">
@@ -119,7 +119,7 @@
                 Se non sai come fare, cercalo su <a href="https://google.com" target="_blank">Google.com</a> (lol).
             </div>
 
-            <h3 class="title" id="browser-it">1. Browser Consigliato</h3>
+            <h2 class="title" id="browser-it">Browser Consigliato</h2>
             <p>Usa <strong>Firefox</strong>. Assolutamente non usare Chrome: ha bloccato gli adblocker rendendo la navigazione insicura.</p>
             <p><strong>Estensioni Fondamentali:</strong></p>
             <ul>
@@ -133,20 +133,20 @@
                 <a href="https://addons.mozilla.org/it/firefox/addon/ublacklist/" target="_blank">uBlacklist</a>.
             </p>
 
-            <h3 class="title" id="torrent-it">2. Client BitTorrent</h3>
+            <h2 class="title" id="torrent-it">Client BitTorrent</h2>
             <p>Usa <a href="https://www.qbittorrent.org/" target="_blank">qBitTorrent</a>. È open-source e senza pubblicità.</p>
             <div class="info-box">
                 <strong>Consiglio:</strong> Organizza i download impostando una cartella predefinita (es. <code>Downloads\Torrent</code>) e una per i file temporanei (es. <code>Downloads\Torrent\.downloads temporanei</code>).
             </div>
 
-            <h3 class="title" id="anime-it">3. Dove trovare Anime?</h3>
+            <h2 class="title" id="anime-it">Dove trovare Anime?</h2>
             <ul>
                 <li><a href="https://nyaa.si" target="_blank">Nyaa.si</a>: Il punto di riferimento. Usa solo il dominio <code>.si</code>.</li>
                 <li><a href="https://nekobt.to" target="_blank">nekoBT</a>: Ottima alternativa con iscrizioni aperte.</li>
                 <li><a href="https://releases.moe" target="_blank">releases.moe</a>: Indica la migliore release per ogni anime (solo con sottotitoli inglesi).</li>
             </ul>
 
-            <h3 class="title" id="games-it">4. Giochi Craccati (Repack)</h3>
+            <h2 class="title" id="games-it">4. Giochi Craccati (Repack)</h2>
             <p>Usa siti affidabili come <a href="https://fitgirl-repacks.site/" target="_blank">FitGirl</a> o <a href="https://dodi-repacks.site/" target="_blank">DODI</a>. 
             I Repack comprimono il gioco originale in un installer più leggero.</p>
             
@@ -157,15 +157,15 @@
             <p><strong>Falsi Positivi:</strong> Gli antivirus spesso segnalano il file "setup.exe" come virus. Se hai scaricato dai siti ufficiali, puoi "consentire il file" nel dispositivo.</p>
             <img src="/images/piracy/img1.png" alt="Guida Antivirus">
 
-            <h4 class="title">Come scaricare</h4>
+            <h3 class="title">Come scaricare</h3>
             <p>Cerca il link "Magnet" o il file torrent. Evita i tasti "Download" diretti a meno di non avere un adblocker attivo.</p>
             <img src="/images/piracy/img2.png" alt="Esempio download">
 
-            <h4 class="title">Come installare</h4>
+            <h3 class="title">Come installare</h3>
             <p>Avvia <code>setup.exe</code>. Scegli la cartella (es. <code>C:\Games\NOMEGIOCO</code>). Puoi deselezionare DirectX o C++ se li hai già installati.</p>
             <img src="/images/piracy/img4.png" alt="Esempio installazione">
             
-            <h4 class="title">Aggiornamenti</h4>
+            <h3 class="title">Aggiornamenti</h3>
             <img src="/images/piracy/img3.png" alt="Esempio aggiornamento">
             <p>Installa gli aggiornamenti in ordine (1, 2, etc.). Se ci sono scelte multiple, scegli quello che preferisci.</p>
             <div class="nb-box">
@@ -189,5 +189,20 @@
         setLang(savedLang);
     });
   </script>
+
+    <div align="center">
+        <style>.block_container{text-align:center;} #block0, #block1, #block2 {display:inline;}</style>
+        <div id="block_container">
+            <div id="block0" style="float:left;transition: bottom 0.1s">
+                <a href="https://www.hitwebcounter.com" target="_self"><img src="https://hitwebcounter.com/counter/counter.php?page=18678886&style=0036&nbdigits=5&type=ip&initCount=415" title="Counter Widget" Alt="Visit counter For Websites"   border="0" /></a>
+            </div>
+            <div id="block1">
+                <script type="text/javascript" src="https://counter.websiteout.com/js/2/0/230/1"></script>
+            </div>
+            <div id="block2" style="float:right;transition: bottom 0.1s">
+                <a href="https://www.hitwebcounter.com" target="_self"><img src="https://hitwebcounter.com/counter/counter.php?page=18678490&style=0036&nbdigits=5&type=page&initCount=590" title="Counter Widget" Alt="Visit counter For Websites"   border="0" /></a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
