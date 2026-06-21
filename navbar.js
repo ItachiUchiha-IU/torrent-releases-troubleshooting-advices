@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <!-- this index wont work for the Italian version of the page because I'm too lazy to fix it -->
                     <a class="nav-btn" href="#dns" onclick="toggleMenu('toggleIndexMenu')">DNS Settings</a>
                     <a class="nav-btn" href="#browser" onclick="toggleMenu('toggleIndexMenu')">Browser</a>
-                    <a class="nav-btn" href="#torrent-client" onclick="toggleMenu('toggleIndexMenu')">BitTorrent</a>
+                    <a class="nav-btn" href="#torrent-client" onclick="toggleMenu('toggleIndexMenu')">Torrent Client</a>
                     <a class="nav-btn" href="#anime-sites" onclick="toggleMenu('toggleIndexMenu')">Anime Sites</a>
                     <a class="nav-btn" href="#games" onclick="toggleMenu('toggleIndexMenu')">Cracked Games</a>
                 ` : ''}
