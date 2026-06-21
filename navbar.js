@@ -119,6 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const isHome = path === "/" || path === "/index.html" || path === "";
     const isMPV_lua = path.includes('MPV_lua');
     const isHashes = path.includes('Hashes');
+    const isBasics = path.includes('Basics');
 
     const navHtml = `
     <div class="topnav">
@@ -134,6 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <a href="/" class="${isHome ? 'active' : ''}">Home</a>
             <a href="/MPV_lua" class="${isMPV_lua ? 'active' : ''}">MPV .lua</a>
             <a href="/Hashes" class="${isHashes ? 'active' : ''}">Hashes</a>
+            <a href="/Basics" class="${isBasics ? 'active' : ''}">Piracy Basics</a>
             
             <!-- Vertical Divider -->
             <div class="nav-divider"></div>
@@ -155,11 +157,22 @@ document.addEventListener("DOMContentLoaded", () => {
         <div id="toggleIndexMenu">
             <div class="settings-grid">
                 <a class="nav-btn" href="#" onclick="toggleMenu('toggleIndexMenu')" title="Back to Top">&uarr; Top</a>
-                ${isHome ? `<a class="nav-btn" href="#media-players" onclick="toggleMenu('toggleIndexMenu')">Media Players</a>` : ''}
-                ${isHome ? `<a class="nav-btn" href="#Track_Auto-Selection" onclick="toggleMenu('toggleIndexMenu')">Track Auto-Selection</a>` : ''}
-                ${isHome ? `<a class="nav-btn" href="#more-troubleshooting-and-advices" onclick="toggleMenu('toggleIndexMenu')">More T&A</a>` : ''}
-                ${isMPV_lua ? `<a class="nav-btn" href="#security-notice" onclick="toggleMenu('toggleIndexMenu')">Security Note</a>` : ''}
-                ${isMPV_lua ? `<a class="nav-btn" href="#MPV-Track-Selection-Script-lua" onclick="toggleMenu('toggleIndexMenu')">Track Auto-Selector (.lua)</a>` : ''}
+                ${isHome ? `
+                    <a class="nav-btn" href="#media-players" onclick="toggleMenu('toggleIndexMenu')">Media Players</a>
+                    <a class="nav-btn" href="#Track_Auto-Selection" onclick="toggleMenu('toggleIndexMenu')">Track Auto-Selection</a>
+                    <a class="nav-btn" href="#more-troubleshooting-and-advices" onclick="toggleMenu('toggleIndexMenu')">More T&A</a>
+                ` : ''}
+                ${isMPV_lua ? `
+                    <a class="nav-btn" href="#security-notice" onclick="toggleMenu('toggleIndexMenu')">Security Note</a>
+                    <a class="nav-btn" href="#MPV-Track-Selection-Script-lua" onclick="toggleMenu('toggleIndexMenu')">Track Auto-Selector (.lua)</a>
+                ` : ''}
+                ${isBasics ? `
+                    <a class="nav-btn" href="#dns" onclick="toggleMenu('toggleIndexMenu')">DNS Settings</a>
+                    <a class="nav-btn" href="#browser" onclick="toggleMenu('toggleIndexMenu')">Browser</a>
+                    <a class="nav-btn" href="#torrent" onclick="toggleMenu('toggleIndexMenu')">BitTorrent</a>
+                    <a class="nav-btn" href="#anime" onclick="toggleMenu('toggleIndexMenu')">Anime Sites</a>
+                    <a class="nav-btn" href="#games" onclick="toggleMenu('toggleIndexMenu')">Cracked Games</a>
+                ` : ''}
             </div>
         </div>
 
