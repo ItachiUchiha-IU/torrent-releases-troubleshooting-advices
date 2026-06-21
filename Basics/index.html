@@ -24,182 +24,196 @@
 
         .guide-content img { display: block; max-width: 100%; height: auto; border-radius: 8px; border: 1px solid rgba(128,128,128,0.3); margin: 20px auto; }
         
-        [lang="it"] { display: none; } /* Default hide Italian */
+        /* Language Visibility logic handled by JS class toggling */
+        body.lang-en [lang="it"] { display: none; }
+        body.lang-it [lang="en"] { display: none; }
     </style>
 </head>
-<body>
+<body class="lang-en"> <!-- Default class -->
   <div id="changetextcolor"><div id="scaleXY"><div id="changemargin"><div id="changefontsize"><div id="changefontfamily"><div id="changefontweight">
   <div style="margin-left:1%;margin-right:1%; padding-top: 20px;">
 
     <div class="lang-toggle-wrap">
-        <button class="lang-btn active" id="btn-en" onclick="setLang('en')">English 🇺🇸</button>
+        <button class="lang-btn" id="btn-en" onclick="setLang('en')">English 🇺🇸</button>
         <button class="lang-btn" id="btn-it" onclick="setLang('it')">Italiano 🇮🇹</button>
     </div>
 
     <div class="guide-content">
         
-        <!-- ============================================================
-             ENGLISH CONTENT
-             ============================================================ -->
-        <section id="content-en" lang="en">
-            <h2 class="title title-mid">Piracy Essentials: A Beginner's Guide</h2>
+        <!-- HEADER -->
+        <div lang="en"><h2 class="title title-mid">Piracy Essentials: A Beginner's Guide</h2></div>
+        <div lang="it"><h2 class="title title-mid">Guida Base per la Pirateria</h2></div>
 
-            <div class="nb-box" id="dns">
-                <strong>PREREQUISITE: DNS Settings</strong>
-                <br>To access most piracy sites, you must bypass ISP-level blocks. Set your device or router DNS to <strong>Google DNS</strong> (<code>8.8.8.8</code> / <code>8.8.4.4</code>).
-                <br>If you don't know how to do it or a site still won't load, search "How to change DNS" on <a href="https://google.com" target="_blank">Google</a> (lol).
-                <br>If you plan to use Firefox, you can simply change the DNS from the browser settings to <strong>NextDNS</strong>.
+        <!-- SECTION: DNS -->
+        <div id="dns">
+            <div lang="en">
+                <div class="nb-box">
+                    <strong>PREREQUISITE: DNS Settings</strong>
+                    <br>To access most piracy sites, you must bypass ISP-level blocks. Set your device or router DNS to <strong>Google DNS</strong> (<code>8.8.8.8</code> / <code>8.8.4.4</code>).
+                    <br>If you don't know how to do it, search "How to change DNS" on <a href="https://google.com" target="_blank">Google</a> (lol).
+                    <br>If you only use Firefox, you can simply enable DNS over HTTPS in the browser settings and select <strong>NextDNS</strong>. This only affects Firefox, though. To ensure your BitTorrent client (like qBitTorrent) can also bypass blocks, it is highly recommended to change the DNS at the System level (Windows settings) or on your Router.
+                </div>
             </div>
-
-            <br>
-            <h2 class="title" id="browser"><button onclick="copyLink('browser')">&#128279</button>Recommended Browser</h2>
-            <p>Use <strong>Firefox</strong>. Avoid Chrome at all costs—it has implemented restrictions that block adblockers.</p>
-            <p><strong>Essential Extensions:</strong></p>
-            <ul>
-                <li><a href="https://ublockorigin.com/" target="_blank">uBlock Origin</a> (The only adblocker you need)</li>
-                <li><a href="https://addons.mozilla.org/en-US/firefox/addon/nyaa-enhancer/" target="_blank">Nyaa-enhancer</a> (Better browsing and batch downloading for Nyaa.si)</li>
-            </ul>
-            <p><strong>Optional:</strong> 
-                <a href="https://addons.mozilla.org/it/firefox/addon/darkreader/" target="_blank">Dark Reader</a>, 
-                <a href="https://addons.mozilla.org/it/firefox/addon/youtube-no-translation/" target="_blank">YouTube No Translation</a>, 
-                <a href="https://addons.mozilla.org/it/firefox/addon/sponsorblock/" target="_blank">YT SponsorBlock</a>, 
-                <a href="https://addons.mozilla.org/it/firefox/addon/ublacklist/" target="_blank">uBlacklist</a>.
-            </p>
-            <div class="nb-box" id="dns">
-                Firefox overrides the DNS you have set on your device/router; to access the blocked sites, change the DNS from the browser settings to <strong>NextDNS</strong>.
+            <div lang="it">
+                <div class="nb-box">
+                    <strong>PREREQUISITO: Impostazione DNS</strong>
+                    <br>Per accedere ai siti bloccati, devi impostare i DNS del dispositivo o del router su <strong>Google</strong> (<code>8.8.8.8</code> / <code>8.8.4.4</code>). 
+                    <br>Se non sai come fare, cercalo su <a href="https://google.com" target="_blank">Google.com</a> (lol).
+                    <br>Se intendi usare soltanto Firefox, puoi semplicemente attivare il "DNS over HTTPS" nelle impostazioni del browser e selezionare <strong>NextDNS</strong>. Questo però influisce soltanto su Firefox. Per assicurarti che anche il tuo client Torrent possa trovare i seed, è caldamente consigliato cambiare i DNS a livello di Sistema (impostazioni di Windows) o direttamente nel modem/router.
+                </div>
             </div>
+        </div>
 
-            <br>
-            <h2 class="title" id="torrent-client"><button onclick="copyLink('torrent-client')">&#128279</button>BitTorrent Client</h2>
-            <p>Use <a href="https://www.qbittorrent.org/" target="_blank">qBitTorrent</a>. It is open-source and contains no ads or spyware.</p>
-            <div class="info-box">
-                <strong>Pro-Tip:</strong> Organize your downloads by setting a default folder (e.g., <code>Downloads\Torrent</code>) and a separate folder for incomplete files (e.g., <code>Downloads\Torrent\.temp downloads</code>).
+        <!-- SECTION: BROWSER -->
+        <div id="browser">
+            <div lang="en">
+                <br><h2 class="title"><button onclick="copyLink('browser')">&#128279</button>Recommended Browser</h2>
+                <p>Use <strong>Firefox</strong>. Avoid Chrome at all costs—it has implemented restrictions that block adblockers.</p>
+                <p><strong>Essential Extensions:</strong></p>
+                <ul>
+                    <li><a href="https://ublockorigin.com/" target="_blank">uBlock Origin</a> (The only adblocker you need)</li>
+                    <li><a href="https://addons.mozilla.org/en-US/firefox/addon/nyaa-enhancer/" target="_blank">Nyaa-enhancer</a> (Better browsing and batch downloading for Nyaa.si)</li>
+                </ul>
+                <p><strong>Optional Addons:</strong> 
+                    <a href="https://addons.mozilla.org/it/firefox/addon/darkreader/" target="_blank">Dark Reader</a>, 
+                    <a href="https://addons.mozilla.org/it/firefox/addon/youtube-no-translation/" target="_blank">YouTube No Translation</a>, 
+                    <a href="https://addons.mozilla.org/it/firefox/addon/sponsorblock/" target="_blank">YT SponsorBlock</a>, 
+                    <a href="https://addons.mozilla.org/it/firefox/addon/ublacklist/" target="_blank">uBlacklist</a>.
+                </p>
+                <div class="nb-box">
+                    <strong>Note:</strong> Firefox often ignores the DNS set on your device/router. To fix this, search for <strong>"DNS over HTTPS"</strong> in Firefox settings and select <strong>NextDNS</strong>.
+                </div>
             </div>
-
-            <br>
-            <h2 class="title" id="anime-sites"><button onclick="copyLink('anime-sites')">&#128279</button>Anime Sites</h2>
-            <ul>
-                <li><a href="https://nyaa.si" target="_blank">Nyaa.si</a>: The standard for anime. Use the <code>.si</code> domain only.</li>
-                <li><a href="https://nekobt.to" target="_blank">nekoBT</a>: A great alternative that allows user registration.</li>
-                <li><a href="https://releases.moe" target="_blank">releases.moe</a>: A guide to finding the best quality encode for some specific shows. (English subs only)</li>
-            </ul>
-
-            <div class="info-box">
-                <strong>Recommended Media Players:</strong> 
-                Check our <a href="/#media-players" target="_self">dedicated section</a> for high-quality playback.
+            <div lang="it">
+                <br><h2 class="title"><button onclick="copyLink('browser')">&#128279</button>Browser Consigliato</h2>
+                <p>Ua <strong>Firefox</strong>. Evita Chrome: ha introdotto restrizioni che limitano l'efficacia degli adblocker.</p>
+                <p><strong>Estensioni Fondamentali:</strong></p>
+                <ul>
+                    <li><a href="https://ublockorigin.com/" target="_blank">uBlock Origin</a> (L'unico vero adblocker)</li>
+                    <li><a href="https://addons.mozilla.org/it/firefox/addon/nyaa-enhancer/" target="_blank">Nyaa-enhancer</a> (Migliora l'uso di Nyaa.si)</li>
+                </ul>
+                <p><strong>Addon Opzionali:</strong> 
+                    <a href="https://addons.mozilla.org/it/firefox/addon/darkreader/" target="_blank">Dark Reader</a>, 
+                    <a href="https://addons.mozilla.org/it/firefox/addon/youtube-no-translation/" target="_blank">YouTube No Translation</a>, 
+                    <a href="https://addons.mozilla.org/it/firefox/addon/sponsorblock/" target="_blank">YT SponsorBlock</a>, 
+                    <a href="https://addons.mozilla.org/it/firefox/addon/ublacklist/" target="_blank">uBlacklist</a>.
+                </p>
+                <div class="nb-box">
+                    <strong>Nota:</strong> Firefox spesso ignora i DNS di sistema. Per risolvere, cerca <strong>"DNS over HTTPS"</strong> nelle impostazioni di Firefox e seleziona <strong>NextDNS</strong>.
+                </div>
             </div>
+        </div>
 
-            <br>
-            <h2 class="title" id="games"><button onclick="copyLink('games')">&#128279</button>Cracked Games (Repacks)</h2>
-            <p>Use trusted repackers like <a href="https://fitgirl-repacks.site/" target="_blank">FitGirl</a> or <a href="https://dodi-repacks.site/" target="_blank">DODI</a>. 
-            Repacks take the original cracked game and compress it into a smaller installer.</p>
-            
-            <div class="warning-box">
-                <strong>Important:</strong> If your browser says "Site not secure," it is usually just a missing certificate. Click on <code>Advanced</code> and continue to the site anyway. If the site is blocked by anti-piracy systems, ensure you set the custom DNS correctly.
+        <!-- SECTION: TORRENT -->
+        <div id="torrent">
+            <div lang="en">
+                <br><h2 class="title"><button onclick="copyLink('torrent')">&#128279</button>BitTorrent Client</h2>
+                <p>Use <a href="https://www.qbittorrent.org/" target="_blank">qBitTorrent</a>. It is open-source and contains no ads or spyware.</p>
+                <div class="info-box">
+                    <strong>Pro-Tip:</strong> Organize your downloads by setting a default folder (e.g., <code>Downloads\Torrent</code>) and a separate folder for incomplete files.
+                </div>
             </div>
-
-            <p><strong>Antivirus Warnings:</strong> Antivirus programs often flag "setup.exe" or "crack" files as viruses (False Positives). If you downloaded from the official sites listed above, you can safely "Allow on device."</p>
-            <img src="/images/piracy/img1.png" alt="Antivirus Allow Guide">
-
-            <h3 class="title">How to download</h3>
-            <p>Look for the "Magnet" link or the torrent file. Avoid direct download buttons unless you are using an adblocker.</p>
-            <img src="/images/piracy/img2.png" alt="Download example 1">
-
-            <h3 class="title">How to install</h3>
-            <p>Once the torrent finishes, run <code>setup.exe</code>. Follow the instructions and choose your path (e.g., <code>C:\Games\GAMENAME</code>). You can usually uncheck components like DirectX or C++ Redistributables if you already have them.</p>
-            <img src="/images/piracy/img4.png" alt="Installation example">
-            
-            <h3 class="title">Updating Games</h3>
-            <img src="/images/piracy/img3.png" alt="Update example">
-            <p>Install updates in order (1, 2, etc.). For multi-choice updates, pick the one that fits your needs.</p>
-            <div class="nb-box">
-                <strong>Safety Note:</strong> External hosts often have fake buttons. With uBlock Origin and a bit of attention you should safely be able to download the correct files and avoid possible viruses, but if you aren't sure about what you're doing, it is safer to skip optional updates; the game will still work.
+            <div lang="it">
+                <br><h2 class="title"><button onclick="copyLink('torrent')">&#128279</button>Client BitTorrent</h2>
+                <p>Usa <a href="https://www.qbittorrent.org/" target="_blank">qBitTorrent</a>. È open-source, leggero e senza pubblicità.</p>
+                <div class="info-box">
+                    <strong>Consiglio:</strong> Mantieni l'ordine impostando una cartella predefinita per i download completati e una per i file temporanei.
+                </div>
             </div>
-        </section>
+        </div>
 
-        <!-- ITALIAN CONTENT -->
-        <section id="content-it" lang="it">
-            <h2 class="title title-mid">Guida Base per la Pirateria</h2>
-
-            <div class="nb-box" id="dns-it">
-                <strong>PREREQUISITO: Impostazione DNS</strong>
-                <br>Per accedere ai siti, devi impostare i DNS del tuo device o del modem su <strong>Google</strong> (<code>8.8.8.8</code> / <code>8.8.4.4</code>) o <strong>Cloudflare</strong> (<code>1.1.1.1</code>). 
-                <br>Se non sai come fare, cercalo su <a href="https://google.com" target="_blank">Google.com</a> (lol).
-                <br>Se intendi usare Firefox, puoi semplicemente cambiare i DNS dai settings del browser a <strong>NextDNS</strong>.
+        <!-- SECTION: ANIME -->
+        <div id="anime">
+            <div lang="en">
+                <br><h2 class="title"><button onclick="copyLink('anime')">&#128279</button>Anime Sites</h2>
+                <ul>
+                    <li><a href="https://nyaa.si" target="_blank">Nyaa.si</a>: The standard for anime. Use the <code>.si</code> domain only.</li>
+                    <li><a href="https://nekobt.to" target="_blank">nekoBT</a>: A great alternative that allows user registration.</li>
+                    <li><a href="https://releases.moe" target="_blank">releases.moe</a>: Find the best quality encode for specific shows (English subs).</li>
+                </ul>
+                <div class="info-box">
+                    <strong>Recommended Media Players:</strong> Check our <a href="/#media-players" target="_self">dedicated section</a> for high-quality playback.
+                </div>
             </div>
-
-            <br>
-            <h2 class="title" id="browser-it"><button onclick="copyLink('browser-it')">&#128279</button>Browser Consigliato</h2>
-            <p>Usa <strong>Firefox</strong>. Assolutamente non usare Chrome: ha bloccato gli adblocker rendendo la navigazione insicura.</p>
-            <p><strong>Estensioni Fondamentali:</strong></p>
-            <ul>
-                <li><a href="https://ublockorigin.com/" target="_blank">uBlock Origin</a> (L'unico vero adblocker)</li>
-                <li><a href="https://addons.mozilla.org/it/firefox/addon/nyaa-enhancer/" target="_blank">Nyaa-enhancer</a> (Migliora l'uso di Nyaa.si)</li>
-            </ul>
-            <p><strong>Opzionali:</strong> 
-                <a href="https://addons.mozilla.org/it/firefox/addon/darkreader/" target="_blank">Dark Reader</a>, 
-                <a href="https://addons.mozilla.org/it/firefox/addon/youtube-no-translation/" target="_blank">YouTube No Translation</a>, 
-                <a href="https://addons.mozilla.org/it/firefox/addon/sponsorblock/" target="_blank">YT SponsorBlock</a>, 
-                <a href="https://addons.mozilla.org/it/firefox/addon/ublacklist/" target="_blank">uBlacklist</a>.
-            </p>
-            <div class="nb-box" id="dns">
-                Firefox sovrascrive i DNS che hai settato sul tuo device/router, quindi, per accedere ai siti bloccati, cambia il DNS dai settings del browser a <strong>NextDNS</strong>.
+            <div lang="it">
+                <br><h2 class="title"><button onclick="copyLink('anime')">&#128279</button>Siti Anime</h2>
+                <ul>
+                    <li><a href="https://nyaa.si" target="_blank">Nyaa.si</a>: Il punto di riferimento. Usa solo il dominio <code>.si</code>.</li>
+                    <li><a href="https://nekobt.to" target="_blank">nekoBT</a>: Ottima alternativa con iscrizioni aperte.</li>
+                    <li><a href="https://releases.moe" target="_blank">releases.moe</a>: Indica le migliori release per ogni serie (sottotitoli inglesi).</li>
+                </ul>
+                <div class="info-box">
+                    <strong>Media Player:</strong> Consulta la nostra <a href="/#media-players" target="_self">sezione dedicata</a> per una riproduzione ottimale.
+                </div>
             </div>
+        </div>
 
-            <br>
-            <h2 class="title" id="torrent-client-it"><button onclick="copyLink('torrent-client-it')">&#128279</button>Client BitTorrent</h2>
-            <p>Usa <a href="https://www.qbittorrent.org/" target="_blank">qBitTorrent</a>. È open-source e senza pubblicità.</p>
-            <div class="info-box">
-                <strong>Consiglio:</strong> Organizza i download impostando una cartella predefinita (es. <code>Downloads\Torrent</code>) e una per i file temporanei (es. <code>Downloads\Torrent\.downloads temporanei</code>).
+        <!-- SECTION: GAMES -->
+        <div id="games">
+            <div lang="en">
+                <br><h2 class="title"><button onclick="copyLink('games')">&#128279</button>Cracked Games (Repacks)</h2>
+                <p>Use trusted repackers like <a href="https://fitgirl-repacks.site/" target="_blank">FitGirl</a> or <a href="https://dodi-repacks.site/" target="_blank">DODI</a>.</p>
+                <div class="warning-box">
+                    <strong>Important:</strong> If your browser says "Site not secure," it is usually just a missing certificate. Click `Advanced` and continue. If the site is blocked, double-check your DNS settings.
+                </div>
+                <p><strong>Antivirus Warnings:</strong> Antivirus programs often flag "setup.exe" or "crack" files as viruses (False Positives). If you downloaded from the official sites listed above, you can safely "Allow on device."</p>
+                <img src="/images/piracy/img1.png" alt="Antivirus Guide">
+                
+                <h3 class="title">How to download</h3>
+                <p>Look for the "Magnet" link. Avoid direct download buttons unless you are using an adblocker.</p>
+                <img src="/images/piracy/img2.png" alt="Download Example">
+
+                <h3 class="title">How to install</h3>
+                <p>Run <code>setup.exe</code>. Follow the instructions and choose your path. You can usually uncheck DirectX or C++ if you already have them.</p>
+                <img src="/images/piracy/img4.png" alt="Installation Example">
+
+                <h3 class="title">Updating Games</h3>
+                <img src="/images/piracy/img3.png" alt="Update Example">
+                <p>Install updates in order (1, 2, etc.). For multi-choice updates, pick the one that fits your needs.</p>
+                <div class="nb-box">
+                    <strong>Safety Note:</strong> External hosts often have fake buttons. If you aren't sure, it is safer to skip optional updates; the game will still work.
+                </div>
             </div>
-            <br>
+            <div lang="it">
+                <br><h2 class="title"><button onclick="copyLink('games')">&#128279</button>Giochi Craccati (Repack)</h2>
+                <p>Usa siti affidabili come <a href="https://fitgirl-repacks.site/" target="_blank">FitGirl</a> o <a href="https://dodi-repacks.site/" target="_blank">DODI</a>.</p>
+                <div class="warning-box">
+                    <strong>Importante:</strong> Se il browser dice "sito non sicuro", mancano solo i certificati. Clicca su <code>Avanzate</code> e prosegui. Se è bloccato, controlla i DNS.
+                </div>
+                <p><strong>Falsi Positivi:</strong> Gli antivirus spesso segnalano il file "setup.exe" come virus. Se hai scaricato dai siti ufficiali, puoi "consentire il file" nel dispositivo.</p>
+                <img src="/images/piracy/img1.png" alt="Guida Antivirus">
 
-            <h2 class="title" id="anime-sites-it"><button onclick="copyLink('anime-sites-it')">&#128279</button>Siti Anime</h2>
-            <ul>
-                <li><a href="https://nyaa.si" target="_blank">Nyaa.si</a>: Il punto di riferimento. Usa solo il dominio <code>.si</code>.</li>
-                <li><a href="https://nekobt.to" target="_blank">nekoBT</a>: Ottima alternativa con iscrizioni aperte.</li>
-                <li><a href="https://releases.moe" target="_blank">releases.moe</a>: Indica la migliore release per ogni anime (solo con sottotitoli inglesi).</li>
-            </ul>
+                <h3 class="title">Come scaricare</h3>
+                <p>Cerca il link "Magnet". Evita i tasti "Download" diretti a meno di non avere un adblocker attivo.</p>
+                <img src="/images/piracy/img2.png" alt="Esempio download">
 
-            <br>
-            <h2 class="title" id="games-it"><button onclick="copyLink('games-it')">&#128279</button>Giochi Craccati (Repack)</h2>
-            <p>Usa siti affidabili come <a href="https://fitgirl-repacks.site/" target="_blank">FitGirl</a> o <a href="https://dodi-repacks.site/" target="_blank">DODI</a>. 
-            I Repack comprimono il gioco originale in un installer più leggero.</p>
-            
-            <div class="warning-box">
-                <strong>Attenzione:</strong> Se il browser dice "sito non sicuro", mancano solo i certificati. Clicca su <code>Avanzate</code> e prosegui. Se è bloccato dai filtri anti-pirateria è perché non hai settato correttamente i DNS.
+                <h3 class="title">Come installare</h3>
+                <p>Avvia <code>setup.exe</code>. Scegli la cartella e deseleziona DirectX o C++ se li hai già installati.</p>
+                <img src="/images/piracy/img4.png" alt="Esempio installazione">
+
+                <h3 class="title">Aggiornamenti</h3>
+                <img src="/images/piracy/img3.png" alt="Esempio aggiornamento">
+                <p>Installa gli aggiornamenti in ordine. Se non sei sicuro, evita di aggiornare: il gioco funzionerà comunque.</p>
             </div>
+        </div>
 
-            <p><strong>Falsi Positivi:</strong> Gli antivirus spesso segnalano il file "setup.exe" come virus. Se hai scaricato dai siti ufficiali, puoi "consentire il file" nel dispositivo.</p>
-            <img src="/images/piracy/img1.png" alt="Guida Antivirus">
+    </div> <!-- Close guide-content -->
 
-            <h3 class="title">Come scaricare</h3>
-            <p>Cerca il link "Magnet" o il file torrent. Evita i tasti "Download" diretti a meno di non avere un adblocker attivo.</p>
-            <img src="/images/piracy/img2.png" alt="Esempio download">
-
-            <h3 class="title">Come installare</h3>
-            <p>Avvia <code>setup.exe</code>. Scegli la cartella (es. <code>C:\Games\NOMEGIOCO</code>). Puoi deselezionare DirectX o C++ se li hai già installati.</p>
-            <img src="/images/piracy/img4.png" alt="Esempio installazione">
-            
-            <h3 class="title">Aggiornamenti</h3>
-            <img src="/images/piracy/img3.png" alt="Esempio aggiornamento">
-            <p>Installa gli aggiornamenti in ordine (1, 2, etc.). Se ci sono scelte multiple, scegli quello che preferisci.</p>
-            <div class="nb-box">
-                <strong>Nota Bene:</strong> I siti esterni spesso hanno falsi pulsanti che cercano di farti aprire altre pubblicità o scaricare virus. Con uBlock Origin ed un po' di attenzione dovresti essere in grado di scaricare i file corretti ed evitare possibili virus, ma se non sei sicuro riguardo a ciò che stai facendo, evita semplicemente di aggiornare: il gioco funzionerà comunque.
-            </div>
-        </section>
-
-    </div>
   </div></div></div></div></div></div></div>
 
   <script>
     function setLang(lang) {
-        document.getElementById('content-en').style.display = (lang === 'en') ? 'block' : 'none';
-        document.getElementById('content-it').style.display = (lang === 'it') ? 'block' : 'none';
+        // Toggle Body Class
+        document.body.className = 'lang-' + lang;
+        
+        // Update Button Style
         document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
         document.getElementById('btn-' + lang).classList.add('active');
+        
+        // Save preference
         localStorage.setItem('preferred_basics_lang', lang);
     }
+
     document.addEventListener("DOMContentLoaded", () => {
         const savedLang = localStorage.getItem('preferred_basics_lang') || 'en';
         setLang(savedLang);
