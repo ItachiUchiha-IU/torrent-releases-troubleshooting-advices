@@ -234,7 +234,15 @@ function toggleMenu(id) {
     const menus = ['toggleSettingsMenu', 'toggleIndexMenu'];
     menus.forEach(m => {
         const el = document.getElementById(m);
-        if (el) el.style.display = (m === id && el.style.display !== 'block') ? 'block' : 'none';
+        if (el) {
+            if (m === id) {
+                // Toggle the clicked menu
+                el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+            } else {
+                // Hide the other one
+                el.style.display = 'none';
+            }
+        }
     });
 }
 
@@ -379,4 +387,29 @@ window.addEventListener("pageshow", () => {
             el.value = el.defaultValue;
         }
     });
+});
+
+
+// Close menus when clicking outside
+window.addEventListener('click', function(event) {
+    const settingsMenu = document.getElementById('toggleSettingsMenu');
+    const indexMenu = document.getElementById('toggleIndexMenu');
+    
+    // We check if the click was NOT on a button and NOT inside a menu
+    const isButtonClick = event.target.closest('.nav-btn');
+    
+    if (!isButtonClick) {
+        if (settingsMenu && settingsMenu.style.display === 'block') {
+            // Only close if the click was actually outside the menu area
+            if (!settingsMenu.contains(event.target)) {
+                settingsMenu.style.display = 'none';
+            }
+        }
+        if (indexMenu && indexMenu.style.display === 'block') {
+            // Only close if the click was actually outside the menu area
+            if (!indexMenu.contains(event.target)) {
+                indexMenu.style.display = 'none';
+            }
+        }
+    }
 });

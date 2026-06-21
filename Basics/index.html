@@ -216,6 +216,9 @@
         
         // Save preference
         localStorage.setItem('preferred_basics_lang', lang);
+
+        // Update the URL in the address bar
+        window.history.replaceState(null, '', window.location.pathname + "?lang=" + lang + window.location.hash);
     }
 
     document.addEventListener("DOMContentLoaded", () => {
